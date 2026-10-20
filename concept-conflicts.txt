@@ -1,0 +1,79 @@
+Serverless|PaaS|SaaS
+IAM|IAM Policy|Identity-Based Policy|IAM Role
+IAM Access Analyzer|External Access Analysis|Internal Access Analysis|Unused Access Analysis
+Managed Policy|AWS-Managed Policy|Customer-Managed Policy|Identity-Based Policy|IAM Policy
+IAM Policy|Resource-Based Policy|Trust Policy|Permissions Boundary|KMS Key Policy|Bucket Policy|SQS Queue Policy|ECR Repository Policy
+Temporary Security Credentials|Session Token|AssumeRole|AWS STS
+Instance Profile|IAM Role|Lambda Execution Role|ECS Task Execution Role
+Amazon EC2|EC2 Instance
+AMI|EBS-Backed AMI|Quick Start AMIs|My AMIs|Marketplace AMIs|Community AMIs
+Auto Scaling Group|Horizontal Scaling|Scale Out|Scale In
+AWS Lambda|Lambda Function
+Amazon EBS|Root Device|Block Storage
+Amazon S3|S3 Bucket|S3 Object
+S3 Replication|Cross-Region Replication|Same-Region Replication
+S3 Object Lock|Object Lock Compliance Mode|Object Lock Governance Mode
+Amazon VPC|Default VPC
+AWS PrivateLink|VPC Endpoint|Interface Endpoint
+Public NAT Gateway|Private NAT Gateway
+AWS CloudFormation|Infrastructure as Code
+CloudFormation Registry|CloudFormation Resource Type|CloudFormation Module
+CloudFormation Hooks|CloudFormation Hook Handler|CloudFormation Hook Schema
+CloudFormation Guard|Policy as Code|Config Custom Policy Rule
+CloudFormation Linter|Linting
+AWS CloudTrail|CloudTrail Trail|Organization Trail|Multi-Region Trail|Single-Region Trail
+Amazon CloudWatch|CloudWatch Metric|CloudWatch Alarms|CloudWatch Logs
+CloudWatch Metric|Standard Metrics|Custom Metrics
+CloudWatch Dashboard|CloudWatch Metrics Explorer|Amazon Managed Grafana
+CloudWatch Application Insights|CloudWatch Application Signals|CloudWatch Infrastructure Insights
+Amazon EventBridge|EventBridge Event Bus|EventBridge Rule
+Amazon GuardDuty|GuardDuty Foundational Data Sources|GuardDuty Historical Behavior|GuardDuty Organization Management
+Amazon GuardDuty|GuardDuty S3 Protection|GuardDuty EKS Protection|GuardDuty RDS Protection|GuardDuty Lambda Protection|GuardDuty Runtime Monitoring|GuardDuty Malware Protection|GuardDuty Malware Scan
+GuardDuty Malware Protection|GuardDuty Malware Scan|GuardDuty-Initiated Malware Scan|On-Demand Malware Scan
+GuardDuty Entity List|GuardDuty Trusted Entity List|GuardDuty Threat Entity List|GuardDuty Trusted IP List
+Amazon Macie|Macie Custom Data Identifier|Macie Finding
+AWS Config|Config Configuration Recorder|AWS Config Rule
+Config Remediation|Config Remediation Action|Config Manual Remediation|Config Automatic Remediation
+AWS Config Rule|Config Managed Rule|Config Custom Rule|Config Custom Policy Rule
+AWS Security Hub|AWS Security Hub CSPM|Security Hub Central Management
+Security Hub Automation Rule|Security Hub Custom Action|Security Hub Integration
+AWS KMS|Customer-Managed KMS Key|AWS-Managed KMS Key|AWS-Owned Key
+KMS Custom Key Store|KMS External Key Store — XKS|KMS CloudHSM Key Store
+Data Key|Plaintext Data Key|Encrypted Data Key
+KMS Automatic Key Rotation|Secret Rotation
+AWS Secrets Manager|Secret|Systems Manager Parameter Store
+Amazon CloudFront|CloudFront Distribution
+Origin Access Control — OAC|Origin Access Identity — OAI
+CloudFront Signed URL|S3 Presigned URL
+Elastic Load Balancing|Application Load Balancer — ALB|Network Load Balancer — NLB|Gateway Load Balancer — GWLB|Classic Load Balancer — CLB
+ELB TLS Certificate|CloudFront TLS Certificate|AWS Certificate Manager — ACM
+AWS Systems Manager|Systems Manager Automation|Systems Manager Run Command|Systems Manager Session Manager
+Systems Manager Automation|Automation Runbook|OpsItem Automation Integration
+Systems Manager OpsCenter|OpsItem
+Amazon Route 53|Route 53 Weighted Routing|Route 53 Health Check
+Amazon Application Recovery Controller — ARC|Disaster Recovery|ARC Recovery Routing|ARC Readiness Check
+AWS VPN|AWS Site-to-Site VPN|AWS Client VPN|VPN over Direct Connect
+VPN Target Gateway|Virtual Private Gateway
+AWS Shield|AWS Shield Standard|AWS Shield Advanced
+Amazon ECS|ECS Cluster|ECS Service|ECS Task
+AWS Fargate|ECS Fargate Launch Type
+ECS Task Definition|ECS Container Definition|Kubernetes Pod Template
+ECS Agent|ECS Agent ACS
+Amazon ECR|ECR Registry|ECR Repository
+Amazon Cognito|Cognito User Pool|Cognito Identity Pool|Cognito Federation
+Amazon RDS|RDS for SQL Server|Amazon Aurora
+AWS Directory Service|AWS Managed Microsoft AD|AD Connector
+AWS IoT Core|Message Broker|MQTT
+IoT Publish|IoT Publisher
+Amazon DynamoDB|NoSQL
+Amazon Kinesis|Amazon Kinesis Data Streams|Kinesis Stream|Kinesis Shard
+Amazon Data Firehose|Kinesis Consumer|Kinesis Client Library — KCL
+AWS Billing and Cost Management|AWS Cost Anomaly Detection|Billing Alarm
+Job Function Policy|SecurityAudit|AdministratorAccess|PowerUserAccess|ReadOnlyAccess|IAMReadOnlyAccess
+ReadOnlyAccess|SecurityAudit|IAMReadOnlyAccess
+Amazon VPC|Subnet|Public Subnet|Private Subnet
+X-Ray Trace|X-Ray Trace Map|AWS X-Ray
+EventBridge Scheduler|EventBridge Schedule
+Systems Manager Parameter Store|Parameter Store SecureString|Parameter Store String
+WAF Web ACL|WAF Managed Rule|WAF Custom Rule|WAF Rate Limiting
+AWS WAF|WAF Managed Rule|WAF Custom Rule|WAF Rate Limiting

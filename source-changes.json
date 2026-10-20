@@ -1,0 +1,100 @@
+{
+  "previousHash": "6b04f308595fc8f4e6eb9ce7cfa8deeb0944cf5e4f77f89b12b9190b23199674",
+  "currentHash": "a4dbcbdbf5fac2bc96a05c99278c679a23c8014112863ca947868d53ff115942",
+  "textBlocksBefore": 3107,
+  "textBlocksAfter": 3112,
+  "imagesUnchanged": true,
+  "changes": [
+    {
+      "type": "replace",
+      "oldBlocks": [
+        816,
+        817
+      ],
+      "newBlocks": [
+        816,
+        817,
+        818,
+        819
+      ],
+      "before": [
+        "נוצר Instance profile - ה-Instance profile הוא סוג של מתווך שנוצר באופן אוטומטי כשמחברים role ל-instance. צריך אותו כי אי אפשר לשייך roles לשרתים, באמצעות ה-Instance profile כן אפשר לעשות את זה.",
+        "מוזרקים Temporary Security Credentials לתוך ה-IMDS - על שניהם יש פה סיכומים בנפרד"
+      ],
+      "after": [
+        "נוצר Instance profile",
+        "Instance profile",
+        "מה שמתאם בין IAM role ל-instance, כי אי אפשר לשייך roles לשרתים, באמצעות ה-Instance profile כן אפשר לעשות את זה.",
+        "כדי שה-instance יוכל לעבוד ולבצע פעולות, הוא מקבל Temporary Security Credentials מ-STS, שזה שירות פנימי ב-AWS שנותן למשתמש credentials זמניים, והם מוזרקים לתוך ה-IMDS. המפתחות האלו שמוזרקים ל-IMDS תקפים ל-6 שעות, כי זו ברירת המחדל של Instance Profile."
+      ]
+    },
+    {
+      "type": "replace",
+      "oldBlocks": [
+        1077
+      ],
+      "newBlocks": [
+        1079
+      ],
+      "before": [
+        "קישור אינטרנט רגיל שנותן למי שלוחץ עליו אישור זמני להוריד או להעלות קובץ מסוים, מבלי לתת למשתמש הרשאות קבועות או לחשוף את ה-bucket החוצה לאינטרנט. עובד על אימות שמבוסס על IAM."
+      ],
+      "after": [
+        "קישור אינטרנט רגיל שנותן למי שלוחץ עליו אישור זמני להוריד או להעלות קובץ מסוים, מבלי לתת למשתמש הרשאות קבועות או לחשוף את ה-bucket החוצה לאינטרנט. פיצ'ר זה עובד על אימות שמבוסס על IAM."
+      ]
+    },
+    {
+      "type": "insert",
+      "oldBlocks": [],
+      "newBlocks": [
+        2539
+      ],
+      "before": [],
+      "after": [
+        "OpsItem"
+      ]
+    },
+    {
+      "type": "replace",
+      "oldBlocks": [
+        2544,
+        2545
+      ],
+      "newBlocks": [
+        2547,
+        2548,
+        2549,
+        2550
+      ],
+      "before": [
+        "מה OpsItem מציג? הוא יודע לרכז בתוכו את הלוגים של המדדים מ-ColudWtach והלוגים של הפעולות של האנשים מ-CloudTrail במקום שנצטרך לעבור דרך הממשקים.",
+        "הוא גם מציע כל מיני runbooks מוכנים שאפשר להריץ בשביל לסדר את התקלה. אפשר להגדיר שהם ירוצו באופן אוטומטי בכל פעם שיש התאמה עם החוק שיצרנו."
+      ],
+      "after": [
+        "מנגנון העדכונים",
+        "ל-OpsItem יש \"סטטוסים\" (למשל: Open, In Progress, Resolved). בכל פעם שהסטטוס משתנה או שנוסף מידע חדש לתקלה, המערכת יכולה להוציא אוטומטית הודעה דרך שירות ההתראות SNS למי שרוצים.",
+        "שילוב מובנה עם AWS Systems Manager Automation",
+        "אפשר להריץ באופן אוטומטי או בלחיצת כפתור תהליכים דרך Automation Runbooks בשביל לסדר את התקלה."
+      ]
+    },
+    {
+      "type": "replace",
+      "oldBlocks": [
+        2993,
+        2994
+      ],
+      "newBlocks": [
+        2998,
+        2999
+      ],
+      "before": [
+        "Execution Logs:",
+        "הפעולות הפנימיות של ה-API Gateway: בדיקת חוקי האבטחה, אימות הטוקן (Token) של המשתמש, והמרת מבנה הנתונים (אם הוגדרה כזו)."
+      ],
+      "after": [
+        "Execution Logs - פעולות פנימיות כמו:",
+        "הפעולות של ה-API Gateway: בדיקת חוקי האבטחה, אימות הטוקן (Token) של המשתמש, והמרת מבנה הנתונים (אם הוגדרה כזו)."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+AWS Region|110,111,116,117
+Availability Zone|120,121,123,124,125,126,127
+Member Account|270,271
+CloudFormation StackSets|285
+Managed Policy|591,592
+Identity-Based Policy|591,592,666
+AWS-Managed Policy|593
+Customer-Managed Policy|594
+Policy Version|596
+Policy Statement|597
+Policy Sid|598
+Policy Effect|599,600,601
+Action במדיניות|603
+NotAction|604
+Principal|639,640,641,665,666,667
+Resource במדיניות|606
+Condition במדיניות|612
+StringEquals Condition|613
+Bool Condition|614
+Trust Policy|635,636
+Inline Policy|657,658
+Resource-Based Policy|659,660,661,662,663
+Instance Profile|816,817,818,819
+EC2 On-Demand|859,860
+EC2 Spot|861,862
+Reserved Instances|863,864
+Dedicated Host|865,866
+Savings Plans|867,868
+Object Lock Compliance Mode|1066
+Object Lock Governance Mode|1067
+SSE-S3|1069,1070,1071
+SSE-C|1072,1073
+Client-Side Encryption|1074,1075
+SSE-KMS|1076,1077
+S3 Standard|1099,1100,1101,1102,1103
+S3 Intelligent-Tiering|1104,1105
+S3 Standard-IA|1106,1107,1108
+S3 One Zone-IA|1110,1111,1113
+S3 Glacier Instant Retrieval|1116
+S3 Glacier Flexible Retrieval|1117
+S3 Glacier Deep Archive|1118
+S3 on Outposts|1119,1120,1121
+S3 Block Public Access|1135,1136
+BlockPublicAcls|1138,1139
+IgnorePublicAcls|1140,1141
+BlockPublicPolicy|1142,1143
+RestrictPublicBuckets|1144,1145
+CloudTrail Management Events|1531,1532,1533,1534,1535
+CloudTrail Data Events|1536,1537,1538,1539
+CloudTrail Insights Events|1540,1541
+CloudTrail Network Activity Event|1542,1543
+CloudWatch Alarms|1635,1636,1637,1638,1639,1640
+CloudWatch Alarm Actions|1637,1638,1639,1640
+CloudWatch Logs|1641,1642
+CloudWatch Log Stream|1643
+CloudWatch Log Group|1644
+CloudWatch Synthetics|1648,1649
+CloudWatch Application Insights|1650,1651
+GuardDuty Entity List|1914,1915,1916
+GuardDuty Trusted Entity List|1914,1915
+GuardDuty Threat Entity List|1914,1916
+KMS Encrypt|2281
+KMS Decrypt|2282
+KMS GenerateDataKey|2283
+Systems Manager OpsCenter|2538,2539,2540
+OpsItem|2538,2539,2540
+OpsItem Notifications|2547,2548
+OpsItem Automation Integration|2549,2550
+Amazon Application Recovery Controller — ARC|2607,2608,2609,2610
+ARC Readiness Check|2610
+ARC Recovery Routing|2609
+ECS Task Execution Role|2729,2730,2731,2732,2734,2735,2736,2737
+ECR Basic Scanning|2797,2799,2806
+ECR Enhanced Scanning|2797,2798
+Amazon API Gateway|2984,2985,2986,2987,2988,2989
+API Gateway Authorizer|2986,2993,2994
+API Throttling|2987

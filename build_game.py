@@ -5,13 +5,14 @@ from pathlib import Path
 import base64
 import hashlib
 import json
+import random
 import re
 
 from bs4 import BeautifulSoup
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "6b04f308595fc8f4e6eb9ce7cfa8deeb0944cf5e4f77f89b12b9190b23199674"
+REVIEWED_SOURCE_HASH = "a4dbcbdbf5fac2bc96a05c99278c679a23c8014112863ca947868d53ff115942"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
     94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
@@ -20,16 +21,16 @@ CONCEPT_IMAGES = {
 }
 # Conceptual statements embedded in console tutorials, retained without testing clicks.
 CONCEPT_EXCEPTIONS = {
-    889: "AMI", 890: "Root Device", 893: "Quick Start AMIs",
-    894: "My AMIs", 895: "Marketplace / Community AMIs", 898: "Instance Types",
-    901: "Key Pair", 902: "Key Pair", 903: "Key Pair",
-    912: "Security Groups", 921: "Inbound Rules", 922: "Outbound Rules",
-    1781: "Metric Filters", 2019: "Custom Data Identifiers",
+    891: "AMI", 892: "Root Device", 895: "Quick Start AMIs",
+    896: "My AMIs", 897: "Marketplace / Community AMIs", 900: "Instance Types",
+    903: "Key Pair", 904: "Key Pair", 905: "Key Pair",
+    914: "Security Groups", 923: "Inbound Rules", 924: "Outbound Rules",
+    1783: "Metric Filters", 2021: "Custom Data Identifiers",
 }
-IMPLEMENTATION_RANGES = ((555, 572), (1299, 1312), (1961, 1964), (2786, 2789))
+IMPLEMENTATION_RANGES = ((555, 572), (1301, 1314), (1963, 1966), (2791, 2794))
 IMPLEMENTATION_BLOCKS = {
-    439, 491, 1150, 1243, 1568, 1596, 1754, 1764, 1902, 2066,
-    2124, 2164, 2167, 2324, 2756,
+    439, 491, 1152, 1245, 1570, 1598, 1756, 1766, 1904, 2068,
+    2126, 2166, 2169, 2326, 2761,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -141,10 +142,10 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3247, 140, 49):
+    if (len(records), image_number, len(services)) != (3252, 140, 49):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
     # Indexed exceptions belong to this reviewed snapshot, not future downloads.
-    if records[2019]["text"].startswith("custom data identifiers:") is False:
+    if records[2021]["text"].startswith("custom data identifiers:") is False:
         raise ValueError("Reviewed exception indices no longer match the snapshot")
 
     for index in (0, 685):
@@ -204,111 +205,99 @@ def build():
         pending.append(record)
     flush()
 
-    prompts = read_catalog("recall-questions.txt")
-    image_prompts = read_catalog("image-questions.txt")
-    groups = []
-    for unit in units:
-        if unit["classification"] != "knowledge" or unit["kind"] != "text":
-            continue
-        key = tuple(unit[k] for k in ("service", "section", "topic"))
-        if not groups or groups[-1][0] != key:
-            groups.append((key, []))
-        groups[-1][1].append(unit)
-    assert set(prompts) == {str(i) for i in range(len(groups))}, "Review each topic group after changing the source"
-    cards = []
-    for index, (key, parts) in enumerate(groups):
-        question = prompts[str(index)]
-        if question == "-":
-            for part in parts:
-                part["classification"] = "context"
-                part["reason"] = "Reviewed navigation or section introduction; no independent conceptual content"
-                for block in part["blocks"]:
-                    records[block].update(classification="context", reason=part["reason"])
-            continue
-        text = "\n".join(part["text"] for part in parts)
-        card = {
-            "id": "recall-" + digest("|".join(key) + "|" + text),
-            "service": key[0], "section": key[1], "topic": key[2], "kind": "text",
-            "classification": "knowledge", "question": question, "text": text,
-            "blocks": [block for part in parts for block in part["blocks"]],
-            "source": parts[0]["id"], "quoteSources": [part["id"] for part in parts],
-        }
-        cards.append(card)
-        for part in parts:
-            part.update(question=question, card=card["id"])
-    for unit in units:
-        if unit["classification"] == "knowledge" and unit["kind"] == "image":
-            unit["question"] = image_prompts[str(unit["imageNumber"])]
-            unit["card"] = unit["id"]
-            cards.append(unit)
-    assert {int(n) for n in image_prompts} == CONCEPT_IMAGES
-    active = [u for u in units if u["classification"] == "knowledge"]
-    citations = {}
-    for line in (BASE / "question-sources.txt").read_text(encoding="utf-8").splitlines():
-        svc, anchor, block_list = line.split("|")
-        key = (svc, anchor)
-        if key in citations:
-            raise ValueError(f"Duplicate question citation: {key}")
-        citations[key] = [int(block) for block in block_list.split(",")]
-    questions = []
-    used_citations = set()
-    for line in (BASE / "depth-questions.txt").read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        fields = line.split("|")
-        if len(fields) != 8:
-            raise ValueError("Invalid authored question: " + line)
-        svc, anchor, question, answer, *tail = fields
-        wrong = tail[:3]
-        explain = tail[3]
-        key = (svc, anchor)
-        blocks = citations[key]
-        used_citations.add(key)
-        quote_records = [records[index] for index in blocks]
-        assert all(r["kind"] == "text" and r["service"] == svc and r["classification"] != "implementation" for r in quote_records), key
-        label_only = (svc, anchor) in {("ECR", "Repository Policy"), ("ECR", "Lifecycle policies")}
-        assert label_only or any(r["classification"] == "knowledge" for r in quote_records), key
-        matched = next(u for u in units if blocks[0] in u["blocks"])
-        questions.append({
-            "id": "deep-" + digest(question), "service": svc, "section": "שאלות הבנה",
-            "topic": anchor, "kind": "quiz", "question": question, "answer": answer,
-            "options": [answer] + wrong, "text": explain, "source": matched["id"],
-            "quoteText": "\n".join(r["text"] for r in quote_records), "quoteBlocks": blocks,
-            "sourceLabel": label_only,
-        })
-    assert used_citations == set(citations), "Unused question citations must be reviewed"
+    sources = json.loads((BASE / "concept-sources.json").read_text(encoding="utf-8"))
+    definitions = []
+    for line in (BASE / "concept-definitions.txt").read_text(encoding="utf-8").splitlines():
+        key, term, answer, category = line.split("|")
+        definitions.append({"key": key, "term": term, "answer": answer, "category": category})
+    assert len({d["term"] for d in definitions}) == len(definitions), "Duplicate concept"
+    terms = {d["term"] for d in definitions}
+    conflicts = {term: {term} for term in terms}
+    for line in (BASE / "concept-conflicts.txt").read_text(encoding="utf-8").splitlines():
+        related = set(line.split("|"))
+        assert related <= terms, f"Unknown distractor exclusion: {related - terms}"
+        for term in related:
+            conflicts[term].update(related)
+    reviews = {}
+    for key, value in read_catalog("concept-review.txt").items():
+        disposition, detail = value.split("|")
+        assert disposition in {"alias", "excluded"}
+        reviews[key] = {"disposition": disposition, "detail": detail}
+    direct = {d["key"] for d in definitions}
+    assert not direct.intersection(reviews), "A topic must be directly covered or reviewed, not both"
+    assert {str(i) for i in range(493)} == {k for k in direct if k.isdigit()} | set(reviews), "Review every source topic"
+    for review in reviews.values():
+        if review["disposition"] == "alias":
+            assert set(review["detail"].split(",")) <= direct, "Alias must point to covered concepts"
+    by_block = {block: unit for unit in units for block in unit["blocks"]}
+    images = {u["imageNumber"]: u for u in units if u["kind"] == "image"}
+    def source_order(definition):
+        citation = sources[definition["key"]]
+        blocks = citation["blocks"] if "blocks" in citation else images[citation["imageNumber"]]["blocks"]
+        return blocks[0]
 
-    chart_rows = []
-    for line in (BASE / "chart-definitions.txt").read_text(encoding="utf-8").splitlines():
-        if line.strip():
-            number, term, quote = line.split("|")
-            chart_rows.append((int(number), term, quote))
-    chart_questions = read_catalog("chart-questions.txt")
-    assert set(chart_questions) == {term for _, term, _ in chart_rows}
-    for number, term, quote in chart_rows:
-        source_unit = next(u for u in units if u.get("imageNumber") == number)
-        question, *alternatives = chart_questions[term].split("|")
-        assert len(alternatives) == 3
-        questions.append({
-            "id": "chart-" + digest(term), "service": source_unit["service"],
-            "section": "הגדרות שירותים מתוך התרשימים", "topic": term, "kind": "quiz",
-            "question": question,
-            "answer": term, "options": [term] + alternatives,
-            "text": f"השירות המתאים הוא {term}. הציטוט המקורי באנגלית מופיע להלן; ניסוח השאלה בעברית הוא עיבוד של ההגדרה.",
-            "source": source_unit["id"], "imageQuote": quote, "imageNumber": number,
-        })
-    for line in (BASE / "diagram-questions.txt").read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        number, label, question, answer, wrong1, wrong2, wrong3, explain = line.split("|")
-        source_unit = next(u for u in units if u.get("imageNumber") == int(number))
-        questions.append({
-            "id": "diagram-" + digest(question), "service": source_unit["service"],
-            "section": "שירותים בארכיטקטורת האבטחה", "topic": label, "kind": "quiz",
-            "question": question, "answer": answer, "options": [answer, wrong1, wrong2, wrong3],
-            "text": explain, "source": source_unit["id"], "imageQuote": label,
-            "imageQuoteType": "label", "imageNumber": int(number),
-        })
+    definitions.sort(key=source_order)
+    evidence = read_catalog("concept-evidence.txt")
+    assert set(evidence) == {k for k in sources if not k.isdigit()}, "Every transcribed chart definition and SRA label must map to a concept"
+    assert set(evidence.values()) <= {d["term"] for d in definitions}
+    quote_overrides = read_catalog("concept-quotes.txt")
+    assert set(quote_overrides) <= {d["term"] for d in definitions}
+    questions, cards = [], []
+    for definition in definitions:
+        key, term, answer, category = (definition[k] for k in ("key", "term", "answer", "category"))
+        citation = sources[key]
+        peers = [d for d in definitions if d["category"] == category and d["term"] not in conflicts[term]]
+        if len(peers) < 3:
+            peers += [d for d in definitions if d["category"] != category and d["term"] not in conflicts[term]]
+        wrong = random.Random(digest(term)).sample(peers, 3)
+        question_text = f"מה עושה {term}?" if term in evidence.values() or term == citation.get("service") else f"מה המשמעות של {term}?"
+        question = {
+            "id": "concept-" + digest(term + "|" + answer), "topic": term,
+            "section": "מה המושג ומה הוא עושה", "kind": "quiz",
+            "question": question_text, "answer": answer,
+            "options": [answer] + [d["answer"] for d in wrong],
+            "distractorTerms": [d["term"] for d in wrong], "category": category,
+            "conceptSource": key,
+            "text": "הגדרה תמציתית ללמידה. הציטוט המקורי מוצג בנפרד.",
+        }
+        if "imageNumber" in citation:
+            source_unit = images[citation["imageNumber"]]
+            question.update(citation, service=source_unit["service"], source=source_unit["id"], quoteBlocks=source_unit["blocks"])
+        else:
+            blocks = [int(b) for b in quote_overrides[term].split(",")] if term in quote_overrides else citation["blocks"]
+            assert set(blocks) <= set(citation["blocks"]), f"Quotation outside reviewed topic: {term}"
+            assert blocks and all(records[b]["kind"] == "text" for b in blocks), term
+            assert {records[b]["service"] for b in blocks} == {citation["service"]}, term
+            source_unit = by_block[blocks[0]]
+            question.update(
+                service=citation["service"], source=source_unit["id"],
+                quoteText="\n".join(records[b]["text"] for b in blocks), quoteBlocks=blocks,
+                sourceLabel=key in {"311", "323", "380", "382"} or term == "Break-Glass Account",
+            )
+        question["evidence"] = [
+            dict(sources[k], source=images[sources[k]["imageNumber"]]["id"])
+            for k, name in evidence.items() if name == term and k != key
+        ]
+        for item in question["evidence"]:
+            images[item["imageNumber"]].setdefault("concepts", []).append(question["id"])
+        if "imageNumber" in citation:
+            source_unit.setdefault("concepts", []).append(question["id"])
+        questions.append(question)
+        card = dict(question, id="recall-" + question["id"], kind="text", text=answer, blocks=question["quoteBlocks"])
+        cards.append(card)
+        if "blocks" in citation:
+            for block in citation["blocks"]:
+                by_block[block].setdefault("concepts", []).append(question["id"])
+    for key, review in reviews.items():
+        if review["disposition"] == "alias":
+            concept_ids = [q["id"] for q in questions if q["conceptSource"] in review["detail"].split(",")]
+            for block in sources[key]["blocks"]:
+                by_block[block].setdefault("concepts", []).extend(concept_ids)
+    for unit in units:
+        unit["concepts"] = list(dict.fromkeys(unit.get("concepts", [])))
+        if unit["concepts"]:
+            unit["card"] = unit["concepts"][0]
+    active = [u for u in units if u["classification"] == "knowledge"]
     assigned = [i for u in units for i in u["blocks"]]
     assert Counter(assigned) == Counter(range(len(records))), "Every source block must be archived exactly once"
     assert all(len(set(q["options"])) == 4 for q in questions), "Four distinct answers required"
@@ -320,7 +309,10 @@ def build():
         "hash": hashlib.sha256(raw.encode("utf-8")).hexdigest(), "blocks": len(records),
         "textBlocks": len(records) - image_number, "images": image_number, "services": services,
         "sourceUnits": len(units), "knowledgeUnits": len(active), "depthQuestions": len(questions),
-        "recallCards": len(cards), "reviewedTopicGroups": len(groups),
+        "recallCards": len(cards), "reviewedTopicGroups": 493,
+        "conceptQuestions": len(questions), "directTopicGroups": len([k for k in direct if k.isdigit()]),
+        "aliasedTopicGroups": sum(r["disposition"] == "alias" for r in reviews.values()),
+        "excludedTopicGroups": sum(r["disposition"] == "excluded" for r in reviews.values()),
         "legacyQuestions": 0, "classifications": dict(classification_counts),
         "conceptImages": len(CONCEPT_IMAGES),
     }
@@ -335,7 +327,7 @@ def build():
         "meta": meta, "allBlocksMappedExactlyOnce": True, "allImagesIncluded": True,
         "sourceBlocks": [{k: v for k, v in r.items() if k != "image"} for r in records],
         "sourceUnits": [{k: v for k, v in u.items() if k != "image"} for u in units],
-        "questions": questions,
+        "questions": questions, "topicReviews": reviews, "conceptSources": sources,
         "recallCards": [{k: v for k, v in c.items() if k != "image"} for c in cards],
     }
     (BASE / "coverage-audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")

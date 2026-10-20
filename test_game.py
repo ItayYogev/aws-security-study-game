@@ -16,6 +16,7 @@ DATA = json.loads(GAME.find("script", id="study-data").string)
 AUDIT = json.loads((BASE / "coverage-audit.json").read_text(encoding="utf-8"))
 UNITS = {u["id"]: u for u in DATA["units"]}
 BLOCKS = AUDIT["sourceBlocks"]
+QUESTIONS = {q["topic"]: q for q in DATA["questions"]}
 
 
 class GameTests(unittest.TestCase):
@@ -28,138 +29,144 @@ class GameTests(unittest.TestCase):
                 text = tag.get_text("", strip=False).strip()
                 if text:
                     original.append(("text", text))
-        self.assertEqual(len(original), 3247)
+        self.assertEqual(len(original), 3252)
         self.assertEqual(len(BLOCKS), len(original))
         for record, (kind, content) in zip(BLOCKS, original):
             self.assertEqual(record["kind"], kind)
             if kind == "text":
                 self.assertEqual(record["text"], content)
             else:
-                image_unit = next(u for u in DATA["units"] if record["id"] in u["blocks"])
-                self.assertEqual(image_unit["image"], content)
+                unit = next(u for u in DATA["units"] if record["id"] in u["blocks"])
+                self.assertEqual(unit["image"], content)
                 self.assertGreater(len(base64.b64decode(content.split(",", 1)[1], validate=True)), 50)
 
-    def test_exactly_once_mapping(self):
-        assigned = [i for u in DATA["units"] for i in u["blocks"]]
-        self.assertEqual(Counter(assigned), Counter(range(3247)))
+    def test_exactly_once_archive_mapping(self):
+        assigned = [i for unit in DATA["units"] for i in unit["blocks"]]
+        self.assertEqual(Counter(assigned), Counter(range(3252)))
         self.assertEqual(len(UNITS), len(DATA["units"]))
         for unit in DATA["units"]:
             if unit["kind"] == "text":
                 self.assertEqual(unit["text"], "\n".join(BLOCKS[i]["text"] for i in unit["blocks"]))
+            self.assertTrue(set(unit["concepts"]) <= {q["id"] for q in DATA["questions"]})
 
-    def test_all_knowledge_has_a_question_and_no_exclusions(self):
-        active = [u for u in DATA["units"] if u["classification"] == "knowledge"]
-        covered = {i for u in active for i in u["blocks"]}
-        required = {r["id"] for r in BLOCKS if r["classification"] == "knowledge"}
-        self.assertEqual(covered, required)
-        self.assertTrue(all(u["question"].strip() for u in active))
-        self.assertEqual({u["service"] for u in active}, set(DATA["meta"]["services"]))
-        self.assertEqual(len([u for u in active if u["kind"] == "image"]), 50)
-        for index in [439, 556, 568, 883, 985, 1184, 1303, 1308, 1754, 1962, 2177, 2787]:
-            self.assertNotIn(index, covered)
-        for index in [893, 902, 912, 1081, 1085, 1219, 1223, 1781, 2019, 2992, 3004]:
-            self.assertIn(index, covered)
-        self.assertNotIn(0, covered)
-        self.assertNotIn(685, covered)
-        self.assertFalse(any(u["kind"] == "text" and re.fullmatch(r"[\s{}\[\],;:()\"'\-]*", u["text"]) for u in active))
+    def test_every_reviewed_topic_is_accounted_for(self):
+        direct = {q["conceptSource"] for q in DATA["questions"] if q["conceptSource"].isdigit()}
+        reviews = AUDIT["topicReviews"]
+        self.assertFalse(direct & set(reviews))
+        self.assertEqual(direct | set(reviews), {str(i) for i in range(493)})
+        for key, review in reviews.items():
+            if review["disposition"] == "alias":
+                targets = set(review["detail"].split(","))
+                self.assertTrue(targets <= direct, key)
+                for block in AUDIT["conceptSources"][key]["blocks"]:
+                    source = next(u for u in DATA["units"] if block in u["blocks"])
+                    self.assertTrue(source["concepts"], key)
+            else:
+                self.assertEqual(review["disposition"], "excluded")
+                self.assertTrue(review["detail"].strip())
+        self.assertEqual({q["service"] for q in DATA["questions"]}, set(DATA["meta"]["services"]))
 
-    def test_every_objective_answer_has_conceptual_exact_quote(self):
-        self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(DATA["questions"]))
-        for question in DATA["questions"]:
+    def test_concept_question_contract(self):
+        self.assertEqual(len(QUESTIONS), 636)
+        self.assertEqual(len(QUESTIONS), len(DATA["questions"]))
+        self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(QUESTIONS))
+        conflicts = []
+        for line in (BASE / "concept-conflicts.txt").read_text(encoding="utf-8").splitlines():
+            conflicts.append(set(line.split("|")))
+        for term, question in QUESTIONS.items():
+            self.assertIn(question["question"], [f"מה המשמעות של {term}?", f"מה עושה {term}?"])
+            self.assertRegex(question["answer"], r"[\u0590-\u05ff]")
             self.assertEqual(len(question["options"]), 4)
             self.assertEqual(len(set(question["options"])), 4)
             self.assertEqual(question["options"].count(question["answer"]), 1)
+            self.assertEqual(len(set(question["distractorTerms"])), 3)
+            self.assertEqual([QUESTIONS[t]["answer"] for t in question["distractorTerms"]], question["options"][1:])
+            for related in conflicts:
+                if term in related:
+                    self.assertFalse(set(question["distractorTerms"]) & related, term)
+            self.assertFalse(re.search(r"\$\d|\d+\s*(?:ימים|שעות|דקות|שניות|בקשות)", question["answer"]), term)
+        self.assertEqual(DATA["legacy"], [])
+
+    def test_exact_citations_and_image_transcripts(self):
+        for question in DATA["questions"]:
             source = UNITS[question["source"]]
-            if question.get("sourceLabel"):
-                self.assertEqual(question["service"], "ECR")
-                self.assertIn(question["topic"], ["Repository Policy", "Lifecycle policies"])
-            else:
-                self.assertTrue(any(BLOCKS[i]["classification"] == "knowledge" for i in question.get("quoteBlocks", source["blocks"])))
             if question.get("imageQuote"):
-                self.assertEqual(source["kind"], "image")
                 self.assertEqual(source["imageNumber"], question["imageNumber"])
-                if question.get("imageQuoteType") != "label":
-                    self.assertNotIn(question["answer"].casefold(), question["question"].casefold())
             else:
                 blocks = question["quoteBlocks"]
                 self.assertTrue(blocks)
-                self.assertEqual(question["quoteText"], "\n".join(BLOCKS[i]["text"] for i in blocks))
-                self.assertTrue(all(BLOCKS[i]["classification"] != "implementation" for i in blocks))
-                self.assertTrue(all(BLOCKS[i]["service"] == question["service"] for i in blocks))
-        self.assertEqual(DATA["legacy"], [])
+                self.assertEqual(question["quoteText"], "\n".join(BLOCKS[b]["text"] for b in blocks))
+                self.assertTrue(all(BLOCKS[b]["kind"] == "text" and BLOCKS[b]["service"] == question["service"] for b in blocks))
+        evidence = dict(line.split("|") for line in (BASE / "concept-evidence.txt").read_text(encoding="utf-8").splitlines())
+        charts = [line.split("|") for line in (BASE / "chart-definitions.txt").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(len(charts), 67)
+        self.assertEqual(len(evidence), 78)
+        for number, term, quote in charts:
+            question = QUESTIONS[evidence["chart:" + term]]
+            citations = [question] + question["evidence"]
+            self.assertTrue(any(c.get("imageNumber") == int(number) and c.get("imageQuote") == quote for c in citations), term)
+        for key, term in evidence.items():
+            if key.startswith("diagram:"):
+                self.assertTrue(any(c.get("imageQuote") == key.split(":", 1)[1] and c.get("imageQuoteType") == "label"
+                                    for c in [QUESTIONS[term]] + QUESTIONS[term]["evidence"]))
 
-    def test_source_identity_and_metadata(self):
-        self.assertEqual(hashlib.sha256(RAW.encode("utf-8")).hexdigest(), DATA["meta"]["hash"])
+    def test_recall_is_the_same_concept_bank(self):
+        self.assertEqual(len(DATA["cards"]), len(QUESTIONS))
+        for card, question in zip(DATA["cards"], DATA["questions"]):
+            self.assertEqual(card["id"], "recall-" + question["id"])
+            self.assertEqual(card["kind"], "text")
+            self.assertEqual(card["question"], question["question"])
+            self.assertEqual(card["text"], question["answer"])
+            self.assertEqual(card["answer"], question["answer"])
+            self.assertEqual(card["source"], question["source"])
+            self.assertEqual(card["evidence"], question["evidence"])
+
+    def test_current_source_changes_are_visible(self):
+        changes = json.loads((BASE / "source-changes.json").read_text(encoding="utf-8"))
+        self.assertEqual(changes["currentHash"], DATA["meta"]["hash"])
+        self.assertTrue(changes["imagesUnchanged"])
+        self.assertEqual(len(changes["changes"]), 5)
+        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 5)
+        for term, text in [
+            ("Instance Profile", "מתאם בין IAM role ל-instance"),
+            ("Instance Profile", "מקבל Temporary Security Credentials מ-STS"),
+            ("OpsItem Notifications", "הודעה דרך שירות ההתראות SNS"),
+            ("OpsItem Automation Integration", "Automation Runbooks"),
+            ("S3 Presigned URL", "פיצ'ר זה עובד על אימות שמבוסס על IAM"),
+            ("API Gateway Execution Logs", "Execution Logs - פעולות פנימיות כמו:"),
+        ]:
+            self.assertIn(text, QUESTIONS[term]["quoteText"], term)
+        self.assertNotIn("מרכז בתוכו את הלוגים", QUESTIONS["OpsItem"]["quoteText"])
+
+    def test_source_metadata_and_self_contained_output(self):
+        self.assertEqual(hashlib.sha256(RAW.encode()).hexdigest(), DATA["meta"]["hash"])
         self.assertEqual(DATA["meta"], AUDIT["meta"])
-        self.assertEqual(DATA["meta"]["textBlocks"], 3107)
+        self.assertEqual(DATA["meta"]["textBlocks"], 3112)
         self.assertEqual(DATA["meta"]["images"], 140)
         self.assertEqual(len(DATA["meta"]["services"]), 49)
-        self.assertEqual(DATA["meta"]["knowledgeUnits"], sum(u["classification"] == "knowledge" for u in DATA["units"]))
-
-    def test_self_contained_and_no_unexpanded_tokens(self):
+        self.assertEqual(DATA["meta"]["conceptQuestions"], len(QUESTIONS))
+        self.assertEqual(DATA["meta"]["recallCards"], len(QUESTIONS))
+        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 493)
         self.assertIsNone(GAME.find("script", src=True))
         self.assertIsNone(GAME.find("link", rel="stylesheet"))
         self.assertIsNone(GAME.find("img", src=re.compile(r"^https?://")))
-        text = str(GAME)
-        self.assertNotIn("__STUDY_DATA__", text)
-        self.assertNotIn("__LEGACY_DATA__", text)
-        self.assertNotIn("__GAME_RUNTIME__", text)
+        for token in ["__STUDY_DATA__", "__LEGACY_DATA__", "__GAME_RUNTIME__"]:
+            self.assertNotIn(token, str(GAME))
 
-    def test_authored_coherent_recall_covers_every_knowledge_block(self):
-        cards = DATA["cards"] + [u for u in DATA["units"] if u["kind"] == "image" and u["classification"] == "knowledge"]
-        self.assertEqual(len(cards), DATA["meta"]["recallCards"])
-        self.assertEqual(len({c["id"] for c in cards}), len(cards))
-        required = Counter(r["id"] for r in BLOCKS if r["classification"] == "knowledge")
-        self.assertEqual(Counter(i for c in cards for i in c["blocks"]), required)
-        for card in cards:
-            self.assertTrue(card["question"].endswith("?"))
-            self.assertNotIn("מה משמעות הפרט המתואר", card["question"])
-            self.assertNotIn("אילו תנאים, מגבלות, ברירות מחדל", card["question"])
-            self.assertNotIn("מי רשאי לגשת או לפעול", card["question"])
-            if card["kind"] == "text":
-                self.assertEqual(card["text"], "\n".join(UNITS[i]["text"] for i in card["quoteSources"]))
-                self.assertEqual({UNITS[i]["card"] for i in card["quoteSources"]}, {card["id"]})
-        self.assertEqual(DATA["meta"]["reviewedTopicGroups"], 493)
-        self.assertNotIn("def question_for", (BASE / "build_game.py").read_text(encoding="utf-8"))
-
-    def test_question_quality_and_citation_regressions(self):
-        questions = DATA["questions"]
-        self.assertEqual(len(questions), 259)
-        self.assertEqual({q["service"] for q in questions}, set(DATA["meta"]["services"]))
-        self.assertEqual(len({q["question"] for q in questions}), len(questions))
-        for question in questions:
-            self.assertRegex(question["question"], r"[\u0590-\u05ff]")
-            self.assertTrue(question["question"].endswith("?"))
-            self.assertTrue(question["text"].strip())
-        by_topic = {(q["service"], q["topic"]): q for q in questions}
-        cases = [
-            (("AWS Organizations", "SCP"), "ה-SCP בלבד לא מספיק"),
-            (("AWS IAM Identity Center", "Permission Set"), "role ייעודי"),
-            (("VPC", "ENI"), "כרטיס רשת וירטואלי"),
-            (("CloudFormation", "Hooks"), "לפני הקמת המשאבים"),
-            (("AWS KMS", "HMAC"), "לאימות אמינות ושלמות"),
-            (("AWS KMS", "Custom Key Store"), "External Key Store"),
-            (("AWS Systems Manager", "OpsItem"), "טיקט בודד נקרא OpsItem"),
-            (("AWS Systems Manager", "OpsItem EventBridge"), "ב-EventBridge"),
-            (("Amazon Kinesis Data Streams", "Shards"), "1,000 רשומות"),
-            (("Other Services by categories", "Connect"), "מערכת טיקטים"),
-            (("Other Services by categories", "Service Catalog security"), "תוכנות לא מאושרות"),
-        ]
-        for key, text in cases:
-            self.assertIn(text, by_topic[key]["quoteText"], key)
-        for topic in ["Stateful", "Stateless", "מספרי עולה", "Allow וגם Deny", "מחובר לכרטיס הרשת"]:
-            self.assertLess(len(by_topic[("VPC", topic)]["quoteBlocks"]), 6)
-
-    def test_simple_ui_defaults_and_runtime_ids(self):
+    def test_simple_ui_defaults_and_preserved_old_saves(self):
         self.assertEqual(GAME.select_one("#mode option")["value"], "depth")
+        self.assertEqual([o["value"] for o in GAME.select("#mode option")], ["depth", "source"])
         self.assertEqual(GAME.select_one("#length option")["value"], "10")
         self.assertEqual(len(GAME.select("nav button:not(.hidden)")), 3)
         runtime = (BASE / "game.js").read_text(encoding="utf-8")
         for identifier in set(re.findall(r'\$\("([^"]+)"\)', runtime)):
             if identifier not in ("tab-", "view-"):
                 self.assertIsNotNone(GAME.find(id=identifier), identifier)
-        self.assertIn('const STORE = "aws-security-lab-v4-simple"', runtime)
-        self.assertIn('localStorage.getItem("aws-security-lab-v3-knowledge")', runtime)
+        self.assertIn('const STORE = "aws-security-lab-v5-concepts"', runtime)
+        for key in ["aws-security-lab-v4-simple", "aws-security-lab-v3-knowledge"]:
+            self.assertIn(f'localStorage.getItem("{key}")', runtime)
+            self.assertNotIn(f'localStorage.setItem("{key}"', runtime)
+            self.assertNotIn(f'localStorage.removeItem("{key}"', runtime)
 
 
 if __name__ == "__main__":

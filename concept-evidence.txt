@@ -1,0 +1,78 @@
+chart:EC2|Amazon EC2
+chart:Lambda|AWS Lambda
+chart:Fargate|AWS Fargate
+chart:Lightsail|Amazon Lightsail
+chart:Outposts|AWS Outposts
+chart:Batch|AWS Batch
+chart:S3|Amazon S3
+chart:EBS|Amazon EBS
+chart:EFS|Amazon EFS
+chart:Storage Gateway|AWS Storage Gateway
+chart:Backup|AWS Backup
+chart:CloudFront|Amazon CloudFront
+chart:Global Accelerator|AWS Global Accelerator
+chart:S3 Transfer Acceleration|S3 Transfer Acceleration
+chart:Route 53|Amazon Route 53
+chart:VPC|Amazon VPC
+chart:Direct Connect|AWS Direct Connect
+chart:Site-to-Site VPN|AWS Site-to-Site VPN
+chart:API Gateway|Amazon API Gateway
+chart:RDS|Amazon RDS
+chart:Aurora|Amazon Aurora
+chart:DynamoDB|Amazon DynamoDB
+chart:DocumentDB|Amazon DocumentDB
+chart:ElastiCache|Amazon ElastiCache
+chart:Neptune|Amazon Neptune
+chart:DMS|AWS Database Migration Service — DMS
+chart:SMS|AWS Server Migration Service — SMS
+chart:Snow Family|AWS Snow Family
+chart:DataSync|AWS DataSync
+chart:Redshift|Amazon Redshift
+chart:Athena|Amazon Athena
+chart:Glue|AWS Glue
+chart:Kinesis|Amazon Kinesis
+chart:EMR|Amazon EMR
+chart:Data Pipeline|AWS Data Pipeline
+chart:Rekognition|Amazon Rekognition
+chart:Comprehend|Amazon Comprehend
+chart:Polly|Amazon Polly
+chart:SageMaker|Amazon SageMaker
+chart:Translate|Amazon Translate
+chart:Lex|Amazon Lex
+chart:Cloud9|AWS Cloud9
+chart:CodeCommit|AWS CodeCommit
+chart:CodeBuild|AWS CodeBuild
+chart:CodeDeploy|AWS CodeDeploy
+chart:CodePipeline|AWS CodePipeline
+chart:X-Ray|AWS X-Ray
+chart:CloudFormation|AWS CloudFormation
+chart:Elastic Beanstalk|AWS Elastic Beanstalk
+chart:OpsWorks|AWS OpsWorks
+chart:SQS|Amazon SQS
+chart:SNS|Amazon SNS
+chart:SES|Amazon SES
+chart:CloudWatch|Amazon CloudWatch
+chart:CloudTrail|AWS CloudTrail
+chart:IAM|IAM
+chart:WAF|AWS WAF
+chart:Shield|AWS Shield
+chart:Macie|Amazon Macie
+chart:Config|AWS Config
+chart:GuardDuty|Amazon GuardDuty
+chart:Inspector|Amazon Inspector
+chart:Artifact|AWS Artifact
+chart:Cognito|Amazon Cognito
+chart:KMS|AWS KMS
+chart:CloudHSM|AWS CloudHSM
+chart:Secrets Manager|AWS Secrets Manager
+diagram:AWS Audit Manager|AWS Audit Manager
+diagram:AWS Security Incident Response|AWS Security Incident Response
+diagram:Amazon VPC Lattice|Amazon VPC Lattice
+diagram:Network Access Analyzer|Network Access Analyzer
+diagram:AWS Private CA|AWS Private CA
+diagram:Amazon Verified Permissions|Amazon Verified Permissions
+diagram:Amazon Security Lake|Amazon Security Lake
+diagram:AWS Security Hub CSPM|AWS Security Hub CSPM
+diagram:AWS Network Firewall|AWS Network Firewall
+diagram:AWS Firewall Manager|AWS Firewall Manager
+diagram:AWS IAM Access Analyzer|IAM Access Analyzer

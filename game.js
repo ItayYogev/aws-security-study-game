@@ -3,13 +3,11 @@ const DATA = JSON.parse(document.getElementById("study-data").textContent);
 const $ = id => document.getElementById(id);
 const ALL = [...DATA.units, ...DATA.cards, ...DATA.questions, ...DATA.legacy];
 const byId = new Map(ALL.map(unit => [unit.id, unit]));
-const playableIds = new Set([...DATA.cards, ...DATA.questions, ...DATA.units.filter(unit => unit.kind === "image" && unit.classification === "knowledge")].map(unit => unit.id));
-const STORE = "aws-security-lab-v4-simple";
+const playableIds = new Set([...DATA.cards, ...DATA.questions].map(unit => unit.id));
+const STORE = "aws-security-lab-v5-concepts";
 const modes = {
-  source: "שאלות שליפה על תפקידים, הגדרות, תנאים, מגבלות ותרשימים. ההערכה עצמית מול ציטוט מדויק. ללא How-to, מסלולי Console או הקמה.",
-  depth: "שאלות אמריקאיות על תנאים, הבדלים, תפקידים וחריגים. הציטוט מופיע מיד לאחר התשובה.",
-  definitions: "מה עושה השירות? זיהוי הגדרות מתוך טבלאות השירותים שבתרשימי הסיכום, כולל שירותים שמופיעים רק בתמונה.",
-  images: "תרשימי הבנה וממצאי אבטחה בלבד. אין שאלות על לחיצה או הגדרת מסכים. כל יתר התמונות עדיין נמצאות בספריית המקור."
+  source: "אותם מושגים בשליפה עצמית: הסבר מהו המושג ומה תפקידו, ואז השווה להגדרה ולציטוט.",
+  depth: "שם מושג וארבע הגדרות: בחר מהו המושג או מה הוא עושה. בלי מסלולי הקמה, מחירים או שינון פקודות."
 };
 let progress = {};
 let session = null;
@@ -70,20 +68,14 @@ function load() {
   try {
     const raw = localStorage.getItem(STORE);
     if (!raw) {
-      const previousRaw = localStorage.getItem("aws-security-lab-v3-knowledge");
-      if (!previousRaw) return;
-      const previous = JSON.parse(previousRaw);
-      if (previous.version !== 3 || previous.sourceHash !== "5333e9f9a39df719554f726d9434eb10ae9aba041362e88640ad13617af19761" || !validProgress(previous.progress, false)) {
-        throw new Error("השמירה מהגרסה הקודמת אינה תקינה. היא נשארה ללא שינוי.");
+      if (localStorage.getItem("aws-security-lab-v4-simple") || localStorage.getItem("aws-security-lab-v3-knowledge")) {
+        $("revision-notice").textContent = "המאגר הוחלף לשאלות על מושגים ותפקידים. ההתקדמות החדשה מתחילה מאפס כדי לא לסמן ידע בשאלות אחרות כאילו כבר נלמד. השמירות הישנות נשארו בדפדפן ללא שינוי.";
+        $("revision-notice").classList.remove("hidden");
       }
-      progress = Object.fromEntries(Object.entries(previous.progress).filter(([id]) => DATA.questions.some(q => q.id === id)));
-      $("revision-notice").textContent = "המשחק והשאלות עודכנו. התקדמות בשאלות אמריקאיות שלא השתנו הועברה. כרטיסיות מאוחדות וסבבים מתחילים מחדש; השמירה המקורית לא נמחקה.";
-      $("revision-notice").classList.remove("hidden");
-      save();
       return;
     }
     const saved = JSON.parse(raw);
-    if (saved.version !== 4 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
+    if (saved.version !== 5 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
     if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב השמור אינו תקין.");
     progress = saved.progress;
     storedSession = saved.session;
@@ -94,7 +86,7 @@ function load() {
 function save() {
   if (storageFailed) return;
   try {
-    localStorage.setItem(STORE, JSON.stringify({ version: 4, sourceHash: DATA.meta.hash, progress, session: storedSession }));
+    localStorage.setItem(STORE, JSON.stringify({ version: 5, sourceHash: DATA.meta.hash, progress, session: storedSession }));
   } catch (error) {
     reportStorage("ההתקדמות נשארת בזיכרון אך לא נשמרת בדפדפן. מומלץ לייצא גיבוי: " + error.message);
   }
@@ -114,11 +106,11 @@ function updateStats() {
   $("resume").classList.toggle("hidden", !storedSession);
 }
 function recallDeck() {
-  return [...DATA.cards, ...DATA.units.filter(unit => unit.classification === "knowledge" && unit.kind === "image")];
+  return DATA.cards;
 }
 function modeDeck() {
   if ($("mode").value === "depth") return DATA.questions;
-  return recallDeck().filter(unit => $("mode").value !== "images" || unit.kind === "image");
+  return recallDeck();
 }
 function fillServices() {
   const previous = $("service").value;
@@ -251,16 +243,11 @@ function render() {
   $("round-bar").style.width = percent + "%";
   document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow", percent);
   $("context").textContent = objective ? unit.section : [unit.service, unit.section, unit.topic].filter((part, i, parts) => part && parts.indexOf(part) === i).join(" ← ");
-  $("kind-label").textContent = objective ? (unit.kind === "quiz" ? "שאלת עומק · בדיקה אובייקטיבית" : "זיהוי שירות") : unit.kind === "image" ? "פענוח תמונה · הערכה עצמית" : "שליפה מן המקור · הערכה עצמית";
+  $("kind-label").textContent = objective ? "היכרות עם מושג ותפקידו" : "שליפת הגדרה · הערכה עצמית";
   $("question").textContent = unit.question;
   $("visual").replaceChildren();
   if (unit.kind === "image") addImage($("visual"), unit);
-  $("source-cue").classList.toggle("hidden", objective || unit.kind === "image");
-  if (!objective && unit.kind !== "image") {
-    const words = unit.text.split(/\s+/);
-    const cueLength = Math.min(7, Math.max(2, Math.floor(words.length / 4)));
-    $("source-cue").textContent = `רמז לתחילת הקטע: ${words.slice(0, cueLength).join(" ")}… · מקטעי מקור ${unit.blocks.map(n => n + 1).join(", ")}`;
-  }
+  $("source-cue").classList.add("hidden");
   $("recall").classList.toggle("hidden", objective);
   $("notes").value = session.note;
   $("reveal").disabled = session.revealed;
@@ -270,7 +257,7 @@ function render() {
   $("next").classList.toggle("hidden", !session.answered);
   $("next").textContent = session.index + 1 === session.ids.length ? "לסיום הסבב" : "לשאלה הבאה";
   $("options").replaceChildren();
-  $("grading-note").textContent = objective ? "ציון לפי התשובה הנכונה." : "דיווח עצמי — תפקיד, תנאים, חריגים ומשמעות; לא שלבי יישום.";
+  $("grading-note").textContent = objective ? "ציון לפי התשובה הנכונה." : "הערכה עצמית של ההגדרה והתפקיד; לא שלבי יישום.";
   if (objective) {
     if (unit.kind === "quiz") quizOptions = shuffle(unit.options);
     else {
@@ -307,9 +294,7 @@ function showAnswer() {
       else if (button.dataset.answer === session.choice) button.classList.add("wrong");
     });
   } else {
-    $("feedback").textContent = unit.kind === "image"
-      ? "השווה את ההסבר שלך לתרשים המקור ולטקסט הסמוך, אם קיים. הטקסט הסמוך אינו תמלול של התרשים."
-      : "השווה את ההסבר שלך לציטוט המדויק שלהלן. בדוק גם תנאים וחריגים, ואז הערך את השליפה.";
+    $("feedback").textContent = `הגדרה ללמידה: ${unit.answer}\n\nהשווה להסבר שנתת, ואז הערך את השליפה. הציטוט המקורי מופיע בנפרד.`;
     $("grade").classList.toggle("hidden", session.answered);
     $("reveal").disabled = true;
   }
@@ -327,10 +312,10 @@ function showAnswer() {
     });
     quote.append(drawing);
   } else if (unit.quoteText) {
-    if (unit.sourceLabel) quote.append(node("p", "בסיכום מופיע שם המנגנון והוראות ניווט בלבד. הסבר תפקידו הוא הרחבת ידע, לא ציטוט של הגדרה מהמסמך.", "notice"));
+    if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
     quote.append(node("blockquote", unit.quoteText, "source-text"));
   } else if (objective || source.kind === "text") {
-    if (unit.sourceLabel) quote.append(node("p", "בסיכום מופיע שם המנגנון והוראות ניווט בלבד. הסבר תפקידו הוא הרחבת ידע, לא ציטוט של הגדרה מהמסמך.", "notice"));
+    if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
     const sources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [source];
     quote.append(node("blockquote", sources.map(part => part.text).join("\n"), "source-text"));
   } else if (source.text) {
@@ -342,6 +327,18 @@ function showAnswer() {
   const quoteBlocks = unit.quoteBlocks || unit.blocks || source.blocks;
   quote.append(node("p", `מקור: ${source.service} · מקטעים ${quoteBlocks.map(n => n + 1).join(", ")}${source.imageNumber ? " · תמונה " + source.imageNumber : ""}`, "muted tiny"));
   $("source-notes").append(quote);
+  (unit.evidence || []).forEach(evidence => {
+    const detail = node("details");
+    detail.append(node("summary", `ציטוט נוסף מתרשים ${evidence.imageNumber}`));
+    detail.addEventListener("toggle", () => {
+      if (!detail.open || detail.dataset.loaded) return;
+      detail.dataset.loaded = "true";
+      detail.append(node("blockquote", evidence.imageQuote, "source-text"));
+      if (evidence.imageQuoteType === "label") detail.append(node("p", "זהו שם השירות בתרשים, ולא ציטוט של הגדרה. תיאור התפקיד הוא הרחבת ידע.", "notice"));
+      addImage(detail, byId.get(evidence.source), true);
+    });
+    $("source-notes").append(detail);
+  });
   const noteSources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [{...source, text: unit.quoteText || source.text}];
   [...new Set(noteSources.flatMap(corrections))].forEach(text => $("source-notes").append(node("p", text, "warning")));
   sourceActions(unit);
@@ -439,10 +436,10 @@ function renderLibrary() {
       item.append(node("p", unit.text, "source-text"));
       renderNotes(item, unit);
       item.append(node("p", `סיווג: ${unit.classification === "knowledge" ? "ידע להבנה ולתרגול" : unit.classification === "implementation" ? "יישום / How-to — לא נכלל במשחק" : "כותרת / הקשר — לא שאלה נפרדת"}`, "notice"));
-      if (unit.classification === "knowledge") {
-        const button = node("button", "תרגול הפריט הזה");
+      if (unit.concepts.length) {
+        const button = node("button", "לתרגול המושגים הקשורים");
         button.type = "button";
-        button.addEventListener("click", () => begin([unit.card]));
+        button.addEventListener("click", () => begin(unit.concepts));
         item.append(button);
       }
     });
@@ -450,28 +447,27 @@ function renderLibrary() {
   });
 }
 function renderCoverage() {
-  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו בארכיון. במשחק ${DATA.questions.length} שאלות אמריקאיות ו-${DATA.meta.recallCards} כרטיסיות שליפה, כולל ${DATA.meta.conceptImages} תמונות הבנה. הכרטיסיות מאחדות את כל מקטעי הידע לפי נושא. ${DATA.meta.classifications.implementation} מקטעי יישום ו-${DATA.meta.classifications.context} מקטעי כותרות/הקשר נשמרו לעיון ולא כשאלות נפרדות.`;
+  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו במלואם. במשחק ${DATA.questions.length} מושגים: לכל מושג שאלה אמריקאית וכרטיסיית שליפה עם אותה הגדרה. נבדקו ${DATA.meta.reviewedTopicGroups} קבוצות נושאים: ${DATA.meta.directTopicGroups} משויכות ישירות למושגים, ${DATA.meta.aliasedTopicGroups} חוזרות על מושגים שכבר מכוסים, ו-${DATA.meta.excludedTopicGroups} הן ניווט, פקודות, תמחור או פתיחות לרשימות. תוכן עיון ותמונות אינם נספרים כשאלות נוספות.`;
   $("source-meta").textContent = `מקור: ${DATA.meta.source}\nמועד הורדה (UTC): ${DATA.meta.fetched}\nSHA-256: ${DATA.meta.hash}`;
   $("coverage-items").replaceChildren();
   DATA.meta.services.forEach(service => {
-    const archived = DATA.units.filter(unit => unit.service === service);
     const units = recallDeck().filter(unit => unit.service === service);
     const seen = units.filter(unit => getProgress(unit.id).attempts).length;
     const stable = units.filter(unit => getProgress(unit.id).streak >= 2).length;
-    const pictures = units.filter(unit => unit.kind === "image").length;
     const questions = DATA.questions.filter(unit => unit.service === service);
     const correct = questions.filter(unit => getProgress(unit.id).streak >= 2).length;
     const row = node("div", undefined, "coverage-row");
     row.append(node("strong", service));
-    row.append(node("p", `${seen}/${units.length} כרטיסיות תורגלו · ${stable} יציבות לפי דיווח עצמי · ${pictures} תמונות · ${correct}/${questions.length} שאלות אמריקאיות עם שתי הצלחות רצופות`, "muted tiny"));
+    const quizSeen = questions.filter(unit => getProgress(unit.id).attempts).length;
+    row.append(node("p", `${quizSeen}/${questions.length} מושגים תורגלו בשאלון · ${correct} עם שתי הצלחות רצופות · בשליפה עצמית: ${seen} תורגלו, ${stable} יציבים`, "muted tiny"));
     const bar = node("div", undefined, "progress");
     bar.setAttribute("role","progressbar");
     bar.setAttribute("aria-label",`פריטי מקור שתורגלו: ${service}`);
     bar.setAttribute("aria-valuemin","0");
-    bar.setAttribute("aria-valuemax",String(units.length));
-    bar.setAttribute("aria-valuenow",String(seen));
+    bar.setAttribute("aria-valuemax",String(questions.length));
+    bar.setAttribute("aria-valuenow",String(quizSeen));
     const value = node("span");
-    value.style.width = (units.length ? seen / units.length * 100 : 0) + "%";
+    value.style.width = (questions.length ? quizSeen / questions.length * 100 : 0) + "%";
     bar.append(value);
     row.append(bar);
     const button = node("button", "לתרגול הפרק");
@@ -493,7 +489,7 @@ function renderCoverage() {
   });
 }
 function exportProgress() {
-  const blob = new Blob([JSON.stringify({version:4,sourceHash:DATA.meta.hash,progress,session:storedSession},null,2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({version:5,sourceHash:DATA.meta.hash,progress,session:storedSession},null,2)], {type:"application/json"});
   const url = URL.createObjectURL(blob);
   const link = node("a");
   link.href = url;
@@ -510,7 +506,7 @@ $("import").addEventListener("change", async event => {
   try {
     if (file.size > 5 * 1024 * 1024) throw new Error("קובץ הגיבוי גדול מדי.");
     const saved = JSON.parse(await file.text());
-    if (saved.version !== 4 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("הגיבוי אינו תקין או נוצר בגרסה קודמת. יש להשתמש בגיבוי של המשחק המעודכן.");
+    if (saved.version !== 5 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("הגיבוי אינו תקין או נוצר בגרסה קודמת. יש להשתמש בגיבוי של המשחק המעודכן.");
     if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב בגיבוי אינו תקין.");
     if (!confirm("יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
     progress = saved.progress;
