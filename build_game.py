@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "5333e9f9a39df719554f726d9434eb10ae9aba041362e88640ad13617af19761"
+REVIEWED_SOURCE_HASH = "6b04f308595fc8f4e6eb9ce7cfa8deeb0944cf5e4f77f89b12b9190b23199674"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
     94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
@@ -26,10 +26,10 @@ CONCEPT_EXCEPTIONS = {
     912: "Security Groups", 921: "Inbound Rules", 922: "Outbound Rules",
     1781: "Metric Filters", 2019: "Custom Data Identifiers",
 }
-IMPLEMENTATION_RANGES = ((555, 572), (1299, 1312), (1961, 1964), (2785, 2788))
+IMPLEMENTATION_RANGES = ((555, 572), (1299, 1312), (1961, 1964), (2786, 2789))
 IMPLEMENTATION_BLOCKS = {
     439, 491, 1150, 1243, 1568, 1596, 1754, 1764, 1902, 2066,
-    2124, 2164, 2167, 2324, 2755,
+    2124, 2164, 2167, 2324, 2756,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -54,26 +54,15 @@ def digest(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:20]
 
 
-def question_for(unit):
-    topic = unit["topic"]
-    text = unit["text"]
-    if unit["kind"] == "image":
-        return f"מה המשמעות של התרשים או הממצא בנושא {topic}? הסבר את תפקיד הרכיבים ואת ההשלכה האבטחתית, בלי שלבי הקמה."
-    if "Security Group / NACL" in topic:
-        return "השווה בין Security Group לבין NACL: באיזו שכבה כל אחד פועל, מהי התנהגות תעבורת החזרה, אילו חוקים נתמכים ואיך הם נבדקים?"
-    if re.search(r"₪|\$|תשלום|מחיר|בחינם|עולה כסף|חיוב", text):
-        return f"מהו מודל התמחור או תנאי החיוב של {topic} לפי הסיכום?"
-    if re.search(r"הרשא|permissions|Policy|Principal|AssumeRole", text, re.I):
-        return f"בהקשר של {topic}: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
-    if re.search(r"ימים|שעות|דקות|שניות|מגבל|מקסימ|מינימ|לא ניתן|חייב|בלבד|ברירת מחדל", text):
-        return f"אילו תנאים, מגבלות, ברירות מחדל או זמני שמירה מתוארים עבור {topic}?"
-    if re.search(r"הצפנ|מפתח|מפתחות|encrypt|decrypt", text, re.I):
-        return f"איך {topic} קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
-    if re.search(r"לוג|מדד|מטריק|logs|metrics|ממצא|findings", text, re.I):
-        return f"איזה מידע {topic} אוסף, מנתח או מציג, ולשם מה משתמשים בו?"
-    if re.search(r"בניגוד|לעומת|ההבדל|שני סוגים|בהשוואה", text):
-        return f"מהם ההבדלים והתרחישים המתאימים המתוארים בנושא {topic}?"
-    return f"מה עושה {topic}, מה משמעות הפרט המתואר ואיך הוא קשור לשירות {unit['service']}?"
+def read_catalog(filename):
+    rows = {}
+    for line in (BASE / filename).read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            key, value = line.split("|", 1)
+            if key in rows:
+                raise ValueError(f"Duplicate catalog entry in {filename}: {key}")
+            rows[key] = value
+    return rows
 
 
 def build():
@@ -152,7 +141,7 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3246, 140, 49):
+    if (len(records), image_number, len(services)) != (3247, 140, 49):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
     # Indexed exceptions belong to this reviewed snapshot, not future downloads.
     if records[2019]["text"].startswith("custom data identifiers:") is False:
@@ -202,7 +191,6 @@ def build():
             ]
             unit["text"] = "\n".join(r["text"] for r in nearby)
             unit["quoteBlocks"] = [r["id"] for r in nearby]
-        unit["question"] = question_for(unit)
         units.append(unit)
         pending.clear()
 
@@ -216,9 +204,54 @@ def build():
         pending.append(record)
     flush()
 
+    prompts = read_catalog("recall-questions.txt")
+    image_prompts = read_catalog("image-questions.txt")
+    groups = []
+    for unit in units:
+        if unit["classification"] != "knowledge" or unit["kind"] != "text":
+            continue
+        key = tuple(unit[k] for k in ("service", "section", "topic"))
+        if not groups or groups[-1][0] != key:
+            groups.append((key, []))
+        groups[-1][1].append(unit)
+    assert set(prompts) == {str(i) for i in range(len(groups))}, "Review each topic group after changing the source"
+    cards = []
+    for index, (key, parts) in enumerate(groups):
+        question = prompts[str(index)]
+        if question == "-":
+            for part in parts:
+                part["classification"] = "context"
+                part["reason"] = "Reviewed navigation or section introduction; no independent conceptual content"
+                for block in part["blocks"]:
+                    records[block].update(classification="context", reason=part["reason"])
+            continue
+        text = "\n".join(part["text"] for part in parts)
+        card = {
+            "id": "recall-" + digest("|".join(key) + "|" + text),
+            "service": key[0], "section": key[1], "topic": key[2], "kind": "text",
+            "classification": "knowledge", "question": question, "text": text,
+            "blocks": [block for part in parts for block in part["blocks"]],
+            "source": parts[0]["id"], "quoteSources": [part["id"] for part in parts],
+        }
+        cards.append(card)
+        for part in parts:
+            part.update(question=question, card=card["id"])
+    for unit in units:
+        if unit["classification"] == "knowledge" and unit["kind"] == "image":
+            unit["question"] = image_prompts[str(unit["imageNumber"])]
+            unit["card"] = unit["id"]
+            cards.append(unit)
+    assert {int(n) for n in image_prompts} == CONCEPT_IMAGES
     active = [u for u in units if u["classification"] == "knowledge"]
-    text_units = [u for u in active if u["kind"] == "text"]
+    citations = {}
+    for line in (BASE / "question-sources.txt").read_text(encoding="utf-8").splitlines():
+        svc, anchor, block_list = line.split("|")
+        key = (svc, anchor)
+        if key in citations:
+            raise ValueError(f"Duplicate question citation: {key}")
+        citations[key] = [int(block) for block in block_list.split(",")]
     questions = []
+    used_citations = set()
     for line in (BASE / "depth-questions.txt").read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
@@ -228,45 +261,40 @@ def build():
         svc, anchor, question, answer, *tail = fields
         wrong = tail[:3]
         explain = tail[3]
-        matches = [u for u in text_units if u["service"] == svc and anchor.casefold() in u["text"].casefold()]
-        if not matches:
-            # The anchor may be a separate structural heading.
-            matches = [u for u in text_units if u["service"] == svc and anchor.casefold() in u["topic"].casefold()]
-        if not matches:
-            raise ValueError("No conceptual source for question: " + svc + " / " + anchor)
-        words = set(re.findall(r"[\w:]+", question + " " + answer))
-        matches.sort(key=lambda u: (
-            len(words & set(re.findall(r"[\w:]+", u["text"]))),
-            anchor.casefold() in u["topic"].casefold(),
-        ), reverse=True)
-        matched = matches[0]
-        peers = [u for u in text_units if u["service"] == svc and u["topic"] == matched["topic"]]
-        if len(peers) > 12:
-            at = peers.index(matched)
-            peers = peers[max(0, at - 1):at + 2]
+        key = (svc, anchor)
+        blocks = citations[key]
+        used_citations.add(key)
+        quote_records = [records[index] for index in blocks]
+        assert all(r["kind"] == "text" and r["service"] == svc and r["classification"] != "implementation" for r in quote_records), key
+        label_only = (svc, anchor) in {("ECR", "Repository Policy"), ("ECR", "Lifecycle policies")}
+        assert label_only or any(r["classification"] == "knowledge" for r in quote_records), key
+        matched = next(u for u in units if blocks[0] in u["blocks"])
         questions.append({
             "id": "deep-" + digest(question), "service": svc, "section": "שאלות הבנה",
             "topic": anchor, "kind": "quiz", "question": question, "answer": answer,
             "options": [answer] + wrong, "text": explain, "source": matched["id"],
-            "quoteSources": [u["id"] for u in peers],
+            "quoteText": "\n".join(r["text"] for r in quote_records), "quoteBlocks": blocks,
+            "sourceLabel": label_only,
         })
+    assert used_citations == set(citations), "Unused question citations must be reviewed"
 
     chart_rows = []
     for line in (BASE / "chart-definitions.txt").read_text(encoding="utf-8").splitlines():
         if line.strip():
             number, term, quote = line.split("|")
             chart_rows.append((int(number), term, quote))
+    chart_questions = read_catalog("chart-questions.txt")
+    assert set(chart_questions) == {term for _, term, _ in chart_rows}
     for number, term, quote in chart_rows:
         source_unit = next(u for u in units if u.get("imageNumber") == number)
-        alternatives = [t for n, t, q in chart_rows if n == number and t != term]
-        if len(alternatives) < 3:
-            raise ValueError("Insufficient chart alternatives: " + term)
+        question, *alternatives = chart_questions[term].split("|")
+        assert len(alternatives) == 3
         questions.append({
             "id": "chart-" + digest(term), "service": source_unit["service"],
             "section": "הגדרות שירותים מתוך התרשימים", "topic": term, "kind": "quiz",
-            "question": "איזה שירות מתואר בהגדרה הבאה מהתרשים?\n" + re.sub(re.escape(term), "השירות", quote, flags=re.I),
-            "answer": term, "options": [term] + alternatives[:3],
-            "text": "זהה את השירות לפי תפקידו, לא לפי האייקון או מיקומו בתפריט.",
+            "question": question,
+            "answer": term, "options": [term] + alternatives,
+            "text": f"השירות המתאים הוא {term}. הציטוט המקורי באנגלית מופיע להלן; ניסוח השאלה בעברית הוא עיבוד של ההגדרה.",
             "source": source_unit["id"], "imageQuote": quote, "imageNumber": number,
         })
     for line in (BASE / "diagram-questions.txt").read_text(encoding="utf-8").splitlines():
@@ -292,13 +320,15 @@ def build():
         "hash": hashlib.sha256(raw.encode("utf-8")).hexdigest(), "blocks": len(records),
         "textBlocks": len(records) - image_number, "images": image_number, "services": services,
         "sourceUnits": len(units), "knowledgeUnits": len(active), "depthQuestions": len(questions),
+        "recallCards": len(cards), "reviewedTopicGroups": len(groups),
         "legacyQuestions": 0, "classifications": dict(classification_counts),
         "conceptImages": len(CONCEPT_IMAGES),
     }
-    data = {"meta": meta, "units": units, "questions": questions, "legacy": []}
+    data = {"meta": meta, "units": units, "cards": [c for c in cards if c["kind"] == "text"], "questions": questions, "legacy": []}
     template = (BASE / "game-template.html").read_text(encoding="utf-8")
     output = template.replace("__STUDY_DATA__", json.dumps(data, ensure_ascii=False).replace("<", "\\u003c"))
     output = output.replace("__LEGACY_DATA__", "[]")
+    output = output.replace("__GAME_RUNTIME__", (BASE / "game.js").read_text(encoding="utf-8"))
     assert "__STUDY_DATA__" not in output
     (BASE / "AWS-Security-Study-Game.html").write_text(output, encoding="utf-8")
     audit = {
@@ -306,6 +336,7 @@ def build():
         "sourceBlocks": [{k: v for k, v in r.items() if k != "image"} for r in records],
         "sourceUnits": [{k: v for k, v in u.items() if k != "image"} for u in units],
         "questions": questions,
+        "recallCards": [{k: v for k, v in c.items() if k != "image"} for c in cards],
     }
     (BASE / "coverage-audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(meta, ensure_ascii=False, indent=2))

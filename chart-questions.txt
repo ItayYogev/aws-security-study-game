@@ -1,0 +1,67 @@
+EC2|איזה שירות מאפשר לשכור ולנהל שרתים וירטואליים בענן?|Lambda|Fargate|Lightsail
+Lambda|איזה שירות מריץ קוד בתגובה לאירועים בלי לנהל שרתים?|EC2|ECS|EKS
+Fargate|איזה מנוע מחשוב מריץ קונטיינרים בלי לנהל את שרתי ההרצה?|EC2|ECR|Lambda
+Lightsail|איזה שירות מספק חבילה פשוטה של משאבים לפרויקט קטן?|Outposts|Batch|CloudFormation
+Outposts|איזה שירות מריץ תשתית ושירותי AWS בתוך מרכז הנתונים המקומי?|Direct Connect|Storage Gateway|Fargate
+Batch|איזה שירות מנהל הרצה של עבודות עיבוד באצווה?|Step Functions|CodeBuild|EMR
+S3|איזה שירות מיועד לאחסון אובייקטים בענן?|EBS|EFS|ElastiCache
+EBS|איזה שירות מספק נפח אחסון בלוקים שאפשר להצמיד למופע EC2?|S3|EFS|Storage Gateway
+EFS|איזה שירות מספק מערכת קבצים רשתית משותפת למספר שרתים?|EBS|S3|DynamoDB
+Storage Gateway|איזה שירות מחבר סביבת אחסון מקומית לאחסון בענן במודל היברידי?|DataSync|Direct Connect|Backup
+Backup|איזה שירות מרכז ניהול גיבויים של כמה שירותי נתונים בענן?|DataSync|Storage Gateway|S3 Transfer Acceleration
+CloudFront|איזה שירות CDN מגיש תוכן ממטמונים קרובים למשתמשים בעולם?|Global Accelerator|Route 53|S3 Transfer Acceleration
+Global Accelerator|איזה שירות משפר את נתיב התעבורה ליישום דרך הרשת הגלובלית של AWS?|CloudFront|Route 53|Direct Connect
+S3 Transfer Acceleration|איזו יכולת מאיצה העברת קבצים אל S3 וממנו דרך נקודות קצה גלובליות?|DataSync|Global Accelerator|CloudFront Signed Cookies
+Route 53|איזה שירות מספק DNS ומפנה משתמשים ליעדי היישום?|CloudFront|Global Accelerator|API Gateway
+VPC|איזה שירות מאפשר להגדיר רשת וירטואלית מבודדת בענן?|PrivateLink|Transit Gateway|Direct Connect
+Direct Connect|איזה שירות מספק קישור רשת פיזי ייעודי בין אתר מקומי ל-AWS?|Site-to-Site VPN|Client VPN|VPC Peering
+Site-to-Site VPN|איזה שירות מחבר באופן מוצפן רשת מקומית ל-VPC דרך האינטרנט?|Direct Connect|Client VPN|VPC Peering
+API Gateway|איזה שירות מספק חזית מנוהלת לבנייה ולניהול של APIs?|ALB|CloudFront|AppSync
+RDS|איזה שירות מנהל מסדי נתונים יחסיים ממנועים נפוצים?|DynamoDB|DocumentDB|Neptune
+Aurora|איזה מסד נתונים יחסי של AWS תואם ל-MySQL ול-PostgreSQL?|Redshift|DynamoDB|DocumentDB
+DynamoDB|איזה שירות מספק מסד NoSQL מנוהל במודל מפתח-ערך ומסמכים?|RDS|Neptune|ElastiCache
+DocumentDB|איזה שירות מספק מסד מסמכים מנוהל עם תאימות ל-MongoDB?|DynamoDB|Neptune|Aurora
+ElastiCache|איזה שירות מספק מאגר נתונים בזיכרון עם מנועים כגון Redis או Memcached?|DynamoDB|DocumentDB|Redshift
+Neptune|איזה שירות מתאים למסד גרפי עם קשרים רבים בין ישויות?|DocumentDB|Aurora|ElastiCache
+DMS|איזה שירות מעביר מסדי נתונים אל AWS או בין סביבות בענן?|DataSync|SMS|Storage Gateway
+SMS|איזה שירות מתואר בתרשים ככלי להעברת שרתים מקומיים ל-AWS?|DMS|DataSync|Snow Family
+Snow Family|איזו משפחת פתרונות מעבירה כמויות נתונים גדולות באמצעות מכשיר פיזי?|DataSync|Storage Gateway|S3 Transfer Acceleration
+DataSync|איזה שירות מעביר קבצים דרך הרשת מאחסון מקומי לשירותי אחסון בענן?|Snow Family|DMS|Backup
+Redshift|איזה שירות מספק מחסן נתונים לניתוח כמויות מידע גדולות?|RDS|DynamoDB|ElastiCache
+Athena|איזה שירות מאפשר להריץ שאילתות SQL ישירות על נתונים ב-S3?|Redshift|OpenSearch|CloudWatch Logs Insights
+Glue|איזה שירות מכין וממיר נתונים לצורכי אנליטיקה בתהליכי ETL?|Athena|QuickSight|Kinesis
+Kinesis|איזו משפחת שירותים מיועדת לקליטה ולניתוח של זרמי נתונים בזמן אמת?|Glue|Redshift|Data Pipeline
+EMR|איזה שירות מיועד לעיבוד נתונים מבוזר בהיקף גדול באמצעות מסגרות כגון Spark?|Athena|QuickSight|DataSync
+Data Pipeline|איזה שירות מתואר בתרשים כמתזמן העברה ועיבוד נתונים בין רכיבי מחשוב ואחסון?|CodePipeline|DataSync|SQS
+Rekognition|איזה שירות מנתח תמונות וסרטונים?|Comprehend|Polly|Transcribe
+Comprehend|איזה שירות מפיק ישויות, קשרים ותובנות מטקסט בשפה טבעית?|Rekognition|Lex|Translate
+Polly|איזה שירות ממיר טקסט לדיבור?|Transcribe|Translate|Lex
+SageMaker|איזה שירות מסייע לבנות, לאמן ולפרוס מודלי Machine Learning?|Bedrock|Comprehend|Rekognition
+Translate|איזה שירות מתרגם טקסט בין שפות?|Transcribe|Polly|Comprehend
+Lex|איזה שירות מאפשר לבנות ממשקי שיחה וצ'אטבוטים?|Polly|Translate|Comprehend
+Cloud9|איזה שירות מתואר בתרשים כסביבת פיתוח קוד בדפדפן?|CodeCommit|CodeBuild|CodeDeploy
+CodeCommit|איזה שירות מנהל מאגרי Git פרטיים?|CodeBuild|CodeDeploy|CodePipeline
+CodeBuild|איזה שירות בונה ובודק את קוד המקור של האפליקציה?|CodeCommit|CodeDeploy|CodePipeline
+CodeDeploy|איזה שירות מנהל פריסת קוד לסביבות מחשוב בענן ובאתר מקומי?|CodeBuild|CodeCommit|CodePipeline
+CodePipeline|איזה שירות מתזמר את שלבי תהליך שחרור התוכנה?|CodeBuild|CodeDeploy|CodeCommit
+X-Ray|איזה שירות עוקב אחרי בקשות אפליקציה כדי לסייע באבחון תקלות בייצור?|CloudTrail|Config|Inspector
+CloudFormation|איזה שירות מקים משאבי AWS מתוך תבנית Infrastructure as Code?|Config|CodeDeploy|Systems Manager
+Elastic Beanstalk|איזה שירות מספק סביבת פריסה מנוהלת ליישומי Web ולשירותי Web?|CloudFormation|CodeBuild|Lightsail
+OpsWorks|איזה שירות מתואר בתרשים ככלי לאוטומציית תצורה באמצעות Chef או Puppet?|Systems Manager|CloudFormation|CodeDeploy
+SQS|איזה שירות מספק תור הודעות כדי להפריד בין רכיבי מערכת?|SNS|SES|EventBridge
+SNS|איזה שירות מפיץ הודעות למנויים ב-Topic, למשל ב-SMS או בדוא"ל?|SQS|SES|MQTT
+SES|איזה שירות מתאים למשלוח דוא"ל עשיר ב-HTML מתוך אפליקציה?|SNS|SQS|EventBridge
+CloudWatch|איזה שירות מרכז מדדים, לוגים והתראות לניטור משאבים?|CloudTrail|Config|X-Ray
+CloudTrail|איזה שירות מתעד פעילות משתמשים וקריאות API בחשבון?|CloudWatch|Config|VPC Flow Logs
+IAM|איזה שירות שולט בגישת זהויות לשירותים ולמשאבים ב-AWS?|Cognito|Directory Service|Secrets Manager
+WAF|איזה שירות מסנן בקשות Web כדי להגן מפני התקפות יישום נפוצות?|Shield|Network Firewall|GuardDuty
+Shield|איזה שירות מתמקד בהגנה מנוהלת מפני DDoS?|WAF|GuardDuty|Inspector
+Macie|איזה שירות מתמחה בגילוי מידע רגיש ב-S3?|GuardDuty|Inspector|Config
+Config|איזה שירות מתעד תצורות משאבים ומעריך תאימות לכללים?|CloudTrail|GuardDuty|Inspector
+GuardDuty|איזה שירות מנתח פעילות כדי לזהות איומים והתנהגות לא מורשית?|Inspector|Macie|Config
+Inspector|איזה שירות סורק נכסים נתמכים כדי לזהות חולשות תוכנה?|GuardDuty|Macie|Detective
+Artifact|איזה שירות מספק גישה לפי דרישה לדוחות התאימות והאבטחה של AWS?|Audit Manager|Config|Security Hub
+Cognito|איזה שירות מנהל הרשמה והתחברות של משתמשי אפליקציות Web ומובייל?|IAM Identity Center|Directory Service|IAM
+KMS|איזה שירות מנהל מפתחות הצפנה ומשלב אותם בשירותי AWS?|CloudHSM|Secrets Manager|ACM
+CloudHSM|איזה שירות מספק HSM ייעודי ליצירה ולאחסון של מפתחות הצפנה?|KMS|Secrets Manager|ACM
+Secrets Manager|איזה שירות מנהל סודות כגון סיסמאות ומאפשר Rotation שלהם?|KMS|ACM|CloudHSM

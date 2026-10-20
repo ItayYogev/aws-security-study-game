@@ -1,0 +1,590 @@
+"use strict";
+const DATA = JSON.parse(document.getElementById("study-data").textContent);
+const $ = id => document.getElementById(id);
+const ALL = [...DATA.units, ...DATA.cards, ...DATA.questions, ...DATA.legacy];
+const byId = new Map(ALL.map(unit => [unit.id, unit]));
+const playableIds = new Set([...DATA.cards, ...DATA.questions, ...DATA.units.filter(unit => unit.kind === "image" && unit.classification === "knowledge")].map(unit => unit.id));
+const STORE = "aws-security-lab-v4-simple";
+const modes = {
+  source: "שאלות שליפה על תפקידים, הגדרות, תנאים, מגבלות ותרשימים. ההערכה עצמית מול ציטוט מדויק. ללא How-to, מסלולי Console או הקמה.",
+  depth: "שאלות אמריקאיות על תנאים, הבדלים, תפקידים וחריגים. הציטוט מופיע מיד לאחר התשובה.",
+  definitions: "מה עושה השירות? זיהוי הגדרות מתוך טבלאות השירותים שבתרשימי הסיכום, כולל שירותים שמופיעים רק בתמונה.",
+  images: "תרשימי הבנה וממצאי אבטחה בלבד. אין שאלות על לחיצה או הגדרת מסכים. כל יתר התמונות עדיין נמצאות בספריית המקור."
+};
+let progress = {};
+let session = null;
+let storedSession = null;
+let libraryPage = 0;
+let quizOptions = [];
+let storageFailed = false;
+function node(tag, text, cls) {
+  const result = document.createElement(tag);
+  if (text !== undefined) result.textContent = text;
+  if (cls) result.className = cls;
+  return result;
+}
+function shuffle(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+function canonicalTerm(term) {
+  const groups = [
+    ["AWS KMS", "AWS Key Management Service (KMS)"],
+    ["Amazon Data Firehose", "Amazon Kinesis Data Firehose"],
+    ["Amazon EMR", "Amazon Elastic MapReduce (EMR)"],
+    ["AWS Certificate Manager (ACM)", "AWS Certificate Manager"],
+    ["AWS Managed Microsoft AD", "AWS Directory Service for Microsoft AD"],
+    ["Amazon Cloud Directory", "AWS Cloud Directory"],
+    ["AWS STS AssumeRole", "AWS Security Token Service (STS)"]
+  ];
+  const group = groups.find(items => items.includes(term));
+  return group ? group[0] : term;
+}
+function reportStorage(message) {
+  storageFailed = true;
+  $("storage-error").textContent = message;
+  $("storage-error").classList.remove("hidden");
+}
+function validProgress(value, requireKnownIds = true) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  return Object.entries(value).every(([id, p]) => (!requireKnownIds || playableIds.has(id)) && p && typeof p === "object" &&
+    Number.isInteger(p.attempts) && p.attempts >= 0 &&
+    Number.isInteger(p.successes) && p.successes >= 0 && p.successes <= p.attempts &&
+    Number.isInteger(p.streak) && p.streak >= 0 && p.streak <= p.successes &&
+    [0, 1, 2].includes(p.last) && typeof p.starred === "boolean" && typeof p.updated === "string");
+}
+function validSession(value) {
+  return value && Array.isArray(value.ids) && value.ids.length > 0 &&
+    value.ids.every(id => playableIds.has(id)) && new Set(value.ids).size === value.ids.length &&
+    Number.isInteger(value.index) && value.index >= 0 && value.index < value.ids.length &&
+    Number.isInteger(value.score) && value.score >= 0 && value.score <= value.index + 1 &&
+    Array.isArray(value.missed) && value.missed.every(id => value.ids.includes(id)) &&
+    typeof value.answered === "boolean" && typeof value.revealed === "boolean" &&
+    typeof value.choice === "string" && typeof value.note === "string";
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (!raw) {
+      const previousRaw = localStorage.getItem("aws-security-lab-v3-knowledge");
+      if (!previousRaw) return;
+      const previous = JSON.parse(previousRaw);
+      if (previous.version !== 3 || previous.sourceHash !== "5333e9f9a39df719554f726d9434eb10ae9aba041362e88640ad13617af19761" || !validProgress(previous.progress, false)) {
+        throw new Error("השמירה מהגרסה הקודמת אינה תקינה. היא נשארה ללא שינוי.");
+      }
+      progress = Object.fromEntries(Object.entries(previous.progress).filter(([id]) => DATA.questions.some(q => q.id === id)));
+      $("revision-notice").textContent = "המשחק והשאלות עודכנו. התקדמות בשאלות אמריקאיות שלא השתנו הועברה. כרטיסיות מאוחדות וסבבים מתחילים מחדש; השמירה המקורית לא נמחקה.";
+      $("revision-notice").classList.remove("hidden");
+      save();
+      return;
+    }
+    const saved = JSON.parse(raw);
+    if (saved.version !== 4 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
+    if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב השמור אינו תקין.");
+    progress = saved.progress;
+    storedSession = saved.session;
+  } catch (error) {
+    reportStorage("לא ניתן לקרוא את השמירה. נתונים קיימים לא יידרסו. ניתן להמשיך ללא שמירה: " + error.message);
+  }
+}
+function save() {
+  if (storageFailed) return;
+  try {
+    localStorage.setItem(STORE, JSON.stringify({ version: 4, sourceHash: DATA.meta.hash, progress, session: storedSession }));
+  } catch (error) {
+    reportStorage("ההתקדמות נשארת בזיכרון אך לא נשמרת בדפדפן. מומלץ לייצא גיבוי: " + error.message);
+  }
+}
+function getProgress(id) {
+  return progress[id] || { attempts: 0, successes: 0, streak: 0, last: 0, starred: false, updated: "" };
+}
+function saveSession() {
+  storedSession = session ? JSON.parse(JSON.stringify(session)) : null;
+  save();
+}
+function updateStats() {
+  $("source-total").textContent = DATA.meta.recallCards.toLocaleString("he");
+  $("source-seen").textContent = recallDeck().filter(unit => getProgress(unit.id).attempts > 0).length.toLocaleString("he");
+  $("quiz-total").textContent = (DATA.questions.length + DATA.legacy.length).toLocaleString("he");
+  $("image-total").textContent = DATA.meta.images;
+  $("resume").classList.toggle("hidden", !storedSession);
+}
+function recallDeck() {
+  return [...DATA.cards, ...DATA.units.filter(unit => unit.classification === "knowledge" && unit.kind === "image")];
+}
+function modeDeck() {
+  if ($("mode").value === "depth") return DATA.questions;
+  return recallDeck().filter(unit => $("mode").value !== "images" || unit.kind === "image");
+}
+function fillServices() {
+  const previous = $("service").value;
+  $("service").replaceChildren(new Option("כל השירותים והפרקים", "all"));
+  [...new Set(modeDeck().map(unit => unit.service))].forEach(service => $("service").add(new Option(service, service)));
+  if ([...$("service").options].some(option => option.value === previous)) $("service").value = previous;
+  updateSelection();
+}
+function searchText(unit) {
+  return [unit.service, unit.section, unit.topic, unit.text, unit.question || ""].join(" ").toLocaleLowerCase();
+}
+function filterDeck() {
+  const query = $("search").value.trim().toLocaleLowerCase();
+  return modeDeck().filter(unit => {
+    const p = getProgress(unit.id);
+    const state = $("state-filter").value;
+    return ($("service").value === "all" || unit.service === $("service").value) &&
+      (!query || searchText(unit).includes(query)) &&
+      (state !== "unseen" || !p.attempts) &&
+      (state !== "weak" || p.attempts > 0 && p.streak < 2) &&
+      (state !== "starred" || p.starred);
+  });
+}
+function updateSelection() {
+  const count = filterDeck().length;
+  $("selection-info").textContent = `${count.toLocaleString("he")} שאלות זמינות בנושא שבחרת.`;
+  $("mode-explanation").textContent = modes[$("mode").value];
+  $("start").disabled = count === 0;
+}
+function openTab(tab) {
+  ["play", "library", "coverage", "guide"].forEach(name => {
+    $("view-" + name).classList.toggle("hidden", name !== tab);
+    $("tab-" + name).setAttribute("aria-selected", String(name === tab));
+  });
+  if (tab === "library") renderLibrary();
+  if (tab === "coverage") renderCoverage();
+}
+function begin(ids) {
+  let deck = ids ? ids.filter(id => playableIds.has(id)).map(id => byId.get(id)) : filterDeck();
+  if (!deck.length) {
+    $("selection-info").textContent = "אין פריטים לסבב. יש לשנות את המסננים.";
+    return;
+  }
+  if (!ids) {
+    if ($("order").value === "random") deck = shuffle(deck);
+    if ($("order").value === "weak") deck = [...deck].sort((a,b) =>
+      getProgress(a.id).streak - getProgress(b.id).streak || getProgress(b.id).attempts - getProgress(a.id).attempts);
+    const size = $("length").value === "all" ? deck.length : Number($("length").value);
+    deck = deck.slice(0, size);
+  }
+  session = { ids: deck.map(unit => unit.id), index: 0, score: 0, missed: [], answered: false, revealed: false, choice: "", note: "" };
+  $("setup").classList.add("hidden");
+  $("results").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  openTab("play");
+  saveSession();
+  render();
+}
+function current() { return byId.get(session.ids[session.index]); }
+function addImage(parent, unit, lazy = false) {
+  const image = node("img", undefined, "source-image");
+  image.src = unit.image;
+  image.alt = `תמונת מקור: ${unit.service} — ${unit.topic}; מקטע ${unit.blocks[0] + 1}`;
+  image.loading = lazy ? "lazy" : "eager";
+  const button = node("button");
+  button.type = "button";
+  button.setAttribute("aria-label", "הגדלת תמונת המקור");
+  button.style.cssText = "display:block;width:100%;padding:0;border:0;background:transparent";
+  button.append(image);
+  button.addEventListener("click", () => openSource(unit.id));
+  parent.append(button);
+}
+function corrections(unit) {
+  const text = unit.text || "";
+  const notes = [];
+  if (/Permissions Boundaries|Permissions Boundary/.test(unit.topic) || /Permission Boundaries/.test(text)) notes.push("דיוק: Permissions Boundaries מוצמדים ל-IAM Users או Roles, לא ל-Groups ולא ל-root. הם אינם מעניקים הרשאות בפני עצמם.");
+  if (unit.service === "AWS IAM" && /External ID|סיסמת הביטחון|סיסמת בטיחות/.test(text)) notes.push("דיוק: External ID אינו סיסמה ואינו נחשב סוד. הספק צריך לייצר ערך ייחודי לכל לקוח ולדרוש אותו בתנאי Trust Policy כדי לצמצם Confused Deputy.");
+  if (unit.service === "AWS IAM" && /Role|role/.test(unit.topic + text) && /קבוצות|קבוצה/.test(text)) notes.push("תיקון: IAM Group אינו Principal ואינו יכול לבצע AssumeRole. אפשר לתת לחברי קבוצה הרשאת AssumeRole באמצעות מדיניות זהות, אבל לא להצמיד את הקבוצה עצמה כ-Principal ב-Trust Policy.");
+  if (unit.service === "S3" && /לא רלוונטי|לא ל-objects/.test(text)) notes.push("תיקון: Bucket Policy רלוונטית גם בתוך Organizations, ויכולה לתת או להגביל גישה גם לאובייקטים לפי Action ו-Resource.");
+  if (unit.service === "S3" && /גרסאות קודמות של ה-bucket/.test(text)) notes.push("דיוק: Versioning שומר גרסאות אובייקטים, לא גרסאות של ה-Bucket עצמו.");
+  if (unit.service === "S3" && /Signed URLs|Intelligent Tiering|9 עד 48/.test(text)) notes.push("בדיקת עדכניות: זמני אחזור ותכונות שכבות האחסון דורשים דיוק. Intelligent-Tiering מבוסס על ניטור דפוסי גישה; אין להסיק שעצם שינוי השכבה משנה את תוכן הנתון.");
+  if (unit.service === "AWS KMS" && /rotation|Rotation|מחיקה של מפתח|ScheduleKey/.test(text)) notes.push("דיוק ועדכניות: הפעולה לתזמון מחיקה היא ScheduleKeyDeletion, ולביטול CancelKeyDeletion. תמיכת רוטציה תלויה בסוג המפתח ובמקור חומר המפתח; יש לבדוק תיעוד עדכני ולא להסתמך על רשימה היסטורית.");
+  if (unit.service === "AWS KMS" && /Key Policy/.test(text)) notes.push("דיוק: גם AWS Managed Keys כוללים Key Policy שאי אפשר לשנות. ב-Customer Managed Keys הלקוח מנהל את המדיניות.");
+  if (unit.service === "VPC" && /Hyperplane|backbone|תרגום של דומיניים/.test(text)) notes.push("תיקון מהותי: NAT אינו DNS. Hyperplane הוא מישור עיבוד תעבורת רשת מבוזר; PrivateLink אינו כל רשת ה-backbone של AWS. אין ללמוד מהציטוט שכל שירותי PrivateLink מחייבים שהלקוח יקים Load Balancer.");
+  if (unit.service === "EC2" && /יבקש את המפתח הפרטי/.test(text)) notes.push("תיקון: בחיבור SSH הלקוח מוכיח החזקה במפתח הפרטי; אין למסור או להעלות את המפתח הפרטי לשרת.");
+  if (unit.service === "CloudTrail" && /הופרש|retired|Lake/.test(text)) notes.push("בדיקת עדכניות: טענת המקור לגבי פרישת CloudTrail Lake אינה מאומתת כאן. יש לבדוק את הודעות AWS הרשמיות; אין להשתמש בטענה זו כעובדה לבחינה.");
+  if (unit.service === "S3" && /Replication|רפליקציה|replication/.test(unit.topic + text)) notes.push("דיוק: S3 Replication הוא אסינכרוני ואינו מבטיח תמיד העתקה תוך שניות או דקות. תנאי שכפול אובייקטים קיימים ותמיכת סוגי הצפנה דורשים בדיקה נפרדת.");
+  if (unit.service === "Amazon Route 53" && /אינטגרצי|אף שירות/.test(text)) notes.push("תיקון: Route 53 אינו מוגבל לאינטגרציה עם CloudWatch בלבד; קיימים שילובים עם שירותים נוספים. יש לבחון בנפרד סוג לוג ויעד נתמך.");
+  if (unit.service === "ECR" && /Basic Scanning|באופן ידני/.test(text)) notes.push("דיוק: Basic Scanning תומך גם ב-scan-on-push. Enhanced Scanning משתלב עם Amazon Inspector ומכסה גם חבילות של שפות תכנות.");
+  if (unit.service === "GuardDuty" && /default|כל מקורות|5 שירותי/.test(text)) notes.push("עדכניות: יש להבחין בין מקורות הבסיס לבין תוכניות הגנה נוספות ובין Auto-enable ארגוני להפעלה באזור. רשימת מקורות ומצבי ברירת מחדל עשויים להשתנות.");
+  if (unit.service === "GuardDuty" && /מפסיק לייצר|חוסם את יצירת/.test(text)) notes.push("דיוק: רשימות אמון אינן חומת אש וההשפעה שלהן תלויה בסוג הממצא ותוכנית ההגנה. אין להניח שהן משתיקות כל סוג ממצא.");
+  if (unit.service === "Amazon EKS" && /IRSA|IMDS/.test(text)) notes.push("דיוק: IRSA לבדו אינו חוסם גישה ל-IMDS. יש להגדיר גם בידוד גישה למטא-נתונים כדי לצמצם שימוש בהרשאות ה-Node.");
+  if (unit.service === "CloudFront" && /Signed URL|שבוע ימים|ללא הגבלת זמן/.test(text)) notes.push("דיוק: Signed URLs של CloudFront כוללים תנאי תפוגה. S3 Presigned URL מוגבל גם לאורך חיי ה-credentials, ולעיתים אפשר להגביל אותו במדיניות מעבר לזמן בלבד.");
+  if (unit.service === "CloudFront" && /MediaStore/.test(text)) notes.push("בדיקת עדכניות: רשימת ה-origins הנתמכים ומצב שירותי מדיה השתנו עם השנים. יש לבדוק תמיכת OAC לכל סוג מקור; קיום OAC אינו חוסם מקור ללא Policy מתאימה.");
+  if (unit.service === "AWS Elastic Load Balancing" && /מחייבים.*2|רק בתעודות/.test(text)) notes.push("דיוק: דרישות Subnets ו-AZs תלויות בסוג ה-Load Balancer. לא כל מה שנכון ל-ALB חל גם על NLB או GWLB.");
+  if (unit.service === "AWS Elastic Load Balancing" && /SSL Termination|Server Name Indication|ELB Access Logs/.test(unit.topic + text)) notes.push("דיוק: TLS Termination אינו מחייב חיבור HTTP לא מוצפן ליעד. SNI מסייע בבחירת תעודה לפי שם המארח. יכולות, שכבת הלוגים ופרוטוקולים נתמכים משתנים בין ALB, NLB ו-GWLB.");
+  if (unit.service === "Amazon API Gateway" && /Cognito|Execution Logs|WAF/.test(unit.topic + text)) notes.push("דיוק: אינטגרציות ולוגים נתמכים משתנים לפי סוג ה-API. Cognito Authorizer מאמת טוקנים; אין להסיק ש-API Gateway שולח שם משתמש וסיסמה ל-Cognito בכל בקשה. אינטגרציית WAF הישירה רלוונטית ל-REST APIs נתמכים.");
+  if (unit.service === "AWS Systems Manager" && /בחינם|CloudTrail.*מדדים/.test(text)) notes.push("דיוק: Parameter Store Standard ו-Advanced שונים בתמחור וביכולות. CloudWatch הוא מקור מדדים; CloudTrail הוא תיעוד פעולות API.");
+  if (unit.service === "Athena" && /חיוב|שאילתות/.test(text)) notes.push("דיוק: בחיוב Athena לפי סריקה, התשלום מבוסס על נפח הנתונים שנסרק, לא רק על מספר השאילתות. קיימות גם אפשרויות קיבולת ותמחור נוספות.");
+  if (unit.service === "CloudWatch" && /מרכז trails/.test(text)) notes.push("דיוק: Log Group מאגדת Log Streams. היא יכולה להכיל לוגים ממקורות רבים, ולא רק CloudTrail.");
+  if (unit.service === "CloudWatch" && /חבילה של מדדים/.test(text)) notes.push("דיוק: Metric Stream מזרים נתוני מדדים באופן רציף ליעדים נתמכים; הוא אינו רק מיכל ארגוני כמו Namespace.");
+  if (unit.service === "VPC" && /6 subnets/.test(text)) notes.push("עדכניות: מספר ה-Subnets ב-Default VPC תלוי ב-Availability Zones באזור; אין ללמוד שמדובר תמיד בשישה.");
+  if (unit.service === "Amazon Inspector") notes.push("עדכניות: Assessment Templates הם מושג של Inspector Classic. Inspector הנוכחי תומך בשיטות סריקה שונות, כולל מצבים ללא Agent; אין להשליך את מודל Classic על השירות הנוכחי.");
+  if (unit.service === "Amazon Kinesis Data Streams" && /צריך להשתמש.*Firehose/.test(text)) notes.push("תיקון: Firehose אינו חובה. אפשר להשתמש ב-consumers אחרים, למשל KCL או אינטגרציות נתמכות.");
+  if (/Other Services/.test(unit.service) && /אין downtime|מערכת טיקטים|הופרש|לא קיים יותר|Snowmobile|SMS|CodeStar|OpsWorks|Cloud9/.test(text)) notes.push("בדיקת דיוק ועדכניות: אין הבטחה לאפס downtime בכל תרחיש הגירה; Connect הוא Contact Center; טענות על פרישת שירותים וזמינות דורשות בדיקה פרטנית מול AWS.");
+  return notes;
+}
+function renderNotes(parent, unit) {
+  corrections(unit).forEach(text => parent.append(node("p", text, "warning")));
+}
+function sourceActions(unit) {
+  const actions = $("source-actions");
+  actions.replaceChildren();
+  const sourceId = unit.id;
+  if (sourceId) {
+    const button = node("button", "פתיחת קטע המקור");
+    button.type = "button";
+    button.addEventListener("click", () => openSource(sourceId));
+    actions.append(button);
+  } else {
+    actions.append(node("p", "פריט מהמאגר הישן — ללא שיוך מאומת למקטע בגרסה המעודכנת.", "muted tiny"));
+  }
+}
+function render() {
+  const unit = current();
+  const objective = ["quiz", "legacy"].includes(unit.kind);
+  const percent = Math.round(session.index / session.ids.length * 100);
+  $("round-progress").textContent = `שאלה ${session.index + 1} מתוך ${session.ids.length}`;
+  $("round-score").textContent = `הצלחות בסבב: ${session.score}`;
+  $("round-bar").style.width = percent + "%";
+  document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow", percent);
+  $("context").textContent = objective ? unit.section : [unit.service, unit.section, unit.topic].filter((part, i, parts) => part && parts.indexOf(part) === i).join(" ← ");
+  $("kind-label").textContent = objective ? (unit.kind === "quiz" ? "שאלת עומק · בדיקה אובייקטיבית" : "זיהוי שירות") : unit.kind === "image" ? "פענוח תמונה · הערכה עצמית" : "שליפה מן המקור · הערכה עצמית";
+  $("question").textContent = unit.question;
+  $("visual").replaceChildren();
+  if (unit.kind === "image") addImage($("visual"), unit);
+  $("source-cue").classList.toggle("hidden", objective || unit.kind === "image");
+  if (!objective && unit.kind !== "image") {
+    const words = unit.text.split(/\s+/);
+    const cueLength = Math.min(7, Math.max(2, Math.floor(words.length / 4)));
+    $("source-cue").textContent = `רמז לתחילת הקטע: ${words.slice(0, cueLength).join(" ")}… · מקטעי מקור ${unit.blocks.map(n => n + 1).join(", ")}`;
+  }
+  $("recall").classList.toggle("hidden", objective);
+  $("notes").value = session.note;
+  $("reveal").disabled = session.revealed;
+  $("notes").disabled = session.answered;
+  $("answer-panel").classList.add("hidden");
+  $("grade").classList.add("hidden");
+  $("next").classList.toggle("hidden", !session.answered);
+  $("next").textContent = session.index + 1 === session.ids.length ? "לסיום הסבב" : "לשאלה הבאה";
+  $("options").replaceChildren();
+  $("grading-note").textContent = objective ? "ציון לפי התשובה הנכונה." : "דיווח עצמי — תפקיד, תנאים, חריגים ומשמעות; לא שלבי יישום.";
+  if (objective) {
+    if (unit.kind === "quiz") quizOptions = shuffle(unit.options);
+    else {
+      const terms = [...new Map(DATA.legacy
+        .filter(item => item.id !== unit.id && canonicalTerm(item.answer) !== canonicalTerm(unit.answer) && item.service === unit.service)
+        .map(item => [canonicalTerm(item.answer), item.answer])).values()];
+      quizOptions = shuffle([unit.answer, ...shuffle(terms).slice(0,3)]);
+    }
+    quizOptions.forEach((text, i) => {
+      const button = node("button", undefined, "option");
+      button.append(node("span", String(i + 1), "option-number"), node("span", text));
+      button.type = "button";
+      button.dataset.answer = text;
+      button.addEventListener("click", () => answerQuiz(text));
+      $("options").append(button);
+    });
+  }
+  updateStar();
+  if (session.revealed || session.answered) showAnswer();
+  $("question").focus({preventScroll:true});
+}
+function showAnswer() {
+  const unit = current();
+  const objective = ["quiz","legacy"].includes(unit.kind);
+  $("answer-panel").classList.remove("hidden");
+  $("feedback").className = "feedback";
+  if (objective) {
+    const correct = session.choice === unit.answer;
+    $("feedback").classList.add(correct ? "good" : "bad");
+    $("feedback").textContent = `${correct ? "נכון." : "לא הפעם."} התשובה: ${unit.answer}\n\n${unit.text}`;
+    [...$("options").children].forEach(button => {
+      button.disabled = true;
+      if (button.dataset.answer === unit.answer) button.classList.add("correct");
+      else if (button.dataset.answer === session.choice) button.classList.add("wrong");
+    });
+  } else {
+    $("feedback").textContent = unit.kind === "image"
+      ? "השווה את ההסבר שלך לתרשים המקור ולטקסט הסמוך, אם קיים. הטקסט הסמוך אינו תמלול של התרשים."
+      : "השווה את ההסבר שלך לציטוט המדויק שלהלן. בדוק גם תנאים וחריגים, ואז הערך את השליפה.";
+    $("grade").classList.toggle("hidden", session.answered);
+    $("reveal").disabled = true;
+  }
+  $("source-notes").replaceChildren();
+  const source = unit.source ? byId.get(unit.source) : unit;
+  const quote = node("section", undefined, "library-card");
+  quote.append(node("h3", unit.imageQuoteType === "label" ? "ציטוט שם השירות מתוך התרשים" : unit.imageQuote ? "ציטוט מתוך תרשים המקור (תמלול)" : "ציטוט מדויק מתוך הסיכום"));
+  if (unit.imageQuote) {
+    quote.append(node("blockquote", unit.imageQuote, "source-text"));
+    if (unit.imageQuoteType === "label") quote.append(node("p", "בתרשים מופיעים שם השירות והקשרו בארכיטקטורה. הסבר תפקיד השירות הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה כתובה במסמך.", "notice"));
+    const drawing = node("details");
+    drawing.append(node("summary", "לראות את תרשים המקור"));
+    drawing.addEventListener("toggle", () => {
+      if (drawing.open && !drawing.querySelector("img")) addImage(drawing, source, true);
+    });
+    quote.append(drawing);
+  } else if (unit.quoteText) {
+    if (unit.sourceLabel) quote.append(node("p", "בסיכום מופיע שם המנגנון והוראות ניווט בלבד. הסבר תפקידו הוא הרחבת ידע, לא ציטוט של הגדרה מהמסמך.", "notice"));
+    quote.append(node("blockquote", unit.quoteText, "source-text"));
+  } else if (objective || source.kind === "text") {
+    if (unit.sourceLabel) quote.append(node("p", "בסיכום מופיע שם המנגנון והוראות ניווט בלבד. הסבר תפקידו הוא הרחבת ידע, לא ציטוט של הגדרה מהמסמך.", "notice"));
+    const sources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [source];
+    quote.append(node("blockquote", sources.map(part => part.text).join("\n"), "source-text"));
+  } else if (source.text) {
+    quote.append(node("p", "ציטוט הטקסט הסמוך לתמונה, לא תמלול התרשים:", "muted tiny"));
+    quote.append(node("blockquote", source.text, "source-text"));
+  } else {
+    quote.append(node("p", "המקור לפריט זה הוא התרשים המוצג, ללא טקסט הסבר סמוך.", "muted"));
+  }
+  const quoteBlocks = unit.quoteBlocks || unit.blocks || source.blocks;
+  quote.append(node("p", `מקור: ${source.service} · מקטעים ${quoteBlocks.map(n => n + 1).join(", ")}${source.imageNumber ? " · תמונה " + source.imageNumber : ""}`, "muted tiny"));
+  $("source-notes").append(quote);
+  const noteSources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [{...source, text: unit.quoteText || source.text}];
+  [...new Set(noteSources.flatMap(corrections))].forEach(text => $("source-notes").append(node("p", text, "warning")));
+  sourceActions(unit);
+}
+function record(grade) {
+  if (session.answered) return;
+  const unit = current();
+  const p = {...getProgress(unit.id)};
+  p.attempts++;
+  p.last = grade;
+  p.successes += grade === 2 ? 1 : 0;
+  p.streak = grade === 2 ? p.streak + 1 : 0;
+  p.updated = new Date().toISOString();
+  progress[unit.id] = p;
+  session.answered = true;
+  if (grade === 2) session.score++;
+  else session.missed.push(unit.id);
+  $("grade").classList.add("hidden");
+  $("notes").disabled = true;
+  $("next").classList.remove("hidden");
+  $("round-score").textContent = `הצלחות בסבב: ${session.score}`;
+  saveSession();
+  updateStats();
+  $("next").focus({preventScroll:true});
+}
+function answerQuiz(choice) {
+  if (session.answered) return;
+  session.choice = choice;
+  session.revealed = true;
+  record(choice === current().answer ? 2 : 0);
+  showAnswer();
+}
+function next() {
+  if (!session || !session.answered) return;
+  if (session.index + 1 === session.ids.length) {
+    $("game").classList.add("hidden");
+    $("results").classList.remove("hidden");
+    $("result-score").textContent = `${session.score} / ${session.ids.length}`;
+    const self = session.ids.filter(id => ["text","image"].includes(byId.get(id).kind)).length;
+    $("result-detail").textContent = self ? `${self} פריטי שליפה עם הערכה עצמית. יש ${session.missed.length} פריטים לחזרה ממוקדת.` : `${session.ids.length} שאלות שנבדקו מול תשובה מוגדרת. יש ${session.missed.length} פריטים לחזרה.`;
+    $("retry").disabled = session.missed.length === 0;
+    storedSession = null;
+    save();
+    updateStats();
+    $("new-round").focus();
+    return;
+  }
+  session.index++;
+  Object.assign(session, {answered:false, revealed:false, choice:"", note:""});
+  saveSession();
+  render();
+}
+function updateStar() {
+  const starred = getProgress(current().id).starred;
+  $("star").textContent = starred ? "★ מסומן לחזרה" : "☆ לסמן לחזרה";
+  $("star").classList.toggle("bookmark", starred);
+  $("star").setAttribute("aria-pressed", starred);
+}
+function openSource(id) {
+  const unit = byId.get(id);
+  const source = unit.source ? byId.get(unit.source) : unit;
+  $("dialog-title").textContent = `${unit.service} · ${unit.topic}`;
+  const body = $("dialog-body");
+  body.replaceChildren();
+  if (source.image) {
+    const img = node("img");
+    img.src = source.image;
+    img.alt = `תמונת מקור: ${source.topic}`;
+    body.append(img);
+  }
+  body.append(node("p", unit.quoteText || unit.imageQuote || unit.text, "source-text"));
+  renderNotes(body, {...source, text: unit.quoteText || unit.text});
+  const blocks = unit.quoteBlocks || unit.blocks || source.blocks;
+  body.append(node("p", "מקטעי מקור: " + blocks.map(n => n+1).join(", "), "muted tiny"));
+  if (!$("source-dialog").open) $("source-dialog").showModal();
+}
+function renderLibrary() {
+  const query = $("library-search").value.trim().toLocaleLowerCase();
+  const items = DATA.units.filter(unit => !query || searchText(unit).includes(query));
+  const pages = Math.max(1, Math.ceil(items.length / 20));
+  libraryPage = Math.min(libraryPage, pages - 1);
+  $("library-count").textContent = `${items.length.toLocaleString("he")} יחידות מקור מתאימות.`;
+  $("library-page").textContent = `${libraryPage + 1} / ${pages}`;
+  $("library-prev").disabled = libraryPage === 0;
+  $("library-next").disabled = libraryPage + 1 >= pages;
+  $("library-items").replaceChildren();
+  items.slice(libraryPage*20,libraryPage*20+20).forEach(unit => {
+    const item = node("details", undefined, "library-card");
+    item.append(node("summary", `${unit.service} · ${unit.topic} · ${unit.kind === "image" ? "תמונה" : "טקסט"} · ${unit.blocks.map(n => n+1).join(", ")}`));
+    let loaded = false;
+    item.addEventListener("toggle", () => {
+      if (!item.open || loaded) return;
+      loaded = true;
+      if (unit.image) addImage(item, unit, true);
+      item.append(node("p", unit.text, "source-text"));
+      renderNotes(item, unit);
+      item.append(node("p", `סיווג: ${unit.classification === "knowledge" ? "ידע להבנה ולתרגול" : unit.classification === "implementation" ? "יישום / How-to — לא נכלל במשחק" : "כותרת / הקשר — לא שאלה נפרדת"}`, "notice"));
+      if (unit.classification === "knowledge") {
+        const button = node("button", "תרגול הפריט הזה");
+        button.type = "button";
+        button.addEventListener("click", () => begin([unit.card]));
+        item.append(button);
+      }
+    });
+    $("library-items").append(item);
+  });
+}
+function renderCoverage() {
+  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו בארכיון. במשחק ${DATA.questions.length} שאלות אמריקאיות ו-${DATA.meta.recallCards} כרטיסיות שליפה, כולל ${DATA.meta.conceptImages} תמונות הבנה. הכרטיסיות מאחדות את כל מקטעי הידע לפי נושא. ${DATA.meta.classifications.implementation} מקטעי יישום ו-${DATA.meta.classifications.context} מקטעי כותרות/הקשר נשמרו לעיון ולא כשאלות נפרדות.`;
+  $("source-meta").textContent = `מקור: ${DATA.meta.source}\nמועד הורדה (UTC): ${DATA.meta.fetched}\nSHA-256: ${DATA.meta.hash}`;
+  $("coverage-items").replaceChildren();
+  DATA.meta.services.forEach(service => {
+    const archived = DATA.units.filter(unit => unit.service === service);
+    const units = recallDeck().filter(unit => unit.service === service);
+    const seen = units.filter(unit => getProgress(unit.id).attempts).length;
+    const stable = units.filter(unit => getProgress(unit.id).streak >= 2).length;
+    const pictures = units.filter(unit => unit.kind === "image").length;
+    const questions = DATA.questions.filter(unit => unit.service === service);
+    const correct = questions.filter(unit => getProgress(unit.id).streak >= 2).length;
+    const row = node("div", undefined, "coverage-row");
+    row.append(node("strong", service));
+    row.append(node("p", `${seen}/${units.length} כרטיסיות תורגלו · ${stable} יציבות לפי דיווח עצמי · ${pictures} תמונות · ${correct}/${questions.length} שאלות אמריקאיות עם שתי הצלחות רצופות`, "muted tiny"));
+    const bar = node("div", undefined, "progress");
+    bar.setAttribute("role","progressbar");
+    bar.setAttribute("aria-label",`פריטי מקור שתורגלו: ${service}`);
+    bar.setAttribute("aria-valuemin","0");
+    bar.setAttribute("aria-valuemax",String(units.length));
+    bar.setAttribute("aria-valuenow",String(seen));
+    const value = node("span");
+    value.style.width = (units.length ? seen / units.length * 100 : 0) + "%";
+    bar.append(value);
+    row.append(bar);
+    const button = node("button", "לתרגול הפרק");
+    button.type = "button";
+    button.addEventListener("click", () => {
+      $("mode").value = questions.length ? "depth" : "source";
+      fillServices();
+      $("service").value = service;
+      $("state-filter").value = "all";
+      $("search").value = "";
+      updateSelection();
+      openTab("play");
+      $("setup").classList.remove("hidden");
+      $("game").classList.add("hidden");
+      $("results").classList.add("hidden");
+    });
+    row.append(button);
+    $("coverage-items").append(row);
+  });
+}
+function exportProgress() {
+  const blob = new Blob([JSON.stringify({version:4,sourceHash:DATA.meta.hash,progress,session:storedSession},null,2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const link = node("a");
+  link.href = url;
+  link.download = "aws-security-progress.json";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $("backup-status").textContent = "נוצר קובץ גיבוי להורדה. שמור אותו במקום בטוח.";
+}
+$("import").addEventListener("change", async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  try {
+    if (file.size > 5 * 1024 * 1024) throw new Error("קובץ הגיבוי גדול מדי.");
+    const saved = JSON.parse(await file.text());
+    if (saved.version !== 4 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("הגיבוי אינו תקין או נוצר בגרסה קודמת. יש להשתמש בגיבוי של המשחק המעודכן.");
+    if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב בגיבוי אינו תקין.");
+    if (!confirm("יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
+    progress = saved.progress;
+    storedSession = saved.session;
+    session = null;
+    $("setup").classList.remove("hidden");
+    $("game").classList.add("hidden");
+    $("results").classList.add("hidden");
+    save();
+    updateStats();
+    renderCoverage();
+    updateSelection();
+    $("backup-status").textContent = storageFailed ? "הגיבוי נטען לזיכרון בלבד; שמירת הדפדפן אינה זמינה." : "הגיבוי נטען ונשמר.";
+  } catch (error) {
+    $("backup-status").textContent = "לא בוצע יבוא: " + error.message;
+  } finally { event.target.value = ""; }
+});
+["play","library","coverage","guide"].forEach(tab => $("tab-"+tab).addEventListener("click", () => openTab(tab)));
+$("mode").addEventListener("change", fillServices);
+["service","state-filter","length","order"].forEach(id => $(id).addEventListener("change", updateSelection));
+$("search").addEventListener("input",updateSelection);
+$("start").addEventListener("click",() => begin());
+$("reveal").addEventListener("click",() => {
+  if (!session || session.revealed) return;
+  session.revealed = true;
+  session.note = $("notes").value;
+  saveSession();
+  showAnswer();
+  $("grade").querySelector("button").focus({preventScroll:true});
+});
+$("notes").addEventListener("input", () => { session.note = $("notes").value; saveSession(); });
+$("grade").querySelectorAll("button").forEach(button => button.addEventListener("click",() => record(Number(button.dataset.grade))));
+$("next").addEventListener("click", next);
+$("pause").addEventListener("click",() => {
+  if (session) { session.note = $("notes").value; saveSession(); }
+  $("game").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+  updateSelection();
+  $("resume").focus();
+});
+$("resume").addEventListener("click",() => {
+  if (!storedSession) return;
+  session = JSON.parse(JSON.stringify(storedSession));
+  $("setup").classList.add("hidden");
+  $("results").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  render();
+});
+$("star").addEventListener("click",() => {
+  const id = current().id;
+  progress[id] = {...getProgress(id), starred:!getProgress(id).starred};
+  save();
+  updateStar();
+});
+$("retry").addEventListener("click",() => begin([...session.missed]));
+$("new-round").addEventListener("click",() => {
+  $("results").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+  updateSelection();
+});
+$("dialog-close").addEventListener("click",() => $("source-dialog").close());
+$("library-search").addEventListener("input",() => {libraryPage=0;renderLibrary();});
+$("library-prev").addEventListener("click",() => {libraryPage--;renderLibrary();});
+$("library-next").addEventListener("click",() => {libraryPage++;renderLibrary();});
+$("export").addEventListener("click",exportProgress);
+document.addEventListener("keydown",event => {
+  if ($("source-dialog").open || ["INPUT","TEXTAREA","SELECT","BUTTON"].includes(document.activeElement.tagName) || $("game").classList.contains("hidden") || !session) return;
+  if (/^[1-4]$/.test(event.key) && !session.answered && ["quiz","legacy"].includes(current().kind)) {
+    const choice=quizOptions[Number(event.key)-1];
+    if (choice) {event.preventDefault();answerQuiz(choice);}
+  }
+  if (event.code === "Space" && !session.revealed && ["text","image"].includes(current().kind)) {event.preventDefault();$("reveal").click();}
+  if (event.key === "Enter" && session.answered) {event.preventDefault();next();}
+});
+load();
+fillServices();
+updateStats();
