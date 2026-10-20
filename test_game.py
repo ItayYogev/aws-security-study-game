@@ -59,6 +59,9 @@ class GameTests(unittest.TestCase):
             self.assertNotIn(index, covered)
         for index in [893, 902, 912, 1081, 1085, 1219, 1223, 1781, 2019, 2991, 3003]:
             self.assertIn(index, covered)
+        self.assertNotIn(0, covered)
+        self.assertNotIn(685, covered)
+        self.assertFalse(any(u["kind"] == "text" and re.fullmatch(r"[\s{}\[\],;:()\"'\-]*", u["text"]) for u in active))
 
     def test_every_objective_answer_has_conceptual_exact_quote(self):
         self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(DATA["questions"]))

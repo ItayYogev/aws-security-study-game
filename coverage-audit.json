@@ -57,13 +57,13 @@
       "Amazon OpenSearch Service",
       "Other Services by categories"
     ],
-    "sourceUnits": 1884,
-    "knowledgeUnits": 1001,
+    "sourceUnits": 1865,
+    "knowledgeUnits": 981,
     "depthQuestions": 252,
     "legacyQuestions": 0,
     "classifications": {
-      "knowledge": 2121,
-      "context": 616,
+      "context": 618,
+      "knowledge": 2119,
       "implementation": 509
     },
     "conceptImages": 50
@@ -78,8 +78,8 @@
       "service": "AWS",
       "section": "General Definitions",
       "topic": "AWS",
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
+      "classification": "context",
+      "reason": "Document navigation link, not study content",
       "structural": false
     },
     {
@@ -3391,7 +3391,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 302,
@@ -3402,7 +3403,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 303,
@@ -3413,7 +3415,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 304,
@@ -3424,7 +3427,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 305,
@@ -3435,7 +3439,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 306,
@@ -3446,7 +3451,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 307,
@@ -3457,7 +3463,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 308,
@@ -3468,7 +3475,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 309,
@@ -3479,7 +3487,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 310,
@@ -3490,7 +3499,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 311,
@@ -3501,7 +3511,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 312,
@@ -3512,7 +3523,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 313,
@@ -3523,7 +3535,8 @@
       "topic": "AWS SCP",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 301
     },
     {
       "id": 314,
@@ -5283,7 +5296,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 474,
@@ -5294,7 +5308,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 475,
@@ -5305,7 +5320,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 476,
@@ -5316,7 +5332,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 477,
@@ -5327,7 +5344,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 478,
@@ -5338,7 +5356,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 479,
@@ -5349,7 +5368,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 480,
@@ -5360,7 +5380,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 481,
@@ -5371,7 +5392,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 482,
@@ -5382,7 +5404,8 @@
       "topic": "סוגי התקפות נפוצות",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 473
     },
     {
       "id": 483,
@@ -6856,7 +6879,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 617,
@@ -6867,7 +6891,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 618,
@@ -6878,7 +6903,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 619,
@@ -6889,7 +6915,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 620,
@@ -6900,7 +6927,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 621,
@@ -6911,7 +6939,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 622,
@@ -6922,7 +6951,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 623,
@@ -6933,7 +6963,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 624,
@@ -6944,7 +6975,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 625,
@@ -6955,7 +6987,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 626,
@@ -6966,7 +6999,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 627,
@@ -6977,7 +7011,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 628,
@@ -6988,7 +7023,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 629,
@@ -6999,7 +7035,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 630,
@@ -7010,7 +7047,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 631,
@@ -7021,7 +7059,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 632,
@@ -7032,7 +7071,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 633,
@@ -7043,7 +7083,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 634,
@@ -7054,7 +7095,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 616
     },
     {
       "id": 635,
@@ -7153,7 +7195,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 644,
@@ -7164,7 +7207,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 645,
@@ -7175,7 +7219,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 646,
@@ -7186,7 +7231,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 647,
@@ -7197,7 +7243,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 648,
@@ -7208,7 +7255,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 649,
@@ -7219,7 +7267,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 650,
@@ -7230,7 +7279,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 651,
@@ -7241,7 +7291,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 652,
@@ -7252,7 +7303,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 653,
@@ -7263,7 +7315,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 654,
@@ -7274,7 +7327,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 655,
@@ -7285,7 +7339,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 656,
@@ -7296,7 +7351,8 @@
       "topic": "סוגי policies",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 643
     },
     {
       "id": 657,
@@ -7613,8 +7669,8 @@
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "IAM Policy Simulator",
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
+      "classification": "context",
+      "reason": "Document navigation link, not study content",
       "structural": false
     },
     {
@@ -16151,7 +16207,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1462,
@@ -16162,7 +16219,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1463,
@@ -16173,7 +16231,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1464,
@@ -16184,7 +16243,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1465,
@@ -16195,7 +16255,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1466,
@@ -16206,7 +16267,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1467,
@@ -16217,7 +16279,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1468,
@@ -16228,7 +16291,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1469,
@@ -16239,7 +16303,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1470,
@@ -16250,7 +16315,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1471,
@@ -16261,7 +16327,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1472,
@@ -16272,7 +16339,8 @@
       "topic": "CloudFormation Hooks",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 1461
     },
     {
       "id": 1473,
@@ -25347,7 +25415,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2298,
@@ -25358,7 +25427,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2299,
@@ -25369,7 +25439,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2300,
@@ -25380,7 +25451,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2301,
@@ -25391,7 +25463,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2302,
@@ -25402,7 +25475,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2303,
@@ -25413,7 +25487,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2304,
@@ -25424,7 +25499,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2305,
@@ -25435,7 +25511,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2306,
@@ -25446,7 +25523,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2307,
@@ -25457,7 +25535,8 @@
       "topic": "Key Policy",
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "structural": false
+      "structural": false,
+      "codeGroup": 2297
     },
     {
       "id": 2308,
@@ -35780,32 +35859,19 @@
   ],
   "sourceUnits": [
     {
-      "id": "src-ffa1dffec2a79aae5949",
+      "id": "src-318d783ba4dc00669d94",
       "service": "AWS",
       "section": "General Definitions",
       "topic": "AWS",
       "kind": "text",
-      "text": "לינק לרשימת שירותי AWS",
+      "text": "לינק לרשימת שירותי AWS\nAWS\nGeneral Definitions",
       "blocks": [
-        0
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה AWS, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS?"
-    },
-    {
-      "id": "src-d54c401642cf6cb53d68",
-      "service": "AWS",
-      "section": "",
-      "topic": "AWS",
-      "kind": "text",
-      "text": "AWS\nGeneral Definitions",
-      "blocks": [
+        0,
         1,
         2
       ],
       "classification": "context",
-      "reason": "Heading or mechanism label, attached to its knowledge statements",
+      "reason": "Document navigation link, not study content",
       "question": "מה עושה AWS, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS?"
     },
     {
@@ -38449,77 +38515,25 @@
       "question": "מה עושה AWS SCP, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS Organizations?"
     },
     {
-      "id": "src-a1fc6cbb18d94e512929",
+      "id": "src-d4f5fe35153259a58c9e",
       "service": "AWS Organizations",
       "section": "AWS SCP",
       "topic": "AWS SCP",
       "kind": "text",
-      "text": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [",
+      "text": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Sid\": \"DenyEC2Launch\",\n\"Effect\": \"Deny\",\n\"Action\": [\n\"ec2:RunInstances\"\n],\n\"Resource\": \"*\"\n}\n]\n}",
       "blocks": [
         301,
         302,
-        303
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה AWS SCP, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS Organizations?"
-    },
-    {
-      "id": "src-1f7163d899f0dfcd827b",
-      "service": "AWS Organizations",
-      "section": "AWS SCP",
-      "topic": "AWS SCP",
-      "kind": "text",
-      "text": "{\n\"Sid\": \"DenyEC2Launch\",\n\"Effect\": \"Deny\",",
-      "blocks": [
+        303,
         304,
         305,
-        306
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה AWS SCP, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS Organizations?"
-    },
-    {
-      "id": "src-82312a3397c6a26c4266",
-      "service": "AWS Organizations",
-      "section": "AWS SCP",
-      "topic": "AWS SCP",
-      "kind": "text",
-      "text": "\"Action\": [\n\"ec2:RunInstances\"\n],",
-      "blocks": [
+        306,
         307,
         308,
-        309
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה AWS SCP, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS Organizations?"
-    },
-    {
-      "id": "src-a8443f8ab13465d71174",
-      "service": "AWS Organizations",
-      "section": "AWS SCP",
-      "topic": "AWS SCP",
-      "kind": "text",
-      "text": "\"Resource\": \"*\"\n}\n]",
-      "blocks": [
+        309,
         310,
         311,
-        312
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה AWS SCP, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS Organizations?"
-    },
-    {
-      "id": "src-fdf2568992f28195dc46",
-      "service": "AWS Organizations",
-      "section": "AWS SCP",
-      "topic": "AWS SCP",
-      "kind": "text",
-      "text": "}",
-      "blocks": [
+        312,
         313
       ],
       "classification": "knowledge",
@@ -39747,52 +39761,26 @@
       "question": "מה עושה סוגי התקפות נפוצות, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
     },
     {
-      "id": "src-c7250d02cfcfb484339e",
+      "id": "src-f705737d2edc1fc28721",
       "service": "AWS IAM",
       "section": "Common actions",
       "topic": "סוגי התקפות נפוצות",
       "kind": "text",
-      "text": "\"Version\": \"2012-10-17\",\n\"Statement\": [\n{",
+      "text": "\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Effect\": \"Allow\",\n\"Action\": \"sts:AssumeRole\",\n\"Resource\": \"arn:aws:iam::123456789012:role/AdminRole\"\n}\n]\n}",
       "blocks": [
         474,
         475,
-        476
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי התקפות נפוצות, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-718a2ef1fb84bc98d5ef",
-      "service": "AWS IAM",
-      "section": "Common actions",
-      "topic": "סוגי התקפות נפוצות",
-      "kind": "text",
-      "text": "\"Effect\": \"Allow\",\n\"Action\": \"sts:AssumeRole\",\n\"Resource\": \"arn:aws:iam::123456789012:role/AdminRole\"",
-      "blocks": [
+        476,
         477,
         478,
-        479
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "בהקשר של סוגי התקפות נפוצות: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
-    },
-    {
-      "id": "src-36c9c54257660a7e0417",
-      "service": "AWS IAM",
-      "section": "Common actions",
-      "topic": "סוגי התקפות נפוצות",
-      "kind": "text",
-      "text": "}\n]\n}",
-      "blocks": [
+        479,
         480,
         481,
         482
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי התקפות נפוצות, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
+      "question": "בהקשר של סוגי התקפות נפוצות: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
       "id": "src-460760c6d69566b1d7c9",
@@ -40773,318 +40761,214 @@
       "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
     },
     {
-      "id": "src-ecf4b49f32b87b2f9e4e",
+      "id": "src-4e1844515e67bed2efb9",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [",
+      "text": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Sid\": \"EC2StartStopInEUWest1\",\n\"Effect\": \"Allow\",\n\"Action\": [\n\"ec2:StartInstances\",\n\"ec2:StopInstances\"\n],\n\"Resource\": \"arn:aws:ec2:eu-west-1:*:instance/*\",\n\"Condition\": {\n\"StringEquals\": {\n\"aws:RequestedRegion\": \"eu-west-1\"\n}\n}\n}\n]\n}",
       "blocks": [
         616,
         617,
-        618
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-92670c787b5bbcc91a1e",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "{\n\"Sid\": \"EC2StartStopInEUWest1\",\n\"Effect\": \"Allow\",",
-      "blocks": [
+        618,
         619,
         620,
-        621
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-6faf46172de3c3c8bacf",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "\"Action\": [\n\"ec2:StartInstances\",\n\"ec2:StopInstances\"",
-      "blocks": [
+        621,
         622,
         623,
-        624
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-be6d142a3957f5bb63b3",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "],\n\"Resource\": \"arn:aws:ec2:eu-west-1:*:instance/*\",\n\"Condition\": {",
-      "blocks": [
+        624,
         625,
         626,
-        627
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-9be3d2a829786f859ff6",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "\"StringEquals\": {\n\"aws:RequestedRegion\": \"eu-west-1\"\n}",
-      "blocks": [
+        627,
         628,
         629,
-        630
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-b8cd09de34ac94b5c331",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "}\n}\n]",
-      "blocks": [
+        630,
         631,
         632,
-        633
+        633,
+        634
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
     },
     {
-      "id": "src-665b09d473e5b54f4de4",
+      "id": "src-abecdce55ff90be995e7",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "}\nTrust Policy\nזאת policy שיש לכל role ב-AWS, שאומרת מי יכול לעשות assume role ל-role הזה, שזה להיות משתמש או שירות כלשהו.",
+      "text": "Trust Policy\nזאת policy שיש לכל role ב-AWS, שאומרת מי יכול לעשות assume role ל-role הזה, שזה להיות משתמש או שירות כלשהו.\nדוגמה ל-trust policy:",
       "blocks": [
-        634,
         635,
-        636
+        636,
+        637
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-2cae6aa2673c1b5a9a06",
+      "id": "src-6889f4da256e27c64c66",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "דוגמה ל-trust policy:\naction: איזה פעולה הוא מורשה לעשות (שזה תמיד יהיה לשייך את ה-role)\nPrincipal: המושג הרשמי של זה נקרא trust relationship, וזה אומר מי מורשה לעשות assume role, זה יכול להיות:",
+      "text": "action: איזה פעולה הוא מורשה לעשות (שזה תמיד יהיה לשייך את ה-role)\nPrincipal: המושג הרשמי של זה נקרא trust relationship, וזה אומר מי מורשה לעשות assume role, זה יכול להיות:\nAWS: משתמש כלשהו",
       "blocks": [
-        637,
         638,
-        639
+        639,
+        640
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-6bbd137e371d53cb6ee3",
+      "id": "src-2f3e7b3db43cd41f07a2",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "AWS: משתמש כלשהו\nService: שירות כלשהו\nResource: משאב כלשהו",
+      "text": "Service: שירות כלשהו\nResource: משאב כלשהו\n{",
       "blocks": [
-        640,
         641,
-        642
+        642,
+        643
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
     },
     {
-      "id": "src-a0f0135caa5c0fac8217",
+      "id": "src-7429f626ddf297b090e9",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "{\n\"Version\": \"2012-10-17\",\n\"Statement\": [",
+      "text": "\"Version\": \"2012-10-17\",\n\"Statement\": [\n{\n\"Effect\": \"Allow\",\n\"Action\": \"sts:AssumeRole\",\n\"Principal\": {\n\"AWS\": \"arn:aws:iam::123456789012:user/DevUser\"\n\"Service\": \"ec2.amazonaws.com\"\n},\n\"Resource\": \"arn:aws:iam::123456789012:role/MyAppRole\"\n}\n]\n}",
       "blocks": [
-        643,
         644,
-        645
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-c4862eaf9f6fccb40895",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "{\n\"Effect\": \"Allow\",\n\"Action\": \"sts:AssumeRole\",",
-      "blocks": [
+        645,
         646,
         647,
-        648
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
-    },
-    {
-      "id": "src-2c2d997b242a7a298319",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "\"Principal\": {\n\"AWS\": \"arn:aws:iam::123456789012:user/DevUser\"\n\"Service\": \"ec2.amazonaws.com\"",
-      "blocks": [
+        648,
         649,
         650,
-        651
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
-    },
-    {
-      "id": "src-da4ee93f117f862896e2",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "},\n\"Resource\": \"arn:aws:iam::123456789012:role/MyAppRole\"\n}",
-      "blocks": [
+        651,
         652,
         653,
-        654
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה סוגי policies, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
-    },
-    {
-      "id": "src-bdc0e8d0a94fc90712bc",
-      "service": "AWS IAM",
-      "section": "Policies",
-      "topic": "סוגי policies",
-      "kind": "text",
-      "text": "]\n}\nInline Policy",
-      "blocks": [
+        654,
         655,
-        656,
-        657
+        656
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-515c06e66312b3d9c290",
+      "id": "src-1fc8bc0847b13c82cb03",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "זאת פוליסה שתפורה אישית רק לישות אחת (user, user group או role) ואי אפשר לשתף אותה עם ישויות אחרות.\nResource-based Policy\nפוליסה שיושבת על המשאב עצמו ומגדירה מי יכול לבצע עליו פעולות, לדוגמה:",
+      "text": "Inline Policy\nזאת פוליסה שתפורה אישית רק לישות אחת (user, user group או role) ואי אפשר לשתף אותה עם ישויות אחרות.\nResource-based Policy",
       "blocks": [
+        657,
         658,
-        659,
-        660
+        659
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-bb37b5ad1579e0cc9755",
+      "id": "src-a172d2eaaf2d697f277a",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "bucket policy\nKey Policy\nSQS Queue Policy",
+      "text": "פוליסה שיושבת על המשאב עצמו ומגדירה מי יכול לבצע עליו פעולות, לדוגמה:\nbucket policy\nKey Policy",
       "blocks": [
+        660,
         661,
-        662,
-        663
+        662
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-18f210300c6bc628b115",
+      "id": "src-c76c49da7e7ccf1a4a49",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "מה ההבדל בין Resource-based Policy לבין IAM User Policy?\nאלמנט ה-Principal\nבפוליסת IAM: אלמנט ה-Principal לא קיים בקוד כי הפוליסה מוצמדת פיזית למשתמש או לתפקיד.",
+      "text": "SQS Queue Policy\nמה ההבדל בין Resource-based Policy לבין IAM User Policy?\nאלמנט ה-Principal",
       "blocks": [
+        663,
         664,
-        665,
-        666
+        665
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-6cfa73d73b94aa438231",
+      "id": "src-6b64ac3ac2d98177c4ff",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "ב-Resource-based Policy: אלמנט ה-Principal הוא חובה כדי להגדיר בתוך מיהו הגורם שמקבל את ההרשאה.\nגישה בין חשבונות שונים\nבפוליסת IAM, כדי שמשתמש מחשבון א' ייגש למשאב בחשבון ב', הוא חייב לבצע פעולת החלפת תפקיד (Assume Role). הוא זונח זמנית את הרשאות המקור שלו ומקבל הרשאות זמניות בחשבון היעד.",
+      "text": "בפוליסת IAM: אלמנט ה-Principal לא קיים בקוד כי הפוליסה מוצמדת פיזית למשתמש או לתפקיד.\nב-Resource-based Policy: אלמנט ה-Principal הוא חובה כדי להגדיר בתוך מיהו הגורם שמקבל את ההרשאה.\nגישה בין חשבונות שונים",
       "blocks": [
+        666,
         667,
-        668,
-        669
+        668
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-2c76159af42b5b98b8d0",
+      "id": "src-8a2933f46b2409b3dadb",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "באמצעות Resource-based Policy, המשאב בחשבון ב' מגדיר באלמנט ה-Principal את ה-ARN של המשתמש מחשבון א' והמשתמש ניגש ישירות למשאב בחשבון החיצוני מבלי לבצע החלפת תפקיד.\nלוגיקת בדיקת ההרשאות\nכאשר ניגשים למשאב באותו החשבון, מספיק allow אחד, או בפוליסת ה-IAM או בפוליסת המשאב",
+      "text": "בפוליסת IAM, כדי שמשתמש מחשבון א' ייגש למשאב בחשבון ב', הוא חייב לבצע פעולת החלפת תפקיד (Assume Role). הוא זונח זמנית את הרשאות המקור שלו ומקבל הרשאות זמניות בחשבון היעד.\nבאמצעות Resource-based Policy, המשאב בחשבון ב' מגדיר באלמנט ה-Principal את ה-ARN של המשתמש מחשבון א' והמשתמש ניגש ישירות למשאב בחשבון החיצוני מבלי לבצע החלפת תפקיד.",
       "blocks": [
-        670,
+        669,
+        670
+      ],
+      "classification": "knowledge",
+      "reason": "Conceptual definition, property, comparison, or example",
+      "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
+    },
+    {
+      "id": "src-f2ce38966160186e5833",
+      "service": "AWS IAM",
+      "section": "Policies",
+      "topic": "סוגי policies",
+      "kind": "text",
+      "text": "לוגיקת בדיקת ההרשאות\nכאשר ניגשים למשאב באותו החשבון, מספיק allow אחד, או בפוליסת ה-IAM או בפוליסת המשאב\nכאשר ניגשים למשאב בחשבון אחר, צריך 2 allow",
+      "blocks": [
         671,
-        672
+        672,
+        673
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של סוגי policies: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-844d7ab20d82e87323f2",
+      "id": "src-5b3434698f888884d3e3",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "סוגי policies",
       "kind": "text",
-      "text": "כאשר ניגשים למשאב בחשבון אחר, צריך 2 allow\nגם בפוליסת ה-IAM\nגם בפוליסת המשאב",
+      "text": "גם בפוליסת ה-IAM\nגם בפוליסת המשאב",
       "blocks": [
-        673,
         674,
         675
       ],
@@ -41173,19 +41057,32 @@
       "question": "בהקשר של IAM Policy Simulator: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-a1ffec03787cfb9aa966",
+      "id": "src-5f9503e002d0fa80b84f",
       "service": "AWS IAM",
       "section": "Policies",
       "topic": "IAM Policy Simulator",
       "kind": "text",
-      "text": "Resource-based Policies – ההרשאות שמוגדרות על המשאב עצמו (כמו S3 Bucket Policy).\nלינק לכלי",
+      "text": "Resource-based Policies – ההרשאות שמוגדרות על המשאב עצמו (כמו S3 Bucket Policy).",
       "blocks": [
-        684,
-        685
+        684
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "בהקשר של IAM Policy Simulator: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
+    },
+    {
+      "id": "src-b1dd673f7bc378f16711",
+      "service": "AWS IAM",
+      "section": "Policies",
+      "topic": "IAM Policy Simulator",
+      "kind": "text",
+      "text": "לינק לכלי",
+      "blocks": [
+        685
+      ],
+      "classification": "context",
+      "reason": "Document navigation link, not study content",
+      "question": "מה עושה IAM Policy Simulator, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS IAM?"
     },
     {
       "id": "src-931c5220c9382f46162b",
@@ -47782,142 +47679,116 @@
       "question": "איך CloudFormation Hooks קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
     },
     {
-      "id": "src-16d741eec28867736ef6",
+      "id": "src-c48da1eb38bb9d6aad05",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "\"description\": \"Enforces encryption on S3 buckets\",\n\"handlers\": {\n\"preCreate\": {",
+      "text": "\"description\": \"Enforces encryption on S3 buckets\",\n\"handlers\": {\n\"preCreate\": {\n\"targetNames\": [\"AWS::S3::Bucket\"]\n},\n\"preUpdate\": {\n\"targetNames\": [\"AWS::S3::Bucket\"]\n}\n}\n}",
       "blocks": [
         1463,
         1464,
-        1465
+        1465,
+        1466,
+        1467,
+        1468,
+        1469,
+        1470,
+        1471,
+        1472
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "איך CloudFormation Hooks קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
     },
     {
-      "id": "src-2156077279172ca1601d",
+      "id": "src-a7ecb9bc1dd09a69298f",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "\"targetNames\": [\"AWS::S3::Bucket\"]\n},\n\"preUpdate\": {",
+      "text": "חלק שני - הלוגיקה עצמה\nכתובה ב-python, פה רשום החוק עצמו:\nלדוגמה:",
       "blocks": [
-        1466,
-        1467,
-        1468
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה CloudFormation Hooks, מה משמעות הפרט המתואר ואיך הוא קשור לשירות CloudFormation?"
-    },
-    {
-      "id": "src-de969eebab49667fbc5e",
-      "service": "CloudFormation",
-      "section": "Definitions",
-      "topic": "CloudFormation Hooks",
-      "kind": "text",
-      "text": "\"targetNames\": [\"AWS::S3::Bucket\"]\n}\n}",
-      "blocks": [
-        1469,
-        1470,
-        1471
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה CloudFormation Hooks, מה משמעות הפרט המתואר ואיך הוא קשור לשירות CloudFormation?"
-    },
-    {
-      "id": "src-83831d5a0c4510225250",
-      "service": "CloudFormation",
-      "section": "Definitions",
-      "topic": "CloudFormation Hooks",
-      "kind": "text",
-      "text": "}\nחלק שני - הלוגיקה עצמה\nכתובה ב-python, פה רשום החוק עצמו:",
-      "blocks": [
-        1472,
         1473,
-        1474
+        1474,
+        1475
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "איזה מידע CloudFormation Hooks אוסף, מנתח או מציג, ולשם מה משתמשים בו?"
     },
     {
-      "id": "src-314a6ad3f68fe0803932",
+      "id": "src-aa33364c2138eb6a0ddb",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "לדוגמה:\ndef pre_create_handler(session, request, callback_context, type_configuration):\n# שליפת המשאב שהמשתמש מנסה להקים מהבקשה (Request)",
+      "text": "def pre_create_handler(session, request, callback_context, type_configuration):\n# שליפת המשאב שהמשתמש מנסה להקים מהבקשה (Request)\ntarget_model = request.get_model()",
       "blocks": [
-        1475,
         1476,
-        1477
+        1477,
+        1478
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "מה עושה CloudFormation Hooks, מה משמעות הפרט המתואר ואיך הוא קשור לשירות CloudFormation?"
     },
     {
-      "id": "src-2d38742642c6c19653a9",
+      "id": "src-8e69d492169c57858d08",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "target_model = request.get_model()\nresource_properties = target_model.get(\"resource_properties\", {})\n# בדיקה האם קיימת הגדרת הצפנה (BucketEncryption) בתוך ה-YAML של המשתמש",
+      "text": "resource_properties = target_model.get(\"resource_properties\", {})\n# בדיקה האם קיימת הגדרת הצפנה (BucketEncryption) בתוך ה-YAML של המשתמש\nif \"BucketEncryption\" not in resource_properties:",
       "blocks": [
-        1478,
         1479,
-        1480
+        1480,
+        1481
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "איך CloudFormation Hooks קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
     },
     {
-      "id": "src-a30a819083bcb4e55597",
+      "id": "src-9bc5fe53fbc17009dbf2",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "if \"BucketEncryption\" not in resource_properties:\n# אם אין הגדרה - מחזירים הודעת כישלון שחוסמת את הפריסה\nreturn ProgressEvent(",
+      "text": "# אם אין הגדרה - מחזירים הודעת כישלון שחוסמת את הפריסה\nreturn ProgressEvent(\nstatus=OperationStatus.FAILED,",
       "blocks": [
-        1481,
         1482,
-        1483
+        1483,
+        1484
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "question": "איך CloudFormation Hooks קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
+      "question": "מה עושה CloudFormation Hooks, מה משמעות הפרט המתואר ואיך הוא קשור לשירות CloudFormation?"
     },
     {
-      "id": "src-eea39e23c3d8349e34df",
+      "id": "src-c2faf0ceba696c57eefb",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": "status=OperationStatus.FAILED,\nmessage=\"Deployment failed: S3 Buckets must have encryption enabled!\",\nerrorCode=HandlerErrorCode.InvalidRequest",
+      "text": "message=\"Deployment failed: S3 Buckets must have encryption enabled!\",\nerrorCode=HandlerErrorCode.InvalidRequest\n)",
       "blocks": [
-        1484,
         1485,
-        1486
+        1486,
+        1487
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
       "question": "איך CloudFormation Hooks קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
     },
     {
-      "id": "src-bd545f6a54019ffac89c",
+      "id": "src-fda76d25ca615ce547cb",
       "service": "CloudFormation",
       "section": "Definitions",
       "topic": "CloudFormation Hooks",
       "kind": "text",
-      "text": ")\n# אם יש הגדרה - הפריסה ממשיכה כרגיל\nreturn ProgressEvent(status=OperationStatus.SUCCESS)",
+      "text": "# אם יש הגדרה - הפריסה ממשיכה כרגיל\nreturn ProgressEvent(status=OperationStatus.SUCCESS)",
       "blocks": [
-        1487,
         1488,
         1489
       ],
@@ -55462,67 +55333,28 @@
       "question": "בהקשר של Key Policy: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
-      "id": "src-4995be5e0dc3d2699874",
+      "id": "src-06009bd3444382e53b8f",
       "service": "AWS KMS",
       "section": "Definitions",
       "topic": "Key Policy",
       "kind": "text",
-      "text": "{\n\"Sid\": \"AllowAppToDecrypt\",\n\"Effect\": \"Allow\",",
+      "text": "{\n\"Sid\": \"AllowAppToDecrypt\",\n\"Effect\": \"Allow\",\n\"Principal\": {\n\"AWS\": \"arn:aws:iam::111122223333:role/MyApplicationRole\"\n},\n\"Action\": [\n\"kms:Decrypt\"\n],\n\"Resource\": \"*\"\n}",
       "blocks": [
         2297,
         2298,
-        2299
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "איך Key Policy קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
-    },
-    {
-      "id": "src-5eb254cbff49febfbffa",
-      "service": "AWS KMS",
-      "section": "Definitions",
-      "topic": "Key Policy",
-      "kind": "text",
-      "text": "\"Principal\": {\n\"AWS\": \"arn:aws:iam::111122223333:role/MyApplicationRole\"\n},",
-      "blocks": [
+        2299,
         2300,
         2301,
-        2302
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "בהקשר של Key Policy: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
-    },
-    {
-      "id": "src-7c25ef5ad23181279dfe",
-      "service": "AWS KMS",
-      "section": "Definitions",
-      "topic": "Key Policy",
-      "kind": "text",
-      "text": "\"Action\": [\n\"kms:Decrypt\"\n],",
-      "blocks": [
+        2302,
         2303,
         2304,
-        2305
-      ],
-      "classification": "knowledge",
-      "reason": "Conceptual definition, property, comparison, or example",
-      "question": "איך Key Policy קשור להגנת המידע, מה מוצפן ומי מנהל את המפתחות?"
-    },
-    {
-      "id": "src-05efeea5dce13bd46fba",
-      "service": "AWS KMS",
-      "section": "Definitions",
-      "topic": "Key Policy",
-      "kind": "text",
-      "text": "\"Resource\": \"*\"\n}",
-      "blocks": [
+        2305,
         2306,
         2307
       ],
       "classification": "knowledge",
       "reason": "Conceptual definition, property, comparison, or example",
-      "question": "מה עושה Key Policy, מה משמעות הפרט המתואר ואיך הוא קשור לשירות AWS KMS?"
+      "question": "בהקשר של Key Policy: מי רשאי לגשת או לפעול, מה משמעות ההרשאות ואילו הגבלות או תנאים חשובים?"
     },
     {
       "id": "src-68f0677b5104062b8fd0",
@@ -64194,11 +64026,7 @@
         "src-abc32b7819d7f4d64115",
         "src-9ea10a71d17e47fc8541",
         "src-8f96a8fee32cbc1379c5",
-        "src-a1fc6cbb18d94e512929",
-        "src-1f7163d899f0dfcd827b",
-        "src-82312a3397c6a26c4266",
-        "src-a8443f8ab13465d71174",
-        "src-fdf2568992f28195dc46"
+        "src-d4f5fe35153259a58c9e"
       ]
     },
     {
@@ -64222,11 +64050,7 @@
         "src-abc32b7819d7f4d64115",
         "src-9ea10a71d17e47fc8541",
         "src-8f96a8fee32cbc1379c5",
-        "src-a1fc6cbb18d94e512929",
-        "src-1f7163d899f0dfcd827b",
-        "src-82312a3397c6a26c4266",
-        "src-a8443f8ab13465d71174",
-        "src-fdf2568992f28195dc46"
+        "src-d4f5fe35153259a58c9e"
       ]
     },
     {
@@ -64250,11 +64074,7 @@
         "src-abc32b7819d7f4d64115",
         "src-9ea10a71d17e47fc8541",
         "src-8f96a8fee32cbc1379c5",
-        "src-a1fc6cbb18d94e512929",
-        "src-1f7163d899f0dfcd827b",
-        "src-82312a3397c6a26c4266",
-        "src-a8443f8ab13465d71174",
-        "src-fdf2568992f28195dc46"
+        "src-d4f5fe35153259a58c9e"
       ]
     },
     {

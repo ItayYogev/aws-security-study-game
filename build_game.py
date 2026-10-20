@@ -158,6 +158,27 @@ def build():
     if records[2019]["text"].startswith("custom data identifiers:") is False:
         raise ValueError("Reviewed exception indices no longer match the snapshot")
 
+    for index in (0, 685):
+        records[index].update(classification="context", reason="Document navigation link, not study content")
+    position = 0
+    while position < len(records):
+        first = records[position]
+        if first["kind"] != "text" or first["text"].strip() not in ("{", "["):
+            position += 1
+            continue
+        balance, end = 0, position
+        while end < len(records) and records[end]["service"] == first["service"]:
+            text = records[end]["text"]
+            balance += text.count("{") + text.count("[") - text.count("}") - text.count("]")
+            if balance == 0:
+                break
+            end += 1
+        if end >= len(records) or balance != 0:
+            raise ValueError(f"Unbalanced source code example at block {position + 1}")
+        for record in records[position:end + 1]:
+            record["codeGroup"] = position
+        position = end + 1
+
     units, pending = [], []
 
     def flush():
@@ -187,8 +208,9 @@ def build():
 
     for record in records:
         same = pending and all(record[k] == pending[0][k] for k in ("service", "topic", "classification"))
+        same_code = pending and "codeGroup" in record and record["codeGroup"] == pending[0].get("codeGroup")
         table = record["topic"] == "Security Group / NACL"
-        if pending and (not same or record["kind"] == "image" or pending[0]["kind"] == "image"
+        if pending and not same_code and (not same or record["kind"] == "image" or pending[0]["kind"] == "image"
                         or (not table and (sum(len(r["text"]) for r in pending) > 300 or len(pending) >= 3))):
             flush()
         pending.append(record)
