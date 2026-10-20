@@ -49,6 +49,50 @@ class GameTests(unittest.TestCase):
                 self.assertEqual(unit["text"], "\n".join(BLOCKS[i]["text"] for i in unit["blocks"]))
             self.assertTrue(set(unit["concepts"]) <= {q["id"] for q in DATA["questions"]})
 
+    def test_all_source_formatting_is_preserved(self):
+        formats = DATA["sourceFormatting"]
+        tags = [tag for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"])
+                if tag.name == "img" or (not tag.find_parent(["p", "li", "h1", "h2", "h3"])
+                                         and tag.get_text("", strip=False).strip())]
+        self.assertEqual(len(formats), 3112)
+        underline_count = 0
+        numbered_starts = set()
+        levels = set()
+        for index, tag in enumerate(tags):
+            if tag.name == "img":
+                self.assertNotIn(str(index), formats)
+                continue
+            format = formats[str(index)]
+            self.assertEqual("".join(run["text"] for run in format["runs"]), BLOCKS[index]["text"])
+            underline_count += sum(run["underline"] for run in format["runs"])
+            self.assertEqual("list" in format, tag.name == "li")
+            if tag.name == "li":
+                listing = tag.parent
+                metadata = format["list"]
+                siblings = listing.find_all("li", recursive=False)
+                position = next(i for i, sibling in enumerate(siblings) if sibling is tag)
+                self.assertEqual(metadata["ordinal"], int(listing.get("start", 1)) + position)
+                self.assertEqual(metadata["ordered"], listing.name == "ol")
+                levels.add(metadata["level"])
+                if listing.name == "ol":
+                    numbered_starts.add(metadata["ordinal"])
+                else:
+                    self.assertIn(metadata["style"], {"disc", "circle", "square"})
+        self.assertEqual(sum("list" in f for f in formats.values()),
+                         sum(bool(li.get_text("", strip=False).strip()) for li in SOURCE.find_all("li")))
+        self.assertEqual(levels, {0, 1, 2})
+        self.assertGreater(max(numbered_starts), 1)
+        self.assertGreater(underline_count, 100)
+        styles = dict(re.findall(r"\.([a-z]\d+)\{([^}]+)\}", SOURCE.style.get_text()))
+        for index, tag in enumerate(tags):
+            if tag.name != "img":
+                for span in tag.select("span"):
+                    if any("text-decoration:underline" in styles.get(c, "") for c in span.get("class", [])):
+                        text = span.get_text().strip()
+                        if text:
+                            underlined = "".join(run["text"] for run in formats[str(index)]["runs"] if run["underline"])
+                            self.assertIn(text, underlined)
+
     def test_every_reviewed_topic_is_accounted_for(self):
         direct = {q["conceptSource"] for q in DATA["questions"] if q["conceptSource"].isdigit()}
         reviews = AUDIT["topicReviews"]

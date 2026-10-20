@@ -8,7 +8,7 @@ import json
 import random
 import re
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
@@ -66,13 +66,89 @@ def read_catalog(filename):
     return rows
 
 
+def source_formatting(tag, styles, css):
+    runs = []
+    for child in tag.descendants:
+        if not isinstance(child, NavigableString):
+            continue
+        ancestors = []
+        parent = child.parent
+        while parent is not None:
+            ancestors.append(parent)
+            if parent is tag:
+                break
+            parent = parent.parent
+        properties = {}
+        underline = False
+        for ancestor in reversed(ancestors):
+            declarations = ";".join(styles.get(c, "") for c in ancestor.get("class", []))
+            declarations += ";" + ancestor.get("style", "")
+            for declaration in declarations.split(";"):
+                if ":" in declaration:
+                    key, value = declaration.split(":", 1)
+                    key, value = key.strip(), value.strip()
+                    if key == "text-decoration" and "underline" in value:
+                        underline = True
+                    if value not in {"inherit", "unset"}:
+                        properties[key] = value
+        runs.append({
+            "text": str(child),
+            "underline": underline or any(a.name == "u" for a in ancestors),
+            "bold": properties.get("font-weight") in {"700", "bold"} or any(a.name in {"b", "strong"} for a in ancestors),
+            "italic": properties.get("font-style") == "italic" or any(a.name in {"i", "em"} for a in ancestors),
+        })
+    # Match the exact archive text without disturbing whitespace inside styled spans.
+    while runs and not runs[0]["text"].lstrip():
+        runs.pop(0)
+    while runs and not runs[-1]["text"].rstrip():
+        runs.pop()
+    if runs:
+        runs[0]["text"] = runs[0]["text"].lstrip()
+        runs[-1]["text"] = runs[-1]["text"].rstrip()
+    result = {"runs": runs}
+    if tag.name in {"h1", "h2", "h3"} or "title" in tag.get("class", []):
+        result["heading"] = True
+    if tag.name == "li":
+        listing = tag.parent
+        list_class = next((c for c in listing.get("class", []) if c.startswith("lst-kix_")), None)
+        if list_class is None:
+            raise ValueError("Source list has no reviewed list identity")
+        rule = re.search(r"\." + re.escape(list_class) + r">li:before\{([^}]+)\}", css)
+        if rule is None:
+            raise ValueError(f"Source list has no marker rule: {list_class}")
+        counter = re.search(r"counter\([^,]+,([^)]+)\)", rule[1])
+        if counter:
+            marker = counter[1].strip()
+            if marker not in {"decimal", "lower-latin", "upper-latin", "lower-roman"}:
+                raise ValueError(f"Unsupported source numbering: {marker}")
+        else:
+            symbol = re.search(r'content:"\\([0-9a-fA-F]+)', rule[1])
+            if symbol is None:
+                raise ValueError(f"Unsupported source bullet: {rule[1]}")
+            marker = {"25cf": "disc", "25cb": "circle", "25a0": "square"}[symbol[1].lower().lstrip("0")]
+        siblings = listing.find_all("li", recursive=False)
+        ordinal = int(listing.get("start", 1))
+        for sibling in siblings:
+            ordinal = int(sibling.get("value", ordinal))
+            if sibling is tag:
+                break
+            ordinal += 1
+        result["list"] = {
+            "id": list_class, "level": int(list_class.rsplit("-", 1)[1]),
+            "ordered": listing.name == "ol", "ordinal": ordinal, "style": marker,
+        }
+    return result
+
+
 def build():
     source = BASE / "source-snapshot.html"
     raw = source.read_text(encoding="utf-8")
     if hashlib.sha256(raw.encode("utf-8")).hexdigest() != REVIEWED_SOURCE_HASH:
         raise ValueError("Unreviewed source snapshot. Review all changes and classification exceptions before updating the source hash.")
     soup = BeautifulSoup(raw, "html.parser")
-    styles = dict(re.findall(r"\.([a-z]\d+)\{([^}]+)\}", soup.style.get_text()))
+    css = soup.style.get_text()
+    styles = dict(re.findall(r"\.([a-z]\d+)\{([^}]+)\}", css))
+    formatting = {}
     records, services, image_number = [], [], 0
     service, section, topic = "AWS", "General Definitions", "AWS"
     how_to_level = None
@@ -96,6 +172,8 @@ def build():
         if not text:
             continue
         index = len(records)
+        formatting[str(index)] = source_formatting(tag, styles, css)
+        assert "".join(run["text"] for run in formatting[str(index)]["runs"]) == text
         title = "title" in tag.get("class", [])
         heading = tag.name in ("h1", "h2", "h3")
         bold_length = sum(
@@ -316,7 +394,7 @@ def build():
         "legacyQuestions": 0, "classifications": dict(classification_counts),
         "conceptImages": len(CONCEPT_IMAGES),
     }
-    data = {"meta": meta, "units": units, "cards": [c for c in cards if c["kind"] == "text"], "questions": questions, "legacy": []}
+    data = {"meta": meta, "sourceFormatting": formatting, "units": units, "cards": [c for c in cards if c["kind"] == "text"], "questions": questions, "legacy": []}
     template = (BASE / "game-template.html").read_text(encoding="utf-8")
     output = template.replace("__STUDY_DATA__", json.dumps(data, ensure_ascii=False).replace("<", "\\u003c"))
     output = output.replace("__LEGACY_DATA__", "[]")

@@ -21,6 +21,55 @@ function node(tag, text, cls) {
   if (cls) result.className = cls;
   return result;
 }
+function sourceText(text, blocks, tag = "blockquote") {
+  const container = node(tag, undefined, "source-text");
+  const formats = (blocks || []).map(id => {
+    const format = DATA.sourceFormatting[id];
+    if (!format) throw new Error(`Missing source formatting for block ${id}`);
+    return format;
+  });
+  if (!formats.length) {
+    container.textContent = text;
+    return container;
+  }
+  const exactText = formats.map(format => format.runs.map(run => run.text).join("")).join("\n");
+  if (exactText !== text) throw new Error("Source formatting does not match the quoted text");
+  container.classList.add("structured-source");
+  let previousList = null;
+  formats.forEach((format, index) => {
+    let block;
+    if (format.list) {
+      const list = format.list;
+      if (!previousList || previousList.id !== list.id || previousList.ordinal + 1 !== list.ordinal) {
+        if (index) container.append(document.createTextNode("\n"));
+        const element = node(list.ordered ? "ol" : "ul", undefined, "source-list");
+        element.style.listStyleType = list.style;
+        element.style.marginInlineStart = `${list.level * 14}px`;
+        element.dataset.level = String(list.level);
+        if (list.ordered) element.start = list.ordinal;
+        container.append(element);
+        previousList = {id: list.id, element, ordinal: list.ordinal};
+      } else previousList.element.append(document.createTextNode("\n"));
+      block = node("li", undefined, "source-block");
+      previousList.element.append(block);
+      previousList.ordinal = list.ordinal;
+    } else {
+      if (index) container.append(document.createTextNode("\n"));
+      previousList = null;
+      block = node("div", undefined, "source-block");
+      container.append(block);
+    }
+    if (format.heading) block.classList.add("source-heading");
+    format.runs.forEach(run => {
+      const span = node("span", run.text);
+      if (run.underline) span.classList.add("source-underline");
+      if (run.bold) span.classList.add("source-bold");
+      if (run.italic) span.classList.add("source-italic");
+      block.append(span);
+    });
+  });
+  return container;
+}
 function shuffle(items) {
   const copy = [...items];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -313,14 +362,14 @@ function showAnswer() {
     quote.append(drawing);
   } else if (unit.quoteText) {
     if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
-    quote.append(node("blockquote", unit.quoteText, "source-text"));
+    quote.append(sourceText(unit.quoteText, unit.quoteBlocks));
   } else if (objective || source.kind === "text") {
     if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
     const sources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [source];
-    quote.append(node("blockquote", sources.map(part => part.text).join("\n"), "source-text"));
+    quote.append(sourceText(sources.map(part => part.text).join("\n"), sources.flatMap(part => part.blocks)));
   } else if (source.text) {
     quote.append(node("p", "ציטוט הטקסט הסמוך לתמונה, לא תמלול התרשים:", "muted tiny"));
-    quote.append(node("blockquote", source.text, "source-text"));
+    quote.append(sourceText(source.text, source.quoteBlocks));
   } else {
     quote.append(node("p", "המקור לפריט זה הוא התרשים המוצג, ללא טקסט הסבר סמוך.", "muted"));
   }
@@ -409,7 +458,8 @@ function openSource(id) {
     img.alt = `תמונת מקור: ${source.topic}`;
     body.append(img);
   }
-  body.append(node("p", unit.quoteText || unit.imageQuote || unit.text, "source-text"));
+  body.append(sourceText(unit.quoteText || unit.imageQuote || unit.text,
+    unit.imageQuote ? [] : unit.quoteBlocks || unit.blocks || source.blocks, "div"));
   renderNotes(body, {...source, text: unit.quoteText || unit.text});
   const blocks = unit.quoteBlocks || unit.blocks || source.blocks;
   body.append(node("p", "מקטעי מקור: " + blocks.map(n => n+1).join(", "), "muted tiny"));
@@ -433,7 +483,7 @@ function renderLibrary() {
       if (!item.open || loaded) return;
       loaded = true;
       if (unit.image) addImage(item, unit, true);
-      item.append(node("p", unit.text, "source-text"));
+      item.append(sourceText(unit.text, unit.quoteBlocks || unit.blocks, "div"));
       renderNotes(item, unit);
       item.append(node("p", `סיווג: ${unit.classification === "knowledge" ? "ידע להבנה ולתרגול" : unit.classification === "implementation" ? "יישום / How-to — לא נכלל במשחק" : "כותרת / הקשר — לא שאלה נפרדת"}`, "notice"));
       if (unit.concepts.length) {
