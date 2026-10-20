@@ -104,14 +104,35 @@ function validProgress(value, requireKnownIds = true) {
     Number.isInteger(p.streak) && p.streak >= 0 && p.streak <= p.successes &&
     [0, 1, 2].includes(p.last) && typeof p.starred === "boolean" && typeof p.updated === "string");
 }
-function validSession(value) {
+function validSession(value, ids = playableIds) {
   return value && Array.isArray(value.ids) && value.ids.length > 0 &&
-    value.ids.every(id => playableIds.has(id)) && new Set(value.ids).size === value.ids.length &&
+    value.ids.every(id => ids.has(id)) && new Set(value.ids).size === value.ids.length &&
     Number.isInteger(value.index) && value.index >= 0 && value.index < value.ids.length &&
     Number.isInteger(value.score) && value.score >= 0 && value.score <= value.index + 1 &&
     Array.isArray(value.missed) && value.missed.every(id => value.ids.includes(id)) &&
     typeof value.answered === "boolean" && typeof value.revealed === "boolean" &&
     typeof value.choice === "string" && typeof value.note === "string";
+}
+function readSave(saved) {
+  if (!saved || saved.version !== 5) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
+  if (saved.sourceHash === DATA.meta.hash) {
+    if (!validProgress(saved.progress) || (saved.session !== null && !validSession(saved.session))) {
+      throw new Error("נתוני ההתקדמות או הסבב השמור אינם תקינים.");
+    }
+    return {progress:saved.progress, session:saved.session, notice:"", migrated:false};
+  }
+  if (saved.sourceHash !== DATA.meta.previousSourceHash) throw new Error("השמירה אינה תואמת לגרסת הסיכום.");
+  const previousIds = new Set(DATA.meta.previousQuestionIds.flatMap(id => [id, "recall-" + id]));
+  if (!validProgress(saved.progress, false) || Object.keys(saved.progress).some(id => !previousIds.has(id)) ||
+      (saved.session !== null && !validSession(saved.session, previousIds))) {
+    throw new Error("נתוני הגרסה הקודמת אינם תקינים.");
+  }
+  const unchanged = new Set(DATA.meta.unchangedQuestionIds.flatMap(id => [id, "recall-" + id]));
+  const kept = Object.fromEntries(Object.entries(saved.progress).filter(([id]) => unchanged.has(id)));
+  const keepSession = saved.session === null || saved.session.ids.every(id => unchanged.has(id));
+  const removed = Object.keys(saved.progress).length - Object.keys(kept).length;
+  const notice = `מאגר השאלות עודכן לפי הסיכום. נשמרה ההתקדמות ב-${Object.keys(kept).length} שאלות שלא השתנו. ${removed} רשומות של שאלות שתוקנו או הוסרו לא הועברו. ${keepSession ? "" : "הסבב הישן כלל שאלות שהשתנו, ולכן אינו ממשיך."}`;
+  return {progress:kept, session:keepSession ? saved.session : null, notice, migrated:true};
 }
 function load() {
   try {
@@ -124,10 +145,16 @@ function load() {
       return;
     }
     const saved = JSON.parse(raw);
-    if (saved.version !== 5 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
-    if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב השמור אינו תקין.");
-    progress = saved.progress;
-    storedSession = saved.session;
+    const result = readSave(saved);
+    progress = result.progress;
+    storedSession = result.session;
+    if (result.migrated) {
+      const backupKey = STORE + "-backup-" + saved.sourceHash;
+      if (localStorage.getItem(backupKey) === null) localStorage.setItem(backupKey, raw);
+      $("revision-notice").textContent = result.notice + " עותק השמירה המקורית נשמר בנפרד בדפדפן.";
+      $("revision-notice").classList.remove("hidden");
+      save();
+    }
   } catch (error) {
     reportStorage("לא ניתן לקרוא את השמירה. נתונים קיימים לא יידרסו. ניתן להמשיך ללא שמירה: " + error.message);
   }
@@ -247,6 +274,7 @@ function corrections(unit) {
   if (unit.service === "EC2" && /יבקש את המפתח הפרטי/.test(text)) notes.push("תיקון: בחיבור SSH הלקוח מוכיח החזקה במפתח הפרטי; אין למסור או להעלות את המפתח הפרטי לשרת.");
   if (unit.service === "CloudTrail" && /הופרש|retired|Lake/.test(text)) notes.push("בדיקת עדכניות: טענת המקור לגבי פרישת CloudTrail Lake אינה מאומתת כאן. יש לבדוק את הודעות AWS הרשמיות; אין להשתמש בטענה זו כעובדה לבחינה.");
   if (unit.service === "S3" && /Replication|רפליקציה|replication/.test(unit.topic + text)) notes.push("דיוק: S3 Replication הוא אסינכרוני ואינו מבטיח תמיד העתקה תוך שניות או דקות. תנאי שכפול אובייקטים קיימים ותמיכת סוגי הצפנה דורשים בדיקה נפרדת.");
+  if (unit.service === "S3" && /יחלץ את מפתחות|מוטמעים בתוכו/.test(text)) notes.push("תיקון: Presigned URL אינו מכיל את ה-Secret Access Key ואינו מאפשר לחלץ אותו מהחתימה. הוא מכיל מזהה מפתח, חתימה ולעיתים Session Token. תוקף הקישור מוגבל גם בתוקף פרטי הגישה ששימשו לחתימה.");
   if (unit.service === "Amazon Route 53" && /אינטגרצי|אף שירות/.test(text)) notes.push("תיקון: Route 53 אינו מוגבל לאינטגרציה עם CloudWatch בלבד; קיימים שילובים עם שירותים נוספים. יש לבחון בנפרד סוג לוג ויעד נתמך.");
   if (unit.service === "ECR" && /Basic Scanning|באופן ידני/.test(text)) notes.push("דיוק: Basic Scanning תומך גם ב-scan-on-push. Enhanced Scanning משתלב עם Amazon Inspector ומכסה גם חבילות של שפות תכנות.");
   if (unit.service === "GuardDuty" && /default|כל מקורות|5 שירותי/.test(text)) notes.push("עדכניות: יש להבחין בין מקורות הבסיס לבין תוכניות הגנה נוספות ובין Auto-enable ארגוני להפעלה באזור. רשימת מקורות ומצבי ברירת מחדל עשויים להשתנות.");
@@ -353,7 +381,6 @@ function showAnswer() {
   quote.append(node("h3", unit.imageQuoteType === "label" ? "ציטוט שם השירות מתוך התרשים" : unit.imageQuote ? "ציטוט מתוך תרשים המקור (תמלול)" : "ציטוט מדויק מתוך הסיכום"));
   if (unit.imageQuote) {
     quote.append(node("blockquote", unit.imageQuote, "source-text"));
-    if (unit.imageQuoteType === "label") quote.append(node("p", "בתרשים מופיעים שם השירות והקשרו בארכיטקטורה. הסבר תפקיד השירות הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה כתובה במסמך.", "notice"));
     const drawing = node("details");
     drawing.append(node("summary", "לראות את תרשים המקור"));
     drawing.addEventListener("toggle", () => {
@@ -361,10 +388,8 @@ function showAnswer() {
     });
     quote.append(drawing);
   } else if (unit.quoteText) {
-    if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
     quote.append(sourceText(unit.quoteText, unit.quoteBlocks));
   } else if (objective || source.kind === "text") {
-    if (unit.sourceLabel) quote.append(node("p", "המושג מוזכר בסיכום בלי הגדרה מלאה של תפקידו. ההסבר הוא הרחבת ידע נפרדת, ולא ציטוט של הגדרה מהמסמך.", "notice"));
     const sources = unit.quoteSources ? unit.quoteSources.map(id => byId.get(id)) : [source];
     quote.append(sourceText(sources.map(part => part.text).join("\n"), sources.flatMap(part => part.blocks)));
   } else if (source.text) {
@@ -383,7 +408,7 @@ function showAnswer() {
       if (!detail.open || detail.dataset.loaded) return;
       detail.dataset.loaded = "true";
       detail.append(node("blockquote", evidence.imageQuote, "source-text"));
-      if (evidence.imageQuoteType === "label") detail.append(node("p", "זהו שם השירות בתרשים, ולא ציטוט של הגדרה. תיאור התפקיד הוא הרחבת ידע.", "notice"));
+      if (evidence.imageQuoteType === "label") detail.append(node("p", "בתרשים מופיע שם השירות בלבד. ההגדרה בתשובה מבוססת על הטקסט המצוטט מהסיכום.", "notice"));
       addImage(detail, byId.get(evidence.source), true);
     });
     $("source-notes").append(detail);
@@ -497,7 +522,7 @@ function renderLibrary() {
   });
 }
 function renderCoverage() {
-  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו במלואם. במשחק ${DATA.questions.length} מושגים: לכל מושג שאלה אמריקאית וכרטיסיית שליפה עם אותה הגדרה. נבדקו ${DATA.meta.reviewedTopicGroups} קבוצות נושאים: ${DATA.meta.directTopicGroups} משויכות ישירות למושגים, ${DATA.meta.aliasedTopicGroups} חוזרות על מושגים שכבר מכוסים, ו-${DATA.meta.excludedTopicGroups} הן ניווט, פקודות, תמחור או פתיחות לרשימות. תוכן עיון ותמונות אינם נספרים כשאלות נוספות.`;
+  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו במלואם. במשחק ${DATA.questions.length} מושגים: לכל מושג שאלה אמריקאית וכרטיסיית שליפה עם אותה הגדרה. לכל שם מושג יש אסמכתה מפורשת במקור. נבדקו ${DATA.meta.reviewedTopicGroups} קבוצות נושאים: ${DATA.meta.directTopicGroups} מתורגלות ישירות, ${DATA.meta.aliasedTopicGroups} משויכות למושגים קיימים, ו-${DATA.meta.excludedTopicGroups} הוחרגו עם נימוק: ניווט, יישום, תמחור, פתיחות לרשימות או הגדרה שאינה מספיקה לשאלה. כל ${DATA.meta.sourceOnlyReview.reviewed} השאלות הקודמות נבדקו; ${DATA.meta.sourceOnlyReview.corrected} תוקנו ו-${DATA.meta.sourceOnlyReview.removed} הוסרו. תוכן עיון ותמונות אינם נספרים כשאלות נוספות.`;
   $("source-meta").textContent = `מקור: ${DATA.meta.source}\nמועד הורדה (UTC): ${DATA.meta.fetched}\nSHA-256: ${DATA.meta.hash}`;
   $("coverage-items").replaceChildren();
   DATA.meta.services.forEach(service => {
@@ -556,11 +581,10 @@ $("import").addEventListener("change", async event => {
   try {
     if (file.size > 5 * 1024 * 1024) throw new Error("קובץ הגיבוי גדול מדי.");
     const saved = JSON.parse(await file.text());
-    if (saved.version !== 5 || saved.sourceHash !== DATA.meta.hash || !validProgress(saved.progress)) throw new Error("הגיבוי אינו תקין או נוצר בגרסה קודמת. יש להשתמש בגיבוי של המשחק המעודכן.");
-    if (saved.session !== null && !validSession(saved.session)) throw new Error("הסבב בגיבוי אינו תקין.");
-    if (!confirm("יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
-    progress = saved.progress;
-    storedSession = saved.session;
+    const result = readSave(saved);
+    if (!confirm((result.notice ? result.notice + "\n\n" : "") + "יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
+    progress = result.progress;
+    storedSession = result.session;
     session = null;
     $("setup").classList.remove("hidden");
     $("game").classList.add("hidden");
@@ -569,7 +593,7 @@ $("import").addEventListener("change", async event => {
     updateStats();
     renderCoverage();
     updateSelection();
-    $("backup-status").textContent = storageFailed ? "הגיבוי נטען לזיכרון בלבד; שמירת הדפדפן אינה זמינה." : "הגיבוי נטען ונשמר.";
+    $("backup-status").textContent = storageFailed ? "הגיבוי נטען לזיכרון בלבד; שמירת הדפדפן אינה זמינה." : "הגיבוי נטען ונשמר. " + result.notice;
   } catch (error) {
     $("backup-status").textContent = "לא בוצע יבוא: " + error.message;
   } finally { event.target.value = ""; }

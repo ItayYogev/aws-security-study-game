@@ -65,14 +65,6 @@ chart:Cognito|Amazon Cognito
 chart:KMS|AWS KMS
 chart:CloudHSM|AWS CloudHSM
 chart:Secrets Manager|AWS Secrets Manager
-diagram:AWS Audit Manager|AWS Audit Manager
-diagram:AWS Security Incident Response|AWS Security Incident Response
-diagram:Amazon VPC Lattice|Amazon VPC Lattice
-diagram:Network Access Analyzer|Network Access Analyzer
-diagram:AWS Private CA|AWS Private CA
-diagram:Amazon Verified Permissions|Amazon Verified Permissions
-diagram:Amazon Security Lake|Amazon Security Lake
-diagram:AWS Security Hub CSPM|AWS Security Hub CSPM
 diagram:AWS Network Firewall|AWS Network Firewall
 diagram:AWS Firewall Manager|AWS Firewall Manager
 diagram:AWS IAM Access Analyzer|IAM Access Analyzer

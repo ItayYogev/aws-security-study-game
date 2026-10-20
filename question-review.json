@@ -1,0 +1,5332 @@
+{
+  "reviewedPreviousQuestions": 636,
+  "currentConcepts": 602,
+  "removed": [
+    {
+      "term": "Regional Service",
+      "action": "removed",
+      "reason": "המונח אינו מוגדר בסיכום; הוסק כהפך של Global Services.",
+      "sourceKey": "36"
+    },
+    {
+      "term": "AWS Audit Manager",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Audit Manager"
+    },
+    {
+      "term": "AWS Security Incident Response",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Security Incident Response"
+    },
+    {
+      "term": "Amazon VPC Lattice",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon VPC Lattice"
+    },
+    {
+      "term": "Network Access Analyzer",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Network Access Analyzer"
+    },
+    {
+      "term": "AWS Private CA",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Private CA"
+    },
+    {
+      "term": "Amazon Verified Permissions",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon Verified Permissions"
+    },
+    {
+      "term": "Amazon Security Lake",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon Security Lake"
+    },
+    {
+      "term": "AWS Security Hub CSPM",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Security Hub CSPM"
+    },
+    {
+      "term": "Break-Glass Account",
+      "action": "removed",
+      "reason": "שם בלבד, ללא הגדרה בסיכום; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "69"
+    },
+    {
+      "term": "Credential Leakage",
+      "action": "removed",
+      "reason": "שם מושג שנוסף באנגלית במקום תיאור ההתקפה שבמקור; נושא ההתקפות נשמר עם Privilege Escalation.",
+      "sourceKey": "80"
+    },
+    {
+      "term": "Identity-Based Policy",
+      "action": "removed",
+      "reason": "שם חלופי שלא מופיע במקור וכופל את IAM Policy / Managed Policy.",
+      "sourceKey": "91"
+    },
+    {
+      "term": "CloudFormation Security Risk",
+      "action": "removed",
+      "reason": "כותרת שאלה כללית על סיכונים הפכה בטעות לשם מושג.",
+      "sourceKey": "181"
+    },
+    {
+      "term": "CloudTrail Event Filtering",
+      "action": "removed",
+      "reason": "סינון במסך וניהול תצוגה, לא מושג נפרד.",
+      "sourceKey": "198"
+    },
+    {
+      "term": "Athena Table for CloudTrail",
+      "action": "removed",
+      "reason": "פעולת ממשק Create athena table ולא הגדרת מושג.",
+      "sourceKey": "199"
+    },
+    {
+      "term": "CloudWatch Alarm Actions",
+      "action": "removed",
+      "reason": "יכולת של Alarms ולא מושג נפרד בשם זה במקור.",
+      "sourceKey": "202"
+    },
+    {
+      "term": "CloudWatch Metric Stream",
+      "action": "removed",
+      "reason": "הסיכום מכנה אותו חבילה של מדדים אך אינו מסביר את תפקידו; ההגדרה הקודמת נוספה מבחוץ.",
+      "sourceKey": "207"
+    },
+    {
+      "term": "Alarm State — ALARM",
+      "action": "removed",
+      "reason": "מסך התראות פעילות הוצג כמושג עצמאי; הסבר Alarms נשאר.",
+      "sourceKey": "215"
+    },
+    {
+      "term": "GuardDuty Foundational Data Sources",
+      "action": "removed",
+      "reason": "כותרת אוסף מקורות מידע הפכה בטעות לשם מנגנון עצמאי.",
+      "sourceKey": "236"
+    },
+    {
+      "term": "GuardDuty EventBridge Integration",
+      "action": "removed",
+      "reason": "תיאור יכולת אינטגרציה, לא שם מושג עצמאי בסיכום.",
+      "sourceKey": "237"
+    },
+    {
+      "term": "GuardDuty Usage",
+      "action": "removed",
+      "reason": "תצוגת שימוש ותמחור, לא מושג נדרש.",
+      "sourceKey": "247"
+    },
+    {
+      "term": "GuardDuty Malware Scan",
+      "action": "removed",
+      "reason": "עמוד שמציג סריקות הוצג כמנגנון נוסף; Malware Protection וסוגי הסריקות נשארו.",
+      "sourceKey": "248"
+    },
+    {
+      "term": "GuardDuty Organization Management",
+      "action": "removed",
+      "reason": "תיאור מסך Accounts והפעלת השירות, לא הגדרת מושג.",
+      "sourceKey": "258"
+    },
+    {
+      "term": "Config Compliance Result",
+      "action": "removed",
+      "reason": "שם שהוסף לתצוגת Rules; המושגים האמיתיים הם Compliant ו-non_compliant.",
+      "sourceKey": "273"
+    },
+    {
+      "term": "Config Remediation Action",
+      "action": "removed",
+      "reason": "כפילות של Remediation שנוצרה מתיאור כפתור.",
+      "sourceKey": "274"
+    },
+    {
+      "term": "Security Hub Central Management",
+      "action": "removed",
+      "reason": "שם שהומצא לתיאור הגדרות במסך General.",
+      "sourceKey": "285"
+    },
+    {
+      "term": "Security Hub Cross-Region Aggregation",
+      "action": "removed",
+      "reason": "שם פיצ'ר שלא מופיע בסיכום; המקור מתאר הגדרה במסך Regions.",
+      "sourceKey": "285"
+    },
+    {
+      "term": "Athena Query Editor",
+      "action": "removed",
+      "reason": "מיקום חלון השאילתות בממשק, לא הגדרת מושג.",
+      "sourceKey": "287"
+    },
+    {
+      "term": "CloudFront TLS Certificate",
+      "action": "removed",
+      "reason": "קטע How-to ללא הגדרת מושג; שירות ACM נשאר במאגר.",
+      "sourceKey": "311"
+    },
+    {
+      "term": "ELB TLS Certificate",
+      "action": "removed",
+      "reason": "קטע How-to ללא הגדרת מושג; שירות ACM נשאר במאגר.",
+      "sourceKey": "323"
+    },
+    {
+      "term": "Route 53 Health Check",
+      "action": "removed",
+      "reason": "המקור המשויך עוסק באינטגרציות ולא מגדיר Health Check.",
+      "sourceKey": "345"
+    },
+    {
+      "term": "ARC Recovery Routing",
+      "action": "removed",
+      "reason": "יכולת העברת תעבורה של ARC קיבלה שם מנגנון שלא מופיע בסיכום.",
+      "sourceKey": "347"
+    },
+    {
+      "term": "ECS Fargate Launch Type",
+      "action": "removed",
+      "reason": "שם שלא מופיע כך במקור וכופל את AWS Fargate.",
+      "sourceKey": "364"
+    },
+    {
+      "term": "EKS Security Misconfiguration",
+      "action": "removed",
+      "reason": "כותרת סיכון כללית הפכה לשם מושג; שאלת IRSA נשארת.",
+      "sourceKey": "374"
+    },
+    {
+      "term": "ECR Repository Policy",
+      "action": "removed",
+      "reason": "המקור המשויך כולל רק הוראות ניווט ואינו מגדיר Repository Policy.",
+      "sourceKey": "380"
+    },
+    {
+      "term": "ECR Pull Through Cache",
+      "action": "removed",
+      "reason": "הסיכום אינו מסביר מה נשמר, מאין או כיצד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "384"
+    },
+    {
+      "term": "API Gateway Authorizer",
+      "action": "removed",
+      "reason": "המונח Authorizer אינו מופיע בהסבר; שירותי הזהות המתוארים נבדקים בשמותיהם.",
+      "sourceKey": "430"
+    },
+    {
+      "term": "Amazon Connect",
+      "action": "removed",
+      "reason": "הסיכום מכנה את השירות מערכת טיקטים. אין בו הגדרה נכונה של תפקיד השירות שעליה ניתן לבסס שאלה.",
+      "sourceKey": "485"
+    },
+    {
+      "term": "AWS Verified Access",
+      "action": "removed",
+      "reason": "הסיכום מציין רק שירות ZTNA, ללא הגדרת תפקיד; התשובה הקודמת הוסיפה ידע חיצוני.",
+      "sourceKey": "489"
+    }
+  ],
+  "corrected": [
+    {
+      "term": "Data Center",
+      "action": "corrected",
+      "newTerm": "Data Center",
+      "beforeAnswer": "מתקן פיזי שמאכלס שרתים, ציוד רשת ומערכות חשמל וקירור.",
+      "afterAnswer": "אזור פיזי שמכיל מספר רב של שרתים."
+    },
+    {
+      "term": "AWS CodeBuild",
+      "action": "corrected",
+      "newTerm": "AWS CodeBuild",
+      "beforeAnswer": "שירות שמריץ בנייה ובדיקות של קוד מקור ומפיק תוצרי תוכנה.",
+      "afterAnswer": "כלי CI של AWS לבנייה אוטומטית של תוכנה."
+    },
+    {
+      "term": "Shared Services",
+      "action": "corrected",
+      "newTerm": "Shared Services",
+      "beforeAnswer": "שירותים משותפים לכמה חשבונות או מערכות, כגון ספרייה, DNS וכלי תשתית.",
+      "afterAnswer": "חשבון שמרכז רכיבים ושירותים משותפים לכל החשבונות בארגון."
+    },
+    {
+      "term": "Policy Statement",
+      "action": "corrected",
+      "newTerm": "Statement",
+      "beforeAnswer": "בלוק במדיניות שמגדיר החלטת הרשאה, פעולות, משאבים ותנאים רלוונטיים.",
+      "afterAnswer": "בלוק במדיניות שמגדיר החלטת הרשאה, פעולות, משאבים ותנאים רלוונטיים."
+    },
+    {
+      "term": "Policy Effect",
+      "action": "corrected",
+      "newTerm": "Effect",
+      "beforeAnswer": "החלק בהצהרת מדיניות שקובע אם ההצהרה מאשרת פעולה או חוסמת אותה.",
+      "afterAnswer": "החלק בהצהרת מדיניות שקובע אם ההצהרה מאשרת פעולה או חוסמת אותה."
+    },
+    {
+      "term": "Policy Sid",
+      "action": "corrected",
+      "newTerm": "Sid",
+      "beforeAnswer": "מזהה תיאורי אופציונלי של הצהרה במסמך מדיניות.",
+      "afterAnswer": "שם תיאורי של Statement במדיניות."
+    },
+    {
+      "term": "Policy Version",
+      "action": "corrected",
+      "newTerm": "Version",
+      "beforeAnswer": "השדה שמציין את גרסת שפת המדיניות, ולא את גרסתו העסקית של המסמך.",
+      "afterAnswer": "השדה שמציין את גרסת שפת המדיניות, ולא את גרסתו העסקית של המסמך."
+    },
+    {
+      "term": "StringEquals Condition",
+      "action": "corrected",
+      "newTerm": "StringEquals",
+      "beforeAnswer": "תנאי מדיניות שמשווה ערך טקסט לערך נדרש.",
+      "afterAnswer": "תנאי מדיניות שמשווה ערך טקסט לערך נדרש."
+    },
+    {
+      "term": "Bool Condition",
+      "action": "corrected",
+      "newTerm": "Bool",
+      "beforeAnswer": "תנאי מדיניות שבודק אם ערך בוליאני תואם ל-true או ל-false שנדרשו.",
+      "afterAnswer": "תנאי מדיניות שבודק אם ערך בוליאני תואם ל-true או ל-false שנדרשו."
+    },
+    {
+      "term": "EC2 Instance Connect",
+      "action": "corrected",
+      "newTerm": "EC2 Instance Connect",
+      "beforeAnswer": "יכולת חיבור למופע EC2 שמשלבת בקרת גישה של AWS ופרטי חיבור זמניים.",
+      "afterAnswer": "אפשרות להתחבר למופע EC2 דרך הדפדפן."
+    },
+    {
+      "term": "On-Demand Capacity Reservation",
+      "action": "corrected",
+      "newTerm": "הזמנות קיבולת לפי דרישה",
+      "beforeAnswer": "שמירת קיבולת מחשוב זמינה ב-AZ למאפייני מופע מוגדרים, בנפרד מהתחייבות להנחת חיוב.",
+      "afterAnswer": "שמירת קיבולת מחשוב זמינה ב-AZ למאפייני מופע מוגדרים, בנפרד מהתחייבות להנחת חיוב."
+    },
+    {
+      "term": "S3 Object",
+      "action": "corrected",
+      "newTerm": "S3 Object",
+      "beforeAnswer": "יחידת נתונים ב-S3 שמזוהה באמצעות Key וכוללת תוכן ומטא-נתונים.",
+      "afterAnswer": "אובייקט או קובץ שמאוחסן ב-S3."
+    },
+    {
+      "term": "S3 Bucket",
+      "action": "corrected",
+      "newTerm": "S3 Bucket",
+      "beforeAnswer": "מיכל של אובייקטים ב-S3 שעליו מנוהלות הגדרות גישה, אחסון ויכולות נוספות.",
+      "afterAnswer": "מיכל לאחסון קבצים ואובייקטים ב-S3."
+    },
+    {
+      "term": "S3 Presigned URL",
+      "action": "corrected",
+      "newTerm": "S3 Presigned URL",
+      "beforeAnswer": "קישור חתום שמאפשר פעולה זמנית על אובייקט בגבולות ההרשאות של החותם.",
+      "afterAnswer": "קישור שמאפשר גישה לקובץ מסוים ב-S3 בלי לפתוח את ה-Bucket לציבור ובלי שהמקבל יזדהה כמשתמש AWS."
+    },
+    {
+      "term": "S3 Standard",
+      "action": "corrected",
+      "newTerm": "S3 Standard",
+      "beforeAnswer": "מחלקת אחסון רב-אזורית בתוך Region, המתאימה לנתונים שניגשים אליהם לעיתים קרובות.",
+      "afterAnswer": "מחלקת אחסון כללית לנתונים שנדרשת אליהם גישה מהירה, עם אחסון בכמה Availability Zones."
+    },
+    {
+      "term": "S3 Standard-IA",
+      "action": "corrected",
+      "newTerm": "Standard-Infrequent Access (IA)",
+      "beforeAnswer": "אחסון בכמה AZs לנתונים שנגישים לעיתים רחוקות אך דורשים אחזור מהיר.",
+      "afterAnswer": "אחסון בכמה AZs לנתונים שנגישים לעיתים רחוקות אך דורשים אחזור מהיר."
+    },
+    {
+      "term": "S3 One Zone-IA",
+      "action": "corrected",
+      "newTerm": "One Zone-Infrequent Access (IA)",
+      "beforeAnswer": "אחסון ב-AZ יחיד לנתונים שנגישים לעיתים רחוקות ושאפשר לשחזרם ממקור אחר.",
+      "afterAnswer": "אחסון ב-AZ יחיד לנתונים שנגישים לעיתים רחוקות ושאפשר לשחזרם ממקור אחר."
+    },
+    {
+      "term": "BlockPublicAcls",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through New Access Control Lists (ACLs)",
+      "beforeAnswer": "הגדרה שדוחה בקשות ליצור ACL ציבורי חדש.",
+      "afterAnswer": "הגדרה שדוחה בקשות ליצור ACL ציבורי חדש."
+    },
+    {
+      "term": "IgnorePublicAcls",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through Any Access Control Lists (ACLs)",
+      "beforeAnswer": "הגדרה שמתעלמת מהענקות גישה ציבורית דרך ACLs, גם אם כבר קיימים.",
+      "afterAnswer": "הגדרה שמתעלמת מהענקות גישה ציבורית דרך ACLs, גם אם כבר קיימים."
+    },
+    {
+      "term": "BlockPublicPolicy",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through New Public Bucket or Access Point Policies",
+      "beforeAnswer": "הגדרה שדוחה מדיניות Bucket או Access Point ציבורית חדשה.",
+      "afterAnswer": "הגדרה שדוחה מדיניות Bucket או Access Point ציבורית חדשה."
+    },
+    {
+      "term": "RestrictPublicBuckets",
+      "action": "corrected",
+      "newTerm": "Block Public and Cross-Account Access to Buckets and Objects Through Any Public Bucket or Access Point Policies",
+      "beforeAnswer": "הגדרה שמגבילה גישה ציבורית וחוצת-חשבונות כשמדיניות ה-Bucket נחשבת ציבורית.",
+      "afterAnswer": "הגדרה שמגבילה גישה ציבורית וחוצת-חשבונות כשמדיניות ה-Bucket נחשבת ציבורית."
+    },
+    {
+      "term": "CloudFormation Hook Schema",
+      "action": "corrected",
+      "newTerm": "schema (CloudFormation Hooks)",
+      "beforeAnswer": "תיאור ההפעלה של Hook, כולל סוגי המשאבים והשלבים שבהם עליו לבדוק אותם.",
+      "afterAnswer": "תיאור ההפעלה של Hook, כולל סוגי המשאבים והשלבים שבהם עליו לבדוק אותם."
+    },
+    {
+      "term": "CloudFormation Hook Handler",
+      "action": "corrected",
+      "newTerm": "Handlers (CloudFormation Hooks)",
+      "beforeAnswer": "נקודת לוגיקה שמבצעת את בדיקת ה-Hook בעת שלב מתאים במחזור חיי משאב.",
+      "afterAnswer": "הגדרה ב-schema שקובעת לפני איזו פעולה, כגון יצירה או שינוי, ה-Hook יפעל."
+    },
+    {
+      "term": "CloudTrail Management Events",
+      "action": "corrected",
+      "newTerm": "Management Event",
+      "beforeAnswer": "אירועים שמתארים פעולות ניהול על משאבים ותצורתם.",
+      "afterAnswer": "אירועים שמתארים פעולות ניהול על משאבים ותצורתם."
+    },
+    {
+      "term": "CloudTrail Data Events",
+      "action": "corrected",
+      "newTerm": "Data Event",
+      "beforeAnswer": "אירועים שמתארים פעולות ברמת הנתונים במשאבים נתמכים, כגון גישה לאובייקטים.",
+      "afterAnswer": "אירועים שמתארים פעולות ברמת הנתונים במשאבים נתמכים, כגון גישה לאובייקטים."
+    },
+    {
+      "term": "CloudTrail Insights Events",
+      "action": "corrected",
+      "newTerm": "Insights (CloudTrail)",
+      "beforeAnswer": "אירועים שמצביעים על דפוס פעילות API חריג בהשוואה להתנהגות הרגילה.",
+      "afterAnswer": "אירועים שמצביעים על דפוס פעילות API חריג בהשוואה להתנהגות הרגילה."
+    },
+    {
+      "term": "CloudTrail Network Activity Event",
+      "action": "corrected",
+      "newTerm": "Network activity events",
+      "beforeAnswer": "אירוע שמתעד פעילות רשת רלוונטית של גישה לשירותי AWS דרך VPC Endpoints.",
+      "afterAnswer": "אירוע שמתעד פעילות רשת רלוונטית של גישה לשירותי AWS דרך VPC Endpoints."
+    },
+    {
+      "term": "CloudTrail Read-Only Event",
+      "action": "corrected",
+      "newTerm": "Read-only (CloudTrail)",
+      "beforeAnswer": "אירוע ניהול שמתאר קריאת מידע ולא שינוי של משאב.",
+      "afterAnswer": "אירוע ניהול שמתאר קריאת מידע ולא שינוי של משאב."
+    },
+    {
+      "term": "CloudTrail Write Event",
+      "action": "corrected",
+      "newTerm": "Write-only (CloudTrail)",
+      "beforeAnswer": "אירוע ניהול שמתאר יצירה או שינוי של משאב או תצורה.",
+      "afterAnswer": "אירוע ניהול שמתאר יצירה או שינוי של משאב או תצורה."
+    },
+    {
+      "term": "CloudTrail Encryption at Rest",
+      "action": "corrected",
+      "newTerm": "הצפנה במנוחה (CloudTrail)",
+      "beforeAnswer": "הצפנת קובצי התיעוד כשהם מאוחסנים כדי להגן על תוכנם.",
+      "afterAnswer": "הצפנת קובצי התיעוד כשהם מאוחסנים כדי להגן על תוכנם."
+    },
+    {
+      "term": "CloudWatch Agent Configuration",
+      "action": "corrected",
+      "newTerm": "Agent Config File",
+      "beforeAnswer": "תצורה שקובעת אילו מדדים וקובצי לוג הסוכן אוסף ולאן הוא שולח אותם.",
+      "afterAnswer": "תצורה שקובעת אילו מדדים וקובצי לוג הסוכן אוסף ולאן הוא שולח אותם."
+    },
+    {
+      "term": "CloudWatch Infrastructure Insights",
+      "action": "corrected",
+      "newTerm": "Insights (CloudWatch)",
+      "beforeAnswer": "יכולות ניתוח שמסייעות להבין מצב וביצועים של רכיבי תשתית.",
+      "afterAnswer": "תצוגת תובנות על משאבים הקשורים לתשתית."
+    },
+    {
+      "term": "GuardDuty Auto-Enable",
+      "action": "corrected",
+      "newTerm": "GuardDuty Auto-Enable",
+      "beforeAnswer": "הפעלה אוטומטית של יכולות הגנה בחשבונות לפי מדיניות ארגונית.",
+      "afterAnswer": "הפעלה אוטומטית של GuardDuty בחשבונות קיימים או חדשים בארגון לפי ההגדרה."
+    },
+    {
+      "term": "GuardDuty Historical Behavior",
+      "action": "corrected",
+      "newTerm": "GuardDuty Historical Behavior",
+      "beforeAnswer": "קו בסיס של פעילות קודמת שמשמש לזיהוי סטיות ודפוסים חריגים.",
+      "afterAnswer": "תצוגת הפעילות הנפוצה בארגון מזוויות כגון ASN, User Agent ו-Bucket."
+    },
+    {
+      "term": "GuardDuty Malware Protection",
+      "action": "corrected",
+      "newTerm": "GuardDuty Malware Protection",
+      "beforeAnswer": "יכולת לזהות תוכנה זדונית בתרחישי סריקה נתמכים, כגון נפחי EC2 או אובייקטי S3.",
+      "afterAnswer": "יכולת לסרוק את דיסקי EBS של מופעי EC2 כדי לזהות Malware."
+    },
+    {
+      "term": "HMAC",
+      "action": "corrected",
+      "newTerm": "HMAC",
+      "beforeAnswer": "קוד אימות מבוסס מפתח סודי לבדיקת שלמות ואותנטיות של הודעה, ולא להצפנת תוכנה.",
+      "afterAnswer": "מנגנון לאימות שלמות ואמינות של הודעות ונתונים כדי לבדוק שלא שונו."
+    },
+    {
+      "term": "KMS Pending Deletion",
+      "action": "corrected",
+      "newTerm": "KMS Pending Deletion",
+      "beforeAnswer": "מצב שבו מפתח ממתין למחיקה מתוזמנת ואינו זמין לשימוש קריפטוגרפי רגיל.",
+      "afterAnswer": "תקופת המתנה שחובה לבחור לפני מחיקת מפתח Customer Managed."
+    },
+    {
+      "term": "Secret Rotation",
+      "action": "corrected",
+      "newTerm": "החלפת סיסמאות אוטומטית (Secrets Manager)",
+      "beforeAnswer": "החלפת ערך סודי ועדכון המערכת שמשתמשת בו כדי לצמצם שימוש בסודות ישנים.",
+      "afterAnswer": "יכולת להחליף סיסמאות באופן אוטומטי."
+    },
+    {
+      "term": "Target Group",
+      "action": "corrected",
+      "newTerm": "Target Group",
+      "beforeAnswer": "קבוצת יעדים שאליה מאזן העומסים מנתב תעבורה, עם הגדרות בדיקות בריאות.",
+      "afterAnswer": "קבוצת היעדים שאליהם מאזן העומסים מפנה תעבורה; בסיכום מתוארת רשימת מופעי EC2."
+    },
+    {
+      "term": "TLS Termination",
+      "action": "corrected",
+      "newTerm": "SSL Termination",
+      "beforeAnswer": "סיום ופענוח חיבור TLS בנקודת תיווך; החיבור מהמתווך לשרת יכול להיות נפרד ומוצפן מחדש.",
+      "afterAnswer": "סיום ופענוח חיבור TLS בנקודת תיווך; החיבור מהמתווך לשרת יכול להיות נפרד ומוצפן מחדש."
+    },
+    {
+      "term": "OpsItem Notifications",
+      "action": "corrected",
+      "newTerm": "מנגנון העדכונים (OpsItem)",
+      "beforeAnswer": "שליחת עדכונים דרך SNS כאשר מצב התקלה משתנה או נוסף לה מידע.",
+      "afterAnswer": "שליחת עדכונים דרך SNS כאשר מצב התקלה משתנה או נוסף לה מידע."
+    },
+    {
+      "term": "OpsItem Automation Integration",
+      "action": "corrected",
+      "newTerm": "שילוב מובנה עם AWS Systems Manager Automation",
+      "beforeAnswer": "חיבור תקלה ל-Automation Runbooks כדי להפעיל תהליך תיקון מוגדר.",
+      "afterAnswer": "חיבור תקלה ל-Automation Runbooks כדי להפעיל תהליך תיקון מוגדר."
+    },
+    {
+      "term": "ARC Readiness Check",
+      "action": "corrected",
+      "newTerm": "בדיקות מוכנות (ARC)",
+      "beforeAnswer": "בדיקת מוכנות משאבי הגיבוי כדי לסייע לוודא שיוכלו לתמוך בהתאוששות.",
+      "afterAnswer": "בדיקת מוכנות משאבי הגיבוי כדי לסייע לוודא שיוכלו לתמוך בהתאוששות."
+    },
+    {
+      "term": "WAF Managed Rule",
+      "action": "corrected",
+      "newTerm": "WAF Managed Rule",
+      "beforeAnswer": "חוק או קבוצת חוקי הגנה מוכנים שספק מתחזק עבור דפוסי איום נפוצים.",
+      "afterAnswer": "חוקי הגנה מוכנים שמגיעים עם AWS WAF."
+    },
+    {
+      "term": "ECS Cluster",
+      "action": "corrected",
+      "newTerm": "ECS Cluster",
+      "beforeAnswer": "קבוצה לוגית של קיבולת ומשימות ECS המשמשת כגבול ארגון של עומסי עבודה.",
+      "afterAnswer": "קבוצה לוגית שמארגנת את סביבת הקונטיינרים של ECS."
+    },
+    {
+      "term": "ECS Service",
+      "action": "corrected",
+      "newTerm": "ECS Service",
+      "beforeAnswer": "רכיב ששומר על מספר רצוי של משימות רצות ומסייע בפריסה ובהחלפה שלהן.",
+      "afterAnswer": "המקביל ל-Deployment Spec: מגדיר את פריסת הקונטיינרים הרצויה."
+    },
+    {
+      "term": "RDS Encryption",
+      "action": "corrected",
+      "newTerm": "RDS Encryption",
+      "beforeAnswer": "הצפנת מסד הנתונים והאחסון הקשור אליו באמצעות שילוב עם KMS.",
+      "afterAnswer": "הצפנת המידע שנשמר במסד הנתונים במנוחה באמצעות AES-256."
+    },
+    {
+      "term": "AWS IoT Device Defender",
+      "action": "corrected",
+      "newTerm": "AWS IoT Device Defender",
+      "beforeAnswer": "שירות לבדיקת הגדרות אבטחה של מכשירי IoT ולניטור התנהגות חריגה שלהם.",
+      "afterAnswer": "שירות לזיהוי ולהתרעה על פעילות חריגה של צי מכשירי IoT."
+    },
+    {
+      "term": "DynamoDB Document",
+      "action": "corrected",
+      "newTerm": "DynamoDB Document",
+      "beforeAnswer": "מבנה נתונים מקונן של מפות ורשימות שניתן לשמור בתוך מאפייני Item.",
+      "afterAnswer": "מבנה נתונים מסוג JSON שנשמר בתוך ערך ב-DynamoDB."
+    },
+    {
+      "term": "Amazon Data Firehose",
+      "action": "corrected",
+      "newTerm": "Amazon Data Firehose",
+      "beforeAnswer": "שירות למסירה מנוהלת של נתוני זרם ליעדי אחסון וניתוח, עם יכולות עיבוד נתמכות בדרך.",
+      "afterAnswer": "שירות שמעביר נתוני זרם ממקור ליעד, למשל כצרכן של Amazon Kinesis Data Streams."
+    },
+    {
+      "term": "Inspector Classic Assessment Template",
+      "action": "corrected",
+      "newTerm": "Assessment Template",
+      "beforeAnswer": "תבנית בדיקה במוצר Inspector Classic הוותיק שקובעת מאפייני הערכה; אינה מנגנון ההפעלה של Inspector הנוכחי.",
+      "afterAnswer": "הגדרת החוקים שלפיהם תתבצע הסריקה המתוארת בסיכום."
+    },
+    {
+      "term": "API Throttling",
+      "action": "corrected",
+      "newTerm": "הגבלת קצב (API Gateway)",
+      "beforeAnswer": "הגבלת קצב הבקשות ל-API כדי לשלוט בעומס ובשימוש במשאבים.",
+      "afterAnswer": "הגבלת קצב הבקשות ל-API כדי לשלוט בעומס ובשימוש במשאבים."
+    },
+    {
+      "term": "AWS Global Accelerator",
+      "action": "corrected",
+      "newTerm": "AWS Global Accelerator",
+      "beforeAnswer": "ניתוב תעבורת משתמשים דרך הרשת הגלובלית של AWS ליעדי יישום, עם נקודות כניסה יציבות.",
+      "afterAnswer": "שירות שמפחית Latency על ידי העברת התעבורה דרך התשתית המהירה של AWS."
+    },
+    {
+      "term": "AWS Server Migration Service — SMS",
+      "action": "corrected",
+      "newTerm": "AWS Server Migration Service — SMS",
+      "beforeAnswer": "שירות ותיק להעברת שרתים וירטואליים לענן באמצעות שכפול; יש לבדוק חלופה עדכנית לפני שימוש.",
+      "afterAnswer": "שירות להעברת שרתים מקומיים לענן."
+    },
+    {
+      "term": "AWS Snow Family",
+      "action": "corrected",
+      "newTerm": "AWS Snow Family",
+      "beforeAnswer": "מכשירים פיזיים להעברת כמויות נתונים ולעיבוד בקצה במקומות עם קישוריות מוגבלת.",
+      "afterAnswer": "העברת כמויות גדולות של מידע מסביבה מקומית ל-AWS באמצעות מכשירים פיזיים."
+    },
+    {
+      "term": "AWS Glue",
+      "action": "corrected",
+      "newTerm": "AWS Glue",
+      "beforeAnswer": "שירות אינטגרציית נתונים לגילוי, קטלוג והמרת נתונים לצורכי ניתוח.",
+      "afterAnswer": "שירות ETL לחילוץ נתונים, המרתם וטעינתם לפורמט משותף לצורך ניתוח."
+    },
+    {
+      "term": "Amazon EMR",
+      "action": "corrected",
+      "newTerm": "Amazon EMR",
+      "beforeAnswer": "פלטפורמה מנוהלת לעיבוד כמויות נתונים גדולות באמצעות מסגרות כגון Spark ו-Hadoop.",
+      "afterAnswer": "שירות לעיבוד ולניתוח כמויות מידע גדולות, עם תמיכה בסביבות עבודה שונות."
+    },
+    {
+      "term": "Amazon Rekognition",
+      "action": "corrected",
+      "newTerm": "Amazon Rekognition",
+      "beforeAnswer": "ניתוח תמונות וסרטונים לזיהוי אובייקטים, תוכן ותכונות חזותיות.",
+      "afterAnswer": "ניתוח ותיוג של תמונות וסרטונים, כולל זיהוי פנים וטקסט."
+    },
+    {
+      "term": "Amazon Comprehend",
+      "action": "corrected",
+      "newTerm": "Amazon Comprehend",
+      "beforeAnswer": "ניתוח טקסט בשפה טבעית כדי לזהות ישויות, נושאים, רגשות ומידע רלוונטי.",
+      "afterAnswer": "שירות NLP להפקת מסקנות וקשרים מתוך טקסט."
+    },
+    {
+      "term": "Amazon Bedrock",
+      "action": "corrected",
+      "newTerm": "Amazon Bedrock",
+      "beforeAnswer": "גישה מנוהלת למודלי יסוד וליכולות לבניית יישומי בינה מלאכותית יוצרת.",
+      "afterAnswer": "שירות להרצה ולהתאמה של מודלי שפה גדולים (LLM)."
+    },
+    {
+      "term": "AWS Cloud9",
+      "action": "corrected",
+      "newTerm": "AWS Cloud9",
+      "beforeAnswer": "סביבת פיתוח משולבת בדפדפן לכתיבה ולניפוי שגיאות בקוד; השירות המתואר בסיכום הוא ותיק.",
+      "afterAnswer": "סביבת פיתוח בדפדפן לכתיבה ולניפוי שגיאות בקוד."
+    },
+    {
+      "term": "AWS CodeStar",
+      "action": "corrected",
+      "newTerm": "AWS CodeStar",
+      "beforeAnswer": "שירות ותיק שחיבר כלי פיתוח ותהליכי מסירה בסביבת פרויקט משותפת; אינו שירות חדש לבחירה כיום.",
+      "afterAnswer": "שירות שמרכז כלי פיתוח ותהליכי מסירה של פרויקט."
+    },
+    {
+      "term": "AWS OpsWorks",
+      "action": "corrected",
+      "newTerm": "AWS OpsWorks",
+      "beforeAnswer": "שירות ותיק לניהול תצורות ואוטומציה באמצעות כלים כגון Chef ו-Puppet; יש לבדוק חלופות עדכניות.",
+      "afterAnswer": "שירות לניהול תצורות ואוטומציה באמצעות Chef ו-Puppet."
+    },
+    {
+      "term": "AWS Step Functions",
+      "action": "corrected",
+      "newTerm": "AWS Step Functions",
+      "beforeAnswer": "תזמור תהליך עבודה של שלבים ושירותים באמצעות מכונת מצבים.",
+      "afterAnswer": "חיבור כמה שירותי AWS לרצף עבודה אוטומטי שנקרא Workflow."
+    },
+    {
+      "term": "AWS Amplify",
+      "action": "corrected",
+      "newTerm": "AWS Amplify",
+      "beforeAnswer": "כלים ושירותים לפיתוח ולהפעלה של יישומי Web ומובייל עם יכולות Backend משולבות.",
+      "afterAnswer": "פלטפורמה לבנייה של אפליקציות אינטרנט ואפליקציות לטלפונים."
+    }
+  ],
+  "added": [
+    "Resource Tags",
+    "ABAC",
+    "Source/Destination Check",
+    "Compliant",
+    "non_compliant"
+  ],
+  "previousSourceHash": "a4dbcbdbf5fac2bc96a05c99278c679a23c8014112863ca947868d53ff115942",
+  "unchangedQuestionIds": [
+    "concept-d877b8085dd09e2560bf",
+    "concept-348a152ceeafe1d3e555",
+    "concept-d6f1c4395d4a73af4ed8",
+    "concept-c16a1485948acc712ee1",
+    "concept-e37ad6253fbafe3e37a0",
+    "concept-0455afbdb7f0824f6163",
+    "concept-18b43e05ac48c36aff49",
+    "concept-14e9ffb37e2c6fab1399",
+    "concept-61fe12e21c892a20458f",
+    "concept-f03131b21e332c1f53e2",
+    "concept-c5cbf3dbc652a217da1c",
+    "concept-6818b3bbe66d8d607656",
+    "concept-36ca9904f447c9e7dbbf",
+    "concept-529d30cb538558d7d848",
+    "concept-15f4e90b020f71bc6002",
+    "concept-cdd46c8ee62f27cb84d0",
+    "concept-88462718bdd432486b56",
+    "concept-9b3473f738e0982620db",
+    "concept-e2d3b3a0f65e091b98bc",
+    "concept-ed2d9e9fa6fed08d8717",
+    "concept-493135cf9a42b4ad7a1b",
+    "concept-19bd5a67be2b0fe1563c",
+    "concept-618190eafeea7fac7739",
+    "concept-2ad692c96c91fd638e51",
+    "concept-3c3bb29dff67c0a1c8e1",
+    "concept-5e895aa533018a43f0fd",
+    "concept-cebbf6ab8dce0ab1eff9",
+    "concept-a91b3de58924f43e0a64",
+    "concept-ff986f6c528d868ee42d",
+    "concept-3e7e3c179274f87ab8ba",
+    "concept-f683e7247bed60d78a53",
+    "concept-22a6ccec6baed9691d66",
+    "concept-993b87d8f1cada58655c",
+    "concept-72ac8b518fb6fb77307f",
+    "concept-35d23a75cf37a0466077",
+    "concept-fafafcff7f89ca65d161",
+    "concept-327297ed0d4ff44791bb",
+    "concept-78576e3f4c5004ea17d0",
+    "concept-0f23cb0dd8b5164e0f29",
+    "concept-0bceeaccd69be1b9a11b",
+    "concept-348f24b4e38874ae6260",
+    "concept-457399606cb1e6134d19",
+    "concept-a3e35226e2f3cac23660",
+    "concept-7cdb4f13a5a430b113a2",
+    "concept-3d8ad88ae9197ec4ad76",
+    "concept-c9a59aeda2a200f16ac1",
+    "concept-a6d0c3a80087bdcb5458",
+    "concept-ceb637e72762e78a0ba6",
+    "concept-fbb38e2dd64dad61716f",
+    "concept-c2295382ff12d80900e9",
+    "concept-b584a9f0dcb5d344b5cb",
+    "concept-c2940f04e718ef77ed26",
+    "concept-a1296fb93e27bd5839ed",
+    "concept-d9a2ee9feb0e91156f44",
+    "concept-4ce670dd62c9e013b442",
+    "concept-1f5997db106d99218895",
+    "concept-32cba1a7f043f247b63c",
+    "concept-1f4dc43143b18234123c",
+    "concept-042635a006089828634d",
+    "concept-a7081e4e909b65ed94c6",
+    "concept-b288eff1cdfab5a2f327",
+    "concept-520db0e01184426e1aa9",
+    "concept-364b8b3819861dbf44fa",
+    "concept-329d548ac3729e9e8e0f",
+    "concept-72cbb819302f0008d215",
+    "concept-1fa3b36099feca1667f6",
+    "concept-0e2b35c15194cd59f505",
+    "concept-ba2252ea5fe750a1c4f7",
+    "concept-6e5221d4a65b027b0a8a",
+    "concept-71d081be6c2ff70f5bf5",
+    "concept-6e4c16b172bb04fe07f9",
+    "concept-0cab630c632e0916e506",
+    "concept-286799ca6cbc8757c380",
+    "concept-43cf426c95a411a7a3b8",
+    "concept-4b849362f67b024e2ebe",
+    "concept-8654be3fe312e8bc286d",
+    "concept-34b7fc9c80e83e4e3be8",
+    "concept-a9970920867343aca0e7",
+    "concept-19fa529c585d0c3cde69",
+    "concept-d7a62b0ba65faa71080e",
+    "concept-1a43038494e0819a156a",
+    "concept-3595e35bcf01e53abf24",
+    "concept-2139336b8c8bb3dac5c0",
+    "concept-554aaaeed96384cfb41b",
+    "concept-505d19825eefdc6a3b29",
+    "concept-7c6f58900f17f34f90f9",
+    "concept-3d7dcb62b9aca9cfefc2",
+    "concept-41fae9c504b1025f98c3",
+    "concept-31aa4794d6df08194e1f",
+    "concept-77ac39d7b0f0ea3900e3",
+    "concept-48ea13a77698220f5cc0",
+    "concept-985611a6b5e9f06b462a",
+    "concept-ddc62acabb79b4a4222b",
+    "concept-14b2299a97883d5bec07",
+    "concept-b41094e7c00b0f5cca50",
+    "concept-5b5daf91ecd13c309b2a",
+    "concept-e7d47896f718e27188c8",
+    "concept-a10e6ce951d0ecd04a5a",
+    "concept-951f9d0adde52499d8c8",
+    "concept-61930c9c6196e852ae60",
+    "concept-c04c83fac0217b8f4553",
+    "concept-692760e564bf2f63929a",
+    "concept-e14d8affff6ee27fcc2a",
+    "concept-1637177445e34d918649",
+    "concept-f0d281b4db35e83c49c4",
+    "concept-9bdb34787c954c012c69",
+    "concept-ba5121a0da0b3bb5c78e",
+    "concept-467258a3f45cef0a36a4",
+    "concept-76e5dead1199add76b31",
+    "concept-061af0bda51de485e815",
+    "concept-68e47769da1ef5e87055",
+    "concept-9db6cf6371c8fd3ea411",
+    "concept-67928b76456eabca26b4",
+    "concept-296a08494700eb78237c",
+    "concept-18fe2820ae2a62c7eded",
+    "concept-3c89e653677f93247e9d",
+    "concept-dbe46848b41a9947b48c",
+    "concept-d99cdc57f432b88b2ec2",
+    "concept-384ee6477a8130602abd",
+    "concept-fe7f00bd2ad0f2d61ce0",
+    "concept-9256df81d8ccfe953ee9",
+    "concept-02db261e6ee153d22da1",
+    "concept-93f4cbe1ff959781eaa9",
+    "concept-1771061736a1d4903abd",
+    "concept-8ab285128ebfd6efd3fe",
+    "concept-5166805dfed2f9300cc3",
+    "concept-393a1fe4dfad88f9d19f",
+    "concept-c610a26680560d78c073",
+    "concept-9c07a1565bcd746a16e8",
+    "concept-6eb2f3ef4034e6ea9624",
+    "concept-b43ec009cb5ad44bd8d8",
+    "concept-35a1b2350a2c0024321f",
+    "concept-35aa5e87d5bd137d8365",
+    "concept-dc00574edce189fb880b",
+    "concept-b5359ac449c664b66686",
+    "concept-ebb8830e11cfc1901b15",
+    "concept-934eabee570b2f825391",
+    "concept-ba3e801c236e598db22e",
+    "concept-2a2fa10b08f4f66e660a",
+    "concept-c643d71777b613fb7e1e",
+    "concept-b21fbb8e1e9852dc017f",
+    "concept-abc41f3f96a7d848d070",
+    "concept-52897ec85e7ee5d609e4",
+    "concept-b865cba91b9a81851b6d",
+    "concept-08a38d4a682dfaa719c2",
+    "concept-43672716d9b1d5be4253",
+    "concept-a944382559f5556edbee",
+    "concept-a9ad4deade16d15dae8e",
+    "concept-4ecce383ae35f3a9aabc",
+    "concept-612dda414381e08cd506",
+    "concept-befaf39e63a46c8eea47",
+    "concept-ea426af13b847967d0f8",
+    "concept-888eed0cc858d041b3da",
+    "concept-9aa0a4c8d130b2d88b37",
+    "concept-5a1dc26405c10e295b6b",
+    "concept-463a0e5570984c9bc0e7",
+    "concept-8139f8a50522e195e0a4",
+    "concept-f5c20945d3ab0fb165a9",
+    "concept-4b252d81006160e5d51f",
+    "concept-a58821e8235fafccfca4",
+    "concept-4bb517b015fc627a7ac7",
+    "concept-ab8e138af339f70f1676",
+    "concept-e36330ef0b8ce9544691",
+    "concept-b4187ccca8228be06d89",
+    "concept-4a43a0b85a2aa790c295",
+    "concept-0d51fabf4da034260f6a",
+    "concept-63b78c2a2a50d2ebaf2c",
+    "concept-b45d62ac33b12e50a52c",
+    "concept-3b1a9c0d045e76438c9c",
+    "concept-bb609d2a971672a85279",
+    "concept-543af2e704624fd10d1d",
+    "concept-650d304da72392368475",
+    "concept-8886705b82051d07cfd5",
+    "concept-79bf85cb757614b55c95",
+    "concept-a685d7526bc8cdf75b28",
+    "concept-d63917ceccf8e33229c0",
+    "concept-8c667a61565a2f9664af",
+    "concept-338954e72ac076737c33",
+    "concept-22b64f968f960291c399",
+    "concept-20c62cb020ecfb19d541",
+    "concept-dbef4a7062712e44e704",
+    "concept-0a1724ad531cf7d8e1e1",
+    "concept-7ce74e4f42abb8eae03d",
+    "concept-0d2ea544c5827b80f27d",
+    "concept-e7378c7cc9162f136bf4",
+    "concept-09e375b9e8f67e77e592",
+    "concept-35c8ca0c9df1d1e3c3b9",
+    "concept-37c1516cd2796044d6dd",
+    "concept-68d26998787165a44f81",
+    "concept-798a0f32ea1205fb5d8e",
+    "concept-ff8505f9fba48c4a1e97",
+    "concept-7e7f7f8183cffeb26d68",
+    "concept-73487b536e24cae6391d",
+    "concept-97bfd6c06984bbf345bd",
+    "concept-13d2d437cb2ab64af445",
+    "concept-038e6e14d367843e2a1c",
+    "concept-6a0c52b7a7a5589a874f",
+    "concept-9322735e644ba553e413",
+    "concept-1d26eeb68dde5f214ca3",
+    "concept-a63a48de2a7a8b5e512c",
+    "concept-bb04e76ae5e8417920ac",
+    "concept-f9f77c2a98018ee19d64",
+    "concept-e7e22ddbfe2f0a5929a8",
+    "concept-1c382fbc795f17f9e08b",
+    "concept-f3ad50da920ac8694282",
+    "concept-fdedab589d3dd36709a7",
+    "concept-e913f19018041a1ddad0",
+    "concept-4c74cace7c8baad168e6",
+    "concept-b17e8b18a72cbc956591",
+    "concept-387d87b6b4adf5054500",
+    "concept-66ab46f65e21c0ab35ce",
+    "concept-7dc97b4f1c57f84cc749",
+    "concept-aaf4adebf14d896d20c9",
+    "concept-4d4bccf9b594885e92b9",
+    "concept-ed4e359d0726bb433899",
+    "concept-4a0bd2dddf36454c00cc",
+    "concept-1ba4aa1c812ca81a14e0",
+    "concept-470b3d0e095d351918b4",
+    "concept-31edf9e91bf679c3418c",
+    "concept-7a6edbb7d4c054aa2877",
+    "concept-1437eada46a144f23c91",
+    "concept-0bc296919c3a8e1ce818",
+    "concept-9dd46ef0bd2961917eeb",
+    "concept-1f2e7ead3434abb6c7b8",
+    "concept-35826bdad7ea34fa4db9",
+    "concept-2708d493ba5e259c4ff5",
+    "concept-129c5f20a309a66cd795",
+    "concept-3fe54e2f624f273022fd",
+    "concept-bfa0055a9909cf9a57bd",
+    "concept-45f9559663bd30adc3fb",
+    "concept-33b69fb181bedc0c0460",
+    "concept-13ab0ebe5eb0519a3486",
+    "concept-5be9452e3887762af319",
+    "concept-47e3842dcf7f71c8279f",
+    "concept-6d8765498792e5ef4663",
+    "concept-8099da99594b3f93924c",
+    "concept-714f7acc222f17092571",
+    "concept-6726954314a3cd91cd8f",
+    "concept-6a90319acddc4e05c880",
+    "concept-7a8a194da7717b673c29",
+    "concept-a3b3626c8e12c6109ac3",
+    "concept-bd5a43fea3017f85f4e7",
+    "concept-645abab36d354c69258a",
+    "concept-b895e87f127e08de8aad",
+    "concept-7a1f512a30f8f3f61a4f",
+    "concept-6ad5633e8e829167d878",
+    "concept-d4753e90c1c9ee3dac4e",
+    "concept-d25510ba2c1568dcb45f",
+    "concept-9136314a405a27598763",
+    "concept-73dc99915d2139e9bb24",
+    "concept-f506aa8ca40447ae7169",
+    "concept-cf9f7dead5b1cdb9170d",
+    "concept-4c4f6f26bf4ba6ce6e6b",
+    "concept-85ee1da9d03026966e38",
+    "concept-a1e9432f68a65bd59ffa",
+    "concept-31cc9831f09cb37962c7",
+    "concept-9f71de82425ae4549948",
+    "concept-b97838d184782aef9d2d",
+    "concept-62df1b03838a7effdea0",
+    "concept-6dc0d97a1e77880baaf5",
+    "concept-6ff1133342d6af0c6acc",
+    "concept-c2bc5f5425435ef4acd0",
+    "concept-914f9bda09d510220500",
+    "concept-d5242af15562f18f536c",
+    "concept-66ad985ca5b9f11453cf",
+    "concept-8afc743735333370daba",
+    "concept-c368624817d6aeeea462",
+    "concept-103831ee1d82a449c666",
+    "concept-920f30eda6ece9b8e945",
+    "concept-1d6e0f64d1306022736a",
+    "concept-4b3de4df6b8b953d7702",
+    "concept-b6ba59a6b77f8d05647d",
+    "concept-a1c092dd4621c619d141",
+    "concept-7a16df39f6416f31aac2",
+    "concept-a19ad59c61bfd455ffe7",
+    "concept-00a77fed65115d56b7b4",
+    "concept-0c330d84813fea70096a",
+    "concept-498b0f8797ce21bec7dd",
+    "concept-fba740044b180be6c962",
+    "concept-f16bf4e44f50360610ee",
+    "concept-770fb769bf07cf31fb02",
+    "concept-25f48fe82dd657883112",
+    "concept-044ad514e93b02e078df",
+    "concept-3b506868ff0c5cc16513",
+    "concept-6529a9e90db6afccb1ed",
+    "concept-dc8e24e2dd2a0e489f65",
+    "concept-51047232d576f40f9d1e",
+    "concept-079930f65b17a78da6c0",
+    "concept-5630cd25e5af861080ec",
+    "concept-45eab72caa0c6c4582cf",
+    "concept-2ae63c569db411548031",
+    "concept-e00bbe722af9d238cab8",
+    "concept-27be3181f1f78f5c1253",
+    "concept-9c058bc7e8937e0d322f",
+    "concept-2e7628505a6eb7ef3a48",
+    "concept-a2934ac77804cbaec4f0",
+    "concept-e890c8c6cf368d79cb08",
+    "concept-7170b50e3c7411deba2f",
+    "concept-b2d68312cd68b26b8170",
+    "concept-45aeb2aa773a58de3000",
+    "concept-5437d1fc01449116cfba",
+    "concept-343b283eca50936e1c9a",
+    "concept-79d78105f4ce624b627f",
+    "concept-85346d3ab8b1c3f34a4c",
+    "concept-a4d110093e3e1e9b22f7",
+    "concept-4c97936b5f4fdb51191f",
+    "concept-dad46615aca60c48c31f",
+    "concept-593f53c00092cb598ba5",
+    "concept-cd64d92c9ae619a0213b",
+    "concept-3b661e875ea346292ecf",
+    "concept-3d96190e14a3508b3df8",
+    "concept-76b3595c4795c4439e81",
+    "concept-98524805e470cad5cece",
+    "concept-11b6b4887dbef68e9c4b",
+    "concept-f782d128c5abc83bbfc8",
+    "concept-9eb540ecccb085e34be0",
+    "concept-1e4aefe79e97c392c04f",
+    "concept-5c8386aba54e32befe3a",
+    "concept-b0744827b7412a208351",
+    "concept-57198ebdc2a059d29a12",
+    "concept-4541278d483b8cf3c3d3",
+    "concept-62f9b89d15eec299f5b0",
+    "concept-3ead69c1aaf4847948e4",
+    "concept-f8f6f6b98c71554c21dd",
+    "concept-462251a8d96c95e9d6cf",
+    "concept-faace8518dceff329dbf",
+    "concept-99f43819d7387fb13a33",
+    "concept-dd71a9cbf23eeec7e1d2",
+    "concept-24cafb2e260c7ec63c1b",
+    "concept-93c6a9ceecc38f019d7b",
+    "concept-d49adbf9e2f154f2c920",
+    "concept-10ec5931851592fcd0bc",
+    "concept-9eec0b940aa11a702539",
+    "concept-f861feef02b266afe637",
+    "concept-7b1ed50619b351a7d78e",
+    "concept-94b11738f8ce210143d3",
+    "concept-875e46e60af0ebb96f5b",
+    "concept-3deca6a56310b9430cff",
+    "concept-db176c1682aa87d7ace7",
+    "concept-87e8dcfffea0da761026",
+    "concept-8d0bf5186e8cf0bcd622",
+    "concept-ad2e523821fdaa3c6ca9",
+    "concept-6a732b2cea18daca48e5",
+    "concept-2ea83916f9502200dc07",
+    "concept-d4cab05c7c971a9cbe51",
+    "concept-867c058df26b704d001d",
+    "concept-83fc5b606a95cb63971f",
+    "concept-9ef47d2b7dcb17040abf",
+    "concept-e06c858d8795720535e9",
+    "concept-dcde3b025ffc4dff8fb2",
+    "concept-f8fbedb32cf33bb9e235",
+    "concept-94052170fb1db76d6aac",
+    "concept-d1adb61fad3055b92def",
+    "concept-0958aede4c8129b453ef",
+    "concept-7db9250266b16d2fecc9",
+    "concept-fa8cbb8955f61f2e401b",
+    "concept-15b4217ce75f60129565",
+    "concept-6e4c21efddd50f6d9abf",
+    "concept-4bc229876ebb3376c64a",
+    "concept-67258ee314126bb74b86",
+    "concept-9edc1dc60a6d75036d41",
+    "concept-81de66f2c8aa0bdae1b3",
+    "concept-42e392a65a34d744077b",
+    "concept-ee3eaa88f9cd87558824",
+    "concept-45f40391284ba9e4fe41",
+    "concept-3ab3fb9504aa11f0e3df",
+    "concept-f1086bd2bcf07a722ea6",
+    "concept-577222c747321e77ea19",
+    "concept-0a5673993b865a9066d3",
+    "concept-1deab48b47e58178b7bc",
+    "concept-1d13e935cea07d48ff05",
+    "concept-541026e0b3daa0dbd19c",
+    "concept-aa7b2fc5211f428a6400",
+    "concept-24aad3380177d480d5d4",
+    "concept-1c6c520cd75976285bd8",
+    "concept-75e047090ab2e1c53998",
+    "concept-8ea5f29da1d19fec498e",
+    "concept-66f2260c807ac0e04771",
+    "concept-97a5b65a7d00f74c0257",
+    "concept-413d05d6777130c18934",
+    "concept-9079a355a37cc4f50fb5",
+    "concept-be84053e95a4ad1b86e2",
+    "concept-86c959a9d4b41ced4c97",
+    "concept-6c139cf610adca592f61",
+    "concept-32f8b3b8add3b65aa072",
+    "concept-743b12009372b8a5ca7e",
+    "concept-bd954497ee6b8d586082",
+    "concept-80e4c51486aa019ca364",
+    "concept-075721c8669276224335",
+    "concept-ab043b29b14c7849c955",
+    "concept-6caabc7f625bab360f0c",
+    "concept-6cee02150ae582d933c3",
+    "concept-8a6e6bc22ae8affe4b4f",
+    "concept-37eff9a68d191761fe5b",
+    "concept-0191e9ce1be543f3c9ad",
+    "concept-02fc5e8f0fd0ad7114dd",
+    "concept-1d5fa9a2cd481ead62b2",
+    "concept-877555e91ba1b5732856",
+    "concept-991eddedc21b56f8d741",
+    "concept-36ddf6a1a563507150e0",
+    "concept-f642293ce4ccc1f3e318",
+    "concept-523657a93464c55d4cb6",
+    "concept-5c52e9e4ec6b54e0ed47",
+    "concept-91651f091df58695c87c",
+    "concept-da5683c4611ac00923b7",
+    "concept-de7ac64f7717482ad7b0",
+    "concept-e2a78e115786585dc7d6",
+    "concept-0a94f06d86e95c33743a",
+    "concept-8b45e0aacd6a04d413ec",
+    "concept-c67c17ecd7ae09316a50",
+    "concept-53f543dd3f919f607f2d",
+    "concept-e71895d016f11c528753",
+    "concept-f24c7ddf5761fda4dc18",
+    "concept-42c1805f1dcd6444d75b",
+    "concept-54f68cd08e31ac5c0dae",
+    "concept-59788b8c8551f52bd9b4",
+    "concept-ee6004a3c387aa5cde0d",
+    "concept-8cc6773d05d356794c48",
+    "concept-ce5c5e7e13b115c5357a",
+    "concept-4133389afedf0798fc4a",
+    "concept-b045248f3ac5e2240b0b",
+    "concept-665eeed8531a9a786836",
+    "concept-c9f25112d4ecc6078856",
+    "concept-bd8c971f3f7f2713bcf0",
+    "concept-af7d99735e2edc590abd",
+    "concept-73abb3e76248da2c2278",
+    "concept-849572b11dfd4846b259",
+    "concept-46abdac20967c7c170bd",
+    "concept-e3ccbcba6d22b2d18dce",
+    "concept-da397fb0c91781029788",
+    "concept-5eb6b9ae17e1de3674ca",
+    "concept-a01521297c09ce177b26",
+    "concept-93e4fe403a629758b445",
+    "concept-33c3fb1119d52f9ad531",
+    "concept-01e114c5addeb69cffba",
+    "concept-15a0ddb8739d24760df8",
+    "concept-c09043410318e60241cb",
+    "concept-8ef7145e6883f2cf4f01",
+    "concept-68da7420b282918f08b8",
+    "concept-82a812dbbcb86340f588",
+    "concept-d30c2d9ca946a62eddbb",
+    "concept-55fdd6596b4cd6720a78",
+    "concept-dc98b44a58dd43bcc5e5",
+    "concept-2f1611c952a55d1d1cdc",
+    "concept-77958647bc3e3fc730d5",
+    "concept-cc13f4e7a94e2b0b1f53",
+    "concept-27002d7465ad473ca906",
+    "concept-5777b42f02adec9223e9",
+    "concept-e6e802e06b2cc95fddc9",
+    "concept-c564be7b44ac232c51d8",
+    "concept-9691c42bf3bb89113773",
+    "concept-7e4f80846b7358964801",
+    "concept-f6c746980ca85873e0aa",
+    "concept-0cacbb76e8080b6da284",
+    "concept-b025e42033eafd388d73",
+    "concept-270dbc9ec55a81521199",
+    "concept-e025880fcfdec9098591",
+    "concept-3cb39e93dfcc3168737b",
+    "concept-9b89a614bf6ffd9f8c7c",
+    "concept-9db95e416ff8dd564b9e",
+    "concept-a6ec4d340f4f9a20ae23",
+    "concept-c0fbb70387c4923a9ce2",
+    "concept-ffa9d0ca61c5ab8b9ebf",
+    "concept-d669ee384a8bdaf4449c",
+    "concept-1151c4954d72b68994ec",
+    "concept-6498695be90ac8a9d329",
+    "concept-959950354a05ba584c39",
+    "concept-b4c37354cd6ebbb466ed",
+    "concept-aeff1475798df6ae1d88",
+    "concept-75ebb9ea3f52ff35eb65",
+    "concept-db99f490e6033b0630a0",
+    "concept-85b8b561dd5954e4280e",
+    "concept-69334737465a7358ea85",
+    "concept-dbc4756cb5da231f0290",
+    "concept-5b06f2a128787a9cc721",
+    "concept-be97233cd8ba62570dc0",
+    "concept-d9dd102641a55bb9bf52",
+    "concept-66ee4d29bc79848f207d",
+    "concept-041bc48060a7a9a4e057",
+    "concept-f1d06c1c83f74e496427",
+    "concept-9d7478cff9e260b8ec4a",
+    "concept-56ca21a8cb70daa68ce8",
+    "concept-1527e3822b0ae0ebe5c8",
+    "concept-7221ea78ff98d059f489",
+    "concept-7a1277206edbbbb3bf83",
+    "concept-df51d7d72e453e65d8a0",
+    "concept-32895905c8fe5eb1f036",
+    "concept-31092712392c2f6f1bc6",
+    "concept-0f5418a1493e7ca1f384",
+    "concept-3b3272615a140c929044",
+    "concept-fcac32e1c6857e57b94c",
+    "concept-084c2feadb8ef58dd463",
+    "concept-a1c1d0f8b3a453516cf7",
+    "concept-51173efd2abebc48db89",
+    "concept-e47066096c0efd19fe66",
+    "concept-86cb7abcc3734dcc03b8",
+    "concept-681d44f8748758af604a",
+    "concept-73a46b185383dac57858",
+    "concept-d8727febff7858cc27bd",
+    "concept-c04a02d063c5aebb1559",
+    "concept-4b064d7d75cd1c2c490c",
+    "concept-cd1b382760dcd666f803",
+    "concept-0fd6933b8997292f95db",
+    "concept-9cbba1d4dea85dab0fd7",
+    "concept-3e815238b180bdce12e2",
+    "concept-5633975a189a89537c03",
+    "concept-6fafed32759168e9e505",
+    "concept-d4e5b6a305db31c7ca11",
+    "concept-ac44714fc33b9fe555d3",
+    "concept-6a0c95a12cfc4e258bc1",
+    "concept-bb98a5ff7f512ff972ca",
+    "concept-277d85557c33d27dce1f",
+    "concept-35042e555f8e0a205782",
+    "concept-e1b409f7bfdc6edadab2",
+    "concept-2b5274d02da9e00576e3",
+    "concept-e07f11e21f808bb1a5de",
+    "concept-f13b00339a9b6b0f27f5",
+    "concept-9277e43896fd81982884",
+    "concept-0ea3f272171212c42967",
+    "concept-6692e142ed459003a282",
+    "concept-721eaf0c58aff7389351",
+    "concept-3713968d761d524b87f1",
+    "concept-be72756205165ba47f69",
+    "concept-9d814f04d25897a97835",
+    "concept-62b6c8ea3eadb1d1bc1a",
+    "concept-62fcefe5ffc09437dc87",
+    "concept-a90916b39b371a88999d",
+    "concept-1cd59e324a2a1d76691a",
+    "concept-59071c4df6cc3829fbdc",
+    "concept-f2543bc747766163a71f",
+    "concept-e06a75f9106cf0608a83",
+    "concept-29d90a2d4e64761bc400"
+  ],
+  "reviewedPreviousIds": [
+    "concept-d877b8085dd09e2560bf",
+    "concept-9694de6c2f32a9c5cf26",
+    "concept-348a152ceeafe1d3e555",
+    "concept-d6f1c4395d4a73af4ed8",
+    "concept-c16a1485948acc712ee1",
+    "concept-e37ad6253fbafe3e37a0",
+    "concept-0455afbdb7f0824f6163",
+    "concept-18b43e05ac48c36aff49",
+    "concept-14e9ffb37e2c6fab1399",
+    "concept-61fe12e21c892a20458f",
+    "concept-f03131b21e332c1f53e2",
+    "concept-c5cbf3dbc652a217da1c",
+    "concept-6818b3bbe66d8d607656",
+    "concept-36ca9904f447c9e7dbbf",
+    "concept-529d30cb538558d7d848",
+    "concept-15f4e90b020f71bc6002",
+    "concept-cdd46c8ee62f27cb84d0",
+    "concept-88462718bdd432486b56",
+    "concept-9b3473f738e0982620db",
+    "concept-e2d3b3a0f65e091b98bc",
+    "concept-ed2d9e9fa6fed08d8717",
+    "concept-493135cf9a42b4ad7a1b",
+    "concept-19bd5a67be2b0fe1563c",
+    "concept-618190eafeea7fac7739",
+    "concept-63bc94d425515a1ce80f",
+    "concept-2ad692c96c91fd638e51",
+    "concept-3c3bb29dff67c0a1c8e1",
+    "concept-5e895aa533018a43f0fd",
+    "concept-cebbf6ab8dce0ab1eff9",
+    "concept-a91b3de58924f43e0a64",
+    "concept-ff986f6c528d868ee42d",
+    "concept-3e7e3c179274f87ab8ba",
+    "concept-f683e7247bed60d78a53",
+    "concept-22a6ccec6baed9691d66",
+    "concept-993b87d8f1cada58655c",
+    "concept-72ac8b518fb6fb77307f",
+    "concept-35d23a75cf37a0466077",
+    "concept-fafafcff7f89ca65d161",
+    "concept-327297ed0d4ff44791bb",
+    "concept-1dca3bf545b91156957d",
+    "concept-78576e3f4c5004ea17d0",
+    "concept-0f23cb0dd8b5164e0f29",
+    "concept-0bceeaccd69be1b9a11b",
+    "concept-348f24b4e38874ae6260",
+    "concept-457399606cb1e6134d19",
+    "concept-9ee032f57783a9779c82",
+    "concept-a3e35226e2f3cac23660",
+    "concept-7cdb4f13a5a430b113a2",
+    "concept-3d8ad88ae9197ec4ad76",
+    "concept-c9a59aeda2a200f16ac1",
+    "concept-b975b7e913aa2b5cdcd5",
+    "concept-c0f11c6e1ba892c18f0a",
+    "concept-14ce76f42c0882daa25a",
+    "concept-fde59384b4979950fb67",
+    "concept-ce57337014ee04d63b11",
+    "concept-edff21a12734cc65f528",
+    "concept-48aed35149c7f55fa10e",
+    "concept-b01b2320add759798209",
+    "concept-a6d0c3a80087bdcb5458",
+    "concept-ceb637e72762e78a0ba6",
+    "concept-fbb38e2dd64dad61716f",
+    "concept-c2295382ff12d80900e9",
+    "concept-b584a9f0dcb5d344b5cb",
+    "concept-c2940f04e718ef77ed26",
+    "concept-a1296fb93e27bd5839ed",
+    "concept-d9a2ee9feb0e91156f44",
+    "concept-4ce670dd62c9e013b442",
+    "concept-1f5997db106d99218895",
+    "concept-32cba1a7f043f247b63c",
+    "concept-1f4dc43143b18234123c",
+    "concept-042635a006089828634d",
+    "concept-a7081e4e909b65ed94c6",
+    "concept-b288eff1cdfab5a2f327",
+    "concept-520db0e01184426e1aa9",
+    "concept-364b8b3819861dbf44fa",
+    "concept-329d548ac3729e9e8e0f",
+    "concept-72cbb819302f0008d215",
+    "concept-1fa3b36099feca1667f6",
+    "concept-0e2b35c15194cd59f505",
+    "concept-ba2252ea5fe750a1c4f7",
+    "concept-6e5221d4a65b027b0a8a",
+    "concept-71d081be6c2ff70f5bf5",
+    "concept-6e4c16b172bb04fe07f9",
+    "concept-0cab630c632e0916e506",
+    "concept-286799ca6cbc8757c380",
+    "concept-43cf426c95a411a7a3b8",
+    "concept-4b849362f67b024e2ebe",
+    "concept-2affb96d1444ae146a33",
+    "concept-8654be3fe312e8bc286d",
+    "concept-34b7fc9c80e83e4e3be8",
+    "concept-a9970920867343aca0e7",
+    "concept-19fa529c585d0c3cde69",
+    "concept-d7a62b0ba65faa71080e",
+    "concept-1a43038494e0819a156a",
+    "concept-3595e35bcf01e53abf24",
+    "concept-2139336b8c8bb3dac5c0",
+    "concept-554aaaeed96384cfb41b",
+    "concept-505d19825eefdc6a3b29",
+    "concept-7c6f58900f17f34f90f9",
+    "concept-3d7dcb62b9aca9cfefc2",
+    "concept-41fae9c504b1025f98c3",
+    "concept-31aa4794d6df08194e1f",
+    "concept-4692a84705bba94c9c54",
+    "concept-77ac39d7b0f0ea3900e3",
+    "concept-48ea13a77698220f5cc0",
+    "concept-985611a6b5e9f06b462a",
+    "concept-ddc62acabb79b4a4222b",
+    "concept-14b2299a97883d5bec07",
+    "concept-b41094e7c00b0f5cca50",
+    "concept-5b5daf91ecd13c309b2a",
+    "concept-e7d47896f718e27188c8",
+    "concept-a10e6ce951d0ecd04a5a",
+    "concept-951f9d0adde52499d8c8",
+    "concept-61930c9c6196e852ae60",
+    "concept-c04c83fac0217b8f4553",
+    "concept-692760e564bf2f63929a",
+    "concept-e14d8affff6ee27fcc2a",
+    "concept-1637177445e34d918649",
+    "concept-f0d281b4db35e83c49c4",
+    "concept-9bdb34787c954c012c69",
+    "concept-ba5121a0da0b3bb5c78e",
+    "concept-30e8836abec92db26cb9",
+    "concept-94e6c38c5ca696e4f669",
+    "concept-4255f0cfbbb8149ecf93",
+    "concept-da2631abe2338dac3ba5",
+    "concept-bcdfa16554b5ab4bcfb5",
+    "concept-467258a3f45cef0a36a4",
+    "concept-f1ce62445496d49b895a",
+    "concept-e2da3c273b2650b86fba",
+    "concept-76e5dead1199add76b31",
+    "concept-061af0bda51de485e815",
+    "concept-68e47769da1ef5e87055",
+    "concept-9db6cf6371c8fd3ea411",
+    "concept-67928b76456eabca26b4",
+    "concept-296a08494700eb78237c",
+    "concept-18fe2820ae2a62c7eded",
+    "concept-3c89e653677f93247e9d",
+    "concept-dbe46848b41a9947b48c",
+    "concept-d99cdc57f432b88b2ec2",
+    "concept-dbec315864fc0cd4fea7",
+    "concept-384ee6477a8130602abd",
+    "concept-fe7f00bd2ad0f2d61ce0",
+    "concept-9256df81d8ccfe953ee9",
+    "concept-02db261e6ee153d22da1",
+    "concept-93f4cbe1ff959781eaa9",
+    "concept-1771061736a1d4903abd",
+    "concept-8ab285128ebfd6efd3fe",
+    "concept-5166805dfed2f9300cc3",
+    "concept-393a1fe4dfad88f9d19f",
+    "concept-c610a26680560d78c073",
+    "concept-9c07a1565bcd746a16e8",
+    "concept-6eb2f3ef4034e6ea9624",
+    "concept-b43ec009cb5ad44bd8d8",
+    "concept-35a1b2350a2c0024321f",
+    "concept-35aa5e87d5bd137d8365",
+    "concept-dc00574edce189fb880b",
+    "concept-b5359ac449c664b66686",
+    "concept-ebb8830e11cfc1901b15",
+    "concept-934eabee570b2f825391",
+    "concept-ba3e801c236e598db22e",
+    "concept-2a2fa10b08f4f66e660a",
+    "concept-c643d71777b613fb7e1e",
+    "concept-b21fbb8e1e9852dc017f",
+    "concept-abc41f3f96a7d848d070",
+    "concept-52897ec85e7ee5d609e4",
+    "concept-b865cba91b9a81851b6d",
+    "concept-6b244ebc332f492dd2b1",
+    "concept-08a38d4a682dfaa719c2",
+    "concept-43672716d9b1d5be4253",
+    "concept-a944382559f5556edbee",
+    "concept-a9ad4deade16d15dae8e",
+    "concept-4ecce383ae35f3a9aabc",
+    "concept-612dda414381e08cd506",
+    "concept-befaf39e63a46c8eea47",
+    "concept-ea426af13b847967d0f8",
+    "concept-888eed0cc858d041b3da",
+    "concept-9aa0a4c8d130b2d88b37",
+    "concept-5a1dc26405c10e295b6b",
+    "concept-463a0e5570984c9bc0e7",
+    "concept-8139f8a50522e195e0a4",
+    "concept-f5c20945d3ab0fb165a9",
+    "concept-4b252d81006160e5d51f",
+    "concept-a58821e8235fafccfca4",
+    "concept-618dc5ea02989ec48388",
+    "concept-dfbafc01bf7ceef318ab",
+    "concept-4bb517b015fc627a7ac7",
+    "concept-ab8e138af339f70f1676",
+    "concept-e36330ef0b8ce9544691",
+    "concept-b4187ccca8228be06d89",
+    "concept-4a43a0b85a2aa790c295",
+    "concept-0d51fabf4da034260f6a",
+    "concept-63b78c2a2a50d2ebaf2c",
+    "concept-b45d62ac33b12e50a52c",
+    "concept-3b1a9c0d045e76438c9c",
+    "concept-bb609d2a971672a85279",
+    "concept-543af2e704624fd10d1d",
+    "concept-650d304da72392368475",
+    "concept-8886705b82051d07cfd5",
+    "concept-79bf85cb757614b55c95",
+    "concept-a685d7526bc8cdf75b28",
+    "concept-d63917ceccf8e33229c0",
+    "concept-8c667a61565a2f9664af",
+    "concept-94f85168e2fb36f1ae3e",
+    "concept-338954e72ac076737c33",
+    "concept-22b64f968f960291c399",
+    "concept-20c62cb020ecfb19d541",
+    "concept-b35696c775c907eab16e",
+    "concept-dbef4a7062712e44e704",
+    "concept-490e5ac43fc934dbad96",
+    "concept-c3897b1c293c2199c65c",
+    "concept-0a1724ad531cf7d8e1e1",
+    "concept-7ce74e4f42abb8eae03d",
+    "concept-0d2ea544c5827b80f27d",
+    "concept-e7378c7cc9162f136bf4",
+    "concept-09e375b9e8f67e77e592",
+    "concept-35c8ca0c9df1d1e3c3b9",
+    "concept-c41ef90edae59caf40e0",
+    "concept-ad70999884a56f562bf1",
+    "concept-6b059bec8cf0706378f6",
+    "concept-b794042dd398ecb072b7",
+    "concept-37c1516cd2796044d6dd",
+    "concept-68d26998787165a44f81",
+    "concept-798a0f32ea1205fb5d8e",
+    "concept-ff8505f9fba48c4a1e97",
+    "concept-7e7f7f8183cffeb26d68",
+    "concept-73487b536e24cae6391d",
+    "concept-97bfd6c06984bbf345bd",
+    "concept-13d2d437cb2ab64af445",
+    "concept-038e6e14d367843e2a1c",
+    "concept-6a0c52b7a7a5589a874f",
+    "concept-9322735e644ba553e413",
+    "concept-1d26eeb68dde5f214ca3",
+    "concept-a63a48de2a7a8b5e512c",
+    "concept-bb04e76ae5e8417920ac",
+    "concept-f9f77c2a98018ee19d64",
+    "concept-e7e22ddbfe2f0a5929a8",
+    "concept-1c382fbc795f17f9e08b",
+    "concept-f3ad50da920ac8694282",
+    "concept-fdedab589d3dd36709a7",
+    "concept-e913f19018041a1ddad0",
+    "concept-4c74cace7c8baad168e6",
+    "concept-b17e8b18a72cbc956591",
+    "concept-387d87b6b4adf5054500",
+    "concept-66ab46f65e21c0ab35ce",
+    "concept-7dc97b4f1c57f84cc749",
+    "concept-aaf4adebf14d896d20c9",
+    "concept-4d4bccf9b594885e92b9",
+    "concept-ed4e359d0726bb433899",
+    "concept-4a0bd2dddf36454c00cc",
+    "concept-1ba4aa1c812ca81a14e0",
+    "concept-470b3d0e095d351918b4",
+    "concept-31edf9e91bf679c3418c",
+    "concept-cc947b1dbe9512fb32b7",
+    "concept-7a6edbb7d4c054aa2877",
+    "concept-1437eada46a144f23c91",
+    "concept-0bc296919c3a8e1ce818",
+    "concept-9dd46ef0bd2961917eeb",
+    "concept-1f2e7ead3434abb6c7b8",
+    "concept-35826bdad7ea34fa4db9",
+    "concept-2708d493ba5e259c4ff5",
+    "concept-7568a36939db293536df",
+    "concept-717950484be5e0b36d3a",
+    "concept-129c5f20a309a66cd795",
+    "concept-3fe54e2f624f273022fd",
+    "concept-bfa0055a9909cf9a57bd",
+    "concept-45f9559663bd30adc3fb",
+    "concept-33b69fb181bedc0c0460",
+    "concept-13ab0ebe5eb0519a3486",
+    "concept-4cf60470cd98abe794f0",
+    "concept-35488272335e7a1db1f6",
+    "concept-a041d9101521d1e9573a",
+    "concept-c59b4acedbfe0b817c91",
+    "concept-e9f0c479710c62ad10cb",
+    "concept-38269401fa3cbe64996b",
+    "concept-5be9452e3887762af319",
+    "concept-47e3842dcf7f71c8279f",
+    "concept-6d8765498792e5ef4663",
+    "concept-8099da99594b3f93924c",
+    "concept-714f7acc222f17092571",
+    "concept-2049f4932339af603fa9",
+    "concept-6726954314a3cd91cd8f",
+    "concept-965b8080ce69a1b55251",
+    "concept-d9618c52e2b16c3b1384",
+    "concept-6a90319acddc4e05c880",
+    "concept-7a8a194da7717b673c29",
+    "concept-a3b3626c8e12c6109ac3",
+    "concept-bd5a43fea3017f85f4e7",
+    "concept-645abab36d354c69258a",
+    "concept-b895e87f127e08de8aad",
+    "concept-7a1f512a30f8f3f61a4f",
+    "concept-6ad5633e8e829167d878",
+    "concept-958dc1e07432559aa0a2",
+    "concept-d4753e90c1c9ee3dac4e",
+    "concept-d25510ba2c1568dcb45f",
+    "concept-9136314a405a27598763",
+    "concept-73dc99915d2139e9bb24",
+    "concept-0342e35f1f177bc33d84",
+    "concept-f506aa8ca40447ae7169",
+    "concept-326c72e9eda5a74b97b0",
+    "concept-cf9f7dead5b1cdb9170d",
+    "concept-4c4f6f26bf4ba6ce6e6b",
+    "concept-85ee1da9d03026966e38",
+    "concept-a1e9432f68a65bd59ffa",
+    "concept-31cc9831f09cb37962c7",
+    "concept-9f71de82425ae4549948",
+    "concept-b97838d184782aef9d2d",
+    "concept-79b98f9862e5dda0de20",
+    "concept-62df1b03838a7effdea0",
+    "concept-6dc0d97a1e77880baaf5",
+    "concept-6ff1133342d6af0c6acc",
+    "concept-c2bc5f5425435ef4acd0",
+    "concept-914f9bda09d510220500",
+    "concept-d5242af15562f18f536c",
+    "concept-66ad985ca5b9f11453cf",
+    "concept-8afc743735333370daba",
+    "concept-c8938d59fd07146557b8",
+    "concept-c368624817d6aeeea462",
+    "concept-103831ee1d82a449c666",
+    "concept-920f30eda6ece9b8e945",
+    "concept-1d6e0f64d1306022736a",
+    "concept-4b3de4df6b8b953d7702",
+    "concept-b6ba59a6b77f8d05647d",
+    "concept-a1c092dd4621c619d141",
+    "concept-e0df9baf2158b8f0edbe",
+    "concept-5541343cd238254f9728",
+    "concept-7a16df39f6416f31aac2",
+    "concept-a19ad59c61bfd455ffe7",
+    "concept-5b903b50b83114220901",
+    "concept-00a77fed65115d56b7b4",
+    "concept-0c330d84813fea70096a",
+    "concept-498b0f8797ce21bec7dd",
+    "concept-fba740044b180be6c962",
+    "concept-f16bf4e44f50360610ee",
+    "concept-770fb769bf07cf31fb02",
+    "concept-25f48fe82dd657883112",
+    "concept-03174d5dd8bb15f196bf",
+    "concept-694625b78f32d1e19cde",
+    "concept-99a46b75408ac9ba3b02",
+    "concept-044ad514e93b02e078df",
+    "concept-3b506868ff0c5cc16513",
+    "concept-6529a9e90db6afccb1ed",
+    "concept-dc8e24e2dd2a0e489f65",
+    "concept-5ad5bde56339201192f7",
+    "concept-51047232d576f40f9d1e",
+    "concept-079930f65b17a78da6c0",
+    "concept-5630cd25e5af861080ec",
+    "concept-45eab72caa0c6c4582cf",
+    "concept-2ae63c569db411548031",
+    "concept-6a5ede59509ecc0bd044",
+    "concept-e00bbe722af9d238cab8",
+    "concept-27be3181f1f78f5c1253",
+    "concept-9c058bc7e8937e0d322f",
+    "concept-2e7628505a6eb7ef3a48",
+    "concept-a2934ac77804cbaec4f0",
+    "concept-e890c8c6cf368d79cb08",
+    "concept-7170b50e3c7411deba2f",
+    "concept-b2d68312cd68b26b8170",
+    "concept-45aeb2aa773a58de3000",
+    "concept-5437d1fc01449116cfba",
+    "concept-343b283eca50936e1c9a",
+    "concept-79d78105f4ce624b627f",
+    "concept-85346d3ab8b1c3f34a4c",
+    "concept-a4d110093e3e1e9b22f7",
+    "concept-4c97936b5f4fdb51191f",
+    "concept-dad46615aca60c48c31f",
+    "concept-593f53c00092cb598ba5",
+    "concept-cd64d92c9ae619a0213b",
+    "concept-3b661e875ea346292ecf",
+    "concept-3d96190e14a3508b3df8",
+    "concept-f757d3243b99e1e13676",
+    "concept-5829a398818cddbcaa55",
+    "concept-76b3595c4795c4439e81",
+    "concept-98524805e470cad5cece",
+    "concept-11b6b4887dbef68e9c4b",
+    "concept-f782d128c5abc83bbfc8",
+    "concept-9eb540ecccb085e34be0",
+    "concept-1e4aefe79e97c392c04f",
+    "concept-5c8386aba54e32befe3a",
+    "concept-b0744827b7412a208351",
+    "concept-57198ebdc2a059d29a12",
+    "concept-4541278d483b8cf3c3d3",
+    "concept-62f9b89d15eec299f5b0",
+    "concept-e2ab66856877e5495f8d",
+    "concept-1aaafd68d72ca1da0b6f",
+    "concept-3ead69c1aaf4847948e4",
+    "concept-854a00c31e176f704da0",
+    "concept-f8f6f6b98c71554c21dd",
+    "concept-462251a8d96c95e9d6cf",
+    "concept-faace8518dceff329dbf",
+    "concept-99f43819d7387fb13a33",
+    "concept-dd71a9cbf23eeec7e1d2",
+    "concept-24cafb2e260c7ec63c1b",
+    "concept-93c6a9ceecc38f019d7b",
+    "concept-d49adbf9e2f154f2c920",
+    "concept-10ec5931851592fcd0bc",
+    "concept-9eec0b940aa11a702539",
+    "concept-f861feef02b266afe637",
+    "concept-7b1ed50619b351a7d78e",
+    "concept-94b11738f8ce210143d3",
+    "concept-875e46e60af0ebb96f5b",
+    "concept-3deca6a56310b9430cff",
+    "concept-db176c1682aa87d7ace7",
+    "concept-87e8dcfffea0da761026",
+    "concept-8d0bf5186e8cf0bcd622",
+    "concept-949ec78008b5b257c6a1",
+    "concept-ad2e523821fdaa3c6ca9",
+    "concept-7098f5c67f8f105a49ed",
+    "concept-6a732b2cea18daca48e5",
+    "concept-2ea83916f9502200dc07",
+    "concept-d4cab05c7c971a9cbe51",
+    "concept-867c058df26b704d001d",
+    "concept-83fc5b606a95cb63971f",
+    "concept-9ef47d2b7dcb17040abf",
+    "concept-e06c858d8795720535e9",
+    "concept-dcde3b025ffc4dff8fb2",
+    "concept-3ce2186eb4a5b37736f0",
+    "concept-f8fbedb32cf33bb9e235",
+    "concept-94052170fb1db76d6aac",
+    "concept-d1adb61fad3055b92def",
+    "concept-0958aede4c8129b453ef",
+    "concept-7db9250266b16d2fecc9",
+    "concept-fa8cbb8955f61f2e401b",
+    "concept-15b4217ce75f60129565",
+    "concept-6e4c21efddd50f6d9abf",
+    "concept-4bc229876ebb3376c64a",
+    "concept-9383e4edb415321b207d",
+    "concept-67258ee314126bb74b86",
+    "concept-9edc1dc60a6d75036d41",
+    "concept-81de66f2c8aa0bdae1b3",
+    "concept-42e392a65a34d744077b",
+    "concept-ee3eaa88f9cd87558824",
+    "concept-45f40391284ba9e4fe41",
+    "concept-3ab3fb9504aa11f0e3df",
+    "concept-f1086bd2bcf07a722ea6",
+    "concept-577222c747321e77ea19",
+    "concept-0a5673993b865a9066d3",
+    "concept-1deab48b47e58178b7bc",
+    "concept-1d13e935cea07d48ff05",
+    "concept-541026e0b3daa0dbd19c",
+    "concept-859a41a65edf977f18f7",
+    "concept-e7788a25e03ca914c6a5",
+    "concept-aa7b2fc5211f428a6400",
+    "concept-24aad3380177d480d5d4",
+    "concept-aaa6d261af7b1e812fc5",
+    "concept-1c6c520cd75976285bd8",
+    "concept-75e047090ab2e1c53998",
+    "concept-8ea5f29da1d19fec498e",
+    "concept-66f2260c807ac0e04771",
+    "concept-97a5b65a7d00f74c0257",
+    "concept-413d05d6777130c18934",
+    "concept-9079a355a37cc4f50fb5",
+    "concept-be84053e95a4ad1b86e2",
+    "concept-86c959a9d4b41ced4c97",
+    "concept-6c139cf610adca592f61",
+    "concept-32f8b3b8add3b65aa072",
+    "concept-67a22071438905f2de8c",
+    "concept-2268ee31663fb19c367c",
+    "concept-743b12009372b8a5ca7e",
+    "concept-bd954497ee6b8d586082",
+    "concept-80e4c51486aa019ca364",
+    "concept-075721c8669276224335",
+    "concept-ab043b29b14c7849c955",
+    "concept-6caabc7f625bab360f0c",
+    "concept-6cee02150ae582d933c3",
+    "concept-8a6e6bc22ae8affe4b4f",
+    "concept-37eff9a68d191761fe5b",
+    "concept-0191e9ce1be543f3c9ad",
+    "concept-0ad25f2a151cf39f5480",
+    "concept-02fc5e8f0fd0ad7114dd",
+    "concept-1d5fa9a2cd481ead62b2",
+    "concept-ccf06eeefcb62fed7cf4",
+    "concept-049ada398ce5e0c14068",
+    "concept-877555e91ba1b5732856",
+    "concept-991eddedc21b56f8d741",
+    "concept-36ddf6a1a563507150e0",
+    "concept-f642293ce4ccc1f3e318",
+    "concept-523657a93464c55d4cb6",
+    "concept-5c52e9e4ec6b54e0ed47",
+    "concept-91651f091df58695c87c",
+    "concept-da5683c4611ac00923b7",
+    "concept-de7ac64f7717482ad7b0",
+    "concept-e2a78e115786585dc7d6",
+    "concept-7044cfde16c5e346ff9f",
+    "concept-0a94f06d86e95c33743a",
+    "concept-8b45e0aacd6a04d413ec",
+    "concept-c67c17ecd7ae09316a50",
+    "concept-53f543dd3f919f607f2d",
+    "concept-e71895d016f11c528753",
+    "concept-f24c7ddf5761fda4dc18",
+    "concept-42c1805f1dcd6444d75b",
+    "concept-54f68cd08e31ac5c0dae",
+    "concept-59788b8c8551f52bd9b4",
+    "concept-ee6004a3c387aa5cde0d",
+    "concept-8cc6773d05d356794c48",
+    "concept-ce5c5e7e13b115c5357a",
+    "concept-5d692d4951e1384185f1",
+    "concept-4133389afedf0798fc4a",
+    "concept-9e7b339b64a554c9f27a",
+    "concept-b045248f3ac5e2240b0b",
+    "concept-665eeed8531a9a786836",
+    "concept-2f89342af1b3161d0038",
+    "concept-c9f25112d4ecc6078856",
+    "concept-bd8c971f3f7f2713bcf0",
+    "concept-af7d99735e2edc590abd",
+    "concept-73abb3e76248da2c2278",
+    "concept-849572b11dfd4846b259",
+    "concept-46abdac20967c7c170bd",
+    "concept-e3ccbcba6d22b2d18dce",
+    "concept-da397fb0c91781029788",
+    "concept-5eb6b9ae17e1de3674ca",
+    "concept-a01521297c09ce177b26",
+    "concept-4a21a4ec974849013b79",
+    "concept-93e4fe403a629758b445",
+    "concept-33c3fb1119d52f9ad531",
+    "concept-01e114c5addeb69cffba",
+    "concept-15a0ddb8739d24760df8",
+    "concept-c09043410318e60241cb",
+    "concept-0837af56629c082a9c5c",
+    "concept-8ef7145e6883f2cf4f01",
+    "concept-68da7420b282918f08b8",
+    "concept-82a812dbbcb86340f588",
+    "concept-d30c2d9ca946a62eddbb",
+    "concept-7efaf623f8adecc714e3",
+    "concept-55fdd6596b4cd6720a78",
+    "concept-dc98b44a58dd43bcc5e5",
+    "concept-2f1611c952a55d1d1cdc",
+    "concept-77958647bc3e3fc730d5",
+    "concept-cc13f4e7a94e2b0b1f53",
+    "concept-27002d7465ad473ca906",
+    "concept-5777b42f02adec9223e9",
+    "concept-e6e802e06b2cc95fddc9",
+    "concept-c564be7b44ac232c51d8",
+    "concept-9691c42bf3bb89113773",
+    "concept-7e4f80846b7358964801",
+    "concept-f6c746980ca85873e0aa",
+    "concept-0cacbb76e8080b6da284",
+    "concept-b025e42033eafd388d73",
+    "concept-270dbc9ec55a81521199",
+    "concept-52021904872f985aad92",
+    "concept-e025880fcfdec9098591",
+    "concept-3cb39e93dfcc3168737b",
+    "concept-9b89a614bf6ffd9f8c7c",
+    "concept-9db95e416ff8dd564b9e",
+    "concept-a6ec4d340f4f9a20ae23",
+    "concept-c0fbb70387c4923a9ce2",
+    "concept-ffa9d0ca61c5ab8b9ebf",
+    "concept-d669ee384a8bdaf4449c",
+    "concept-1151c4954d72b68994ec",
+    "concept-6498695be90ac8a9d329",
+    "concept-959950354a05ba584c39",
+    "concept-b4c37354cd6ebbb466ed",
+    "concept-aeff1475798df6ae1d88",
+    "concept-75ebb9ea3f52ff35eb65",
+    "concept-db99f490e6033b0630a0",
+    "concept-24a25423afa988f48629",
+    "concept-85b8b561dd5954e4280e",
+    "concept-69334737465a7358ea85",
+    "concept-dbc4756cb5da231f0290",
+    "concept-5b06f2a128787a9cc721",
+    "concept-e320bf0fc8a5bd213a6e",
+    "concept-be97233cd8ba62570dc0",
+    "concept-d9dd102641a55bb9bf52",
+    "concept-66ee4d29bc79848f207d",
+    "concept-041bc48060a7a9a4e057",
+    "concept-f1d06c1c83f74e496427",
+    "concept-9d7478cff9e260b8ec4a",
+    "concept-56ca21a8cb70daa68ce8",
+    "concept-4a745f76ea4e7c74db07",
+    "concept-1527e3822b0ae0ebe5c8",
+    "concept-7221ea78ff98d059f489",
+    "concept-7a1277206edbbbb3bf83",
+    "concept-d50946ef1558d77c17c5",
+    "concept-df51d7d72e453e65d8a0",
+    "concept-32895905c8fe5eb1f036",
+    "concept-9741816be0156197b8db",
+    "concept-e38df9f52da0796ecee5",
+    "concept-31092712392c2f6f1bc6",
+    "concept-0f5418a1493e7ca1f384",
+    "concept-3b3272615a140c929044",
+    "concept-fcac32e1c6857e57b94c",
+    "concept-084c2feadb8ef58dd463",
+    "concept-a1c1d0f8b3a453516cf7",
+    "concept-51173efd2abebc48db89",
+    "concept-e47066096c0efd19fe66",
+    "concept-86cb7abcc3734dcc03b8",
+    "concept-681d44f8748758af604a",
+    "concept-5190e659ae71a1a83d91",
+    "concept-73a46b185383dac57858",
+    "concept-d8727febff7858cc27bd",
+    "concept-c04a02d063c5aebb1559",
+    "concept-4b064d7d75cd1c2c490c",
+    "concept-cd1b382760dcd666f803",
+    "concept-0fd6933b8997292f95db",
+    "concept-9cbba1d4dea85dab0fd7",
+    "concept-3e815238b180bdce12e2",
+    "concept-fefd01e6091f9d440c3e",
+    "concept-163fbbdc97c8f8725f82",
+    "concept-5633975a189a89537c03",
+    "concept-6fafed32759168e9e505",
+    "concept-48a5bb1fea058a2218a1",
+    "concept-d4e5b6a305db31c7ca11",
+    "concept-fcfffcff1ab21e2b091f",
+    "concept-ac44714fc33b9fe555d3",
+    "concept-6a0c95a12cfc4e258bc1",
+    "concept-7dabbb935ea3fe680866",
+    "concept-e4af19d55d38f37da9ab",
+    "concept-bb98a5ff7f512ff972ca",
+    "concept-277d85557c33d27dce1f",
+    "concept-35042e555f8e0a205782",
+    "concept-28248a8c81ca77e34736",
+    "concept-e1b409f7bfdc6edadab2",
+    "concept-5938ec63975fca4579bf",
+    "concept-2b5274d02da9e00576e3",
+    "concept-e07f11e21f808bb1a5de",
+    "concept-f13b00339a9b6b0f27f5",
+    "concept-9277e43896fd81982884",
+    "concept-22082bc2ee89dcf97de8",
+    "concept-0ea3f272171212c42967",
+    "concept-a6a984201bb0418878da",
+    "concept-6692e142ed459003a282",
+    "concept-721eaf0c58aff7389351",
+    "concept-3713968d761d524b87f1",
+    "concept-be72756205165ba47f69",
+    "concept-9d814f04d25897a97835",
+    "concept-8fa2f11472e1c6a608c9",
+    "concept-62b6c8ea3eadb1d1bc1a",
+    "concept-62fcefe5ffc09437dc87",
+    "concept-a90916b39b371a88999d",
+    "concept-938d0db75ace2db4d71a",
+    "concept-1cd59e324a2a1d76691a",
+    "concept-59071c4df6cc3829fbdc",
+    "concept-f2543bc747766163a71f",
+    "concept-6d821f0bdd893907e733",
+    "concept-e06a75f9106cf0608a83",
+    "concept-29d90a2d4e64761bc400",
+    "concept-38f2f36860f03f8ef384"
+  ],
+  "reviewed": [
+    {
+      "previousId": "concept-d877b8085dd09e2560bf",
+      "term": "Server",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9694de6c2f32a9c5cf26",
+      "term": "Data Center",
+      "action": "corrected",
+      "newTerm": "Data Center",
+      "beforeAnswer": "מתקן פיזי שמאכלס שרתים, ציוד רשת ומערכות חשמל וקירור.",
+      "afterAnswer": "אזור פיזי שמכיל מספר רב של שרתים."
+    },
+    {
+      "previousId": "concept-348a152ceeafe1d3e555",
+      "term": "Serverless",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d6f1c4395d4a73af4ed8",
+      "term": "Cloud Computing",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c16a1485948acc712ee1",
+      "term": "Virtualization",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e37ad6253fbafe3e37a0",
+      "term": "CapEx",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0455afbdb7f0824f6163",
+      "term": "OpEx",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-18b43e05ac48c36aff49",
+      "term": "IaaS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-14e9ffb37e2c6fab1399",
+      "term": "PaaS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-61fe12e21c892a20458f",
+      "term": "SaaS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f03131b21e332c1f53e2",
+      "term": "Private Cloud",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c5cbf3dbc652a217da1c",
+      "term": "Public Cloud",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6818b3bbe66d8d607656",
+      "term": "Hybrid Cloud",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-36ca9904f447c9e7dbbf",
+      "term": "Community Cloud",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-529d30cb538558d7d848",
+      "term": "Latency",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-15f4e90b020f71bc6002",
+      "term": "Data Warehouse",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cdd46c8ee62f27cb84d0",
+      "term": "Shared Responsibility Model",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-88462718bdd432486b56",
+      "term": "Resource",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9b3473f738e0982620db",
+      "term": "Block Storage",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e2d3b3a0f65e091b98bc",
+      "term": "Decommissioning Data and Media",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ed2d9e9fa6fed08d8717",
+      "term": "ARN",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-493135cf9a42b4ad7a1b",
+      "term": "AWS SDK",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-19bd5a67be2b0fe1563c",
+      "term": "Drift",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-618190eafeea7fac7739",
+      "term": "AWS SDK for Go",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-63bc94d425515a1ce80f",
+      "term": "AWS CodeBuild",
+      "action": "corrected",
+      "newTerm": "AWS CodeBuild",
+      "beforeAnswer": "שירות שמריץ בנייה ובדיקות של קוד מקור ומפיק תוצרי תוכנה.",
+      "afterAnswer": "כלי CI של AWS לבנייה אוטומטית של תוכנה."
+    },
+    {
+      "previousId": "concept-2ad692c96c91fd638e51",
+      "term": "AWS CLI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3c3bb29dff67c0a1c8e1",
+      "term": "AWS Management Console",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5e895aa533018a43f0fd",
+      "term": "ClickOps",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cebbf6ab8dce0ab1eff9",
+      "term": "AWS Region",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a91b3de58924f43e0a64",
+      "term": "Availability Zone",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ff986f6c528d868ee42d",
+      "term": "Geographic Location",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3e7e3c179274f87ab8ba",
+      "term": "AWS Trust & Safety",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f683e7247bed60d78a53",
+      "term": "AWS Well-Architected Framework",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-22a6ccec6baed9691d66",
+      "term": "AWS Well-Architected Tool",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-993b87d8f1cada58655c",
+      "term": "API Call",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-72ac8b518fb6fb77307f",
+      "term": "Edge Security",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35d23a75cf37a0466077",
+      "term": "Automated Forensics Orchestrator",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fafafcff7f89ca65d161",
+      "term": "Landing Zone",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-327297ed0d4ff44791bb",
+      "term": "Management Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1dca3bf545b91156957d",
+      "term": "Shared Services",
+      "action": "corrected",
+      "newTerm": "Shared Services",
+      "beforeAnswer": "שירותים משותפים לכמה חשבונות או מערכות, כגון ספרייה, DNS וכלי תשתית.",
+      "afterAnswer": "חשבון שמרכז רכיבים ושירותים משותפים לכל החשבונות בארגון."
+    },
+    {
+      "previousId": "concept-78576e3f4c5004ea17d0",
+      "term": "Network Hub",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0f23cb0dd8b5164e0f29",
+      "term": "Preventive Guardrail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0bceeaccd69be1b9a11b",
+      "term": "Detective Guardrail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-348f24b4e38874ae6260",
+      "term": "Proactive Guardrail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-457399606cb1e6134d19",
+      "term": "Global Service",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9ee032f57783a9779c82",
+      "term": "Regional Service",
+      "action": "removed",
+      "reason": "המונח אינו מוגדר בסיכום; הוסק כהפך של Global Services.",
+      "sourceKey": "36"
+    },
+    {
+      "previousId": "concept-a3e35226e2f3cac23660",
+      "term": "Log Archive Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7cdb4f13a5a430b113a2",
+      "term": "Security Tooling Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3d8ad88ae9197ec4ad76",
+      "term": "Workload OUs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c9a59aeda2a200f16ac1",
+      "term": "AWS Security Reference Architecture",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b975b7e913aa2b5cdcd5",
+      "term": "AWS Audit Manager",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Audit Manager"
+    },
+    {
+      "previousId": "concept-c0f11c6e1ba892c18f0a",
+      "term": "AWS Security Incident Response",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Security Incident Response"
+    },
+    {
+      "previousId": "concept-14ce76f42c0882daa25a",
+      "term": "Amazon VPC Lattice",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon VPC Lattice"
+    },
+    {
+      "previousId": "concept-fde59384b4979950fb67",
+      "term": "Network Access Analyzer",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Network Access Analyzer"
+    },
+    {
+      "previousId": "concept-ce57337014ee04d63b11",
+      "term": "AWS Private CA",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Private CA"
+    },
+    {
+      "previousId": "concept-edff21a12734cc65f528",
+      "term": "Amazon Verified Permissions",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon Verified Permissions"
+    },
+    {
+      "previousId": "concept-48aed35149c7f55fa10e",
+      "term": "Amazon Security Lake",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:Amazon Security Lake"
+    },
+    {
+      "previousId": "concept-b01b2320add759798209",
+      "term": "AWS Security Hub CSPM",
+      "action": "removed",
+      "reason": "שם בלבד בתרשים SRA, ללא הגדרת תפקיד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "diagram:AWS Security Hub CSPM"
+    },
+    {
+      "previousId": "concept-a6d0c3a80087bdcb5458",
+      "term": "Security OU",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ceb637e72762e78a0ba6",
+      "term": "Infrastructure OU",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fbb38e2dd64dad61716f",
+      "term": "Network Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c2295382ff12d80900e9",
+      "term": "Shared Services Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b584a9f0dcb5d344b5cb",
+      "term": "Multi-Tier Architecture",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c2940f04e718ef77ed26",
+      "term": "Multi-AZ Architecture",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a1296fb93e27bd5839ed",
+      "term": "AWS Organizations",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d9a2ee9feb0e91156f44",
+      "term": "Organizations Root",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4ce670dd62c9e013b442",
+      "term": "Organizational Unit",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1f5997db106d99218895",
+      "term": "Member Account",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-32cba1a7f043f247b63c",
+      "term": "Delegated Administrator",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1f4dc43143b18234123c",
+      "term": "Consolidated Billing",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-042635a006089828634d",
+      "term": "All Features",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a7081e4e909b65ed94c6",
+      "term": "CloudFormation StackSets",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b288eff1cdfab5a2f327",
+      "term": "Service Control Policy — SCP",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-520db0e01184426e1aa9",
+      "term": "FullAWSAccess בתור SCP",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-364b8b3819861dbf44fa",
+      "term": "AWS Control Tower",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-329d548ac3729e9e8e0f",
+      "term": "Account Factory Customization",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-72cbb819302f0008d215",
+      "term": "IAM Identity Center",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1fa3b36099feca1667f6",
+      "term": "Permission Set",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0e2b35c15194cd59f505",
+      "term": "Transit Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ba2252ea5fe750a1c4f7",
+      "term": "Transitive Routing",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6e5221d4a65b027b0a8a",
+      "term": "Transit VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-71d081be6c2ff70f5bf5",
+      "term": "IAM",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6e4c16b172bb04fe07f9",
+      "term": "Access Key ID",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0cab630c632e0916e506",
+      "term": "Secret Access Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-286799ca6cbc8757c380",
+      "term": "Session Token",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-43cf426c95a411a7a3b8",
+      "term": "Temporary Security Credentials",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4b849362f67b024e2ebe",
+      "term": "Long-Term Access Keys",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2affb96d1444ae146a33",
+      "term": "Break-Glass Account",
+      "action": "removed",
+      "reason": "שם בלבד, ללא הגדרה בסיכום; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "69"
+    },
+    {
+      "previousId": "concept-8654be3fe312e8bc286d",
+      "term": "Access Key Rotation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-34b7fc9c80e83e4e3be8",
+      "term": "IAM Password Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a9970920867343aca0e7",
+      "term": "Explicit Deny",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-19fa529c585d0c3cde69",
+      "term": "Identity Provider",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d7a62b0ba65faa71080e",
+      "term": "Credential Report",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1a43038494e0819a156a",
+      "term": "IAM Access Analyzer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3595e35bcf01e53abf24",
+      "term": "External Access Analysis",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2139336b8c8bb3dac5c0",
+      "term": "Internal Access Analysis",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-554aaaeed96384cfb41b",
+      "term": "Unused Access Analysis",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-505d19825eefdc6a3b29",
+      "term": "Permissions Boundary",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7c6f58900f17f34f90f9",
+      "term": "External ID",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3d7dcb62b9aca9cfefc2",
+      "term": "Confused Deputy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-41fae9c504b1025f98c3",
+      "term": "Access Advisor",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-31aa4794d6df08194e1f",
+      "term": "Privilege Escalation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4692a84705bba94c9c54",
+      "term": "Credential Leakage",
+      "action": "removed",
+      "reason": "שם מושג שנוסף באנגלית במקום תיאור ההתקפה שבמקור; נושא ההתקפות נשמר עם Privilege Escalation.",
+      "sourceKey": "80"
+    },
+    {
+      "previousId": "concept-77ac39d7b0f0ea3900e3",
+      "term": "IAM Group",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-48ea13a77698220f5cc0",
+      "term": "IAM User",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-985611a6b5e9f06b462a",
+      "term": "Root User",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ddc62acabb79b4a4222b",
+      "term": "IAM Role",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-14b2299a97883d5bec07",
+      "term": "AssumeRole",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b41094e7c00b0f5cca50",
+      "term": "AWS STS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5b5daf91ecd13c309b2a",
+      "term": "Trusted Entities",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e7d47896f718e27188c8",
+      "term": "IAM Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a10e6ce951d0ecd04a5a",
+      "term": "Managed Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-951f9d0adde52499d8c8",
+      "term": "AWS-Managed Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-61930c9c6196e852ae60",
+      "term": "Customer-Managed Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c04c83fac0217b8f4553",
+      "term": "Inline Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-692760e564bf2f63929a",
+      "term": "Resource-Based Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e14d8affff6ee27fcc2a",
+      "term": "Trust Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1637177445e34d918649",
+      "term": "Principal",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f0d281b4db35e83c49c4",
+      "term": "Action במדיניות",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9bdb34787c954c012c69",
+      "term": "Resource במדיניות",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ba5121a0da0b3bb5c78e",
+      "term": "Condition במדיניות",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-30e8836abec92db26cb9",
+      "term": "Identity-Based Policy",
+      "action": "removed",
+      "reason": "שם חלופי שלא מופיע במקור וכופל את IAM Policy / Managed Policy.",
+      "sourceKey": "91"
+    },
+    {
+      "previousId": "concept-94e6c38c5ca696e4f669",
+      "term": "Policy Statement",
+      "action": "corrected",
+      "newTerm": "Statement",
+      "beforeAnswer": "בלוק במדיניות שמגדיר החלטת הרשאה, פעולות, משאבים ותנאים רלוונטיים.",
+      "afterAnswer": "בלוק במדיניות שמגדיר החלטת הרשאה, פעולות, משאבים ותנאים רלוונטיים."
+    },
+    {
+      "previousId": "concept-4255f0cfbbb8149ecf93",
+      "term": "Policy Effect",
+      "action": "corrected",
+      "newTerm": "Effect",
+      "beforeAnswer": "החלק בהצהרת מדיניות שקובע אם ההצהרה מאשרת פעולה או חוסמת אותה.",
+      "afterAnswer": "החלק בהצהרת מדיניות שקובע אם ההצהרה מאשרת פעולה או חוסמת אותה."
+    },
+    {
+      "previousId": "concept-da2631abe2338dac3ba5",
+      "term": "Policy Sid",
+      "action": "corrected",
+      "newTerm": "Sid",
+      "beforeAnswer": "מזהה תיאורי אופציונלי של הצהרה במסמך מדיניות.",
+      "afterAnswer": "שם תיאורי של Statement במדיניות."
+    },
+    {
+      "previousId": "concept-bcdfa16554b5ab4bcfb5",
+      "term": "Policy Version",
+      "action": "corrected",
+      "newTerm": "Version",
+      "beforeAnswer": "השדה שמציין את גרסת שפת המדיניות, ולא את גרסתו העסקית של המסמך.",
+      "afterAnswer": "השדה שמציין את גרסת שפת המדיניות, ולא את גרסתו העסקית של המסמך."
+    },
+    {
+      "previousId": "concept-467258a3f45cef0a36a4",
+      "term": "NotAction",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f1ce62445496d49b895a",
+      "term": "StringEquals Condition",
+      "action": "corrected",
+      "newTerm": "StringEquals",
+      "beforeAnswer": "תנאי מדיניות שמשווה ערך טקסט לערך נדרש.",
+      "afterAnswer": "תנאי מדיניות שמשווה ערך טקסט לערך נדרש."
+    },
+    {
+      "previousId": "concept-e2da3c273b2650b86fba",
+      "term": "Bool Condition",
+      "action": "corrected",
+      "newTerm": "Bool",
+      "beforeAnswer": "תנאי מדיניות שבודק אם ערך בוליאני תואם ל-true או ל-false שנדרשו.",
+      "afterAnswer": "תנאי מדיניות שבודק אם ערך בוליאני תואם ל-true או ל-false שנדרשו."
+    },
+    {
+      "previousId": "concept-76e5dead1199add76b31",
+      "term": "Policy Validation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-061af0bda51de485e815",
+      "term": "IAM Policy Simulator",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-68e47769da1ef5e87055",
+      "term": "AdministratorAccess",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9db6cf6371c8fd3ea411",
+      "term": "PowerUserAccess",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-67928b76456eabca26b4",
+      "term": "ReadOnlyAccess",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-296a08494700eb78237c",
+      "term": "Job Function Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-18fe2820ae2a62c7eded",
+      "term": "SecurityAudit",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3c89e653677f93247e9d",
+      "term": "IAMReadOnlyAccess",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dbe46848b41a9947b48c",
+      "term": "Amazon EC2",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d99cdc57f432b88b2ec2",
+      "term": "EC2 Instance",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dbec315864fc0cd4fea7",
+      "term": "EC2 Instance Connect",
+      "action": "corrected",
+      "newTerm": "EC2 Instance Connect",
+      "beforeAnswer": "יכולת חיבור למופע EC2 שמשלבת בקרת גישה של AWS ופרטי חיבור זמניים.",
+      "afterAnswer": "אפשרות להתחבר למופע EC2 דרך הדפדפן."
+    },
+    {
+      "previousId": "concept-384ee6477a8130602abd",
+      "term": "EC2 Serial Console",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fe7f00bd2ad0f2d61ce0",
+      "term": "AMI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9256df81d8ccfe953ee9",
+      "term": "Horizontal Scaling",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-02db261e6ee153d22da1",
+      "term": "Vertical Scaling",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-93f4cbe1ff959781eaa9",
+      "term": "Auto Scaling Group",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1771061736a1d4903abd",
+      "term": "Scale Out",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8ab285128ebfd6efd3fe",
+      "term": "Scale In",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5166805dfed2f9300cc3",
+      "term": "Launch Template",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-393a1fe4dfad88f9d19f",
+      "term": "Elastic IP",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c610a26680560d78c073",
+      "term": "EC2 Key Pair",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9c07a1565bcd746a16e8",
+      "term": "Instance Profile",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6eb2f3ef4034e6ea9624",
+      "term": "IMDS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b43ec009cb5ad44bd8d8",
+      "term": "IMDSv2",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35a1b2350a2c0024321f",
+      "term": "InstanceCredentialExfiltration",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35aa5e87d5bd137d8365",
+      "term": "Security Group",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dc00574edce189fb880b",
+      "term": "Data Lifecycle Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b5359ac449c664b66686",
+      "term": "EBS Snapshot",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ebb8830e11cfc1901b15",
+      "term": "EBS-Backed AMI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-934eabee570b2f825391",
+      "term": "Amazon EBS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ba3e801c236e598db22e",
+      "term": "Instance Store",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2a2fa10b08f4f66e660a",
+      "term": "Amazon EFS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c643d71777b613fb7e1e",
+      "term": "EC2 On-Demand",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b21fbb8e1e9852dc017f",
+      "term": "EC2 Spot",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-abc41f3f96a7d848d070",
+      "term": "Reserved Instances",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-52897ec85e7ee5d609e4",
+      "term": "Dedicated Host",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b865cba91b9a81851b6d",
+      "term": "Savings Plans",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6b244ebc332f492dd2b1",
+      "term": "On-Demand Capacity Reservation",
+      "action": "corrected",
+      "newTerm": "הזמנות קיבולת לפי דרישה",
+      "beforeAnswer": "שמירת קיבולת מחשוב זמינה ב-AZ למאפייני מופע מוגדרים, בנפרד מהתחייבות להנחת חיוב.",
+      "afterAnswer": "שמירת קיבולת מחשוב זמינה ב-AZ למאפייני מופע מוגדרים, בנפרד מהתחייבות להנחת חיוב."
+    },
+    {
+      "previousId": "concept-08a38d4a682dfaa719c2",
+      "term": "Interruptible Workload",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-43672716d9b1d5be4253",
+      "term": "Unpredictable Workload",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a944382559f5556edbee",
+      "term": "Root Device",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a9ad4deade16d15dae8e",
+      "term": "Quick Start AMIs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4ecce383ae35f3a9aabc",
+      "term": "My AMIs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-612dda414381e08cd506",
+      "term": "Marketplace AMIs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-befaf39e63a46c8eea47",
+      "term": "Community AMIs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ea426af13b847967d0f8",
+      "term": "Instance Type",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-888eed0cc858d041b3da",
+      "term": "Inbound Rules",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9aa0a4c8d130b2d88b37",
+      "term": "Outbound Rules",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5a1dc26405c10e295b6b",
+      "term": "AWS Lambda",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-463a0e5570984c9bc0e7",
+      "term": "Lambda Function",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8139f8a50522e195e0a4",
+      "term": "Secret",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f5c20945d3ab0fb165a9",
+      "term": "Lambda Execution Role",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4b252d81006160e5d51f",
+      "term": "Environment Variable",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a58821e8235fafccfca4",
+      "term": "Amazon S3",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-618dc5ea02989ec48388",
+      "term": "S3 Object",
+      "action": "corrected",
+      "newTerm": "S3 Object",
+      "beforeAnswer": "יחידת נתונים ב-S3 שמזוהה באמצעות Key וכוללת תוכן ומטא-נתונים.",
+      "afterAnswer": "אובייקט או קובץ שמאוחסן ב-S3."
+    },
+    {
+      "previousId": "concept-dfbafc01bf7ceef318ab",
+      "term": "S3 Bucket",
+      "action": "corrected",
+      "newTerm": "S3 Bucket",
+      "beforeAnswer": "מיכל של אובייקטים ב-S3 שעליו מנוהלות הגדרות גישה, אחסון ויכולות נוספות.",
+      "afterAnswer": "מיכל לאחסון קבצים ואובייקטים ב-S3."
+    },
+    {
+      "previousId": "concept-4bb517b015fc627a7ac7",
+      "term": "Bucket Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ab8e138af339f70f1676",
+      "term": "S3 ACL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e36330ef0b8ce9544691",
+      "term": "S3 Access Point",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b4187ccca8228be06d89",
+      "term": "S3 Event Notifications",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4a43a0b85a2aa790c295",
+      "term": "S3 Inventory",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0d51fabf4da034260f6a",
+      "term": "S3 Static Website Hosting",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-63b78c2a2a50d2ebaf2c",
+      "term": "S3 REST API Endpoint",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b45d62ac33b12e50a52c",
+      "term": "S3 Website Endpoint",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3b1a9c0d045e76438c9c",
+      "term": "S3 Server Access Logging",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bb609d2a971672a85279",
+      "term": "S3 Versioning",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-543af2e704624fd10d1d",
+      "term": "S3 Object Lock",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-650d304da72392368475",
+      "term": "Object Lock Compliance Mode",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8886705b82051d07cfd5",
+      "term": "Object Lock Governance Mode",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-79bf85cb757614b55c95",
+      "term": "SSE-S3",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a685d7526bc8cdf75b28",
+      "term": "SSE-C",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d63917ceccf8e33229c0",
+      "term": "SSE-KMS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8c667a61565a2f9664af",
+      "term": "Client-Side Encryption",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-94f85168e2fb36f1ae3e",
+      "term": "S3 Presigned URL",
+      "action": "corrected",
+      "newTerm": "S3 Presigned URL",
+      "beforeAnswer": "קישור חתום שמאפשר פעולה זמנית על אובייקט בגבולות ההרשאות של החותם.",
+      "afterAnswer": "קישור שמאפשר גישה לקובץ מסוים ב-S3 בלי לפתוח את ה-Bucket לציבור ובלי שהמקבל יזדהה כמשתמש AWS."
+    },
+    {
+      "previousId": "concept-338954e72ac076737c33",
+      "term": "S3 Replication",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-22b64f968f960291c399",
+      "term": "Cross-Region Replication",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-20c62cb020ecfb19d541",
+      "term": "Same-Region Replication",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b35696c775c907eab16e",
+      "term": "S3 Standard",
+      "action": "corrected",
+      "newTerm": "S3 Standard",
+      "beforeAnswer": "מחלקת אחסון רב-אזורית בתוך Region, המתאימה לנתונים שניגשים אליהם לעיתים קרובות.",
+      "afterAnswer": "מחלקת אחסון כללית לנתונים שנדרשת אליהם גישה מהירה, עם אחסון בכמה Availability Zones."
+    },
+    {
+      "previousId": "concept-dbef4a7062712e44e704",
+      "term": "S3 Intelligent-Tiering",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-490e5ac43fc934dbad96",
+      "term": "S3 Standard-IA",
+      "action": "corrected",
+      "newTerm": "Standard-Infrequent Access (IA)",
+      "beforeAnswer": "אחסון בכמה AZs לנתונים שנגישים לעיתים רחוקות אך דורשים אחזור מהיר.",
+      "afterAnswer": "אחסון בכמה AZs לנתונים שנגישים לעיתים רחוקות אך דורשים אחזור מהיר."
+    },
+    {
+      "previousId": "concept-c3897b1c293c2199c65c",
+      "term": "S3 One Zone-IA",
+      "action": "corrected",
+      "newTerm": "One Zone-Infrequent Access (IA)",
+      "beforeAnswer": "אחסון ב-AZ יחיד לנתונים שנגישים לעיתים רחוקות ושאפשר לשחזרם ממקור אחר.",
+      "afterAnswer": "אחסון ב-AZ יחיד לנתונים שנגישים לעיתים רחוקות ושאפשר לשחזרם ממקור אחר."
+    },
+    {
+      "previousId": "concept-0a1724ad531cf7d8e1e1",
+      "term": "S3 Glacier Instant Retrieval",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7ce74e4f42abb8eae03d",
+      "term": "S3 Glacier Flexible Retrieval",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0d2ea544c5827b80f27d",
+      "term": "S3 Glacier Deep Archive",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e7378c7cc9162f136bf4",
+      "term": "S3 on Outposts",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-09e375b9e8f67e77e592",
+      "term": "Glacier Vault Lock",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35c8ca0c9df1d1e3c3b9",
+      "term": "S3 Block Public Access",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c41ef90edae59caf40e0",
+      "term": "BlockPublicAcls",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through New Access Control Lists (ACLs)",
+      "beforeAnswer": "הגדרה שדוחה בקשות ליצור ACL ציבורי חדש.",
+      "afterAnswer": "הגדרה שדוחה בקשות ליצור ACL ציבורי חדש."
+    },
+    {
+      "previousId": "concept-ad70999884a56f562bf1",
+      "term": "IgnorePublicAcls",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through Any Access Control Lists (ACLs)",
+      "beforeAnswer": "הגדרה שמתעלמת מהענקות גישה ציבורית דרך ACLs, גם אם כבר קיימים.",
+      "afterAnswer": "הגדרה שמתעלמת מהענקות גישה ציבורית דרך ACLs, גם אם כבר קיימים."
+    },
+    {
+      "previousId": "concept-6b059bec8cf0706378f6",
+      "term": "BlockPublicPolicy",
+      "action": "corrected",
+      "newTerm": "Block Public Access to Buckets and Objects Granted Through New Public Bucket or Access Point Policies",
+      "beforeAnswer": "הגדרה שדוחה מדיניות Bucket או Access Point ציבורית חדשה.",
+      "afterAnswer": "הגדרה שדוחה מדיניות Bucket או Access Point ציבורית חדשה."
+    },
+    {
+      "previousId": "concept-b794042dd398ecb072b7",
+      "term": "RestrictPublicBuckets",
+      "action": "corrected",
+      "newTerm": "Block Public and Cross-Account Access to Buckets and Objects Through Any Public Bucket or Access Point Policies",
+      "beforeAnswer": "הגדרה שמגבילה גישה ציבורית וחוצת-חשבונות כשמדיניות ה-Bucket נחשבת ציבורית.",
+      "afterAnswer": "הגדרה שמגבילה גישה ציבורית וחוצת-חשבונות כשמדיניות ה-Bucket נחשבת ציבורית."
+    },
+    {
+      "previousId": "concept-37c1516cd2796044d6dd",
+      "term": "S3 Batch Operations",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-68d26998787165a44f81",
+      "term": "Amazon VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-798a0f32ea1205fb5d8e",
+      "term": "Subnet",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ff8505f9fba48c4a1e97",
+      "term": "Public Subnet",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7e7f7f8183cffeb26d68",
+      "term": "Private Subnet",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-73487b536e24cae6391d",
+      "term": "Route Table",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-97bfd6c06984bbf345bd",
+      "term": "Network ACL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-13d2d437cb2ab64af445",
+      "term": "Stateful Filtering",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-038e6e14d367843e2a1c",
+      "term": "Stateless Filtering",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6a0c52b7a7a5589a874f",
+      "term": "Internet Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9322735e644ba553e413",
+      "term": "Public NAT Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1d26eeb68dde5f214ca3",
+      "term": "Private NAT Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a63a48de2a7a8b5e512c",
+      "term": "VPC Peering",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bb04e76ae5e8417920ac",
+      "term": "VPC Flow Logs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f9f77c2a98018ee19d64",
+      "term": "ENI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e7e22ddbfe2f0a5929a8",
+      "term": "CIDR",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1c382fbc795f17f9e08b",
+      "term": "AWS PrivateLink",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f3ad50da920ac8694282",
+      "term": "Hyperplane",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fdedab589d3dd36709a7",
+      "term": "VPC Endpoint",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e913f19018041a1ddad0",
+      "term": "Interface Endpoint",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4c74cace7c8baad168e6",
+      "term": "Gateway Endpoint",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b17e8b18a72cbc956591",
+      "term": "Local Route",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-387d87b6b4adf5054500",
+      "term": "Egress-Only Internet Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-66ab46f65e21c0ab35ce",
+      "term": "VPC Traffic Mirroring",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7dc97b4f1c57f84cc749",
+      "term": "Default VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-aaf4adebf14d896d20c9",
+      "term": "DNS Resolution ב-VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4d4bccf9b594885e92b9",
+      "term": "DNS Hostnames ב-VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ed4e359d0726bb433899",
+      "term": "Route Destination",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4a0bd2dddf36454c00cc",
+      "term": "Route Target",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1ba4aa1c812ca81a14e0",
+      "term": "Requester VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-470b3d0e095d351918b4",
+      "term": "Accepter VPC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-31edf9e91bf679c3418c",
+      "term": "AWS CloudFormation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cc947b1dbe9512fb32b7",
+      "term": "CloudFormation Security Risk",
+      "action": "removed",
+      "reason": "כותרת שאלה כללית על סיכונים הפכה בטעות לשם מושג.",
+      "sourceKey": "181"
+    },
+    {
+      "previousId": "concept-7a6edbb7d4c054aa2877",
+      "term": "Infrastructure as Code",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1437eada46a144f23c91",
+      "term": "CloudFormation Stack",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0bc296919c3a8e1ce818",
+      "term": "Change Set",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9dd46ef0bd2961917eeb",
+      "term": "CloudFormation Registry",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1f2e7ead3434abb6c7b8",
+      "term": "CloudFormation Resource Type",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35826bdad7ea34fa4db9",
+      "term": "CloudFormation Module",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2708d493ba5e259c4ff5",
+      "term": "CloudFormation Hooks",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7568a36939db293536df",
+      "term": "CloudFormation Hook Schema",
+      "action": "corrected",
+      "newTerm": "schema (CloudFormation Hooks)",
+      "beforeAnswer": "תיאור ההפעלה של Hook, כולל סוגי המשאבים והשלבים שבהם עליו לבדוק אותם.",
+      "afterAnswer": "תיאור ההפעלה של Hook, כולל סוגי המשאבים והשלבים שבהם עליו לבדוק אותם."
+    },
+    {
+      "previousId": "concept-717950484be5e0b36d3a",
+      "term": "CloudFormation Hook Handler",
+      "action": "corrected",
+      "newTerm": "Handlers (CloudFormation Hooks)",
+      "beforeAnswer": "נקודת לוגיקה שמבצעת את בדיקת ה-Hook בעת שלב מתאים במחזור חיי משאב.",
+      "afterAnswer": "הגדרה ב-schema שקובעת לפני איזו פעולה, כגון יצירה או שינוי, ה-Hook יפעל."
+    },
+    {
+      "previousId": "concept-129c5f20a309a66cd795",
+      "term": "CloudFormation Guard",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3fe54e2f624f273022fd",
+      "term": "Policy as Code",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bfa0055a9909cf9a57bd",
+      "term": "CloudFormation Linter",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-45f9559663bd30adc3fb",
+      "term": "Linting",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-33b69fb181bedc0c0460",
+      "term": "Dynamic Reference",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-13ab0ebe5eb0519a3486",
+      "term": "AWS CloudTrail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4cf60470cd98abe794f0",
+      "term": "CloudTrail Management Events",
+      "action": "corrected",
+      "newTerm": "Management Event",
+      "beforeAnswer": "אירועים שמתארים פעולות ניהול על משאבים ותצורתם.",
+      "afterAnswer": "אירועים שמתארים פעולות ניהול על משאבים ותצורתם."
+    },
+    {
+      "previousId": "concept-35488272335e7a1db1f6",
+      "term": "CloudTrail Data Events",
+      "action": "corrected",
+      "newTerm": "Data Event",
+      "beforeAnswer": "אירועים שמתארים פעולות ברמת הנתונים במשאבים נתמכים, כגון גישה לאובייקטים.",
+      "afterAnswer": "אירועים שמתארים פעולות ברמת הנתונים במשאבים נתמכים, כגון גישה לאובייקטים."
+    },
+    {
+      "previousId": "concept-a041d9101521d1e9573a",
+      "term": "CloudTrail Insights Events",
+      "action": "corrected",
+      "newTerm": "Insights (CloudTrail)",
+      "beforeAnswer": "אירועים שמצביעים על דפוס פעילות API חריג בהשוואה להתנהגות הרגילה.",
+      "afterAnswer": "אירועים שמצביעים על דפוס פעילות API חריג בהשוואה להתנהגות הרגילה."
+    },
+    {
+      "previousId": "concept-c59b4acedbfe0b817c91",
+      "term": "CloudTrail Network Activity Event",
+      "action": "corrected",
+      "newTerm": "Network activity events",
+      "beforeAnswer": "אירוע שמתעד פעילות רשת רלוונטית של גישה לשירותי AWS דרך VPC Endpoints.",
+      "afterAnswer": "אירוע שמתעד פעילות רשת רלוונטית של גישה לשירותי AWS דרך VPC Endpoints."
+    },
+    {
+      "previousId": "concept-e9f0c479710c62ad10cb",
+      "term": "CloudTrail Read-Only Event",
+      "action": "corrected",
+      "newTerm": "Read-only (CloudTrail)",
+      "beforeAnswer": "אירוע ניהול שמתאר קריאת מידע ולא שינוי של משאב.",
+      "afterAnswer": "אירוע ניהול שמתאר קריאת מידע ולא שינוי של משאב."
+    },
+    {
+      "previousId": "concept-38269401fa3cbe64996b",
+      "term": "CloudTrail Write Event",
+      "action": "corrected",
+      "newTerm": "Write-only (CloudTrail)",
+      "beforeAnswer": "אירוע ניהול שמתאר יצירה או שינוי של משאב או תצורה.",
+      "afterAnswer": "אירוע ניהול שמתאר יצירה או שינוי של משאב או תצורה."
+    },
+    {
+      "previousId": "concept-5be9452e3887762af319",
+      "term": "CloudTrail Trail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-47e3842dcf7f71c8279f",
+      "term": "Multi-Region Trail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6d8765498792e5ef4663",
+      "term": "Single-Region Trail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8099da99594b3f93924c",
+      "term": "Organization Trail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-714f7acc222f17092571",
+      "term": "CloudTrail Log File Integrity Validation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2049f4932339af603fa9",
+      "term": "CloudTrail Encryption at Rest",
+      "action": "corrected",
+      "newTerm": "הצפנה במנוחה (CloudTrail)",
+      "beforeAnswer": "הצפנת קובצי התיעוד כשהם מאוחסנים כדי להגן על תוכנם.",
+      "afterAnswer": "הצפנת קובצי התיעוד כשהם מאוחסנים כדי להגן על תוכנם."
+    },
+    {
+      "previousId": "concept-6726954314a3cd91cd8f",
+      "term": "CloudTrail Event History",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-965b8080ce69a1b55251",
+      "term": "CloudTrail Event Filtering",
+      "action": "removed",
+      "reason": "סינון במסך וניהול תצוגה, לא מושג נפרד.",
+      "sourceKey": "198"
+    },
+    {
+      "previousId": "concept-d9618c52e2b16c3b1384",
+      "term": "Athena Table for CloudTrail",
+      "action": "removed",
+      "reason": "פעולת ממשק Create athena table ולא הגדרת מושג.",
+      "sourceKey": "199"
+    },
+    {
+      "previousId": "concept-6a90319acddc4e05c880",
+      "term": "CloudTrail Lake",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7a8a194da7717b673c29",
+      "term": "Amazon CloudWatch",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a3b3626c8e12c6109ac3",
+      "term": "CloudWatch Alarms",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bd5a43fea3017f85f4e7",
+      "term": "CloudWatch Logs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-645abab36d354c69258a",
+      "term": "CloudWatch Log Stream",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b895e87f127e08de8aad",
+      "term": "CloudWatch Log Group",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7a1f512a30f8f3f61a4f",
+      "term": "CloudWatch Synthetics",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6ad5633e8e829167d878",
+      "term": "CloudWatch Application Insights",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-958dc1e07432559aa0a2",
+      "term": "CloudWatch Alarm Actions",
+      "action": "removed",
+      "reason": "יכולת של Alarms ולא מושג נפרד בשם זה במקור.",
+      "sourceKey": "202"
+    },
+    {
+      "previousId": "concept-d4753e90c1c9ee3dac4e",
+      "term": "CloudWatch Metric",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d25510ba2c1568dcb45f",
+      "term": "Standard Metrics",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9136314a405a27598763",
+      "term": "Custom Metrics",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-73dc99915d2139e9bb24",
+      "term": "CloudWatch Agent",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0342e35f1f177bc33d84",
+      "term": "CloudWatch Agent Configuration",
+      "action": "corrected",
+      "newTerm": "Agent Config File",
+      "beforeAnswer": "תצורה שקובעת אילו מדדים וקובצי לוג הסוכן אוסף ולאן הוא שולח אותם.",
+      "afterAnswer": "תצורה שקובעת אילו מדדים וקובצי לוג הסוכן אוסף ולאן הוא שולח אותם."
+    },
+    {
+      "previousId": "concept-f506aa8ca40447ae7169",
+      "term": "CloudWatch Namespace",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-326c72e9eda5a74b97b0",
+      "term": "CloudWatch Metric Stream",
+      "action": "removed",
+      "reason": "הסיכום מכנה אותו חבילה של מדדים אך אינו מסביר את תפקידו; ההגדרה הקודמת נוספה מבחוץ.",
+      "sourceKey": "207"
+    },
+    {
+      "previousId": "concept-cf9f7dead5b1cdb9170d",
+      "term": "Alarm Evaluation Period",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4c4f6f26bf4ba6ce6e6b",
+      "term": "CloudWatch Contributor Insights",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-85ee1da9d03026966e38",
+      "term": "EC2 Detailed Monitoring",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a1e9432f68a65bd59ffa",
+      "term": "Log Retention Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-31cc9831f09cb37962c7",
+      "term": "CloudWatch Subscription Filter",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9f71de82425ae4549948",
+      "term": "CloudWatch Logs Insights",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b97838d184782aef9d2d",
+      "term": "CloudWatch Dashboard",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-79b98f9862e5dda0de20",
+      "term": "Alarm State — ALARM",
+      "action": "removed",
+      "reason": "מסך התראות פעילות הוצג כמושג עצמאי; הסבר Alarms נשאר.",
+      "sourceKey": "215"
+    },
+    {
+      "previousId": "concept-62df1b03838a7effdea0",
+      "term": "Billing Alarm",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6dc0d97a1e77880baaf5",
+      "term": "CloudWatch Log Anomalies",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6ff1133342d6af0c6acc",
+      "term": "CloudWatch Live Tail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c2bc5f5425435ef4acd0",
+      "term": "CloudWatch Metrics Explorer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-914f9bda09d510220500",
+      "term": "X-Ray Trace",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d5242af15562f18f536c",
+      "term": "X-Ray Trace Map",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-66ad985ca5b9f11453cf",
+      "term": "CloudWatch Application Signals",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8afc743735333370daba",
+      "term": "CloudWatch Network Monitor",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c8938d59fd07146557b8",
+      "term": "CloudWatch Infrastructure Insights",
+      "action": "corrected",
+      "newTerm": "Insights (CloudWatch)",
+      "beforeAnswer": "יכולות ניתוח שמסייעות להבין מצב וביצועים של רכיבי תשתית.",
+      "afterAnswer": "תצוגת תובנות על משאבים הקשורים לתשתית."
+    },
+    {
+      "previousId": "concept-c368624817d6aeeea462",
+      "term": "CloudWatch Metric Filter",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-103831ee1d82a449c666",
+      "term": "Amazon EventBridge",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-920f30eda6ece9b8e945",
+      "term": "EventBridge Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1d6e0f64d1306022736a",
+      "term": "EventBridge Event Bus",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4b3de4df6b8b953d7702",
+      "term": "EventBridge Scheduler",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b6ba59a6b77f8d05647d",
+      "term": "EventBridge Schedule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a1c092dd4621c619d141",
+      "term": "Amazon GuardDuty",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e0df9baf2158b8f0edbe",
+      "term": "GuardDuty Foundational Data Sources",
+      "action": "removed",
+      "reason": "כותרת אוסף מקורות מידע הפכה בטעות לשם מנגנון עצמאי.",
+      "sourceKey": "236"
+    },
+    {
+      "previousId": "concept-5541343cd238254f9728",
+      "term": "GuardDuty EventBridge Integration",
+      "action": "removed",
+      "reason": "תיאור יכולת אינטגרציה, לא שם מושג עצמאי בסיכום.",
+      "sourceKey": "237"
+    },
+    {
+      "previousId": "concept-7a16df39f6416f31aac2",
+      "term": "Stealth Finding",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a19ad59c61bfd455ffe7",
+      "term": "ASN",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5b903b50b83114220901",
+      "term": "GuardDuty Auto-Enable",
+      "action": "corrected",
+      "newTerm": "GuardDuty Auto-Enable",
+      "beforeAnswer": "הפעלה אוטומטית של יכולות הגנה בחשבונות לפי מדיניות ארגונית.",
+      "afterAnswer": "הפעלה אוטומטית של GuardDuty בחשבונות קיימים או חדשים בארגון לפי ההגדרה."
+    },
+    {
+      "previousId": "concept-00a77fed65115d56b7b4",
+      "term": "GuardDuty Trusted IP List",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0c330d84813fea70096a",
+      "term": "GuardDuty Entity List",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-498b0f8797ce21bec7dd",
+      "term": "GuardDuty Trusted Entity List",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fba740044b180be6c962",
+      "term": "GuardDuty Threat Entity List",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f16bf4e44f50360610ee",
+      "term": "GuardDuty Suppression Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-770fb769bf07cf31fb02",
+      "term": "GuardDutyExcluded",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-25f48fe82dd657883112",
+      "term": "GuardDuty Finding",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-03174d5dd8bb15f196bf",
+      "term": "GuardDuty Historical Behavior",
+      "action": "corrected",
+      "newTerm": "GuardDuty Historical Behavior",
+      "beforeAnswer": "קו בסיס של פעילות קודמת שמשמש לזיהוי סטיות ודפוסים חריגים.",
+      "afterAnswer": "תצוגת הפעילות הנפוצה בארגון מזוויות כגון ASN, User Agent ו-Bucket."
+    },
+    {
+      "previousId": "concept-694625b78f32d1e19cde",
+      "term": "GuardDuty Usage",
+      "action": "removed",
+      "reason": "תצוגת שימוש ותמחור, לא מושג נדרש.",
+      "sourceKey": "247"
+    },
+    {
+      "previousId": "concept-99a46b75408ac9ba3b02",
+      "term": "GuardDuty Malware Scan",
+      "action": "removed",
+      "reason": "עמוד שמציג סריקות הוצג כמנגנון נוסף; Malware Protection וסוגי הסריקות נשארו.",
+      "sourceKey": "248"
+    },
+    {
+      "previousId": "concept-044ad514e93b02e078df",
+      "term": "GuardDuty S3 Protection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3b506868ff0c5cc16513",
+      "term": "GuardDuty EKS Protection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6529a9e90db6afccb1ed",
+      "term": "GuardDuty Runtime Monitoring",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dc8e24e2dd2a0e489f65",
+      "term": "GuardDuty Runtime Coverage",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5ad5bde56339201192f7",
+      "term": "GuardDuty Malware Protection",
+      "action": "corrected",
+      "newTerm": "GuardDuty Malware Protection",
+      "beforeAnswer": "יכולת לזהות תוכנה זדונית בתרחישי סריקה נתמכים, כגון נפחי EC2 או אובייקטי S3.",
+      "afterAnswer": "יכולת לסרוק את דיסקי EBS של מופעי EC2 כדי לזהות Malware."
+    },
+    {
+      "previousId": "concept-51047232d576f40f9d1e",
+      "term": "GuardDuty-Initiated Malware Scan",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-079930f65b17a78da6c0",
+      "term": "On-Demand Malware Scan",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5630cd25e5af861080ec",
+      "term": "Retained Malware Scan Snapshot",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-45eab72caa0c6c4582cf",
+      "term": "GuardDuty RDS Protection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2ae63c569db411548031",
+      "term": "GuardDuty Lambda Protection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6a5ede59509ecc0bd044",
+      "term": "GuardDuty Organization Management",
+      "action": "removed",
+      "reason": "תיאור מסך Accounts והפעלת השירות, לא הגדרת מושג.",
+      "sourceKey": "258"
+    },
+    {
+      "previousId": "concept-e00bbe722af9d238cab8",
+      "term": "GuardDuty Service Role",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-27be3181f1f78f5c1253",
+      "term": "GuardDuty Findings Export",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9c058bc7e8937e0d322f",
+      "term": "GuardDuty Sample Findings",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2e7628505a6eb7ef3a48",
+      "term": "Amazon Macie",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a2934ac77804cbaec4f0",
+      "term": "Macie Finding",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e890c8c6cf368d79cb08",
+      "term": "Macie Custom Data Identifier",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7170b50e3c7411deba2f",
+      "term": "AWS Config",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b2d68312cd68b26b8170",
+      "term": "Config Configuration Recorder",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-45aeb2aa773a58de3000",
+      "term": "AWS Config Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5437d1fc01449116cfba",
+      "term": "Config Continuous Recording",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-343b283eca50936e1c9a",
+      "term": "Config Daily Recording",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-79d78105f4ce624b627f",
+      "term": "Config Detective Evaluation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-85346d3ab8b1c3f34a4c",
+      "term": "Config Proactive Evaluation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a4d110093e3e1e9b22f7",
+      "term": "Config Managed Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4c97936b5f4fdb51191f",
+      "term": "Config Custom Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dad46615aca60c48c31f",
+      "term": "Config Remediation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-593f53c00092cb598ba5",
+      "term": "Config Manual Remediation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cd64d92c9ae619a0213b",
+      "term": "Config Automatic Remediation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3b661e875ea346292ecf",
+      "term": "Conformance Pack",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3d96190e14a3508b3df8",
+      "term": "Config Custom Policy Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f757d3243b99e1e13676",
+      "term": "Config Compliance Result",
+      "action": "removed",
+      "reason": "שם שהוסף לתצוגת Rules; המושגים האמיתיים הם Compliant ו-non_compliant.",
+      "sourceKey": "273"
+    },
+    {
+      "previousId": "concept-5829a398818cddbcaa55",
+      "term": "Config Remediation Action",
+      "action": "removed",
+      "reason": "כפילות של Remediation שנוצרה מתיאור כפתור.",
+      "sourceKey": "274"
+    },
+    {
+      "previousId": "concept-76b3595c4795c4439e81",
+      "term": "Config Aggregator",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-98524805e470cad5cece",
+      "term": "Config Advanced Query",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-11b6b4887dbef68e9c4b",
+      "term": "AWS Security Hub",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f782d128c5abc83bbfc8",
+      "term": "AWS Security Finding Format — ASFF",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9eb540ecccb085e34be0",
+      "term": "Security Hub Security Standard",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1e4aefe79e97c392c04f",
+      "term": "Security Hub Control",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5c8386aba54e32befe3a",
+      "term": "Security Hub Insight",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b0744827b7412a208351",
+      "term": "Security Hub Finding",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-57198ebdc2a059d29a12",
+      "term": "Security Hub Integration",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4541278d483b8cf3c3d3",
+      "term": "Security Hub Automation Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-62f9b89d15eec299f5b0",
+      "term": "Security Hub Custom Action",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e2ab66856877e5495f8d",
+      "term": "Security Hub Central Management",
+      "action": "removed",
+      "reason": "שם שהומצא לתיאור הגדרות במסך General.",
+      "sourceKey": "285"
+    },
+    {
+      "previousId": "concept-1aaafd68d72ca1da0b6f",
+      "term": "Security Hub Cross-Region Aggregation",
+      "action": "removed",
+      "reason": "שם פיצ'ר שלא מופיע בסיכום; המקור מתאר הגדרה במסך Regions.",
+      "sourceKey": "285"
+    },
+    {
+      "previousId": "concept-3ead69c1aaf4847948e4",
+      "term": "Amazon Athena",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-854a00c31e176f704da0",
+      "term": "Athena Query Editor",
+      "action": "removed",
+      "reason": "מיקום חלון השאילתות בממשק, לא הגדרת מושג.",
+      "sourceKey": "287"
+    },
+    {
+      "previousId": "concept-f8f6f6b98c71554c21dd",
+      "term": "Amazon SNS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-462251a8d96c95e9d6cf",
+      "term": "SNS Topic",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-faace8518dceff329dbf",
+      "term": "SNS Subscriber",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-99f43819d7387fb13a33",
+      "term": "SNS Publisher",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dd71a9cbf23eeec7e1d2",
+      "term": "AWS KMS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-24cafb2e260c7ec63c1b",
+      "term": "Symmetric Encryption",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-93c6a9ceecc38f019d7b",
+      "term": "Envelope Encryption",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d49adbf9e2f154f2c920",
+      "term": "Data Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-10ec5931851592fcd0bc",
+      "term": "Key Encryption Key — KEK",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9eec0b940aa11a702539",
+      "term": "Plaintext Data Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f861feef02b266afe637",
+      "term": "Encrypted Data Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7b1ed50619b351a7d78e",
+      "term": "AWS-Owned Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-94b11738f8ce210143d3",
+      "term": "AWS-Managed KMS Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-875e46e60af0ebb96f5b",
+      "term": "Customer-Managed KMS Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3deca6a56310b9430cff",
+      "term": "KMS Custom Key Store",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-db176c1682aa87d7ace7",
+      "term": "KMS External Key Store — XKS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-87e8dcfffea0da761026",
+      "term": "KMS CloudHSM Key Store",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8d0bf5186e8cf0bcd622",
+      "term": "KMS Automatic Key Rotation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-949ec78008b5b257c6a1",
+      "term": "HMAC",
+      "action": "corrected",
+      "newTerm": "HMAC",
+      "beforeAnswer": "קוד אימות מבוסס מפתח סודי לבדיקת שלמות ואותנטיות של הודעה, ולא להצפנת תוכנה.",
+      "afterAnswer": "מנגנון לאימות שלמות ואמינות של הודעות ונתונים כדי לבדוק שלא שונו."
+    },
+    {
+      "previousId": "concept-ad2e523821fdaa3c6ca9",
+      "term": "Imported Key Material",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7098f5c67f8f105a49ed",
+      "term": "KMS Pending Deletion",
+      "action": "corrected",
+      "newTerm": "KMS Pending Deletion",
+      "beforeAnswer": "מצב שבו מפתח ממתין למחיקה מתוזמנת ואינו זמין לשימוש קריפטוגרפי רגיל.",
+      "afterAnswer": "תקופת המתנה שחובה לבחור לפני מחיקת מפתח Customer Managed."
+    },
+    {
+      "previousId": "concept-6a732b2cea18daca48e5",
+      "term": "KMS Encrypt",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2ea83916f9502200dc07",
+      "term": "KMS Decrypt",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d4cab05c7c971a9cbe51",
+      "term": "KMS GenerateDataKey",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-867c058df26b704d001d",
+      "term": "KMS Encryption Context",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-83fc5b606a95cb63971f",
+      "term": "Substitution Attack",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9ef47d2b7dcb17040abf",
+      "term": "KMS Key Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e06c858d8795720535e9",
+      "term": "KMS Grant",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dcde3b025ffc4dff8fb2",
+      "term": "AWS Secrets Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3ce2186eb4a5b37736f0",
+      "term": "Secret Rotation",
+      "action": "corrected",
+      "newTerm": "החלפת סיסמאות אוטומטית (Secrets Manager)",
+      "beforeAnswer": "החלפת ערך סודי ועדכון המערכת שמשתמשת בו כדי לצמצם שימוש בסודות ישנים.",
+      "afterAnswer": "יכולת להחליף סיסמאות באופן אוטומטי."
+    },
+    {
+      "previousId": "concept-f8fbedb32cf33bb9e235",
+      "term": "Amazon CloudFront",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-94052170fb1db76d6aac",
+      "term": "Cache Hit",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d1adb61fad3055b92def",
+      "term": "Cache Miss",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0958aede4c8129b453ef",
+      "term": "Origin Request",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7db9250266b16d2fecc9",
+      "term": "CloudFront Origin",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fa8cbb8955f61f2e401b",
+      "term": "Edge Location",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-15b4217ce75f60129565",
+      "term": "Regional Edge Cache",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6e4c21efddd50f6d9abf",
+      "term": "CloudFront Distribution",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4bc229876ebb3376c64a",
+      "term": "Origin Access Control — OAC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9383e4edb415321b207d",
+      "term": "CloudFront TLS Certificate",
+      "action": "removed",
+      "reason": "קטע How-to ללא הגדרת מושג; שירות ACM נשאר במאגר.",
+      "sourceKey": "311"
+    },
+    {
+      "previousId": "concept-67258ee314126bb74b86",
+      "term": "CloudFront Geo Restriction",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9edc1dc60a6d75036d41",
+      "term": "CloudFront VPC Origin",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-81de66f2c8aa0bdae1b3",
+      "term": "CloudFront Signed URL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-42e392a65a34d744077b",
+      "term": "CloudFront Signed Cookie",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ee3eaa88f9cd87558824",
+      "term": "CloudFront Custom Origin Header",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-45f40391284ba9e4fe41",
+      "term": "Origin Access Identity — OAI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3ab3fb9504aa11f0e3df",
+      "term": "Elastic Load Balancing",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f1086bd2bcf07a722ea6",
+      "term": "Internet-Facing Load Balancer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-577222c747321e77ea19",
+      "term": "Internal Load Balancer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0a5673993b865a9066d3",
+      "term": "Application Load Balancer — ALB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1deab48b47e58178b7bc",
+      "term": "Network Load Balancer — NLB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1d13e935cea07d48ff05",
+      "term": "Gateway Load Balancer — GWLB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-541026e0b3daa0dbd19c",
+      "term": "Classic Load Balancer — CLB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-859a41a65edf977f18f7",
+      "term": "Target Group",
+      "action": "corrected",
+      "newTerm": "Target Group",
+      "beforeAnswer": "קבוצת יעדים שאליה מאזן העומסים מנתב תעבורה, עם הגדרות בדיקות בריאות.",
+      "afterAnswer": "קבוצת היעדים שאליהם מאזן העומסים מפנה תעבורה; בסיכום מתוארת רשימת מופעי EC2."
+    },
+    {
+      "previousId": "concept-e7788a25e03ca914c6a5",
+      "term": "ELB TLS Certificate",
+      "action": "removed",
+      "reason": "קטע How-to ללא הגדרת מושג; שירות ACM נשאר במאגר.",
+      "sourceKey": "323"
+    },
+    {
+      "previousId": "concept-aa7b2fc5211f428a6400",
+      "term": "ELB Access Log",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-24aad3380177d480d5d4",
+      "term": "ELB Security Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-aaa6d261af7b1e812fc5",
+      "term": "TLS Termination",
+      "action": "corrected",
+      "newTerm": "SSL Termination",
+      "beforeAnswer": "סיום ופענוח חיבור TLS בנקודת תיווך; החיבור מהמתווך לשרת יכול להיות נפרד ומוצפן מחדש.",
+      "afterAnswer": "סיום ופענוח חיבור TLS בנקודת תיווך; החיבור מהמתווך לשרת יכול להיות נפרד ומוצפן מחדש."
+    },
+    {
+      "previousId": "concept-1c6c520cd75976285bd8",
+      "term": "Server Name Indication — SNI",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-75e047090ab2e1c53998",
+      "term": "AWS Systems Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8ea5f29da1d19fec498e",
+      "term": "Systems Manager Patch Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-66f2260c807ac0e04771",
+      "term": "SSM Agent",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-97a5b65a7d00f74c0257",
+      "term": "Systems Manager Session Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-413d05d6777130c18934",
+      "term": "Systems Manager Inventory",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9079a355a37cc4f50fb5",
+      "term": "Systems Manager Automation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-be84053e95a4ad1b86e2",
+      "term": "Automation Runbook",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-86c959a9d4b41ced4c97",
+      "term": "Systems Manager Run Command",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6c139cf610adca592f61",
+      "term": "Systems Manager OpsCenter",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-32f8b3b8add3b65aa072",
+      "term": "OpsItem",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-67a22071438905f2de8c",
+      "term": "OpsItem Notifications",
+      "action": "corrected",
+      "newTerm": "מנגנון העדכונים (OpsItem)",
+      "beforeAnswer": "שליחת עדכונים דרך SNS כאשר מצב התקלה משתנה או נוסף לה מידע.",
+      "afterAnswer": "שליחת עדכונים דרך SNS כאשר מצב התקלה משתנה או נוסף לה מידע."
+    },
+    {
+      "previousId": "concept-2268ee31663fb19c367c",
+      "term": "OpsItem Automation Integration",
+      "action": "corrected",
+      "newTerm": "שילוב מובנה עם AWS Systems Manager Automation",
+      "beforeAnswer": "חיבור תקלה ל-Automation Runbooks כדי להפעיל תהליך תיקון מוגדר.",
+      "afterAnswer": "חיבור תקלה ל-Automation Runbooks כדי להפעיל תהליך תיקון מוגדר."
+    },
+    {
+      "previousId": "concept-743b12009372b8a5ca7e",
+      "term": "Systems Manager Parameter Store",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bd954497ee6b8d586082",
+      "term": "Parameter Store SecureString",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-80e4c51486aa019ca364",
+      "term": "Parameter Store String",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-075721c8669276224335",
+      "term": "Systems Manager State Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ab043b29b14c7849c955",
+      "term": "Patch Baseline",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6caabc7f625bab360f0c",
+      "term": "Amazon Detective",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6cee02150ae582d933c3",
+      "term": "Amazon Route 53",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8a6e6bc22ae8affe4b4f",
+      "term": "Domain Takeover",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-37eff9a68d191761fe5b",
+      "term": "Route 53 Resolver Query Logging",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0191e9ce1be543f3c9ad",
+      "term": "Route 53 Public DNS Query Logging",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0ad25f2a151cf39f5480",
+      "term": "Route 53 Health Check",
+      "action": "removed",
+      "reason": "המקור המשויך עוסק באינטגרציות ולא מגדיר Health Check.",
+      "sourceKey": "345"
+    },
+    {
+      "previousId": "concept-02fc5e8f0fd0ad7114dd",
+      "term": "Route 53 Weighted Routing",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1d5fa9a2cd481ead62b2",
+      "term": "Amazon Application Recovery Controller — ARC",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ccf06eeefcb62fed7cf4",
+      "term": "ARC Readiness Check",
+      "action": "corrected",
+      "newTerm": "בדיקות מוכנות (ARC)",
+      "beforeAnswer": "בדיקת מוכנות משאבי הגיבוי כדי לסייע לוודא שיוכלו לתמוך בהתאוששות.",
+      "afterAnswer": "בדיקת מוכנות משאבי הגיבוי כדי לסייע לוודא שיוכלו לתמוך בהתאוששות."
+    },
+    {
+      "previousId": "concept-049ada398ce5e0c14068",
+      "term": "ARC Recovery Routing",
+      "action": "removed",
+      "reason": "יכולת העברת תעבורה של ARC קיבלה שם מנגנון שלא מופיע בסיכום.",
+      "sourceKey": "347"
+    },
+    {
+      "previousId": "concept-877555e91ba1b5732856",
+      "term": "Disaster Recovery",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-991eddedc21b56f8d741",
+      "term": "AWS VPN",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-36ddf6a1a563507150e0",
+      "term": "AWS Site-to-Site VPN",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f642293ce4ccc1f3e318",
+      "term": "AWS Client VPN",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-523657a93464c55d4cb6",
+      "term": "Virtual Private Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5c52e9e4ec6b54e0ed47",
+      "term": "VPN Target Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-91651f091df58695c87c",
+      "term": "Customer Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-da5683c4611ac00923b7",
+      "term": "VPN CloudHub",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-de7ac64f7717482ad7b0",
+      "term": "AWS WAF",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e2a78e115786585dc7d6",
+      "term": "WAF Web ACL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7044cfde16c5e346ff9f",
+      "term": "WAF Managed Rule",
+      "action": "corrected",
+      "newTerm": "WAF Managed Rule",
+      "beforeAnswer": "חוק או קבוצת חוקי הגנה מוכנים שספק מתחזק עבור דפוסי איום נפוצים.",
+      "afterAnswer": "חוקי הגנה מוכנים שמגיעים עם AWS WAF."
+    },
+    {
+      "previousId": "concept-0a94f06d86e95c33743a",
+      "term": "WAF Custom Rule",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8b45e0aacd6a04d413ec",
+      "term": "WAF Rate Limiting",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c67c17ecd7ae09316a50",
+      "term": "WAF Logs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-53f543dd3f919f607f2d",
+      "term": "WAF Count Mode",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e71895d016f11c528753",
+      "term": "AWS Direct Connect",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f24c7ddf5761fda4dc18",
+      "term": "VPN over Direct Connect",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-42c1805f1dcd6444d75b",
+      "term": "AWS Shield",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-54f68cd08e31ac5c0dae",
+      "term": "AWS Shield Standard",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-59788b8c8551f52bd9b4",
+      "term": "AWS Shield Advanced",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ee6004a3c387aa5cde0d",
+      "term": "Shield Response Team",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8cc6773d05d356794c48",
+      "term": "DDoS Cost Protection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ce5c5e7e13b115c5357a",
+      "term": "Amazon ECS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5d692d4951e1384185f1",
+      "term": "ECS Cluster",
+      "action": "corrected",
+      "newTerm": "ECS Cluster",
+      "beforeAnswer": "קבוצה לוגית של קיבולת ומשימות ECS המשמשת כגבול ארגון של עומסי עבודה.",
+      "afterAnswer": "קבוצה לוגית שמארגנת את סביבת הקונטיינרים של ECS."
+    },
+    {
+      "previousId": "concept-4133389afedf0798fc4a",
+      "term": "ECS EC2 Launch Type",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9e7b339b64a554c9f27a",
+      "term": "ECS Fargate Launch Type",
+      "action": "removed",
+      "reason": "שם שלא מופיע כך במקור וכופל את AWS Fargate.",
+      "sourceKey": "364"
+    },
+    {
+      "previousId": "concept-b045248f3ac5e2240b0b",
+      "term": "ECS Container Instance",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-665eeed8531a9a786836",
+      "term": "ECS Task",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2f89342af1b3161d0038",
+      "term": "ECS Service",
+      "action": "corrected",
+      "newTerm": "ECS Service",
+      "beforeAnswer": "רכיב ששומר על מספר רצוי של משימות רצות ומסייע בפריסה ובהחלפה שלהן.",
+      "afterAnswer": "המקביל ל-Deployment Spec: מגדיר את פריסת הקונטיינרים הרצויה."
+    },
+    {
+      "previousId": "concept-c9f25112d4ecc6078856",
+      "term": "Kubernetes Deployment Spec",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-bd8c971f3f7f2713bcf0",
+      "term": "Kubernetes Pod Template",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-af7d99735e2edc590abd",
+      "term": "ECS Task Definition",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-73abb3e76248da2c2278",
+      "term": "ECS Container Definition",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-849572b11dfd4846b259",
+      "term": "ECS Task Execution Role",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-46abdac20967c7c170bd",
+      "term": "ECS Secrets Injection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e3ccbcba6d22b2d18dce",
+      "term": "ECS Agent",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-da397fb0c91781029788",
+      "term": "ECS Agent ACS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5eb6b9ae17e1de3674ca",
+      "term": "Amazon EKS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a01521297c09ce177b26",
+      "term": "AWS Fargate",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4a21a4ec974849013b79",
+      "term": "EKS Security Misconfiguration",
+      "action": "removed",
+      "reason": "כותרת סיכון כללית הפכה לשם מושג; שאלת IRSA נשארת.",
+      "sourceKey": "374"
+    },
+    {
+      "previousId": "concept-93e4fe403a629758b445",
+      "term": "IAM Roles for Service Accounts — IRSA",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-33c3fb1119d52f9ad531",
+      "term": "Amazon ECR",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-01e114c5addeb69cffba",
+      "term": "ECR Repository",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-15a0ddb8739d24760df8",
+      "term": "ECR Registry",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c09043410318e60241cb",
+      "term": "Image Push",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0837af56629c082a9c5c",
+      "term": "ECR Repository Policy",
+      "action": "removed",
+      "reason": "המקור המשויך כולל רק הוראות ניווט ואינו מגדיר Repository Policy.",
+      "sourceKey": "380"
+    },
+    {
+      "previousId": "concept-8ef7145e6883f2cf4f01",
+      "term": "ECR Basic Scanning",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-68da7420b282918f08b8",
+      "term": "ECR Enhanced Scanning",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-82a812dbbcb86340f588",
+      "term": "ECR Lifecycle Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d30c2d9ca946a62eddbb",
+      "term": "ECR Replication",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7efaf623f8adecc714e3",
+      "term": "ECR Pull Through Cache",
+      "action": "removed",
+      "reason": "הסיכום אינו מסביר מה נשמר, מאין או כיצד; התשובה הקודמת הייתה הרחבת ידע.",
+      "sourceKey": "384"
+    },
+    {
+      "previousId": "concept-55fdd6596b4cd6720a78",
+      "term": "Amazon Cognito",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dc98b44a58dd43bcc5e5",
+      "term": "Multi-Factor Authentication — MFA",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-2f1611c952a55d1d1cdc",
+      "term": "Cognito Federation",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-77958647bc3e3fc730d5",
+      "term": "Passkey",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cc13f4e7a94e2b0b1f53",
+      "term": "FIDO Security Key",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-27002d7465ad473ca906",
+      "term": "Cognito User Pool",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5777b42f02adec9223e9",
+      "term": "JWT",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e6e802e06b2cc95fddc9",
+      "term": "Cognito Identity Pool",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c564be7b44ac232c51d8",
+      "term": "Amazon SQS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9691c42bf3bb89113773",
+      "term": "SQS Queue Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7e4f80846b7358964801",
+      "term": "Amazon RDS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f6c746980ca85873e0aa",
+      "term": "Relational Database",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0cacbb76e8080b6da284",
+      "term": "RDS Read Replica",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b025e42033eafd388d73",
+      "term": "RDS Multi-AZ",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-270dbc9ec55a81521199",
+      "term": "RDS for SQL Server",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-52021904872f985aad92",
+      "term": "RDS Encryption",
+      "action": "corrected",
+      "newTerm": "RDS Encryption",
+      "beforeAnswer": "הצפנת מסד הנתונים והאחסון הקשור אליו באמצעות שילוב עם KMS.",
+      "afterAnswer": "הצפנת המידע שנשמר במסד הנתונים במנוחה באמצעות AES-256."
+    },
+    {
+      "previousId": "concept-e025880fcfdec9098591",
+      "term": "AWS Directory Service",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3cb39e93dfcc3168737b",
+      "term": "AWS Managed Microsoft AD",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9b89a614bf6ffd9f8c7c",
+      "term": "AD Connector",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9db95e416ff8dd564b9e",
+      "term": "One-Way Trust",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a6ec4d340f4f9a20ae23",
+      "term": "Two-Way Trust",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c0fbb70387c4923a9ce2",
+      "term": "AWS IoT Core",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-ffa9d0ca61c5ab8b9ebf",
+      "term": "IoT Topic",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d669ee384a8bdaf4449c",
+      "term": "IoT Subscribe",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-1151c4954d72b68994ec",
+      "term": "IoT Publish",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6498695be90ac8a9d329",
+      "term": "MQTT",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-959950354a05ba584c39",
+      "term": "Message Broker",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-b4c37354cd6ebbb466ed",
+      "term": "IoT Publisher",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-aeff1475798df6ae1d88",
+      "term": "IoT Client ID",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-75ebb9ea3f52ff35eb65",
+      "term": "IoT Thing Name",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-db99f490e6033b0630a0",
+      "term": "AWS IoT Policy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-24a25423afa988f48629",
+      "term": "AWS IoT Device Defender",
+      "action": "corrected",
+      "newTerm": "AWS IoT Device Defender",
+      "beforeAnswer": "שירות לבדיקת הגדרות אבטחה של מכשירי IoT ולניטור התנהגות חריגה שלהם.",
+      "afterAnswer": "שירות לזיהוי ולהתרעה על פעילות חריגה של צי מכשירי IoT."
+    },
+    {
+      "previousId": "concept-85b8b561dd5954e4280e",
+      "term": "IoT Fleet",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-69334737465a7358ea85",
+      "term": "Amazon DynamoDB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-dbc4756cb5da231f0290",
+      "term": "NoSQL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5b06f2a128787a9cc721",
+      "term": "DynamoDB Item",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e320bf0fc8a5bd213a6e",
+      "term": "DynamoDB Document",
+      "action": "corrected",
+      "newTerm": "DynamoDB Document",
+      "beforeAnswer": "מבנה נתונים מקונן של מפות ורשימות שניתן לשמור בתוך מאפייני Item.",
+      "afterAnswer": "מבנה נתונים מסוג JSON שנשמר בתוך ערך ב-DynamoDB."
+    },
+    {
+      "previousId": "concept-be97233cd8ba62570dc0",
+      "term": "Database Encryption SDK for DynamoDB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d9dd102641a55bb9bf52",
+      "term": "Amazon Kinesis Data Streams",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-66ee4d29bc79848f207d",
+      "term": "Kinesis Producer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-041bc48060a7a9a4e057",
+      "term": "Kinesis Shard",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f1d06c1c83f74e496427",
+      "term": "Kinesis Stream",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9d7478cff9e260b8ec4a",
+      "term": "Kinesis Client Library — KCL",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-56ca21a8cb70daa68ce8",
+      "term": "Kinesis Consumer",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4a745f76ea4e7c74db07",
+      "term": "Amazon Data Firehose",
+      "action": "corrected",
+      "newTerm": "Amazon Data Firehose",
+      "beforeAnswer": "שירות למסירה מנוהלת של נתוני זרם ליעדי אחסון וניתוח, עם יכולות עיבוד נתמכות בדרך.",
+      "afterAnswer": "שירות שמעביר נתוני זרם ממקור ליעד, למשל כצרכן של Amazon Kinesis Data Streams."
+    },
+    {
+      "previousId": "concept-1527e3822b0ae0ebe5c8",
+      "term": "AWS Billing and Cost Management",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7221ea78ff98d059f489",
+      "term": "AWS Cost Anomaly Detection",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7a1277206edbbbb3bf83",
+      "term": "Amazon Inspector",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d50946ef1558d77c17c5",
+      "term": "Inspector Classic Assessment Template",
+      "action": "corrected",
+      "newTerm": "Assessment Template",
+      "beforeAnswer": "תבנית בדיקה במוצר Inspector Classic הוותיק שקובעת מאפייני הערכה; אינה מנגנון ההפעלה של Inspector הנוכחי.",
+      "afterAnswer": "הגדרת החוקים שלפיהם תתבצע הסריקה המתוארת בסיכום."
+    },
+    {
+      "previousId": "concept-df51d7d72e453e65d8a0",
+      "term": "AWS Resource Access Manager — RAM",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-32895905c8fe5eb1f036",
+      "term": "Amazon API Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9741816be0156197b8db",
+      "term": "API Gateway Authorizer",
+      "action": "removed",
+      "reason": "המונח Authorizer אינו מופיע בהסבר; שירותי הזהות המתוארים נבדקים בשמותיהם.",
+      "sourceKey": "430"
+    },
+    {
+      "previousId": "concept-e38df9f52da0796ecee5",
+      "term": "API Throttling",
+      "action": "corrected",
+      "newTerm": "הגבלת קצב (API Gateway)",
+      "beforeAnswer": "הגבלת קצב הבקשות ל-API כדי לשלוט בעומס ובשימוש במשאבים.",
+      "afterAnswer": "הגבלת קצב הבקשות ל-API כדי לשלוט בעומס ובשימוש במשאבים."
+    },
+    {
+      "previousId": "concept-31092712392c2f6f1bc6",
+      "term": "API Gateway Access Logs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0f5418a1493e7ca1f384",
+      "term": "API Gateway Execution Logs",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3b3272615a140c929044",
+      "term": "Amazon OpenSearch Service",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fcac32e1c6857e57b94c",
+      "term": "OpenSearch Security Analytics",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-084c2feadb8ef58dd463",
+      "term": "AWS Artifact",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a1c1d0f8b3a453516cf7",
+      "term": "Amazon Lightsail",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-51173efd2abebc48db89",
+      "term": "AWS Outposts",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e47066096c0efd19fe66",
+      "term": "AWS Batch",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-86cb7abcc3734dcc03b8",
+      "term": "AWS Storage Gateway",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-681d44f8748758af604a",
+      "term": "AWS Backup",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5190e659ae71a1a83d91",
+      "term": "AWS Global Accelerator",
+      "action": "corrected",
+      "newTerm": "AWS Global Accelerator",
+      "beforeAnswer": "ניתוב תעבורת משתמשים דרך הרשת הגלובלית של AWS ליעדי יישום, עם נקודות כניסה יציבות.",
+      "afterAnswer": "שירות שמפחית Latency על ידי העברת התעבורה דרך התשתית המהירה של AWS."
+    },
+    {
+      "previousId": "concept-73a46b185383dac57858",
+      "term": "S3 Transfer Acceleration",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-d8727febff7858cc27bd",
+      "term": "AWS Network Firewall",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-c04a02d063c5aebb1559",
+      "term": "AWS Firewall Manager",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-4b064d7d75cd1c2c490c",
+      "term": "Amazon Aurora",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-cd1b382760dcd666f803",
+      "term": "Amazon DocumentDB",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-0fd6933b8997292f95db",
+      "term": "Amazon ElastiCache",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9cbba1d4dea85dab0fd7",
+      "term": "Amazon Neptune",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3e815238b180bdce12e2",
+      "term": "AWS Database Migration Service — DMS",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fefd01e6091f9d440c3e",
+      "term": "AWS Server Migration Service — SMS",
+      "action": "corrected",
+      "newTerm": "AWS Server Migration Service — SMS",
+      "beforeAnswer": "שירות ותיק להעברת שרתים וירטואליים לענן באמצעות שכפול; יש לבדוק חלופה עדכנית לפני שימוש.",
+      "afterAnswer": "שירות להעברת שרתים מקומיים לענן."
+    },
+    {
+      "previousId": "concept-163fbbdc97c8f8725f82",
+      "term": "AWS Snow Family",
+      "action": "corrected",
+      "newTerm": "AWS Snow Family",
+      "beforeAnswer": "מכשירים פיזיים להעברת כמויות נתונים ולעיבוד בקצה במקומות עם קישוריות מוגבלת.",
+      "afterAnswer": "העברת כמויות גדולות של מידע מסביבה מקומית ל-AWS באמצעות מכשירים פיזיים."
+    },
+    {
+      "previousId": "concept-5633975a189a89537c03",
+      "term": "AWS DataSync",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6fafed32759168e9e505",
+      "term": "Amazon Redshift",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-48a5bb1fea058a2218a1",
+      "term": "AWS Glue",
+      "action": "corrected",
+      "newTerm": "AWS Glue",
+      "beforeAnswer": "שירות אינטגרציית נתונים לגילוי, קטלוג והמרת נתונים לצורכי ניתוח.",
+      "afterAnswer": "שירות ETL לחילוץ נתונים, המרתם וטעינתם לפורמט משותף לצורך ניתוח."
+    },
+    {
+      "previousId": "concept-d4e5b6a305db31c7ca11",
+      "term": "Amazon Kinesis",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-fcfffcff1ab21e2b091f",
+      "term": "Amazon EMR",
+      "action": "corrected",
+      "newTerm": "Amazon EMR",
+      "beforeAnswer": "פלטפורמה מנוהלת לעיבוד כמויות נתונים גדולות באמצעות מסגרות כגון Spark ו-Hadoop.",
+      "afterAnswer": "שירות לעיבוד ולניתוח כמויות מידע גדולות, עם תמיכה בסביבות עבודה שונות."
+    },
+    {
+      "previousId": "concept-ac44714fc33b9fe555d3",
+      "term": "AWS Data Pipeline",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6a0c95a12cfc4e258bc1",
+      "term": "Amazon QuickSight",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-7dabbb935ea3fe680866",
+      "term": "Amazon Rekognition",
+      "action": "corrected",
+      "newTerm": "Amazon Rekognition",
+      "beforeAnswer": "ניתוח תמונות וסרטונים לזיהוי אובייקטים, תוכן ותכונות חזותיות.",
+      "afterAnswer": "ניתוח ותיוג של תמונות וסרטונים, כולל זיהוי פנים וטקסט."
+    },
+    {
+      "previousId": "concept-e4af19d55d38f37da9ab",
+      "term": "Amazon Comprehend",
+      "action": "corrected",
+      "newTerm": "Amazon Comprehend",
+      "beforeAnswer": "ניתוח טקסט בשפה טבעית כדי לזהות ישויות, נושאים, רגשות ומידע רלוונטי.",
+      "afterAnswer": "שירות NLP להפקת מסקנות וקשרים מתוך טקסט."
+    },
+    {
+      "previousId": "concept-bb98a5ff7f512ff972ca",
+      "term": "Amazon Polly",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-277d85557c33d27dce1f",
+      "term": "Amazon Translate",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-35042e555f8e0a205782",
+      "term": "Amazon Lex",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-28248a8c81ca77e34736",
+      "term": "Amazon Bedrock",
+      "action": "corrected",
+      "newTerm": "Amazon Bedrock",
+      "beforeAnswer": "גישה מנוהלת למודלי יסוד וליכולות לבניית יישומי בינה מלאכותית יוצרת.",
+      "afterAnswer": "שירות להרצה ולהתאמה של מודלי שפה גדולים (LLM)."
+    },
+    {
+      "previousId": "concept-e1b409f7bfdc6edadab2",
+      "term": "Amazon SageMaker",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-5938ec63975fca4579bf",
+      "term": "AWS Cloud9",
+      "action": "corrected",
+      "newTerm": "AWS Cloud9",
+      "beforeAnswer": "סביבת פיתוח משולבת בדפדפן לכתיבה ולניפוי שגיאות בקוד; השירות המתואר בסיכום הוא ותיק.",
+      "afterAnswer": "סביבת פיתוח בדפדפן לכתיבה ולניפוי שגיאות בקוד."
+    },
+    {
+      "previousId": "concept-2b5274d02da9e00576e3",
+      "term": "AWS CodeCommit",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-e07f11e21f808bb1a5de",
+      "term": "AWS CodeDeploy",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f13b00339a9b6b0f27f5",
+      "term": "AWS CodePipeline",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9277e43896fd81982884",
+      "term": "AWS X-Ray",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-22082bc2ee89dcf97de8",
+      "term": "AWS CodeStar",
+      "action": "corrected",
+      "newTerm": "AWS CodeStar",
+      "beforeAnswer": "שירות ותיק שחיבר כלי פיתוח ותהליכי מסירה בסביבת פרויקט משותפת; אינו שירות חדש לבחירה כיום.",
+      "afterAnswer": "שירות שמרכז כלי פיתוח ותהליכי מסירה של פרויקט."
+    },
+    {
+      "previousId": "concept-0ea3f272171212c42967",
+      "term": "AWS Elastic Beanstalk",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a6a984201bb0418878da",
+      "term": "AWS OpsWorks",
+      "action": "corrected",
+      "newTerm": "AWS OpsWorks",
+      "beforeAnswer": "שירות ותיק לניהול תצורות ואוטומציה באמצעות כלים כגון Chef ו-Puppet; יש לבדוק חלופות עדכניות.",
+      "afterAnswer": "שירות לניהול תצורות ואוטומציה באמצעות Chef ו-Puppet."
+    },
+    {
+      "previousId": "concept-6692e142ed459003a282",
+      "term": "Amazon Managed Grafana",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-721eaf0c58aff7389351",
+      "term": "Tight Coupling",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-3713968d761d524b87f1",
+      "term": "Loose Coupling",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-be72756205165ba47f69",
+      "term": "Queue",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-9d814f04d25897a97835",
+      "term": "Amazon SES",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-8fa2f11472e1c6a608c9",
+      "term": "AWS Step Functions",
+      "action": "corrected",
+      "newTerm": "AWS Step Functions",
+      "beforeAnswer": "תזמור תהליך עבודה של שלבים ושירותים באמצעות מכונת מצבים.",
+      "afterAnswer": "חיבור כמה שירותי AWS לרצף עבודה אוטומטי שנקרא Workflow."
+    },
+    {
+      "previousId": "concept-62b6c8ea3eadb1d1bc1a",
+      "term": "AWS CloudHSM",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-62fcefe5ffc09437dc87",
+      "term": "AWS Certificate Manager — ACM",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-a90916b39b371a88999d",
+      "term": "Amazon WorkSpaces",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-938d0db75ace2db4d71a",
+      "term": "Amazon Connect",
+      "action": "removed",
+      "reason": "הסיכום מכנה את השירות מערכת טיקטים. אין בו הגדרה נכונה של תפקיד השירות שעליה ניתן לבסס שאלה.",
+      "sourceKey": "485"
+    },
+    {
+      "previousId": "concept-1cd59e324a2a1d76691a",
+      "term": "AWS Trusted Advisor",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-59071c4df6cc3829fbdc",
+      "term": "Amazon Cloud Directory",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-f2543bc747766163a71f",
+      "term": "AWS Service Catalog",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-6d821f0bdd893907e733",
+      "term": "AWS Verified Access",
+      "action": "removed",
+      "reason": "הסיכום מציין רק שירות ZTNA, ללא הגדרת תפקיד; התשובה הקודמת הוסיפה ידע חיצוני.",
+      "sourceKey": "489"
+    },
+    {
+      "previousId": "concept-e06a75f9106cf0608a83",
+      "term": "Amazon CodeGuru",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-29d90a2d4e64761bc400",
+      "term": "Amazon Managed Service for Apache Flink",
+      "action": "retained"
+    },
+    {
+      "previousId": "concept-38f2f36860f03f8ef384",
+      "term": "AWS Amplify",
+      "action": "corrected",
+      "newTerm": "AWS Amplify",
+      "beforeAnswer": "כלים ושירותים לפיתוח ולהפעלה של יישומי Web ומובייל עם יכולות Backend משולבות.",
+      "afterAnswer": "פלטפורמה לבנייה של אפליקציות אינטרנט ואפליקציות לטלפונים."
+    }
+  ]
+}

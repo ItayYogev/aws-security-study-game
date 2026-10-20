@@ -26,22 +26,44 @@
 173|excluded|שמות פעולות API ליצירת תשתית רשת.
 177|alias|164
 180|alias|179,182
+181|excluded|כותרת כללית על סיכוני אבטחה, לא מושג בשם CloudFormation Security Risk.
 193|alias|192,197
+198|excluded|תיאור סינון וניווט בממשק CloudTrail.
+199|excluded|פעולת Create athena table בממשק, לא הגדרת מושג.
+207|excluded|הסיכום מכנה אותו חבילה של מדדים אך אינו מסביר את תפקידו; ההגדרה הקודמת נוספה מבחוץ.
+215|excluded|מסך התראות פעילות הוצג כמושג עצמאי; הסבר Alarms נשאר.
 216|alias|202
 218|alias|202
 221|alias|213
 222|alias|203,206
-224|alias|207
+224|excluded|תיאור תצוגת Metric Stream ללא הגדרה מספקת לבחינת תפקידו.
 226|alias|231
+236|excluded|רשימת מקורות ניטור, לא מושג בשם Foundational Data Sources.
+237|excluded|רשימת אינטגרציות, לא מושג בשם GuardDuty EventBridge Integration.
+247|excluded|תצוגת שימוש ותמחור.
+248|alias|253,254,255
+258|excluded|ניווט והפעלה במסך Accounts.
 269|alias|265,277
 272|alias|270
+273|alias|267
+274|alias|268
+285|excluded|הגדרות Regions ו-Configurations בממשק, לא שמות מושגים עצמאיים.
+287|excluded|מיקום חלון השאילתות בממשק.
+311|alias|483
 319|alias|318,353,483
+323|alias|483
 328|alias|324
+345|excluded|רשימת אינטגרציות; אין במקור הגדרת Health Check.
 358|alias|348,357
 373|alias|250,251
+374|alias|375
+380|excluded|הוראות ניווט בלבד ללא הגדרת Repository Policy.
+384|excluded|הסיכום אינו מסביר מה נשמר, מאין או כיצד; התשובה הקודמת הייתה הרחבת ידע.
 386|excluded|משפט פתיחה לרשימת יכולות Cognito.
 389|alias|2,385
 434|excluded|פתיחה לקטגוריות השירותים; כל שירות מפורט נבדק בנפרד.
 435|alias|372
 468|alias|18
 476|excluded|פתיחה למושגי Messaging; המושגים עצמם נבדקים בנפרד.
+485|excluded|הסיכום מכנה את השירות מערכת טיקטים. אין בו הגדרה נכונה של תפקיד השירות שעליה ניתן לבסס שאלה.
+489|excluded|הסיכום מציין רק שירות ZTNA, ללא הגדרת תפקיד; התשובה הקודמת הוסיפה ידע חיצוני.

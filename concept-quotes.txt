@@ -1,77 +1,78 @@
 AWS Region|110,111,116,117
 Availability Zone|120,121,123,124,125,126,127
-Member Account|270,271
-CloudFormation StackSets|285
-Managed Policy|591,592
-Identity-Based Policy|591,592,666
-AWS-Managed Policy|593
-Customer-Managed Policy|594
-Policy Version|596
-Policy Statement|597
-Policy Sid|598
-Policy Effect|599,600,601
-Action במדיניות|603
-NotAction|604
-Principal|639,640,641,665,666,667
-Resource במדיניות|606
-Condition במדיניות|612
-StringEquals Condition|613
-Bool Condition|614
-Trust Policy|635,636
-Inline Policy|657,658
-Resource-Based Policy|659,660,661,662,663
-Instance Profile|816,817,818,819
-EC2 On-Demand|859,860
-EC2 Spot|861,862
-Reserved Instances|863,864
-Dedicated Host|865,866
-Savings Plans|867,868
-Object Lock Compliance Mode|1066
-Object Lock Governance Mode|1067
-SSE-S3|1069,1070,1071
-SSE-C|1072,1073
-Client-Side Encryption|1074,1075
-SSE-KMS|1076,1077
-S3 Standard|1099,1100,1101,1102,1103
-S3 Intelligent-Tiering|1104,1105
-S3 Standard-IA|1106,1107,1108
-S3 One Zone-IA|1110,1111,1113
-S3 Glacier Instant Retrieval|1116
-S3 Glacier Flexible Retrieval|1117
-S3 Glacier Deep Archive|1118
-S3 on Outposts|1119,1120,1121
-S3 Block Public Access|1135,1136
-BlockPublicAcls|1138,1139
-IgnorePublicAcls|1140,1141
-BlockPublicPolicy|1142,1143
-RestrictPublicBuckets|1144,1145
-CloudTrail Management Events|1531,1532,1533,1534,1535
-CloudTrail Data Events|1536,1537,1538,1539
-CloudTrail Insights Events|1540,1541
-CloudTrail Network Activity Event|1542,1543
-CloudWatch Alarms|1635,1636,1637,1638,1639,1640
-CloudWatch Alarm Actions|1637,1638,1639,1640
-CloudWatch Logs|1641,1642
-CloudWatch Log Stream|1643
-CloudWatch Log Group|1644
-CloudWatch Synthetics|1648,1649
-CloudWatch Application Insights|1650,1651
-GuardDuty Entity List|1914,1915,1916
-GuardDuty Trusted Entity List|1914,1915
-GuardDuty Threat Entity List|1914,1916
-KMS Encrypt|2281
-KMS Decrypt|2282
-KMS GenerateDataKey|2283
-Systems Manager OpsCenter|2538,2539,2540
-OpsItem|2538,2539,2540
-OpsItem Notifications|2547,2548
-OpsItem Automation Integration|2549,2550
-Amazon Application Recovery Controller — ARC|2607,2608,2609,2610
-ARC Readiness Check|2610
-ARC Recovery Routing|2609
-ECS Task Execution Role|2729,2730,2731,2732,2734,2735,2736,2737
-ECR Basic Scanning|2797,2799,2806
-ECR Enhanced Scanning|2797,2798
-Amazon API Gateway|2984,2985,2986,2987,2988,2989
-API Gateway Authorizer|2986,2993,2994
-API Throttling|2987
+Member Account|275,276
+CloudFormation StackSets|290
+Managed Policy|596,597
+AWS-Managed Policy|598
+Customer-Managed Policy|599
+Version|601
+Statement|602
+Sid|603
+Effect|604,605,606
+Action במדיניות|608
+NotAction|609
+Principal|644,645,646,670,671,672
+Resource במדיניות|611
+Condition במדיניות|617
+StringEquals|618
+Bool|619
+Trust Policy|640,641
+Inline Policy|662,663
+Resource-Based Policy|664,665,666,667,668
+Instance Profile|821,822,823,824
+EC2 On-Demand|872,873
+EC2 Spot|874,875
+Reserved Instances|876,877
+Dedicated Host|878,879
+Savings Plans|880,881
+Object Lock Compliance Mode|1079
+Object Lock Governance Mode|1080
+SSE-S3|1082,1083,1084
+SSE-C|1085,1086
+Client-Side Encryption|1087,1088
+SSE-KMS|1089,1090
+S3 Standard|1123,1124,1125,1126,1127
+S3 Intelligent-Tiering|1128,1129
+Standard-Infrequent Access (IA)|1130,1131,1132
+One Zone-Infrequent Access (IA)|1134,1135,1137
+S3 Glacier Instant Retrieval|1140
+S3 Glacier Flexible Retrieval|1141
+S3 Glacier Deep Archive|1142
+S3 on Outposts|1143,1144,1145
+S3 Block Public Access|1159,1160
+Block Public Access to Buckets and Objects Granted Through New Access Control Lists (ACLs)|1162,1163
+Block Public Access to Buckets and Objects Granted Through Any Access Control Lists (ACLs)|1164,1165
+Block Public Access to Buckets and Objects Granted Through New Public Bucket or Access Point Policies|1166,1167
+Block Public and Cross-Account Access to Buckets and Objects Through Any Public Bucket or Access Point Policies|1168,1169
+Management Event|1555,1556,1557,1558,1559
+Data Event|1560,1561,1562,1563
+Insights (CloudTrail)|1564,1565
+Network activity events|1566,1567
+CloudWatch Alarms|1659,1660,1661,1662,1663,1664
+CloudWatch Logs|1665,1666
+CloudWatch Log Stream|1667
+CloudWatch Log Group|1668
+CloudWatch Synthetics|1672,1673
+CloudWatch Application Insights|1674,1675
+GuardDuty Entity List|1938,1939,1940
+GuardDuty Trusted Entity List|1938,1939
+GuardDuty Threat Entity List|1938,1940
+KMS Encrypt|2305
+KMS Decrypt|2306
+KMS GenerateDataKey|2307
+Systems Manager OpsCenter|2561,2562,2563
+OpsItem|2561,2562,2563
+מנגנון העדכונים (OpsItem)|2570,2571
+שילוב מובנה עם AWS Systems Manager Automation|2572,2573
+Amazon Application Recovery Controller — ARC|2630,2631,2632,2633
+בדיקות מוכנות (ARC)|2633
+ECS Task Execution Role|2752,2753,2754,2755,2757,2758,2759,2760
+ECR Basic Scanning|2820,2822,2829
+ECR Enhanced Scanning|2820,2821
+Amazon API Gateway|3007,3008,3009,3010,3011,3012
+הגבלת קצב (API Gateway)|3010
+S3 Presigned URL|1092
+ECR Lifecycle Policy|2831
+Resource Tags|159,160,162
+ABAC|163
+Source/Destination Check|843,844,845,847,848,849,850

@@ -1,8 +1,8 @@
 Serverless|PaaS|SaaS
-IAM|IAM Policy|Identity-Based Policy|IAM Role
+IAM|IAM Policy|IAM Role
 IAM Access Analyzer|External Access Analysis|Internal Access Analysis|Unused Access Analysis
-Managed Policy|AWS-Managed Policy|Customer-Managed Policy|Identity-Based Policy|IAM Policy
-IAM Policy|Resource-Based Policy|Trust Policy|Permissions Boundary|KMS Key Policy|Bucket Policy|SQS Queue Policy|ECR Repository Policy
+Managed Policy|AWS-Managed Policy|Customer-Managed Policy|IAM Policy
+IAM Policy|Resource-Based Policy|Trust Policy|Permissions Boundary|KMS Key Policy|Bucket Policy|SQS Queue Policy
 Temporary Security Credentials|Session Token|AssumeRole|AWS STS
 Instance Profile|IAM Role|Lambda Execution Role|ECS Task Execution Role
 Amazon EC2|EC2 Instance
@@ -18,45 +18,42 @@ AWS PrivateLink|VPC Endpoint|Interface Endpoint
 Public NAT Gateway|Private NAT Gateway
 AWS CloudFormation|Infrastructure as Code
 CloudFormation Registry|CloudFormation Resource Type|CloudFormation Module
-CloudFormation Hooks|CloudFormation Hook Handler|CloudFormation Hook Schema
+CloudFormation Hooks|Handlers (CloudFormation Hooks)|schema (CloudFormation Hooks)
 CloudFormation Guard|Policy as Code|Config Custom Policy Rule
 CloudFormation Linter|Linting
 AWS CloudTrail|CloudTrail Trail|Organization Trail|Multi-Region Trail|Single-Region Trail
 Amazon CloudWatch|CloudWatch Metric|CloudWatch Alarms|CloudWatch Logs
 CloudWatch Metric|Standard Metrics|Custom Metrics
 CloudWatch Dashboard|CloudWatch Metrics Explorer|Amazon Managed Grafana
-CloudWatch Application Insights|CloudWatch Application Signals|CloudWatch Infrastructure Insights
+CloudWatch Application Insights|CloudWatch Application Signals|Insights (CloudWatch)
 Amazon EventBridge|EventBridge Event Bus|EventBridge Rule
-Amazon GuardDuty|GuardDuty Foundational Data Sources|GuardDuty Historical Behavior|GuardDuty Organization Management
-Amazon GuardDuty|GuardDuty S3 Protection|GuardDuty EKS Protection|GuardDuty RDS Protection|GuardDuty Lambda Protection|GuardDuty Runtime Monitoring|GuardDuty Malware Protection|GuardDuty Malware Scan
-GuardDuty Malware Protection|GuardDuty Malware Scan|GuardDuty-Initiated Malware Scan|On-Demand Malware Scan
+Amazon GuardDuty|GuardDuty Historical Behavior
+Amazon GuardDuty|GuardDuty S3 Protection|GuardDuty EKS Protection|GuardDuty RDS Protection|GuardDuty Lambda Protection|GuardDuty Runtime Monitoring|GuardDuty Malware Protection
+GuardDuty Malware Protection|GuardDuty-Initiated Malware Scan|On-Demand Malware Scan
 GuardDuty Entity List|GuardDuty Trusted Entity List|GuardDuty Threat Entity List|GuardDuty Trusted IP List
 Amazon Macie|Macie Custom Data Identifier|Macie Finding
 AWS Config|Config Configuration Recorder|AWS Config Rule
-Config Remediation|Config Remediation Action|Config Manual Remediation|Config Automatic Remediation
+Config Remediation|Config Manual Remediation|Config Automatic Remediation
 AWS Config Rule|Config Managed Rule|Config Custom Rule|Config Custom Policy Rule
-AWS Security Hub|AWS Security Hub CSPM|Security Hub Central Management
 Security Hub Automation Rule|Security Hub Custom Action|Security Hub Integration
 AWS KMS|Customer-Managed KMS Key|AWS-Managed KMS Key|AWS-Owned Key
 KMS Custom Key Store|KMS External Key Store — XKS|KMS CloudHSM Key Store
 Data Key|Plaintext Data Key|Encrypted Data Key
-KMS Automatic Key Rotation|Secret Rotation
+KMS Automatic Key Rotation|החלפת סיסמאות אוטומטית (Secrets Manager)
 AWS Secrets Manager|Secret|Systems Manager Parameter Store
 Amazon CloudFront|CloudFront Distribution
 Origin Access Control — OAC|Origin Access Identity — OAI
 CloudFront Signed URL|S3 Presigned URL
 Elastic Load Balancing|Application Load Balancer — ALB|Network Load Balancer — NLB|Gateway Load Balancer — GWLB|Classic Load Balancer — CLB
-ELB TLS Certificate|CloudFront TLS Certificate|AWS Certificate Manager — ACM
 AWS Systems Manager|Systems Manager Automation|Systems Manager Run Command|Systems Manager Session Manager
-Systems Manager Automation|Automation Runbook|OpsItem Automation Integration
+Systems Manager Automation|Automation Runbook|שילוב מובנה עם AWS Systems Manager Automation
 Systems Manager OpsCenter|OpsItem
-Amazon Route 53|Route 53 Weighted Routing|Route 53 Health Check
-Amazon Application Recovery Controller — ARC|Disaster Recovery|ARC Recovery Routing|ARC Readiness Check
+Amazon Route 53|Route 53 Weighted Routing
+Amazon Application Recovery Controller — ARC|Disaster Recovery|בדיקות מוכנות (ARC)
 AWS VPN|AWS Site-to-Site VPN|AWS Client VPN|VPN over Direct Connect
 VPN Target Gateway|Virtual Private Gateway
 AWS Shield|AWS Shield Standard|AWS Shield Advanced
 Amazon ECS|ECS Cluster|ECS Service|ECS Task
-AWS Fargate|ECS Fargate Launch Type
 ECS Task Definition|ECS Container Definition|Kubernetes Pod Template
 ECS Agent|ECS Agent ACS
 Amazon ECR|ECR Registry|ECR Repository
@@ -77,3 +74,14 @@ EventBridge Scheduler|EventBridge Schedule
 Systems Manager Parameter Store|Parameter Store SecureString|Parameter Store String
 WAF Web ACL|WAF Managed Rule|WAF Custom Rule|WAF Rate Limiting
 AWS WAF|WAF Managed Rule|WAF Custom Rule|WAF Rate Limiting
+Compliant|non_compliant
+Resource Tags|ABAC
+AWS Systems Manager|Systems Manager Inventory|Systems Manager Patch Manager|Systems Manager State Manager
+AWS Systems Manager|Systems Manager Run Command|Systems Manager Automation|Systems Manager Session Manager
+GuardDuty Finding|Macie Finding|Security Hub Finding
+S3 Event Notifications|Amazon SNS|SNS Topic|Amazon EventBridge
+AWS IoT Core|IoT Publisher|Message Broker|IoT Publish
+AWS CloudFormation|CloudFormation Stack|CloudFormation StackSets|CloudFormation Registry
+Shared Services|Shared Services Account|Management Account|Security Tooling Account
+CloudWatch Logs|CloudWatch Log Group|CloudWatch Log Stream
+KMS Encrypt|Symmetric Encryption|Envelope Encryption

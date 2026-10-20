@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "a4dbcbdbf5fac2bc96a05c99278c679a23c8014112863ca947868d53ff115942"
+REVIEWED_SOURCE_HASH = "072ed3166064b4cb16b9b30136a5763d9d63e22c047c53cbc505468279b30bdf"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
     94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
@@ -21,16 +21,16 @@ CONCEPT_IMAGES = {
 }
 # Conceptual statements embedded in console tutorials, retained without testing clicks.
 CONCEPT_EXCEPTIONS = {
-    891: "AMI", 892: "Root Device", 895: "Quick Start AMIs",
-    896: "My AMIs", 897: "Marketplace / Community AMIs", 900: "Instance Types",
-    903: "Key Pair", 904: "Key Pair", 905: "Key Pair",
-    914: "Security Groups", 923: "Inbound Rules", 924: "Outbound Rules",
-    1783: "Metric Filters", 2021: "Custom Data Identifiers",
+    904: "AMI", 905: "Root Device", 908: "Quick Start AMIs",
+    909: "My AMIs", 910: "Marketplace / Community AMIs", 913: "Instance Types",
+    916: "Key Pair", 917: "Key Pair", 918: "Key Pair",
+    927: "Security Groups", 936: "Inbound Rules", 937: "Outbound Rules",
+    1807: "Metric Filters", 2045: "Custom Data Identifiers",
 }
-IMPLEMENTATION_RANGES = ((555, 572), (1301, 1314), (1963, 1966), (2791, 2794))
+IMPLEMENTATION_RANGES = ((560, 577), (1325, 1338), (1987, 1990), (2814, 2817))
 IMPLEMENTATION_BLOCKS = {
-    439, 491, 1152, 1245, 1570, 1598, 1756, 1766, 1904, 2068,
-    2126, 2166, 2169, 2326, 2761,
+    444, 496, 1176, 1269, 1594, 1622, 1780, 1790, 1928, 2092,
+    2150, 2190, 2193, 2350, 2784,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -220,13 +220,13 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3252, 140, 49):
+    if (len(records), image_number, len(services)) != (3275, 140, 49):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
     # Indexed exceptions belong to this reviewed snapshot, not future downloads.
-    if records[2021]["text"].startswith("custom data identifiers:") is False:
+    if records[2045]["text"].startswith("custom data identifiers:") is False:
         raise ValueError("Reviewed exception indices no longer match the snapshot")
 
-    for index in (0, 685):
+    for index in (0, 690):
         records[index].update(classification="context", reason="Document navigation link, not study content")
     position = 0
     while position < len(records):
@@ -289,6 +289,20 @@ def build():
         key, term, answer, category = line.split("|")
         definitions.append({"key": key, "term": term, "answer": answer, "category": category})
     assert len({d["term"] for d in definitions}) == len(definitions), "Duplicate concept"
+    provenance = json.loads((BASE / "concept-provenance.json").read_text(encoding="utf-8"))
+    review_report = json.loads((BASE / "question-review.json").read_text(encoding="utf-8"))
+    assert set(provenance) == {d["term"] for d in definitions}, "Every concept needs explicit source name evidence"
+    normalize = lambda text: re.sub(r"[^a-z0-9\u0590-\u05ff]", "", text.casefold())
+    for definition in definitions:
+        proof = provenance[definition["term"]]
+        if "nameBlock" in proof:
+            record = records[proof["nameBlock"]]
+            assert record["kind"] == "text" and record["text"] == proof["nameQuote"], definition["term"]
+            assert normalize(proof["sourceTerm"]) in normalize(record["text"]), definition["term"]
+        else:
+            citation = sources[definition["key"]]
+            assert citation["imageNumber"] == proof["imageNumber"] and citation.get("imageQuoteType") != "label"
+            assert normalize(proof["sourceTerm"]) in normalize(citation["imageQuote"]), definition["term"]
     terms = {d["term"] for d in definitions}
     conflicts = {term: {term} for term in terms}
     for line in (BASE / "concept-conflicts.txt").read_text(encoding="utf-8").splitlines():
@@ -296,6 +310,8 @@ def build():
         assert related <= terms, f"Unknown distractor exclusion: {related - terms}"
         for term in related:
             conflicts[term].update(related)
+    for definition in definitions:
+        conflicts[definition["term"]].update(d["term"] for d in definitions if d["key"] == definition["key"])
     reviews = {}
     for key, value in read_catalog("concept-review.txt").items():
         disposition, detail = value.split("|")
@@ -303,7 +319,7 @@ def build():
         reviews[key] = {"disposition": disposition, "detail": detail}
     direct = {d["key"] for d in definitions}
     assert not direct.intersection(reviews), "A topic must be directly covered or reviewed, not both"
-    assert {str(i) for i in range(493)} == {k for k in direct if k.isdigit()} | set(reviews), "Review every source topic"
+    assert {str(i) for i in range(495)} == {k for k in direct if k.isdigit()} | set(reviews), "Review every source topic"
     for review in reviews.values():
         if review["disposition"] == "alias":
             assert set(review["detail"].split(",")) <= direct, "Alias must point to covered concepts"
@@ -316,7 +332,8 @@ def build():
 
     definitions.sort(key=source_order)
     evidence = read_catalog("concept-evidence.txt")
-    assert set(evidence) == {k for k in sources if not k.isdigit()}, "Every transcribed chart definition and SRA label must map to a concept"
+    assert {k for k in sources if k.startswith("chart:")} <= set(evidence), "Every transcribed definition must map to a concept"
+    assert set(evidence) <= set(sources), "Unknown chart evidence"
     assert set(evidence.values()) <= {d["term"] for d in definitions}
     quote_overrides = read_catalog("concept-quotes.txt")
     assert set(quote_overrides) <= {d["term"] for d in definitions}
@@ -328,7 +345,11 @@ def build():
         if len(peers) < 3:
             peers += [d for d in definitions if d["category"] != category and d["term"] not in conflicts[term]]
         wrong = random.Random(digest(term)).sample(peers, 3)
-        question_text = f"מה עושה {term}?" if term in evidence.values() or term == citation.get("service") else f"מה המשמעות של {term}?"
+        source_term = provenance[term]["sourceTerm"]
+        service = citation.get("service", "")
+        is_service = term in evidence.values() or term.startswith(("AWS ", "Amazon ")) or normalize(term) == normalize(service)
+        context = "" if service in {"AWS", "Other Services by categories"} or normalize(service) in normalize(source_term) else f" בהקשר של {service}"
+        question_text = f"מה עושה {source_term}?" if is_service else f"מה המשמעות של {source_term}{context}?"
         question = {
             "id": "concept-" + digest(term + "|" + answer), "topic": term,
             "section": "מה המושג ומה הוא עושה", "kind": "quiz",
@@ -336,6 +357,8 @@ def build():
             "options": [answer] + [d["answer"] for d in wrong],
             "distractorTerms": [d["term"] for d in wrong], "category": category,
             "conceptSource": key,
+            "sourceTerm": source_term,
+            "nameEvidence": provenance[term],
             "text": "הגדרה תמציתית ללמידה. הציטוט המקורי מוצג בנפרד.",
         }
         if "imageNumber" in citation:
@@ -350,7 +373,6 @@ def build():
             question.update(
                 service=citation["service"], source=source_unit["id"],
                 quoteText="\n".join(records[b]["text"] for b in blocks), quoteBlocks=blocks,
-                sourceLabel=key in {"311", "323", "380", "382"} or term == "Break-Glass Account",
             )
         question["evidence"] = [
             dict(sources[k], source=images[sources[k]["imageNumber"]]["id"])
@@ -387,7 +409,15 @@ def build():
         "hash": hashlib.sha256(raw.encode("utf-8")).hexdigest(), "blocks": len(records),
         "textBlocks": len(records) - image_number, "images": image_number, "services": services,
         "sourceUnits": len(units), "knowledgeUnits": len(active), "depthQuestions": len(questions),
-        "recallCards": len(cards), "reviewedTopicGroups": 493,
+        "recallCards": len(cards), "reviewedTopicGroups": 495,
+        "previousSourceHash": review_report["previousSourceHash"],
+        "previousQuestionIds": review_report["reviewedPreviousIds"],
+        "unchangedQuestionIds": review_report["unchangedQuestionIds"],
+        "sourceOnlyReview": {
+            "reviewed": review_report["reviewedPreviousQuestions"],
+            "removed": len(review_report["removed"]), "corrected": len(review_report["corrected"]),
+            "added": len(review_report["added"]),
+        },
         "conceptQuestions": len(questions), "directTopicGroups": len([k for k in direct if k.isdigit()]),
         "aliasedTopicGroups": sum(r["disposition"] == "alias" for r in reviews.values()),
         "excludedTopicGroups": sum(r["disposition"] == "excluded" for r in reviews.values()),
@@ -409,7 +439,9 @@ def build():
         "recallCards": [{k: v for k, v in c.items() if k != "image"} for c in cards],
     }
     (BASE / "coverage-audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps(meta, ensure_ascii=False, indent=2))
+    print(json.dumps({k: v for k, v in meta.items() if k not in {
+        "previousQuestionIds", "unchangedQuestionIds",
+    }}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
