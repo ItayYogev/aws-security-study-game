@@ -168,6 +168,16 @@ class GameTests(unittest.TestCase):
             self.assertNotIn(f'localStorage.setItem("{key}"', runtime)
             self.assertNotIn(f'localStorage.removeItem("{key}"', runtime)
 
+    def test_source_quotes_use_fixed_rtl_not_first_character_direction(self):
+        style = GAME.find("style").get_text()
+        declarations = {}
+        for selector, body in re.findall(r"([^{}]+)\{([^{}]*)\}", style):
+            if selector.strip() == ".source-text":
+                declarations.update(item.strip().split(":", 1) for item in body.split(";") if ":" in item)
+        self.assertEqual(declarations["direction"], "rtl")
+        self.assertEqual(declarations["text-align"], "right")
+        self.assertEqual(declarations["unicode-bidi"], "isolate")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
