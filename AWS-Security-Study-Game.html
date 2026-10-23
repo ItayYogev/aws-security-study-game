@@ -41,7 +41,8 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <label>צורת לימוד<select id="mode"><option value="depth">מושג וארבע הגדרות</option><option value="source">אותם מושגים בשליפה עצמית</option></select></label>
 <label>מה לתרגל<select id="state-filter"><option value="all">הכול</option><option value="unseen">שאלות חדשות</option><option value="weak">טעויות וחזרה</option><option value="starred">סימנתי לחזרה</option></select></label>
 </div>
-<div class="searchrow"><label>חיפוש<input id="search" type="search" placeholder="שירות או מושג"></label><label>סדר השאלות<select id="order"><option value="random">מעורבב</option><option value="source">לפי הסיכום</option><option value="weak">הקשות קודם</option></select></label></div>
+<label class="advanced">חיפוש<input id="search" type="search" placeholder="שירות או מושג"></label>
+<p class="muted tiny">כל סבב חדש מערבב את סדר השאלות, כולל סבב חזרה על טעויות. המשך סבב שמור חוזר למקום שבו עצרת.</p>
 <p id="mode-explanation"></p>
 </div></details>
 </section>
@@ -309,10 +310,8 @@ function begin(ids) {
     $("selection-info").textContent = "אין פריטים לסבב. יש לשנות את המסננים.";
     return;
   }
+  deck = shuffle(deck);
   if (!ids) {
-    if ($("order").value === "random") deck = shuffle(deck);
-    if ($("order").value === "weak") deck = [...deck].sort((a,b) =>
-      getProgress(a.id).streak - getProgress(b.id).streak || getProgress(b.id).attempts - getProgress(a.id).attempts);
     const size = $("length").value === "all" ? deck.length : Number($("length").value);
     deck = deck.slice(0, size);
   }
@@ -687,7 +686,7 @@ $("import").addEventListener("change", async event => {
 });
 ["play","library","coverage","guide"].forEach(tab => $("tab-"+tab).addEventListener("click", () => openTab(tab)));
 $("mode").addEventListener("change", fillServices);
-["service","state-filter","length","order"].forEach(id => $(id).addEventListener("change", updateSelection));
+["service","state-filter","length"].forEach(id => $(id).addEventListener("change", updateSelection));
 $("search").addEventListener("input",updateSelection);
 $("start").addEventListener("click",() => begin());
 $("reveal").addEventListener("click",() => {

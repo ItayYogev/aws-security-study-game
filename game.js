@@ -232,10 +232,8 @@ function begin(ids) {
     $("selection-info").textContent = "אין פריטים לסבב. יש לשנות את המסננים.";
     return;
   }
+  deck = shuffle(deck);
   if (!ids) {
-    if ($("order").value === "random") deck = shuffle(deck);
-    if ($("order").value === "weak") deck = [...deck].sort((a,b) =>
-      getProgress(a.id).streak - getProgress(b.id).streak || getProgress(b.id).attempts - getProgress(a.id).attempts);
     const size = $("length").value === "all" ? deck.length : Number($("length").value);
     deck = deck.slice(0, size);
   }
@@ -610,7 +608,7 @@ $("import").addEventListener("change", async event => {
 });
 ["play","library","coverage","guide"].forEach(tab => $("tab-"+tab).addEventListener("click", () => openTab(tab)));
 $("mode").addEventListener("change", fillServices);
-["service","state-filter","length","order"].forEach(id => $(id).addEventListener("change", updateSelection));
+["service","state-filter","length"].forEach(id => $(id).addEventListener("change", updateSelection));
 $("search").addEventListener("input",updateSelection);
 $("start").addEventListener("click",() => begin());
 $("reveal").addEventListener("click",() => {

@@ -460,7 +460,7 @@ const html = fs.readFileSync("AWS-Security-Study-Game.html", "utf8");
 const data = JSON.parse(html.match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const runtime = fs.readFileSync("game.js", "utf8");
 const source = runtime.slice(runtime.indexOf("function begin("), runtime.indexOf("function current("));
-const defaults = Object.fromEntries(["length", "order"].map(id => {
+const defaults = Object.fromEntries(["length"].map(id => {
   const select = html.match(new RegExp('<select id="' + id + '">([\\s\\S]*?)</select>'))[1];
   const options = [...select.matchAll(/<option value="([^"]+)"([^>]*)>/g)];
   return [id, (options.find(option => /\bselected\b/.test(option[2])) || options[0])[1]];
@@ -484,10 +484,56 @@ const start = deck => run($, () => deck, deck => [...deck].reverse(), () => {}, 
 saved = start(data.questions);
 assert.equal(saved.ids.length, 460);
 assert.deepEqual(new Set(saved.ids), new Set(data.questions.map(question => question.id)));
+assert.deepEqual(saved.ids, data.questions.map(question => question.id).reverse());
 const filtered = data.questions.filter(question => question.service === "AWS Backup");
 assert.equal(start(filtered).ids.length, filtered.length);
 $("length").value = "10";
 assert.equal(start(data.questions).ids.length, 10);
+assert.deepEqual(start(data.questions).ids, data.questions.map(question => question.id).reverse().slice(0,10));
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_every_new_round_shuffles_including_explicit_and_retry_decks(self):
+        self.assertIsNone(GAME.select_one("#order"))
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const runtime = fs.readFileSync("game.js", "utf8");
+const shuffleSource = runtime.match(/function shuffle\([\s\S]*?\r?\n}/)[0];
+const randomValues = [0, 0.99];
+const shuffle = new Function("Math", shuffleSource + "\nreturn shuffle;")({
+  floor:Math.floor, random:() => randomValues[currentRun]
+});
+const source = runtime.slice(runtime.indexOf("function begin("), runtime.indexOf("function current("));
+const deck = Array.from({length:20}, (_,i) => ({id:String(i)}));
+const byId = new Map(deck.map(q => [q.id,q]));
+const playableIds = new Set(byId.keys());
+let currentRun = 0;
+const $ = id => ({value:id==="length"?"10":undefined,classList:{add(){},remove(){}}});
+const run = new Function("$", "filterDeck", "shuffle", "openTab", "byId", "playableIds", "ids", `
+let session;
+function saveSession() {}
+function render() {}
+${source}
+begin(ids);
+return session;
+`);
+const start = ids => run($, () => deck, shuffle, () => {}, byId, playableIds, ids);
+const first = start();
+currentRun = 1;
+const second = start();
+assert.notDeepEqual(first.ids, second.ids);
+assert.notDeepEqual(new Set(first.ids), new Set(second.ids));
+assert.equal(new Set(first.ids).size, 10);
+const explicit = ["3","8","12","15"];
+currentRun = 0;
+const retry = start(explicit);
+assert.deepEqual(new Set(retry.ids), new Set(explicit));
+assert.notDeepEqual(retry.ids, explicit);
+assert.deepEqual(explicit, ["3","8","12","15"]);
+const original = deck.map(q=>q.id);
+assert.deepEqual(original, Array.from({length:20}, (_,i)=>String(i)));
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
