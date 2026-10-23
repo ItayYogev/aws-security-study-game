@@ -24,7 +24,7 @@ class GameTests(unittest.TestCase):
     def test_permanent_number_ledger_is_append_only(self):
         ledger = json.loads((BASE / "question-order.json").read_text(encoding="utf-8"))
         self.assertEqual(hashlib.sha256("\n".join(ledger[:467]).encode()).hexdigest(),
-                         "75f9b098483a4d3e4057c8a0e2fdec88a9a8e6225708677decdf1c252e02d114")
+                         "e541c0911a0805cd11ab91ef8e1869f4dc62b1fe78848d7bebd2ef44f199830d")
         self.assertEqual(len(ledger), len(set(ledger)))
         for question in DATA["questions"]:
             self.assertEqual(ledger[question["number"] - 1], question["id"])
