@@ -5,9 +5,10 @@ const ALL = [...DATA.units, ...DATA.cards, ...DATA.questions, ...DATA.legacy];
 const byId = new Map(ALL.map(unit => [unit.id, unit]));
 const playableIds = new Set([...DATA.cards, ...DATA.questions].map(unit => unit.id));
 const STORE = "aws-security-lab-v5-concepts";
+const UNKNOWN_ANSWER = "__unknown__";
 const modes = {
   source: "אותם מושגים בשליפה עצמית: הסבר מהו המושג ומה תפקידו, ואז השווה להגדרה ולציטוט.",
-  depth: "שם מושג וארבע הגדרות: בחר מהו המושג או מה הוא עושה. בלי מסלולי הקמה, מחירים או שינון פקודות."
+  depth: "מה עושה המושג של AWS? ארבע תשובות לבחירה ואפשרות ״לא יודע את התשובה״. בלי מושגי יסוד כלליים, תוכן Interface או הוראות יישום."
 };
 let progress = {};
 let session = null;
@@ -121,17 +122,18 @@ function readSave(saved) {
     }
     return {progress:saved.progress, session:saved.session, notice:"", migrated:false};
   }
-  if (saved.sourceHash !== DATA.meta.previousSourceHash) throw new Error("השמירה אינה תואמת לגרסת הסיכום.");
-  const previousIds = new Set(DATA.meta.previousQuestionIds.flatMap(id => [id, "recall-" + id]));
+  const revision = DATA.meta.compatibleRevisions.find(item => item.sourceHash === saved.sourceHash);
+  if (!revision) throw new Error("השמירה אינה תואמת לגרסת הסיכום.");
+  const previousIds = new Set(revision.questionIds.flatMap(id => [id, "recall-" + id]));
   if (!validProgress(saved.progress, false) || Object.keys(saved.progress).some(id => !previousIds.has(id)) ||
       (saved.session !== null && !validSession(saved.session, previousIds))) {
     throw new Error("נתוני הגרסה הקודמת אינם תקינים.");
   }
-  const unchanged = new Set(DATA.meta.unchangedQuestionIds.flatMap(id => [id, "recall-" + id]));
+  const unchanged = new Set(revision.unchangedQuestionIds.flatMap(id => [id, "recall-" + id]));
   const kept = Object.fromEntries(Object.entries(saved.progress).filter(([id]) => unchanged.has(id)));
-  const keepSession = saved.session === null || saved.session.ids.every(id => unchanged.has(id));
+  const keepSession = saved.session === null || (revision.resumeSessions !== false && saved.session.ids.every(id => unchanged.has(id)));
   const removed = Object.keys(saved.progress).length - Object.keys(kept).length;
-  const notice = `מאגר השאלות עודכן לפי הסיכום. נשמרה ההתקדמות ב-${Object.keys(kept).length} שאלות שלא השתנו. ${removed} רשומות של שאלות שתוקנו או הוסרו לא הועברו. ${keepSession ? "" : "הסבב הישן כלל שאלות שהשתנו, ולכן אינו ממשיך."}`;
+  const notice = `מאגר השאלות עודכן לפי הסיכום. נשמרה ההתקדמות ב-${Object.keys(kept).length} פריטי תרגול שהגדרתם לא השתנתה. ${removed} רשומות של שאלות שתוקנו או הוסרו לא הועברו. ${keepSession ? "" : "הסבב הישן אינו ממשיך, כי השאלות ואפשרויות הבחירה עודכנו."}`;
   return {progress:kept, session:keepSession ? saved.session : null, notice, migrated:true};
 }
 function load() {
@@ -270,6 +272,10 @@ function corrections(unit) {
   if (unit.service === "S3" && /Signed URLs|Intelligent Tiering|9 עד 48/.test(text)) notes.push("בדיקת עדכניות: זמני אחזור ותכונות שכבות האחסון דורשים דיוק. Intelligent-Tiering מבוסס על ניטור דפוסי גישה; אין להסיק שעצם שינוי השכבה משנה את תוכן הנתון.");
   if (unit.service === "AWS KMS" && /rotation|Rotation|מחיקה של מפתח|ScheduleKey/.test(text)) notes.push("דיוק ועדכניות: הפעולה לתזמון מחיקה היא ScheduleKeyDeletion, ולביטול CancelKeyDeletion. תמיכת רוטציה תלויה בסוג המפתח ובמקור חומר המפתח; יש לבדוק תיעוד עדכני ולא להסתמך על רשימה היסטורית.");
   if (unit.service === "AWS KMS" && /Key Policy/.test(text)) notes.push("דיוק: גם AWS Managed Keys כוללים Key Policy שאי אפשר לשנות. ב-Customer Managed Keys הלקוח מנהל את המדיניות.");
+  if (unit.service === "AWS KMS" && /Multi-Region KMS Key|עותקי Replica/.test(unit.topic + text)) notes.push("תיקון לציטוט: ניתן לתזמן מחיקה של Primary Key גם כשקיימים Replicas. המחיקה בפועל ותחילת תקופת ההמתנה של ה-Primary תלויות במחיקת כל ה-Replicas. לכן הטענה שחסום לחלוטין עצם התזמון אינה מדויקת.");
+  if (unit.service === "VPC" && /מחקת Custom NACL|ניתקת סאבנט/.test(text)) notes.push("דיוק: כל Subnet חייב להיות משויך ל-NACL אחד. אין להשאירו מנותק; משנים את השיוך ל-NACL אחר. אי אפשר למחוק Custom NACL כל עוד הוא משויך ל-Subnet. ללא שיוך מפורש משתמשים ב-Default NACL.");
+  if (unit.service === "VPC" && /NAT Gateway/.test(unit.topic + text)) notes.push("דיוק: יציאה לאינטרנט דרך Internet Gateway מתייחסת ל-Public NAT Gateway. Private NAT Gateway משמש לתקשורת פרטית, ולא ליציאה לאינטרנט דרך IGW.");
+  if (unit.service === "AWS Systems Manager" && /Session manager history/.test(unit.topic + text)) notes.push("דיוק: היסטוריית Session Manager מתייחסת לסשנים שנוהלו דרכו, לא לכל סוגי ההתחברות האפשריים בארגון.");
   if (unit.service === "VPC" && /Hyperplane|backbone|תרגום של דומיניים/.test(text)) notes.push("תיקון מהותי: NAT אינו DNS. Hyperplane הוא מישור עיבוד תעבורת רשת מבוזר; PrivateLink אינו כל רשת ה-backbone של AWS. אין ללמוד מהציטוט שכל שירותי PrivateLink מחייבים שהלקוח יקים Load Balancer.");
   if (unit.service === "EC2" && /יבקש את המפתח הפרטי/.test(text)) notes.push("תיקון: בחיבור SSH הלקוח מוכיח החזקה במפתח הפרטי; אין למסור או להעלות את המפתח הפרטי לשרת.");
   if (unit.service === "CloudTrail" && /הופרש|retired|Lake/.test(text)) notes.push("בדיקת עדכניות: טענת המקור לגבי פרישת CloudTrail Lake אינה מאומתת כאן. יש לבדוק את הודעות AWS הרשמיות; אין להשתמש בטענה זו כעובדה לבחינה.");
@@ -334,6 +340,8 @@ function render() {
   $("next").classList.toggle("hidden", !session.answered);
   $("next").textContent = session.index + 1 === session.ids.length ? "לסיום הסבב" : "לשאלה הבאה";
   $("options").replaceChildren();
+  $("unknown-answer").classList.toggle("hidden", !objective);
+  $("unknown-answer").disabled = session.answered;
   $("grading-note").textContent = objective ? "ציון לפי התשובה הנכונה." : "הערכה עצמית של ההגדרה והתפקיד; לא שלבי יישום.";
   if (objective) {
     if (unit.kind === "quiz") quizOptions = shuffle(unit.options);
@@ -364,7 +372,8 @@ function showAnswer() {
   if (objective) {
     const correct = session.choice === unit.answer;
     $("feedback").classList.add(correct ? "good" : "bad");
-    $("feedback").textContent = `${correct ? "נכון." : "לא הפעם."} התשובה: ${unit.answer}\n\n${unit.text}`;
+    $("feedback").textContent = `${correct ? "נכון." : session.choice === UNKNOWN_ANSWER ? "לא ידעת? המושג נוסף לחזרה." : "לא הפעם."} התשובה: ${unit.answer}\n\n${unit.text}`;
+    $("unknown-answer").disabled = true;
     [...$("options").children].forEach(button => {
       button.disabled = true;
       if (button.dataset.answer === unit.answer) button.classList.add("correct");
@@ -522,7 +531,7 @@ function renderLibrary() {
   });
 }
 function renderCoverage() {
-  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו במלואם. במשחק ${DATA.questions.length} מושגים: לכל מושג שאלה אמריקאית וכרטיסיית שליפה עם אותה הגדרה. לכל שם מושג יש אסמכתה מפורשת במקור. נבדקו ${DATA.meta.reviewedTopicGroups} קבוצות נושאים: ${DATA.meta.directTopicGroups} מתורגלות ישירות, ${DATA.meta.aliasedTopicGroups} משויכות למושגים קיימים, ו-${DATA.meta.excludedTopicGroups} הוחרגו עם נימוק: ניווט, יישום, תמחור, פתיחות לרשימות או הגדרה שאינה מספיקה לשאלה. כל ${DATA.meta.sourceOnlyReview.reviewed} השאלות הקודמות נבדקו; ${DATA.meta.sourceOnlyReview.corrected} תוקנו ו-${DATA.meta.sourceOnlyReview.removed} הוסרו. תוכן עיון ותמונות אינם נספרים כשאלות נוספות.`;
+  $("audit-summary").textContent = `${DATA.meta.textBlocks.toLocaleString("he")} מקטעי טקסט ו-${DATA.meta.images} תמונות נשמרו במלואם לעיון. במשחק ${DATA.questions.length} מושגים של AWS, עם ארבע תשובות ואפשרות ״לא יודע את התשובה״. לכל שם מושג יש אסמכתה במקור. תוכן תחת Interface וכל תתי-הכותרות שלו מוחרג מהשאלון, גם כשמופיעה בו הגדרה. הוחרגו גם מושגי יסוד כלליים והוראות יישום. כל ${DATA.meta.sourceOnlyReview.reviewed} השאלות הקודמות נבדקו; ${DATA.meta.sourceOnlyReview.corrected} הגדרות תוקנו ו-${DATA.meta.sourceOnlyReview.removed} שאלות הוסרו. כרטיסיות השליפה מתרגלות את אותו מאגר, ואינן מושגים נוספים.`;
   $("source-meta").textContent = `מקור: ${DATA.meta.source}\nמועד הורדה (UTC): ${DATA.meta.fetched}\nSHA-256: ${DATA.meta.hash}`;
   $("coverage-items").replaceChildren();
   DATA.meta.services.forEach(service => {
@@ -636,6 +645,7 @@ $("star").addEventListener("click",() => {
   updateStar();
 });
 $("retry").addEventListener("click",() => begin([...session.missed]));
+$("unknown-answer").addEventListener("click", () => answerQuiz(UNKNOWN_ANSWER));
 $("new-round").addEventListener("click",() => {
   $("results").classList.add("hidden");
   $("setup").classList.remove("hidden");

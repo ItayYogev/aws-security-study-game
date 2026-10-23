@@ -29,7 +29,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <div class="stats" aria-hidden="true"><span id="source-total"></span><span id="source-seen"></span><span id="quiz-total"></span><span id="image-total"></span></div>
 <section id="view-play" role="tabpanel" aria-labelledby="tab-play">
 <section class="panel" id="setup">
-<h1>מה זה ומה זה עושה?</h1><p class="muted">בכל שאלה מופיע מושג מהסיכום. בחר את ההגדרה הנכונה, ואז בדוק את ההסבר והציטוט המקורי.</p>
+<h1>מה עושה המושג של AWS?</h1><p class="muted">בכל שאלה מופיע שם שירות או מנגנון של AWS מהסיכום. בחר אחת מארבע התשובות או ״לא יודע את התשובה״, ואז בדוק את ההסבר והציטוט המקורי. תוכן Interface והוראות יישום אינם בשאלון.</p>
 <div class="controls">
 <label>נושא<select id="service"></select></label>
 <label>שאלות בסבב<select id="length"><option value="10">10 שאלות</option><option value="20">20 שאלות</option><option value="50">50 שאלות</option><option value="all">כל השאלות בנושא</option></select></label>
@@ -51,6 +51,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <div class="row spread"><span class="context" id="context"></span><button type="button" id="star" aria-pressed="false">☆ לחזרה</button></div>
 <article class="question"><span id="kind-label"></span><h2 id="question" tabindex="-1"></h2><p id="source-cue" class="hidden"></p><div id="visual"></div></article>
 <div id="options" class="options"></div>
+<div class="actions"><button type="button" id="unknown-answer" class="hidden">לא יודע את התשובה</button></div>
 <div id="recall" class="hidden"><details><summary>לכתוב לעצמי תשובה</summary><label class="advanced">התשובה שלי<textarea id="notes" placeholder="אפשר להסביר בעל פה או לכתוב כאן"></textarea></label></details><div class="actions"><button type="button" class="primary" id="reveal">להציג תשובה</button></div></div>
 <section id="answer-panel" class="hidden" aria-label="התשובה והמקור"><div id="feedback" class="feedback" role="status" aria-live="polite"></div><div id="source-notes"></div><div id="source-actions" class="actions"></div><div id="grade" class="actions grade hidden"><button type="button" data-grade="0">לא זכרתי</button><button type="button" data-grade="1">זכרתי חלקית</button><button type="button" data-grade="2" class="remember">זכרתי נכון</button></div></section>
 <div class="actions spread"><span id="round-score" class="muted tiny"></span><span id="grading-note"></span><button type="button" id="next" class="primary hidden">לשאלה הבאה</button></div>

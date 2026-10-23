@@ -12,25 +12,17 @@ from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "072ed3166064b4cb16b9b30136a5763d9d63e22c047c53cbc505468279b30bdf"
+REVIEWED_SOURCE_HASH = "2daa663401c00a4f9d31c7dd848c56b9d4fed83518989a89fd54e2e058eb3d39"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
     94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
     122, 123, 124, 125, 126, 127, 128, 130, 131, 132, 133, 134, 135,
     136, 137, 138, 139, 140,
 }
-# Conceptual statements embedded in console tutorials, retained without testing clicks.
-CONCEPT_EXCEPTIONS = {
-    904: "AMI", 905: "Root Device", 908: "Quick Start AMIs",
-    909: "My AMIs", 910: "Marketplace / Community AMIs", 913: "Instance Types",
-    916: "Key Pair", 917: "Key Pair", 918: "Key Pair",
-    927: "Security Groups", 936: "Inbound Rules", 937: "Outbound Rules",
-    1807: "Metric Filters", 2045: "Custom Data Identifiers",
-}
-IMPLEMENTATION_RANGES = ((560, 577), (1325, 1338), (1987, 1990), (2814, 2817))
+IMPLEMENTATION_RANGES = ((562, 579), (1334, 1347), (2003, 2006), (2849, 2852))
 IMPLEMENTATION_BLOCKS = {
-    444, 496, 1176, 1269, 1594, 1622, 1780, 1790, 1928, 2092,
-    2150, 2190, 2193, 2350, 2784,
+    444, 498, 1178, 1274, 1603, 1636, 1796, 1806, 1944, 2108,
+    2170, 2210, 2213, 2380, 2819,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -151,7 +143,7 @@ def build():
     formatting = {}
     records, services, image_number = [], [], 0
     service, section, topic = "AWS", "General Definitions", "AWS"
-    how_to_level = None
+    how_to_level = interface_level = None
     for tag in soup.body.find_all(["p", "li", "h1", "h2", "h3", "img"]):
         if tag.name == "img":
             image_number += 1
@@ -162,8 +154,9 @@ def build():
             records.append({
                 "id": len(records), "kind": "image", "text": "", "service": service,
                 "section": section, "topic": topic, "image": image, "imageNumber": image_number,
-                "classification": "knowledge" if image_number in CONCEPT_IMAGES else "implementation",
-                "reason": "Conceptual drawing or evidence interpretation" if image_number in CONCEPT_IMAGES else "Console screenshot / implementation illustration",
+                "interface": interface_level is not None, "howTo": how_to_level is not None,
+                "classification": "knowledge" if image_number in CONCEPT_IMAGES and interface_level is None and how_to_level is None else "implementation",
+                "reason": "Interface subtree excluded" if interface_level is not None else "How-to section excluded" if how_to_level is not None else "Conceptual drawing or evidence interpretation" if image_number in CONCEPT_IMAGES else "Console screenshot / implementation illustration",
             })
             continue
         if tag.find_parent(["p", "li", "h1", "h2", "h3"]):
@@ -184,20 +177,24 @@ def build():
         if title:
             service = topic = text
             section = ""
-            how_to_level = None
+            how_to_level = interface_level = None
             services.append(service)
         elif heading:
             level = int(tag.name[1])
+            if re.fullmatch(r"interface\s*:?", text, re.I):
+                interface_level = level
+            elif interface_level is not None and level <= interface_level:
+                interface_level = None
             if "how to" in text.casefold():
                 how_to_level = level
             elif how_to_level is not None and level <= how_to_level:
                 how_to_level = None
             section = text
-            if how_to_level is None and not STRUCTURAL.match(text) and text.casefold() != "interface":
+            if how_to_level is None and interface_level is None and not STRUCTURAL.match(text):
                 topic = text
             elif tag.name in ("h1", "h2") and how_to_level is None:
                 topic = service
-        elif label and not tag.find_parent("table") and how_to_level is None and not STRUCTURAL.match(text):
+        elif label and not tag.find_parent("table") and how_to_level is None and interface_level is None and not STRUCTURAL.match(text):
             topic = text
         classification, reason = "knowledge", "Conceptual definition, property, comparison, or example"
         if how_to_level is not None:
@@ -206,27 +203,27 @@ def build():
             classification, reason = "implementation", "Console/CLI navigation or setup instruction"
         if title or heading or STRUCTURAL.match(text) or label:
             classification, reason = "context", "Heading or mechanism label, attached to its knowledge statements"
-        if index in CONCEPT_EXCEPTIONS:
-            classification, reason = "knowledge", "Conceptual statement retained from a how-to section"
         if tag.find_parent("table"):
             topic = "Security Group / NACL"
             classification, reason = "knowledge", "Comparison table cell"
         if index in IMPLEMENTATION_BLOCKS or any(lo <= index <= hi for lo, hi in IMPLEMENTATION_RANGES):
             classification, reason = "implementation", "Reviewed inline setup or console navigation"
+        if how_to_level is not None:
+            classification, reason = "implementation", "How-to subtree excluded from questions"
+        if interface_level is not None:
+            classification, reason = "implementation", "Entire Interface subtree excluded from questions"
         records.append({
             "id": index, "kind": "text", "text": text, "service": service,
-            "section": section, "topic": CONCEPT_EXCEPTIONS.get(index, topic),
+            "section": section, "topic": topic,
+            "interface": interface_level is not None, "howTo": how_to_level is not None,
             "classification": classification, "reason": reason,
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3275, 140, 49):
+    if (len(records), image_number, len(services)) != (3314, 140, 49):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
-    # Indexed exceptions belong to this reviewed snapshot, not future downloads.
-    if records[2045]["text"].startswith("custom data identifiers:") is False:
-        raise ValueError("Reviewed exception indices no longer match the snapshot")
 
-    for index in (0, 690):
+    for index in (0, 692):
         records[index].update(classification="context", reason="Document navigation link, not study content")
     position = 0
     while position < len(records):
@@ -291,7 +288,9 @@ def build():
     assert len({d["term"] for d in definitions}) == len(definitions), "Duplicate concept"
     provenance = json.loads((BASE / "concept-provenance.json").read_text(encoding="utf-8"))
     review_report = json.loads((BASE / "question-review.json").read_text(encoding="utf-8"))
+    assert review_report["currentSourceHash"] == REVIEWED_SOURCE_HASH, "Question review belongs to another snapshot"
     assert set(provenance) == {d["term"] for d in definitions}, "Every concept needs explicit source name evidence"
+    assert not set(provenance).intersection(review_report["scopeExclusions"]), "Out-of-scope concept reintroduced"
     normalize = lambda text: re.sub(r"[^a-z0-9\u0590-\u05ff]", "", text.casefold())
     for definition in definitions:
         proof = provenance[definition["term"]]
@@ -299,6 +298,7 @@ def build():
             record = records[proof["nameBlock"]]
             assert record["kind"] == "text" and record["text"] == proof["nameQuote"], definition["term"]
             assert normalize(proof["sourceTerm"]) in normalize(record["text"]), definition["term"]
+            assert not record["interface"] and not record["howTo"], f"Excluded name evidence: {definition['term']}"
         else:
             citation = sources[definition["key"]]
             assert citation["imageNumber"] == proof["imageNumber"] and citation.get("imageQuoteType") != "label"
@@ -319,7 +319,8 @@ def build():
         reviews[key] = {"disposition": disposition, "detail": detail}
     direct = {d["key"] for d in definitions}
     assert not direct.intersection(reviews), "A topic must be directly covered or reviewed, not both"
-    assert {str(i) for i in range(495)} == {k for k in direct if k.isdigit()} | set(reviews), "Review every source topic"
+    topic_keys = {k for k in sources if k.isdigit()}
+    assert topic_keys == {k for k in direct if k.isdigit()} | set(reviews), "Review every source topic"
     for review in reviews.values():
         if review["disposition"] == "alias":
             assert set(review["detail"].split(",")) <= direct, "Alias must point to covered concepts"
@@ -347,9 +348,10 @@ def build():
         wrong = random.Random(digest(term)).sample(peers, 3)
         source_term = provenance[term]["sourceTerm"]
         service = citation.get("service", "")
-        is_service = term in evidence.values() or term.startswith(("AWS ", "Amazon ")) or normalize(term) == normalize(service)
-        context = "" if service in {"AWS", "Other Services by categories"} or normalize(service) in normalize(source_term) else f" בהקשר של {service}"
-        question_text = f"מה עושה {source_term}?" if is_service else f"מה המשמעות של {source_term}{context}?"
+        service_name = re.sub(r"^(AWS|Amazon)\s+", "", service, flags=re.I)
+        context = "" if service == "Other Services by categories" or normalize(service_name) in normalize(term) or term.startswith(("AWS ", "Amazon ")) else f" ({service})"
+        display_term = term + context
+        question_text = f"מה עושה המושג הבא: {display_term}?"
         question = {
             "id": "concept-" + digest(term + "|" + answer), "topic": term,
             "section": "מה המושג ומה הוא עושה", "kind": "quiz",
@@ -358,17 +360,20 @@ def build():
             "distractorTerms": [d["term"] for d in wrong], "category": category,
             "conceptSource": key,
             "sourceTerm": source_term,
+            "displayTerm": display_term,
             "nameEvidence": provenance[term],
             "text": "הגדרה תמציתית ללמידה. הציטוט המקורי מוצג בנפרד.",
         }
         if "imageNumber" in citation:
             source_unit = images[citation["imageNumber"]]
+            assert not any(records[b]["interface"] or records[b]["howTo"] for b in source_unit["blocks"]), term
             question.update(citation, service=source_unit["service"], source=source_unit["id"], quoteBlocks=source_unit["blocks"])
         else:
             blocks = [int(b) for b in quote_overrides[term].split(",")] if term in quote_overrides else citation["blocks"]
             assert set(blocks) <= set(citation["blocks"]), f"Quotation outside reviewed topic: {term}"
             assert blocks and all(records[b]["kind"] == "text" for b in blocks), term
             assert {records[b]["service"] for b in blocks} == {citation["service"]}, term
+            assert not any(records[b]["interface"] or records[b]["howTo"] for b in blocks), f"Excluded quotation: {term}"
             source_unit = by_block[blocks[0]]
             question.update(
                 service=citation["service"], source=source_unit["id"],
@@ -402,6 +407,16 @@ def build():
     assert Counter(assigned) == Counter(range(len(records))), "Every source block must be archived exactly once"
     assert all(len(set(q["options"])) == 4 for q in questions), "Four distinct answers required"
     assert len({q["id"] for q in questions}) == len(questions), "Question IDs must be unique"
+    question_ids = {q["id"] for q in questions}
+    compatible_revisions = [{
+        "sourceHash": review_report["previousSourceHash"],
+        "questionIds": review_report["reviewedPreviousIds"],
+        "unchangedQuestionIds": review_report["unchangedQuestionIds"],
+        "resumeSessions": False,
+    }] + [{**revision, "resumeSessions": False} for revision in review_report["compatibleRevisions"]]
+    assert len({r["sourceHash"] for r in compatible_revisions}) == len(compatible_revisions)
+    for revision in compatible_revisions:
+        assert set(revision["unchangedQuestionIds"]) <= set(revision["questionIds"]) & question_ids
     assert all(u["classification"] == "knowledge" for u in active)
     classification_counts = Counter(r["classification"] for r in records)
     meta = {
@@ -409,10 +424,12 @@ def build():
         "hash": hashlib.sha256(raw.encode("utf-8")).hexdigest(), "blocks": len(records),
         "textBlocks": len(records) - image_number, "images": image_number, "services": services,
         "sourceUnits": len(units), "knowledgeUnits": len(active), "depthQuestions": len(questions),
-        "recallCards": len(cards), "reviewedTopicGroups": 495,
+        "recallCards": len(cards), "reviewedTopicGroups": len(topic_keys),
+        "quizPolicy": review_report["policy"],
         "previousSourceHash": review_report["previousSourceHash"],
         "previousQuestionIds": review_report["reviewedPreviousIds"],
         "unchangedQuestionIds": review_report["unchangedQuestionIds"],
+        "compatibleRevisions": compatible_revisions,
         "sourceOnlyReview": {
             "reviewed": review_report["reviewedPreviousQuestions"],
             "removed": len(review_report["removed"]), "corrected": len(review_report["corrected"]),
@@ -440,7 +457,7 @@ def build():
     }
     (BASE / "coverage-audit.json").write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({k: v for k, v in meta.items() if k not in {
-        "previousQuestionIds", "unchangedQuestionIds",
+        "previousQuestionIds", "unchangedQuestionIds", "compatibleRevisions",
     }}, ensure_ascii=False, indent=2))
 
 

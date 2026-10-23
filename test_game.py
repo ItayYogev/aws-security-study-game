@@ -30,7 +30,7 @@ class GameTests(unittest.TestCase):
                 text = tag.get_text("", strip=False).strip()
                 if text:
                     original.append(("text", text))
-        self.assertEqual(len(original), 3275)
+        self.assertEqual(len(original), 3314)
         self.assertEqual(len(BLOCKS), len(original))
         for record, (kind, content) in zip(BLOCKS, original):
             self.assertEqual(record["kind"], kind)
@@ -43,7 +43,7 @@ class GameTests(unittest.TestCase):
 
     def test_exactly_once_archive_mapping(self):
         assigned = [i for unit in DATA["units"] for i in unit["blocks"]]
-        self.assertEqual(Counter(assigned), Counter(range(3275)))
+        self.assertEqual(Counter(assigned), Counter(range(3314)))
         self.assertEqual(len(UNITS), len(DATA["units"]))
         for unit in DATA["units"]:
             if unit["kind"] == "text":
@@ -55,7 +55,7 @@ class GameTests(unittest.TestCase):
         tags = [tag for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"])
                 if tag.name == "img" or (not tag.find_parent(["p", "li", "h1", "h2", "h3"])
                                          and tag.get_text("", strip=False).strip())]
-        self.assertEqual(len(formats), 3135)
+        self.assertEqual(len(formats), 3174)
         underline_count = 0
         numbered_starts = set()
         levels = set()
@@ -98,7 +98,7 @@ class GameTests(unittest.TestCase):
         direct = {q["conceptSource"] for q in DATA["questions"] if q["conceptSource"].isdigit()}
         reviews = AUDIT["topicReviews"]
         self.assertFalse(direct & set(reviews))
-        self.assertEqual(direct | set(reviews), {str(i) for i in range(495)})
+        self.assertEqual(direct | set(reviews), {k for k in AUDIT["conceptSources"] if k.isdigit()})
         for key, review in reviews.items():
             if review["disposition"] == "alias":
                 targets = set(review["detail"].split(","))
@@ -112,7 +112,7 @@ class GameTests(unittest.TestCase):
         self.assertEqual({q["service"] for q in DATA["questions"]}, set(DATA["meta"]["services"]))
 
     def test_concept_question_contract(self):
-        self.assertEqual(len(QUESTIONS), 602)
+        self.assertEqual(len(QUESTIONS), 452)
         self.assertEqual(len(QUESTIONS), len(DATA["questions"]))
         self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(QUESTIONS))
         conflicts = []
@@ -120,9 +120,8 @@ class GameTests(unittest.TestCase):
             conflicts.append(set(line.split("|")))
         for term, question in QUESTIONS.items():
             source_term = question["sourceTerm"]
-            self.assertIn(question["question"], [f"מה עושה {source_term}?",
-                                                f"מה המשמעות של {source_term}?",
-                                                f"מה המשמעות של {source_term} בהקשר של {question['service']}?"])
+            self.assertEqual(question["question"], f"מה עושה המושג הבא: {question['displayTerm']}?")
+            self.assertIn(term, question["displayTerm"])
             self.assertRegex(question["answer"], r"[\u0590-\u05ff]")
             self.assertEqual(len(question["options"]), 4)
             self.assertEqual(len(set(question["options"])), 4)
@@ -187,14 +186,14 @@ class GameTests(unittest.TestCase):
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(proof["nameQuote"]))
             else:
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(question["imageQuote"]))
-        self.assertEqual(len(report["reviewed"]), 636)
-        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 636)
-        self.assertEqual(len(report["removed"]), 39)
-        self.assertEqual(len(report["corrected"]), 65)
-        self.assertEqual(len(report["added"]), 5)
-        self.assertEqual(len(report["unchangedQuestionIds"]), 532)
+        self.assertEqual(len(report["reviewed"]), 611)
+        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 611)
+        self.assertEqual(len(report["removed"]), 160)
+        self.assertEqual(len(report["corrected"]), 8)
+        self.assertEqual(len(report["added"]), 1)
+        self.assertEqual(len(report["unchangedQuestionIds"]), 443)
         self.assertEqual(len(report["removed"]) + len(report["corrected"]) +
-                         len(report["unchangedQuestionIds"]), 636)
+                         len(report["unchangedQuestionIds"]), 611)
         for entry in report["removed"]:
             self.assertNotIn(entry["term"], QUESTIONS)
             self.assertTrue(entry["reason"])
@@ -202,7 +201,57 @@ class GameTests(unittest.TestCase):
             self.assertEqual(QUESTIONS[entry["newTerm"]]["answer"], entry["afterAnswer"])
         self.assertEqual(set(DATA["meta"]["unchangedQuestionIds"]), set(report["unchangedQuestionIds"]))
         self.assertEqual(set(DATA["meta"]["previousQuestionIds"]), set(report["reviewedPreviousIds"]))
-        self.assertEqual(len(QUESTIONS), 636 - len(report["removed"]) + len(report["added"]))
+        self.assertEqual(len(QUESTIONS), 611 - len(report["removed"]) + len(report["added"]))
+        self.assertTrue(any(h["reviewedPreviousQuestions"] == 636 for h in report["history"]))
+        self.assertEqual(report["currentSourceHash"], DATA["meta"]["hash"])
+
+    def test_aws_only_scope_and_entire_interface_subtrees(self):
+        interface_level = how_to_level = None
+        excluded = set()
+        index = 0
+        for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"]):
+            if tag.name != "img" and tag.find_parent(["p", "li", "h1", "h2", "h3"]):
+                continue
+            text = tag.get_text("", strip=False).strip() if tag.name != "img" else ""
+            if tag.name != "img" and not text:
+                continue
+            if "title" in tag.get("class", []):
+                interface_level = how_to_level = None
+            if tag.name in ("h1", "h2", "h3"):
+                level = int(tag.name[1])
+                if re.fullmatch(r"interface\s*:?", text, re.I):
+                    interface_level = level
+                elif interface_level is not None and level <= interface_level:
+                    interface_level = None
+                if "how to" in text.casefold():
+                    how_to_level = level
+                elif how_to_level is not None and level <= how_to_level:
+                    how_to_level = None
+            if interface_level is not None or how_to_level is not None:
+                excluded.add(index)
+                self.assertEqual(BLOCKS[index]["classification"], "implementation")
+            self.assertEqual(BLOCKS[index]["interface"], interface_level is not None)
+            self.assertEqual(BLOCKS[index]["howTo"], how_to_level is not None)
+            index += 1
+        self.assertEqual(sum(b["interface"] for b in BLOCKS), 302)
+        for question in DATA["questions"]:
+            evidence = set(question["quoteBlocks"])
+            if "nameBlock" in question["nameEvidence"]:
+                evidence.add(question["nameEvidence"]["nameBlock"])
+            for citation in question["evidence"]:
+                evidence.update(UNITS[citation["source"]]["blocks"])
+            self.assertFalse(evidence & excluded, question["topic"])
+        report = json.loads((BASE / "question-review.json").read_text(encoding="utf-8"))
+        self.assertFalse(set(QUESTIONS) & set(report["scopeExclusions"]))
+        for term in ["Server", "CapEx", "Latency", "CIDR", "JWT", "MQTT",
+                     "Kubernetes Deployment Spec", "Billing Alarm", "CloudWatch Dashboard",
+                     "Stealth Finding", "Root Device", "Macie Finding", "Compliant", "non_compliant"]:
+            self.assertNotIn(term, QUESTIONS)
+        for term in ["AWS KMS", "Amazon EC2", "IAM Role", "Security Group",
+                     "AWS STS", "Interface Endpoint", "CloudWatch Metric Filter",
+                     "Inbound Rules", "CloudWatchAgentServerPolicy"]:
+            self.assertIn(term, QUESTIONS)
+        self.assertTrue(all(DATA["meta"]["quizPolicy"].values()))
 
     def test_progress_revision_compatibility(self):
         script = r"""
@@ -227,7 +276,7 @@ assert.equal(migrated.session,null);
 assert.equal(migrated.migrated,true);
 assert.ok(migrated.notice);
 assert.equal(JSON.stringify(saved),original);
-assert.deepEqual(read({...saved,session:round([unchanged])}).session,round([unchanged]));
+assert.equal(read({...saved,session:round([unchanged])}).session,null);
 assert.throws(()=>read({...saved,progress:{invalid:value}}));
 assert.throws(()=>read({...saved,sourceHash:"unknown"}));
 assert.throws(()=>read({...saved,version:4}));
@@ -235,6 +284,20 @@ const current = {version:5,sourceHash:data.meta.hash,progress:{[unchanged]:value
 assert.equal(read(current).migrated,false);
 assert.deepEqual(read(current).progress,current.progress);
 assert.throws(()=>read({...current,progress:{[changed]:value}}));
+for (const revision of data.meta.compatibleRevisions) {
+  const stable = revision.unchangedQuestionIds[0];
+  const revised = revision.questionIds.find(id=>!revision.unchangedQuestionIds.includes(id));
+  assert.ok(stable && revised);
+  const prior = {...saved,sourceHash:revision.sourceHash,
+    progress:{[stable]:value,["recall-"+stable]:value,[revised]:value,["recall-"+revised]:value},
+    session:round([stable,revised])};
+  const result = read(prior);
+  assert.deepEqual(Object.keys(result.progress),[stable,"recall-"+stable]);
+  assert.equal(result.session,null);
+  assert.equal(result.migrated,true);
+  assert.equal(read({...prior,session:round(["recall-"+stable])}).session,null);
+  assert.throws(()=>read({...prior,progress:{foreign:value}}));
+}
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, text=True, capture_output=True)
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -243,31 +306,65 @@ assert.throws(()=>read({...current,progress:{[changed]:value}}));
         changes = json.loads((BASE / "source-changes.json").read_text(encoding="utf-8"))
         self.assertEqual(changes["currentHash"], DATA["meta"]["hash"])
         self.assertTrue(changes["imagesUnchanged"])
-        self.assertEqual(len(changes["changes"]), 4)
-        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 23)
+        self.assertEqual(len(changes["changes"]), 5)
+        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 2)
+        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 4, "delete": 1})
         for term, text in [
             ("Instance Profile", "מתאם בין IAM role ל-instance"),
             ("Instance Profile", "מקבל Temporary Security Credentials מ-STS"),
-            ("מנגנון העדכונים (OpsItem)", "הודעה דרך שירות ההתראות SNS"),
-            ("שילוב מובנה עם AWS Systems Manager Automation", "Automation Runbooks"),
             ("S3 Presigned URL", "מבלי לדרוש מהאדם להזדהות עם משתמש AWS"),
             ("API Gateway Execution Logs", "Execution Logs - פעולות פנימיות כמו:"),
             ("Resource Tags", "Key-Value Pairs"),
             ("ABAC", "Attribute-Based Access Control"),
             ("Source/Destination Check", "המנגנון הזה מובנה בתוך ה-ENI"),
+            ("Federated user", "משתמש שמגיע ממערכת חיצונית"),
+            ("Default NACL", "אי אפשר להשאיר סאבנט"),
+            ("NAT Gateway", "רכיב שמאפשר למשאבים"),
+            ("Public NAT Gateway", "ה-Public NAT Gateway מוקם ב-Public Subnet"),
+            ("Private NAT Gateway", "Non-routable subnet"),
+            ("AWS CloudTrail Insights", "אפשר לשלב אותו עם EventBridge + SNS"),
+            ("CloudWatch Logs Insights", "אך ורק על דאטה"),
+            ("CloudWatch Metric Filter", "מילים או דפוסים"),
+            ("Custom Insights", "לפי חוקים שהמשתמש"),
+            ("Managed Insights", "ש-AWS החליטו"),
+            ("Multi-Region KMS Key", "MRK"),
+            ("DB Instance", "השרת שמריץ"),
+            ("RDS Multi-AZ", "העותק הראשי"),
+            ("RDS Multi-AZ", "כל עותק מוקם ב-subnet אחר"),
+            ("IoT Thing Name", "שם המכשיר."),
+            ("AWS IoT Policy", "ל-Thing Name שלו."),
+            ("Amazon DocumentDB", "שירות לניהול"),
+            ("ECS Agent", "סוכן שיושב בתוך ה-EC2"),
+            ("Agent Communication Service (ACS)", "מנגנון שיושב בצד של AWS"),
+            ("Amazon ElastiCache", "בזיכרון RAM"),
+            ("VPC Endpoint", "בלי לעבור באינטרנט הציבורי"),
+            ("GuardDutyExcluded", "לא מונע מ-GuardDuty לזהות אירועים אחרים"),
+            ("CloudWatchAgentServerPolicy", "CloudWatchAgentServerPolicy"),
         ]:
             self.assertIn(text, QUESTIONS[term]["quoteText"], term)
         self.assertNotIn("מרכז בתוכו את הלוגים", QUESTIONS["OpsItem"]["quoteText"])
+        self.assertNotIn("מאומת", QUESTIONS["AWS IoT Policy"]["quoteText"])
+        self.assertNotIn("כפתור סימון", QUESTIONS["RDS Multi-AZ"]["quoteText"])
+        self.assertNotIn("מתרגם כתובות חד-כיווני", QUESTIONS["NAT Gateway"]["quoteText"])
+        self.assertNotIn("Insights (CloudTrail)", QUESTIONS)
+        self.assertIn("התראות", QUESTIONS["AWS CloudTrail Insights"]["answer"])
+        self.assertIn("רשימת התוכנות", QUESTIONS["Systems Manager Inventory"]["answer"])
+        self.assertNotIn("זהות או לתעודה", QUESTIONS["AWS IoT Policy"]["answer"])
+        self.assertIn("בצד AWS", QUESTIONS["Agent Communication Service (ACS)"]["answer"])
+        self.assertNotIn("ECS Agent ACS", QUESTIONS)
+        self.assertNotIn("רכיב בסוכן", QUESTIONS["Agent Communication Service (ACS)"]["answer"])
+        self.assertEqual(QUESTIONS["Inbound Rules"]["service"], "VPC")
+        self.assertEqual(QUESTIONS["CloudWatch Metric Filter"]["nameEvidence"]["nameBlock"], 1764)
 
     def test_source_metadata_and_self_contained_output(self):
         self.assertEqual(hashlib.sha256(RAW.encode()).hexdigest(), DATA["meta"]["hash"])
         self.assertEqual(DATA["meta"], AUDIT["meta"])
-        self.assertEqual(DATA["meta"]["textBlocks"], 3135)
+        self.assertEqual(DATA["meta"]["textBlocks"], 3174)
         self.assertEqual(DATA["meta"]["images"], 140)
         self.assertEqual(len(DATA["meta"]["services"]), 49)
         self.assertEqual(DATA["meta"]["conceptQuestions"], len(QUESTIONS))
         self.assertEqual(DATA["meta"]["recallCards"], len(QUESTIONS))
-        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 495)
+        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 505)
         self.assertIsNone(GAME.find("script", src=True))
         self.assertIsNone(GAME.find("link", rel="stylesheet"))
         self.assertIsNone(GAME.find("img", src=re.compile(r"^https?://")))
@@ -279,6 +376,9 @@ assert.throws(()=>read({...current,progress:{[changed]:value}}));
         self.assertEqual([o["value"] for o in GAME.select("#mode option")], ["depth", "source"])
         self.assertEqual(GAME.select_one("#length option")["value"], "10")
         self.assertEqual(len(GAME.select("nav button:not(.hidden)")), 3)
+        self.assertEqual(GAME.select_one("#unknown-answer").get_text(), "לא יודע את התשובה")
+        self.assertEqual(GAME.select_one("#unknown-answer")["type"], "button")
+        self.assertNotIn(GAME.select_one("#unknown-answer"), GAME.select("#options button"))
         runtime = (BASE / "game.js").read_text(encoding="utf-8")
         for identifier in set(re.findall(r'\$\("([^"]+)"\)', runtime)):
             if identifier not in ("tab-", "view-"):
@@ -288,6 +388,31 @@ assert.throws(()=>read({...current,progress:{[changed]:value}}));
             self.assertIn(f'localStorage.getItem("{key}")', runtime)
             self.assertNotIn(f'localStorage.setItem("{key}"', runtime)
             self.assertNotIn(f'localStorage.removeItem("{key}"', runtime)
+
+    def test_unknown_answer_is_recorded_for_review_once(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const runtime = fs.readFileSync("game.js", "utf8");
+const source = runtime.slice(runtime.indexOf("function answerQuiz("), runtime.indexOf("function next("));
+const session = {answered:false};
+const grades = [];
+let shown = 0;
+const unknown = JSON.parse(runtime.match(/const UNKNOWN_ANSWER = ("[^"]+");/)[1]);
+const answerQuiz = new Function("session", "current", "record", "showAnswer", "UNKNOWN_ANSWER",
+  source + "\nreturn answerQuiz;")(session, () => ({answer:"correct"}),
+  grade => {grades.push(grade); session.answered = true;}, () => {shown++;}, unknown);
+answerQuiz(unknown);
+assert.equal(session.choice, unknown);
+assert.equal(session.revealed, true);
+assert.deepEqual(grades, [0]);
+assert.equal(shown, 1);
+answerQuiz("correct");
+assert.deepEqual(grades, [0]);
+assert.equal(session.choice, unknown);
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_source_quotes_use_fixed_rtl_not_first_character_direction(self):
         style = GAME.find("style").get_text()
