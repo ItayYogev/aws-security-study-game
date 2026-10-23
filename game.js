@@ -12,6 +12,7 @@ const modes = {
 };
 let progress = {};
 let archivedProgress = {};
+let completedQuestionIds = new Set();
 let session = null;
 let storedSession = null;
 let libraryPage = 0;
@@ -119,15 +120,22 @@ function readSave(saved) {
   if (!saved || saved.version !== 5) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
   const archive = saved.archivedProgress === undefined ? {} : saved.archivedProgress;
   if (!validProgress(archive, false)) throw new Error("ארכיון ההתקדמות אינו תקין.");
+  const completed = saved.completedQuestionIds === undefined ?
+    [...new Set(Object.entries(saved.progress || {}).filter(([, p]) => p.successes > 0)
+      .map(([id]) => id.startsWith("recall-") ? id.slice(7) : id))] : saved.completedQuestionIds;
+  if (!Array.isArray(completed) || completed.some(id => typeof id !== "string") ||
+      new Set(completed).size !== completed.length) throw new Error("נתוני השלמת השאלות אינם תקינים.");
   if (saved.sourceHash === DATA.meta.hash) {
     if (!validProgress(saved.progress) || (saved.session !== null && !validSession(saved.session))) {
       throw new Error("נתוני ההתקדמות או הסבב השמור אינם תקינים.");
     }
-    return {progress:saved.progress, archivedProgress:archive, session:saved.session, notice:"", migrated:false};
+    if (completed.some(id => !playableIds.has(id) || id.startsWith("recall-"))) throw new Error("מזהי השלמת השאלות אינם תקינים.");
+    return {progress:saved.progress, archivedProgress:archive, completedQuestionIds:completed, session:saved.session, notice:"", migrated:false};
   }
   const revision = DATA.meta.compatibleRevisions.find(item => item.sourceHash === saved.sourceHash);
   if (!revision) throw new Error("השמירה אינה תואמת לגרסת הסיכום.");
   const previousIds = new Set(revision.questionIds.flatMap(id => [id, "recall-" + id]));
+  if (completed.some(id => !revision.questionIds.includes(id))) throw new Error("מזהי השלמת השאלות הקודמות אינם תקינים.");
   if (!validProgress(saved.progress, false) || Object.keys(saved.progress).some(id => !previousIds.has(id)) ||
       (saved.session !== null && !validSession(saved.session, previousIds))) {
     throw new Error("נתוני הגרסה הקודמת אינם תקינים.");
@@ -168,7 +176,8 @@ function readSave(saved) {
     }
   }
   const notice = `מאגר השאלות עודכן. ההתקדמות נשמרה ב-${Object.keys(kept).length} פריטי תרגול, גם בשאלות שנוסחו מחדש. ${Object.keys(archived).length} רשומות של שאלות שהוסרו נשמרות בארכיון ואינן נספרות במאגר הפעיל. ${resumed ? "נקודת העצירה נשמרה; שאלות חדשות יופיעו בסבב חדש." : "אפשר להתחיל סבב חדש בלי לאפס את ההתקדמות."}`;
-  return {progress:kept, archivedProgress:archived, session:resumed, notice, migrated:true};
+  return {progress:kept, archivedProgress:archived,
+    completedQuestionIds:completed.map(mapId).filter(Boolean), session:resumed, notice, migrated:true};
 }
 function load() {
   try {
@@ -184,6 +193,7 @@ function load() {
     const result = readSave(saved);
     progress = result.progress;
     archivedProgress = result.archivedProgress;
+    completedQuestionIds = new Set(result.completedQuestionIds);
     storedSession = result.session;
     if (result.migrated) {
       const backupKey = STORE + "-backup-" + saved.sourceHash;
@@ -199,7 +209,7 @@ function load() {
 function save() {
   if (storageFailed) return;
   try {
-    localStorage.setItem(STORE, JSON.stringify({ version: 5, sourceHash: DATA.meta.hash, progress, archivedProgress, session: storedSession }));
+    localStorage.setItem(STORE, JSON.stringify({ version: 5, sourceHash: DATA.meta.hash, progress, archivedProgress, completedQuestionIds:[...completedQuestionIds], session: storedSession }));
   } catch (error) {
     reportStorage("ההתקדמות נשארת בזיכרון אך לא נשמרת בדפדפן. מומלץ לייצא גיבוי: " + error.message);
   }
@@ -217,6 +227,21 @@ function updateStats() {
   $("quiz-total").textContent = (DATA.questions.length + DATA.legacy.length).toLocaleString("he");
   $("image-total").textContent = DATA.meta.images;
   $("resume").classList.toggle("hidden", !storedSession);
+  $("bank-progress").textContent = `הושלמו נכון ${completedQuestionIds.size.toLocaleString("he")} מתוך ${DATA.questions.length.toLocaleString("he")} שאלות בסיכום`;
+  $("bank-complete").classList.toggle("hidden", completedQuestionIds.size !== DATA.questions.length);
+}
+function startNewLearningSession() {
+  completedQuestionIds = new Set();
+  session = storedSession = null;
+  $("mode").value = "depth";
+  fillServices();
+  $("service").value = "all";
+  $("state-filter").value = "all";
+  $("search").value = "";
+  $("length").value = "all";
+  save();
+  updateStats();
+  begin();
 }
 function recallDeck() {
   return DATA.cards;
@@ -241,6 +266,7 @@ function filterDeck() {
     const p = getProgress(unit.id);
     const state = $("state-filter").value;
     return ($("service").value === "all" || unit.service === $("service").value) &&
+      !completedQuestionIds.has(unit.id.startsWith("recall-") ? unit.id.slice(7) : unit.id) &&
       (!query || searchText(unit).includes(query)) &&
       (state !== "unseen" || !p.attempts) &&
       (state !== "weak" || p.attempts > 0 && p.streak < 2) &&
@@ -473,6 +499,7 @@ function record(grade) {
   p.streak = grade === 2 ? p.streak + 1 : 0;
   p.updated = new Date().toISOString();
   progress[unit.id] = p;
+  if (grade === 2) completedQuestionIds.add(unit.id.startsWith("recall-") ? unit.id.slice(7) : unit.id);
   session.answered = true;
   if (grade === 2) session.score++;
   else session.missed.push(unit.id);
@@ -610,7 +637,7 @@ function renderCoverage() {
   });
 }
 function exportProgress() {
-  const blob = new Blob([JSON.stringify({version:5,sourceHash:DATA.meta.hash,progress,archivedProgress,session:storedSession},null,2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({version:5,sourceHash:DATA.meta.hash,progress,archivedProgress,completedQuestionIds:[...completedQuestionIds],session:storedSession},null,2)], {type:"application/json"});
   const url = URL.createObjectURL(blob);
   const link = node("a");
   link.href = url;
@@ -631,6 +658,7 @@ $("import").addEventListener("change", async event => {
     if (!confirm((result.notice ? result.notice + "\n\n" : "") + "יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
     progress = result.progress;
     archivedProgress = result.archivedProgress;
+    completedQuestionIds = new Set(result.completedQuestionIds);
     storedSession = result.session;
     session = null;
     $("setup").classList.remove("hidden");
@@ -650,6 +678,7 @@ $("mode").addEventListener("change", fillServices);
 ["service","state-filter","length"].forEach(id => $(id).addEventListener("change", updateSelection));
 $("search").addEventListener("input",updateSelection);
 $("start").addEventListener("click",() => begin());
+$("new-learning-session").addEventListener("click", startNewLearningSession);
 $("reveal").addEventListener("click",() => {
   if (!session || session.revealed) return;
   session.revealed = true;

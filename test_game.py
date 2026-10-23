@@ -304,6 +304,8 @@ const original = JSON.stringify(saved);
 const migrated = read(saved);
 assert.deepEqual(Object.keys(migrated.progress),[unchanged,"recall-"+unchanged]);
 assert.deepEqual(migrated.archivedProgress,{[removed]:value});
+assert.deepEqual(migrated.completedQuestionIds,[unchanged]);
+assert.deepEqual(read({...saved,completedQuestionIds:[]}).completedQuestionIds,[]);
 assert.deepEqual(migrated.session,round([unchanged]));
 assert.equal(migrated.migrated,true);
 assert.ok(migrated.notice);
@@ -323,6 +325,10 @@ assert.throws(()=>read({...saved,version:4}));
 const current = {version:5,sourceHash:data.meta.hash,progress:{[unchanged]:value},session:null};
 assert.equal(read(current).migrated,false);
 assert.deepEqual(read(current).progress,current.progress);
+assert.deepEqual(read(current).completedQuestionIds,[unchanged]);
+assert.deepEqual(read({...current,completedQuestionIds:[]}).completedQuestionIds,[]);
+assert.throws(()=>read({...current,completedQuestionIds:[removed]}));
+assert.throws(()=>read({...current,completedQuestionIds:[unchanged,unchanged]}));
 assert.throws(()=>read({...current,progress:{[removed]:value}}));
 assert.deepEqual(read({...current,archivedProgress:{[removed]:value}}).archivedProgress,{[removed]:value});
 assert.throws(()=>read({...current,archivedProgress:{[removed]:{attempts:-1}}}));
@@ -350,6 +356,7 @@ for (const revision of data.meta.compatibleRevisions) {
   const all = read(full);
   assert.equal(Object.keys(all.progress).length + Object.keys(all.archivedProgress).length,revision.questionIds.length);
   assert.equal(all.session.ids.length,Object.keys(revision.questionIdMap).length);
+  assert.deepEqual(new Set(all.completedQuestionIds),new Set(Object.values(revision.questionIdMap)));
 }
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, text=True, capture_output=True)
@@ -372,7 +379,7 @@ const backupKey = key + "-backup-" + revision.sourceHash;
 const run = new Function("DATA","localStorage",`
 const STORE="${key}",UNKNOWN_ANSWER="__unknown__";
 const playableIds=new Set([...DATA.questions,...DATA.cards].map(q=>q.id));
-let progress={},archivedProgress={},storedSession=null,storageFailed=false,message="";
+let progress={},archivedProgress={},completedQuestionIds=new Set(),storedSession=null,storageFailed=false,message="";
 const $=()=>({textContent:"",classList:{remove(){}}});
 function reportStorage(text){storageFailed=true;message=text;}
 ${source}
@@ -552,7 +559,7 @@ const run = new Function("DATA","localStorage","$","current","archive",`
 const STORE="aws-security-lab-v5-concepts";
 const UNKNOWN_ANSWER="__unknown__";
 const playableIds=new Set([...DATA.questions,...DATA.cards].map(q=>q.id));
-let progress={},archivedProgress=archive,storedSession=null,storageFailed=false;
+let progress={},archivedProgress=archive,completedQuestionIds=new Set(),storedSession=null,storageFailed=false;
 const session={ids:[current().id],index:0,score:0,missed:[],answered:false,revealed:true,choice:current().answer,note:""};
 function updateStats(){}
 function reportStorage(message){throw new Error(message);}
@@ -570,6 +577,7 @@ const saved = JSON.parse(result.raw);
 assert.equal(saved.progress[question.id].successes,1);
 assert.equal(saved.progress[question.id].attempts,1);
 assert.equal(saved.progress[question.id].last,2);
+assert.deepEqual(saved.completedQuestionIds,[question.id]);
 assert.equal(saved.session.answered,true);
 assert.equal(saved.session.score,1);
 assert.deepEqual(saved.archivedProgress,archive);
@@ -577,6 +585,52 @@ assert.deepEqual(result.restored.progress,saved.progress);
 assert.deepEqual(result.restored.session,saved.session);
 assert.deepEqual(result.restored.archivedProgress,archive);
 assert.equal(result.afterDuplicate,result.raw);
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_completion_counter_and_new_session_preserve_history(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const runtime = fs.readFileSync("game.js","utf8");
+const source = runtime.slice(runtime.indexOf("function updateStats("),runtime.indexOf("function recallDeck("));
+const elements=new Map();
+const $=id=>{
+  if(!elements.has(id)) elements.set(id,{value:"",textContent:"",hidden:false,
+    classList:{toggle(name,value){elements.get(id).hidden=value;}}});
+  return elements.get(id);
+};
+const DATA={questions:[{id:"a"},{id:"b"}],legacy:[],meta:{recallCards:2,images:0}};
+const result=new Function("DATA","$",
+`let progress={a:{successes:3,starred:true}},archivedProgress={old:{successes:1}};
+let completedQuestionIds=new Set(["a"]),session={},storedSession={};
+let saved,started=false;
+function getProgress(){return {attempts:0};}
+function recallDeck(){return [];}
+function fillServices(){}
+function save(){saved={completed:[...completedQuestionIds],progress,archivedProgress,storedSession};}
+function begin(){started=true;}
+${source}
+updateStats();
+const first=$("bank-progress").textContent;
+const partialHidden=$("bank-complete").hidden;
+completedQuestionIds.add("b");
+updateStats();
+const completeVisible=!$("bank-complete").hidden;
+startNewLearningSession();
+return {first,partialHidden,completeVisible,saved,started,resetText:$("bank-progress").textContent};
+`)(DATA,$);
+assert.ok(result.first.includes("1")&&result.first.includes("2"));
+assert.equal(result.partialHidden,true);
+assert.equal(result.completeVisible,true);
+assert.deepEqual(result.saved.completed,[]);
+assert.equal(result.saved.progress.a.successes,3);
+assert.equal(result.saved.progress.a.starred,true);
+assert.equal(result.saved.archivedProgress.old.successes,1);
+assert.equal(result.saved.storedSession,null);
+assert.equal(result.started,true);
+assert.ok(result.resetText.includes("0"));
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
