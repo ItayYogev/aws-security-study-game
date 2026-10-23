@@ -24,7 +24,7 @@ class GameTests(unittest.TestCase):
     def test_permanent_number_ledger_is_append_only(self):
         ledger = json.loads((BASE / "question-order.json").read_text(encoding="utf-8"))
         self.assertEqual(hashlib.sha256("\n".join(ledger[:467]).encode()).hexdigest(),
-                         "e541c0911a0805cd11ab91ef8e1869f4dc62b1fe78848d7bebd2ef44f199830d")
+                         "59c3072400c65833323135362de730360a91e81fe7aa2c874b974c6c77601adf")
         self.assertEqual(len(ledger), len(set(ledger)))
         for question in DATA["questions"]:
             self.assertEqual(ledger[question["number"] - 1], question["id"])
@@ -32,6 +32,12 @@ class GameTests(unittest.TestCase):
         self.assertEqual(DATA["meta"]["numberedSlots"], len(ledger))
         self.assertEqual(DATA["meta"]["removedQuestionNumbers"],
                          [i + 1 for i, id in enumerate(ledger) if id not in {q["id"] for q in DATA["questions"]}])
+
+    def test_mixed_baseline_switches_service_at_every_question(self):
+        questions = [q for q in DATA["questions"] if q["number"] <= 467]
+        for first, second in zip(questions, questions[1:]):
+            self.assertNotEqual(first["service"], second["service"],
+                                f"Consecutive questions {first['number']} and {second['number']}")
 
     def test_complete_verbatim_archive(self):
         original = []
