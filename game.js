@@ -227,21 +227,23 @@ function updateStats() {
   $("quiz-total").textContent = (DATA.questions.length + DATA.legacy.length).toLocaleString("he");
   $("image-total").textContent = DATA.meta.images;
   $("resume").classList.toggle("hidden", !storedSession);
-  $("bank-progress").textContent = `הושלמו נכון ${completedQuestionIds.size.toLocaleString("he")} מתוך ${DATA.questions.length.toLocaleString("he")} שאלות בסיכום`;
-  $("bank-complete").classList.toggle("hidden", completedQuestionIds.size !== DATA.questions.length);
+  $("bank-progress").textContent = `${DATA.questions.length.toLocaleString("he")} שאלות בסדר קבוע · מספרים 1–${DATA.meta.numberedSlots.toLocaleString("he")}`;
+  $("jump-number").max = DATA.meta.numberedSlots;
 }
-function startNewLearningSession() {
-  completedQuestionIds = new Set();
-  session = storedSession = null;
-  $("mode").value = "depth";
-  fillServices();
-  $("service").value = "all";
-  $("state-filter").value = "all";
-  $("search").value = "";
-  $("length").value = "all";
-  save();
-  updateStats();
-  begin();
+function jumpToQuestion() {
+  const number = Number($("jump-number").value);
+  if (!Number.isInteger(number) || number < 1 || number > DATA.meta.numberedSlots) {
+    $("jump-status").textContent = `יש להזין מספר שאלה שלם בין 1 ל-${DATA.meta.numberedSlots}.`;
+    return;
+  }
+  const deck = modeDeck().filter(unit => unit.number >= number);
+  if (!deck.length) {
+    $("jump-status").textContent = "השאלה הוסרה ואין שאלות נוספות אחריה.";
+    return;
+  }
+  $("jump-status").textContent = deck[0].number === number ? "" :
+    `שאלה ${number} הוסרה. ממשיכים לשאלה ${deck[0].number}; המספרים האחרים לא השתנו.`;
+  begin(deck.map(unit => unit.id));
 }
 function recallDeck() {
   return DATA.cards;
@@ -263,14 +265,8 @@ function searchText(unit) {
 function filterDeck() {
   const query = $("search").value.trim().toLocaleLowerCase();
   return modeDeck().filter(unit => {
-    const p = getProgress(unit.id);
-    const state = $("state-filter").value;
     return ($("service").value === "all" || unit.service === $("service").value) &&
-      !completedQuestionIds.has(unit.id.startsWith("recall-") ? unit.id.slice(7) : unit.id) &&
-      (!query || searchText(unit).includes(query)) &&
-      (state !== "unseen" || !p.attempts) &&
-      (state !== "weak" || p.attempts > 0 && p.streak < 2) &&
-      (state !== "starred" || p.starred);
+      (!query || searchText(unit).includes(query));
   });
 }
 function updateSelection() {
@@ -293,7 +289,7 @@ function begin(ids) {
     $("selection-info").textContent = "אין פריטים לסבב. יש לשנות את המסננים.";
     return;
   }
-  deck = shuffle(deck);
+  deck = [...deck].sort((a, b) => a.number - b.number);
   if (!ids) {
     const size = $("length").value === "all" ? deck.length : Number($("length").value);
     deck = deck.slice(0, size);
@@ -384,7 +380,7 @@ function render() {
   const unit = current();
   const objective = ["quiz", "legacy"].includes(unit.kind);
   const percent = Math.round(session.index / session.ids.length * 100);
-  $("round-progress").textContent = `שאלה ${session.index + 1} מתוך ${session.ids.length}`;
+  $("round-progress").textContent = `שאלה ${unit.number} מתוך ${DATA.meta.numberedSlots} · בסבב ${session.index + 1} מתוך ${session.ids.length}`;
   $("round-score").textContent = `הצלחות בסבב: ${session.score}`;
   $("round-bar").style.width = percent + "%";
   document.querySelector('[role="progressbar"]').setAttribute("aria-valuenow", percent);
@@ -407,7 +403,10 @@ function render() {
   $("unknown-answer").disabled = session.answered;
   $("grading-note").textContent = objective ? "ציון לפי התשובה הנכונה." : "הערכה עצמית של ההגדרה והתפקיד; לא שלבי יישום.";
   if (objective) {
-    if (unit.kind === "quiz") quizOptions = shuffle(unit.options);
+    if (unit.kind === "quiz") {
+      const offset = unit.number % unit.options.length;
+      quizOptions = [...unit.options.slice(offset), ...unit.options.slice(0, offset)];
+    }
     else {
       const terms = [...new Map(DATA.legacy
         .filter(item => item.id !== unit.id && canonicalTerm(item.answer) !== canonicalTerm(unit.answer) && item.service === unit.service)
@@ -499,7 +498,6 @@ function record(grade) {
   p.streak = grade === 2 ? p.streak + 1 : 0;
   p.updated = new Date().toISOString();
   progress[unit.id] = p;
-  if (grade === 2) completedQuestionIds.add(unit.id.startsWith("recall-") ? unit.id.slice(7) : unit.id);
   session.answered = true;
   if (grade === 2) session.score++;
   else session.missed.push(unit.id);
@@ -526,7 +524,6 @@ function next() {
     $("result-score").textContent = `${session.score} / ${session.ids.length}`;
     const self = session.ids.filter(id => ["text","image"].includes(byId.get(id).kind)).length;
     $("result-detail").textContent = self ? `${self} פריטי שליפה עם הערכה עצמית. יש ${session.missed.length} פריטים לחזרה ממוקדת.` : `${session.ids.length} שאלות שנבדקו מול תשובה מוגדרת. יש ${session.missed.length} פריטים לחזרה.`;
-    $("retry").disabled = session.missed.length === 0;
     storedSession = null;
     save();
     updateStats();
@@ -624,7 +621,6 @@ function renderCoverage() {
       $("mode").value = questions.length ? "depth" : "source";
       fillServices();
       $("service").value = service;
-      $("state-filter").value = "all";
       $("search").value = "";
       updateSelection();
       openTab("play");
@@ -675,10 +671,10 @@ $("import").addEventListener("change", async event => {
 });
 ["play","library","coverage","guide"].forEach(tab => $("tab-"+tab).addEventListener("click", () => openTab(tab)));
 $("mode").addEventListener("change", fillServices);
-["service","state-filter","length"].forEach(id => $(id).addEventListener("change", updateSelection));
+["service","length"].forEach(id => $(id).addEventListener("change", updateSelection));
 $("search").addEventListener("input",updateSelection);
 $("start").addEventListener("click",() => begin());
-$("new-learning-session").addEventListener("click", startNewLearningSession);
+$("jump-form").addEventListener("submit", event => { event.preventDefault(); jumpToQuestion(); });
 $("reveal").addEventListener("click",() => {
   if (!session || session.revealed) return;
   session.revealed = true;
@@ -700,6 +696,13 @@ $("pause").addEventListener("click",() => {
 $("resume").addEventListener("click",() => {
   if (!storedSession) return;
   session = JSON.parse(JSON.stringify(storedSession));
+  $("mode").value = current().kind === "quiz" ? "depth" : "source";
+  session.ids = modeDeck().filter(unit => unit.number >= byId.get(session.ids[session.index]).number).map(unit => unit.id);
+  session.index = 0;
+  session.score = 0;
+  session.missed = [];
+  Object.assign(session, {answered:false, revealed:false, choice:"", note:""});
+  saveSession();
   $("setup").classList.add("hidden");
   $("results").classList.add("hidden");
   $("game").classList.remove("hidden");
@@ -711,7 +714,6 @@ $("star").addEventListener("click",() => {
   save();
   updateStar();
 });
-$("retry").addEventListener("click",() => begin([...session.missed]));
 $("unknown-answer").addEventListener("click", () => answerQuiz(UNKNOWN_ANSWER));
 $("new-round").addEventListener("click",() => {
   $("results").classList.add("hidden");

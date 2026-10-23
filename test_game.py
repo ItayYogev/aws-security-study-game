@@ -21,6 +21,18 @@ QUESTIONS = {q["topic"]: q for q in DATA["questions"]}
 
 
 class GameTests(unittest.TestCase):
+    def test_permanent_number_ledger_is_append_only(self):
+        ledger = json.loads((BASE / "question-order.json").read_text(encoding="utf-8"))
+        self.assertEqual(hashlib.sha256("\n".join(ledger[:467]).encode()).hexdigest(),
+                         "75f9b098483a4d3e4057c8a0e2fdec88a9a8e6225708677decdf1c252e02d114")
+        self.assertEqual(len(ledger), len(set(ledger)))
+        for question in DATA["questions"]:
+            self.assertEqual(ledger[question["number"] - 1], question["id"])
+        self.assertEqual([q["number"] for q in DATA["questions"]], sorted(q["number"] for q in DATA["questions"]))
+        self.assertEqual(DATA["meta"]["numberedSlots"], len(ledger))
+        self.assertEqual(DATA["meta"]["removedQuestionNumbers"],
+                         [i + 1 for i, id in enumerate(ledger) if id not in {q["id"] for q in DATA["questions"]}])
+
     def test_complete_verbatim_archive(self):
         original = []
         for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"]):
@@ -577,7 +589,7 @@ const saved = JSON.parse(result.raw);
 assert.equal(saved.progress[question.id].successes,1);
 assert.equal(saved.progress[question.id].attempts,1);
 assert.equal(saved.progress[question.id].last,2);
-assert.deepEqual(saved.completedQuestionIds,[question.id]);
+assert.deepEqual(saved.completedQuestionIds,[]);
 assert.equal(saved.session.answered,true);
 assert.equal(saved.session.score,1);
 assert.deepEqual(saved.archivedProgress,archive);
@@ -589,7 +601,7 @@ assert.equal(result.afterDuplicate,result.raw);
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    def test_completion_counter_and_new_session_preserve_history(self):
+    def test_fixed_numbers_and_jump_ignore_device_progress(self):
         script = r"""
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -601,36 +613,34 @@ const $=id=>{
     classList:{toggle(name,value){elements.get(id).hidden=value;}}});
   return elements.get(id);
 };
-const DATA={questions:[{id:"a"},{id:"b"}],legacy:[],meta:{recallCards:2,images:0}};
+const DATA={questions:[{id:"a",number:1},{id:"b",number:3}],legacy:[],meta:{recallCards:2,images:0,numberedSlots:3}};
 const result=new Function("DATA","$",
 `let progress={a:{successes:3,starred:true}},archivedProgress={old:{successes:1}};
 let completedQuestionIds=new Set(["a"]),session={},storedSession={};
-let saved,started=false;
+let started;
 function getProgress(){return {attempts:0};}
 function recallDeck(){return [];}
 function fillServices(){}
-function save(){saved={completed:[...completedQuestionIds],progress,archivedProgress,storedSession};}
-function begin(){started=true;}
+function modeDeck(){return DATA.questions;}
+function begin(ids){started=ids;}
 ${source}
 updateStats();
 const first=$("bank-progress").textContent;
-const partialHidden=$("bank-complete").hidden;
-completedQuestionIds.add("b");
-updateStats();
-const completeVisible=!$("bank-complete").hidden;
-startNewLearningSession();
-return {first,partialHidden,completeVisible,saved,started,resetText:$("bank-progress").textContent};
+$("jump-number").value="2";
+jumpToQuestion();
+const skipped={ids:started,message:$("jump-status").textContent};
+$("jump-number").value="0";
+started=null;
+jumpToQuestion();
+const invalid={ids:started,message:$("jump-status").textContent};
+return {first,skipped,invalid,progress};
 `)(DATA,$);
-assert.ok(result.first.includes("1")&&result.first.includes("2"));
-assert.equal(result.partialHidden,true);
-assert.equal(result.completeVisible,true);
-assert.deepEqual(result.saved.completed,[]);
-assert.equal(result.saved.progress.a.successes,3);
-assert.equal(result.saved.progress.a.starred,true);
-assert.equal(result.saved.archivedProgress.old.successes,1);
-assert.equal(result.saved.storedSession,null);
-assert.equal(result.started,true);
-assert.ok(result.resetText.includes("0"));
+assert.ok(result.first.includes("2")&&result.first.includes("3"));
+assert.deepEqual(result.skipped.ids,["b"]);
+assert.ok(result.skipped.message.includes("2")&&result.skipped.message.includes("3"));
+assert.equal(result.invalid.ids,null);
+assert.ok(result.invalid.message);
+assert.equal(result.progress.a.successes,3);
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -667,17 +677,17 @@ const start = deck => run($, () => deck, deck => [...deck].reverse(), () => {}, 
 saved = start(data.questions);
 assert.equal(saved.ids.length, 467);
 assert.deepEqual(new Set(saved.ids), new Set(data.questions.map(question => question.id)));
-assert.deepEqual(saved.ids, data.questions.map(question => question.id).reverse());
+assert.deepEqual(saved.ids, data.questions.map(question => question.id));
 const filtered = data.questions.filter(question => question.service === "AWS Backup");
 assert.equal(start(filtered).ids.length, filtered.length);
 $("length").value = "10";
 assert.equal(start(data.questions).ids.length, 10);
-assert.deepEqual(start(data.questions).ids, data.questions.map(question => question.id).reverse().slice(0,10));
+assert.deepEqual(start(data.questions).ids, data.questions.map(question => question.id).slice(0,10));
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    def test_every_new_round_shuffles_including_explicit_and_retry_decks(self):
+    def test_every_round_uses_permanent_order(self):
         self.assertIsNone(GAME.select_one("#order"))
         script = r"""
 const assert = require("node:assert/strict");
@@ -689,7 +699,7 @@ const shuffle = new Function("Math", shuffleSource + "\nreturn shuffle;")({
   floor:Math.floor, random:() => randomValues[currentRun]
 });
 const source = runtime.slice(runtime.indexOf("function begin("), runtime.indexOf("function current("));
-const deck = Array.from({length:20}, (_,i) => ({id:String(i)}));
+const deck = Array.from({length:20}, (_,i) => ({id:String(i),number:i+1}));
 const byId = new Map(deck.map(q => [q.id,q]));
 const playableIds = new Set(byId.keys());
 let currentRun = 0;
@@ -706,15 +716,16 @@ const start = ids => run($, () => deck, shuffle, () => {}, byId, playableIds, id
 const first = start();
 currentRun = 1;
 const second = start();
-assert.notDeepEqual(first.ids, second.ids);
-assert.notDeepEqual(new Set(first.ids), new Set(second.ids));
+assert.deepEqual(first.ids, second.ids);
+assert.deepEqual(first.ids,deck.slice(0,10).map(q=>q.id));
 assert.equal(new Set(first.ids).size, 10);
-const explicit = ["3","8","12","15"];
+const explicit = ["15","3","12","8"];
 currentRun = 0;
 const retry = start(explicit);
 assert.deepEqual(new Set(retry.ids), new Set(explicit));
 assert.notDeepEqual(retry.ids, explicit);
-assert.deepEqual(explicit, ["3","8","12","15"]);
+assert.deepEqual(retry.ids,["3","8","12","15"]);
+assert.deepEqual(explicit, ["15","3","12","8"]);
 const original = deck.map(q=>q.id);
 assert.deepEqual(original, Array.from({length:20}, (_,i)=>String(i)));
 """

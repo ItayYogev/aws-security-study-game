@@ -411,6 +411,14 @@ def build():
     assert all(len(set(q["options"])) == 4 for q in questions), "Four distinct answers required"
     assert len({q["id"] for q in questions}) == len(questions), "Question IDs must be unique"
     question_ids = {q["id"] for q in questions}
+    question_order = json.loads((BASE / "question-order.json").read_text(encoding="utf-8"))
+    assert len(question_order) == len(set(question_order)), "Duplicate permanent question number"
+    assert question_ids <= set(question_order), "Append new question IDs to the end of question-order.json; never reorder existing entries"
+    number_by_id = {id: index + 1 for index, id in enumerate(question_order)}
+    for question, card in zip(questions, cards):
+        question["number"] = card["number"] = number_by_id[question["id"]]
+    questions.sort(key=lambda q: q["number"])
+    cards.sort(key=lambda c: c["number"])
     compatible_revisions = [{
         "sourceHash": review_report["previousSourceHash"],
         "questionIds": review_report["reviewedPreviousIds"],
@@ -448,6 +456,8 @@ def build():
         "excludedTopicGroups": sum(r["disposition"] == "excluded" for r in reviews.values()),
         "legacyQuestions": 0, "classifications": dict(classification_counts),
         "conceptImages": len(CONCEPT_IMAGES),
+        "numberedSlots": len(question_order),
+        "removedQuestionNumbers": [index + 1 for index, id in enumerate(question_order) if id not in question_ids],
     }
     data = {"meta": meta, "sourceFormatting": formatting, "units": units, "cards": [c for c in cards if c["kind"] == "text"], "questions": questions, "legacy": []}
     template = (BASE / "game-template.html").read_text(encoding="utf-8")

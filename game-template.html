@@ -28,7 +28,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <div id="revision-notice" class="notice hidden" role="status"></div>
 <div class="stats" aria-hidden="true"><span id="source-total"></span><span id="source-seen"></span><span id="quiz-total"></span><span id="image-total"></span></div>
 <p id="bank-progress" class="live-status" role="status" aria-live="polite"></p>
-<section id="bank-complete" class="notice hidden" aria-live="polite"><h2>כל הכבוד! סיימת את כל השאלות בסיכום</h2><p>ענית נכון על כל שאלות המאגר. רוצה להתחיל סשן חדש? היסטוריית התשובות והסימונים שלך תישמר.</p><button type="button" id="new-learning-session" class="primary">להתחיל סשן חדש</button></section>
+<form id="jump-form" class="actions"><label>קפיצה למספר שאלה<input id="jump-number" type="number" min="1" step="1" required inputmode="numeric" placeholder="לדוגמה: 120"></label><button type="submit">לעבור לשאלה</button></form><p id="jump-status" role="status" class="muted tiny"></p>
 <section id="view-play" role="tabpanel" aria-labelledby="tab-play">
 <section class="panel" id="setup">
 <h1>מה עושה המושג של AWS?</h1><p class="muted">בכל שאלה מופיע שם שירות או מנגנון של AWS מהסיכום. בחר אחת מארבע התשובות או ״לא יודע את התשובה״, ואז בדוק את ההסבר והציטוט המקורי. תוכן Interface והוראות יישום אינם בשאלון.</p>
@@ -38,14 +38,13 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 </div>
 <div class="actions"><button type="button" class="primary" id="start">להתחיל ללמוד</button><button type="button" id="resume" class="hidden">להמשיך את הסבב הקודם</button></div>
 <p id="selection-info" class="live-status" aria-live="polite"></p>
-<p class="muted tiny">כל תשובה ונקודת העצירה נשמרות אוטומטית בדפדפן הזה, גם אחרי עדכון שאלות. אין צורך להפעיל שמירה.</p>
+<p class="muted tiny">המספר והסדר זהים בכל מכשיר. אפשר לזכור את מספר השאלה ולקפוץ אליו. תשובות לא מוציאות שאלות מהמאגר ולא מחזירות אותן אליו.</p>
 <details><summary>אפשרויות נוספות</summary><div class="advanced">
 <div class="controls">
 <label>צורת לימוד<select id="mode"><option value="depth">מושג וארבע הגדרות</option><option value="source">אותם מושגים בשליפה עצמית</option></select></label>
-<label>מה לתרגל<select id="state-filter"><option value="all">הכול</option><option value="unseen">שאלות חדשות</option><option value="weak">טעויות וחזרה</option><option value="starred">סימנתי לחזרה</option></select></label>
 </div>
 <label class="advanced">חיפוש<input id="search" type="search" placeholder="שירות או מושג"></label>
-<p class="muted tiny">כל סבב חדש מערבב את סדר השאלות, כולל סבב חזרה על טעויות. המשך סבב שמור חוזר למקום שבו עצרת.</p>
+<p class="muted tiny">השאלות תמיד בסדר המספרים הקבוע. שאלות חדשות יתווספו לסוף; מספר של שאלה שהוסרה לא ישמש שאלה אחרת. קפיצה למספר שאלה פותחת את כל השאלות ממנו ועד סוף המאגר, ללא סינון נושא.</p>
 <p id="mode-explanation"></p>
 </div></details>
 </section>
@@ -60,7 +59,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <section id="answer-panel" class="hidden" aria-label="התשובה והמקור"><div id="feedback" class="feedback" role="status" aria-live="polite"></div><div id="source-notes"></div><div id="source-actions" class="actions"></div><div id="grade" class="actions grade hidden"><button type="button" data-grade="0">לא זכרתי</button><button type="button" data-grade="1">זכרתי חלקית</button><button type="button" data-grade="2" class="remember">זכרתי נכון</button></div></section>
 <div class="actions spread"><span id="round-score" class="muted tiny"></span><span id="grading-note"></span><button type="button" id="next" class="primary hidden">לשאלה הבאה</button></div>
 </section>
-<section class="panel hidden" id="results" aria-live="polite"><h2>כל הכבוד, הסבב הסתיים</h2><div class="session-score" id="result-score"></div><p id="result-detail"></p><div class="actions"><button type="button" id="retry" class="primary">לחזור על הטעויות</button><button type="button" id="new-round">לבחור נושא נוסף</button></div></section>
+<section class="panel hidden" id="results" aria-live="polite"><h2>כל הכבוד, הסבב הסתיים</h2><div class="session-score" id="result-score"></div><p id="result-detail"></p><div class="actions"><button type="button" id="new-round">לבחור נושא נוסף</button></div></section>
 </section>
 <section id="view-library" role="tabpanel" aria-labelledby="tab-library" class="hidden panel">
 <h2>הסיכום המלא</h2><p class="muted">הטקסט והתמונות נשמרו גם כאשר אינם חלק מהשאלות. הוראות הקמה מסומנות לעיון בלבד.</p>
