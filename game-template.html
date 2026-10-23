@@ -36,6 +36,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 </div>
 <div class="actions"><button type="button" class="primary" id="start">להתחיל ללמוד</button><button type="button" id="resume" class="hidden">להמשיך את הסבב הקודם</button></div>
 <p id="selection-info" class="live-status" aria-live="polite"></p>
+<p class="muted tiny">כל תשובה ונקודת העצירה נשמרות אוטומטית בדפדפן הזה, גם אחרי עדכון שאלות. אין צורך להפעיל שמירה.</p>
 <details><summary>אפשרויות נוספות</summary><div class="advanced">
 <div class="controls">
 <label>צורת לימוד<select id="mode"><option value="depth">מושג וארבע הגדרות</option><option value="source">אותם מושגים בשליפה עצמית</option></select></label>
@@ -67,7 +68,7 @@ h2{overflow-wrap:anywhere}.option>span:last-child{min-width:0}
 <section id="view-coverage" role="tabpanel" aria-labelledby="tab-coverage" class="hidden panel">
 <h2>ההתקדמות שלי</h2><p>כאן אפשר לראות מה תורגל ולחזור לנושאים שדורשים חיזוק.</p>
 <div id="coverage-items"></div>
-<details><summary>גיבוי והעברת התקדמות</summary><p class="advanced muted">ההתקדמות נשמרת בדפדפן הזה בלבד. להעברה למכשיר אחר אפשר לייצא ולייבא גיבוי מאותה גרסה.</p><div class="actions"><button type="button" id="export">להוריד גיבוי</button><label>לטעון גיבוי<input type="file" id="import" accept="application/json,.json"></label></div><p id="backup-status" role="status"></p></details>
+<details><summary>גיבוי והעברת התקדמות</summary><p class="advanced muted">ההתקדמות נשמרת אוטומטית בדפדפן הזה בלבד. להעברה למכשיר אחר אפשר לייצא ולייבא גיבוי, גם מגרסת תוכן קודמת שנתמכת. הגיבוי כולל את הארכיון של שאלות שהוסרו. אין סנכרון אוטומטי בין מכשירים.</p><div class="actions"><button type="button" id="export">להוריד גיבוי</button><label>לטעון גיבוי<input type="file" id="import" accept="application/json,.json"></label></div><p id="backup-status" role="status"></p></details>
 <details><summary>על הכיסוי ועל גרסת המקור</summary><p id="audit-summary" class="advanced"></p><p class="muted">המטרה היא להכיר מושגים ותפקידים, לא להיבחן על כל משפט או פרט תפעולי. שאלות וכרטיסיות הן שתי דרכי תרגול של אותו מאגר, ולא שני מאגרים שונים. כל הטקסט והשרטוטים זמינים בסיכום המלא. הסיכום הוא חומר אישי, ולא בוצעה בדיקת עובדות מלאה מול תיעוד AWS עדכני. הגדרה ללמידה והערות דיוק מוצגות בנפרד מהציטוט המקורי.</p><p id="source-meta" class="source-text"></p><a href="https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit" target="_blank" rel="noopener noreferrer">מסמך המקור ב־Google Docs</a></details>
 </section>
 <section id="view-guide" role="tabpanel" aria-labelledby="tab-guide" class="hidden"><h2>איך ללמוד</h2><p>זהה מהו המושג ומה תפקידו. אחרי התשובה קרא את ההגדרה ואת הציטוט. אפשר לתרגל את אותם מושגים גם בשליפה עצמית תחת אפשרויות נוספות.</p></section>

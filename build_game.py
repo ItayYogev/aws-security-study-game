@@ -12,17 +12,17 @@ from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "84c572f64c3cd89207b957a7bb7ea9d2e5502699a3abeb6cb38d24e09b25fbf5"
+REVIEWED_SOURCE_HASH = "f638b452b28e1038166b1edb5711491e7e42f5335a5961a021c6d8bbac50039f"
 CONCEPT_IMAGES = {
-    1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
-    94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
-    122, 123, 124, 125, 126, 127, 128, 130, 131, 132, 133, 134, 135,
-    136, 137, 138, 139, 140,
+    1, 2, 4, 5, 6, 7, 13, 40, 42, 43, 50, 51, 52, 53, 54, 77, 88, 94,
+    96, 97, 98, 99, 100, 101, 102, 106, 110, 116, 117, 119, 120, 123,
+    124, 125, 126, 127, 128, 129, 130, 132, 133, 134, 135, 136, 137,
+    138, 139, 140, 141, 142,
 }
-IMPLEMENTATION_RANGES = ((562, 579), (1334, 1347), (2003, 2006), (2849, 2852))
+IMPLEMENTATION_RANGES = ((623, 640), (1395, 1408), (2069, 2072), (2926, 2929), (406, 410), (517, 527))
 IMPLEMENTATION_BLOCKS = {
-    444, 498, 1178, 1274, 1603, 1636, 1796, 1806, 1944, 2108,
-    2170, 2210, 2213, 2380, 2819,
+    491, 559, 1239, 1335, 1664, 1697, 1857, 1867, 2005, 2177,
+    2239, 2279, 2282, 2449, 2896,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -220,10 +220,10 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3342, 140, 51):
+    if (len(records), image_number, len(services)) != (3422, 142, 51):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
 
-    for index in (0, 692):
+    for index in (0, 753):
         records[index].update(classification="context", reason="Document navigation link, not study content")
     position = 0
     while position < len(records):
@@ -415,11 +415,15 @@ def build():
         "sourceHash": review_report["previousSourceHash"],
         "questionIds": review_report["reviewedPreviousIds"],
         "unchangedQuestionIds": review_report["unchangedQuestionIds"],
-        "resumeSessions": False,
-    }] + [{**revision, "resumeSessions": False} for revision in review_report["compatibleRevisions"]]
+        "questionIdMap": {entry["previousId"]: stable_ids[entry.get("newTerm", entry["term"])]
+                          for entry in review_report["reviewed"] if entry["action"] != "removed"},
+    }] + review_report["compatibleRevisions"]
     assert len({r["sourceHash"] for r in compatible_revisions}) == len(compatible_revisions)
     for revision in compatible_revisions:
         assert set(revision["unchangedQuestionIds"]) <= set(revision["questionIds"]) & question_ids
+        assert set(revision["questionIdMap"]) <= set(revision["questionIds"])
+        assert set(revision["questionIdMap"].values()) <= question_ids
+        assert len(set(revision["questionIdMap"].values())) == len(revision["questionIdMap"]), "Do not merge distinct learning records"
     assert all(u["classification"] == "knowledge" for u in active)
     classification_counts = Counter(r["classification"] for r in records)
     meta = {

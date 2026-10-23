@@ -11,6 +11,7 @@ const modes = {
   depth: "מה עושה המושג של AWS? ארבע תשובות לבחירה ואפשרות ״לא יודע את התשובה״. בלי מושגי יסוד כלליים, תוכן Interface או הוראות יישום."
 };
 let progress = {};
+let archivedProgress = {};
 let session = null;
 let storedSession = null;
 let libraryPage = 0;
@@ -116,11 +117,13 @@ function validSession(value, ids = playableIds) {
 }
 function readSave(saved) {
   if (!saved || saved.version !== 5) throw new Error("מבנה נתוני השמירה אינו מתאים לגרסה זו.");
+  const archive = saved.archivedProgress === undefined ? {} : saved.archivedProgress;
+  if (!validProgress(archive, false)) throw new Error("ארכיון ההתקדמות אינו תקין.");
   if (saved.sourceHash === DATA.meta.hash) {
     if (!validProgress(saved.progress) || (saved.session !== null && !validSession(saved.session))) {
       throw new Error("נתוני ההתקדמות או הסבב השמור אינם תקינים.");
     }
-    return {progress:saved.progress, session:saved.session, notice:"", migrated:false};
+    return {progress:saved.progress, archivedProgress:archive, session:saved.session, notice:"", migrated:false};
   }
   const revision = DATA.meta.compatibleRevisions.find(item => item.sourceHash === saved.sourceHash);
   if (!revision) throw new Error("השמירה אינה תואמת לגרסת הסיכום.");
@@ -129,12 +132,43 @@ function readSave(saved) {
       (saved.session !== null && !validSession(saved.session, previousIds))) {
     throw new Error("נתוני הגרסה הקודמת אינם תקינים.");
   }
-  const unchanged = new Set(revision.unchangedQuestionIds.flatMap(id => [id, "recall-" + id]));
-  const kept = Object.fromEntries(Object.entries(saved.progress).filter(([id]) => unchanged.has(id)));
-  const keepSession = saved.session === null || (revision.resumeSessions !== false && saved.session.ids.every(id => unchanged.has(id)));
-  const removed = Object.keys(saved.progress).length - Object.keys(kept).length;
-  const notice = `מאגר השאלות עודכן לפי הסיכום. נשמרה ההתקדמות ב-${Object.keys(kept).length} פריטי תרגול שהגדרתם לא השתנתה. ${removed} רשומות של שאלות שתוקנו או הוסרו לא הועברו. ${keepSession ? "" : "הסבב הישן אינו ממשיך, כי השאלות ואפשרויות הבחירה עודכנו."}`;
-  return {progress:kept, session:keepSession ? saved.session : null, notice, migrated:true};
+  const mapId = id => {
+    const recall = id.startsWith("recall-");
+    const previousId = recall ? id.slice(7) : id;
+    const target = revision.questionIdMap[previousId];
+    return target ? (recall ? "recall-" : "") + target : null;
+  };
+  const kept = {};
+  const archived = {...archive};
+  for (const [id, value] of Object.entries(saved.progress)) {
+    const target = mapId(id);
+    if (target) kept[target] = value;
+    else archived[id] = value;
+  }
+  let resumed = null;
+  if (saved.session) {
+    const previous = saved.session;
+    const mapped = previous.ids.map(mapId);
+    const nextIndex = mapped.findIndex((id, index) => index >= previous.index && id !== null);
+    if (nextIndex !== -1) {
+      const ids = mapped.filter(id => id !== null);
+      const sameQuestion = nextIndex === previous.index;
+      const completed = previous.ids.slice(0, previous.index + Number(previous.answered));
+      const completedKept = completed.filter(id => mapId(id));
+      const answered = sameQuestion && previous.answered;
+      const choice = answered && previous.choice !== UNKNOWN_ANSWER &&
+        !previous.missed.includes(previous.ids[previous.index]) ?
+        (DATA.questions.find(q => q.id === mapped[nextIndex])?.answer || previous.choice) : previous.choice;
+      resumed = {...previous, ids, index:mapped.slice(0, nextIndex).filter(Boolean).length,
+        score:completedKept.filter(id => !previous.missed.includes(id)).length,
+        missed:previous.missed.map(mapId).filter(Boolean),
+        answered, revealed:sameQuestion && previous.revealed, choice:sameQuestion ? choice : "",
+        note:sameQuestion ? previous.note : ""};
+      if (!validSession(resumed)) throw new Error("לא ניתן להתאים את נקודת העצירה למאגר המעודכן.");
+    }
+  }
+  const notice = `מאגר השאלות עודכן. ההתקדמות נשמרה ב-${Object.keys(kept).length} פריטי תרגול, גם בשאלות שנוסחו מחדש. ${Object.keys(archived).length} רשומות של שאלות שהוסרו נשמרות בארכיון ואינן נספרות במאגר הפעיל. ${resumed ? "נקודת העצירה נשמרה; שאלות חדשות יופיעו בסבב חדש." : "אפשר להתחיל סבב חדש בלי לאפס את ההתקדמות."}`;
+  return {progress:kept, archivedProgress:archived, session:resumed, notice, migrated:true};
 }
 function load() {
   try {
@@ -149,6 +183,7 @@ function load() {
     const saved = JSON.parse(raw);
     const result = readSave(saved);
     progress = result.progress;
+    archivedProgress = result.archivedProgress;
     storedSession = result.session;
     if (result.migrated) {
       const backupKey = STORE + "-backup-" + saved.sourceHash;
@@ -164,7 +199,7 @@ function load() {
 function save() {
   if (storageFailed) return;
   try {
-    localStorage.setItem(STORE, JSON.stringify({ version: 5, sourceHash: DATA.meta.hash, progress, session: storedSession }));
+    localStorage.setItem(STORE, JSON.stringify({ version: 5, sourceHash: DATA.meta.hash, progress, archivedProgress, session: storedSession }));
   } catch (error) {
     reportStorage("ההתקדמות נשארת בזיכרון אך לא נשמרת בדפדפן. מומלץ לייצא גיבוי: " + error.message);
   }
@@ -265,6 +300,9 @@ function corrections(unit) {
   if (/Permissions Boundaries|Permissions Boundary/.test(unit.topic) || /Permission Boundaries/.test(text)) notes.push("דיוק: Permissions Boundaries מוצמדים ל-IAM Users או Roles, לא ל-Groups ולא ל-root. הם אינם מעניקים הרשאות בפני עצמם.");
   if (unit.service === "AWS IAM" && /External ID|סיסמת הביטחון|סיסמת בטיחות/.test(text)) notes.push("דיוק: External ID אינו סיסמה ואינו נחשב סוד. הספק צריך לייצר ערך ייחודי לכל לקוח ולדרוש אותו בתנאי Trust Policy כדי לצמצם Confused Deputy.");
   if (unit.service === "AWS IAM" && /Role|role/.test(unit.topic + text) && /קבוצות|קבוצה/.test(text)) notes.push("תיקון: IAM Group אינו Principal ואינו יכול לבצע AssumeRole. אפשר לתת לחברי קבוצה הרשאת AssumeRole באמצעות מדיניות זהות, אבל לא להצמיד את הקבוצה עצמה כ-Principal ב-Trust Policy.");
+  if (unit.service === "AWS IAM Identity Center" && /מאבדים את היכולת|איבדנו את היכולת/.test(text)) notes.push("דיוק: מינוי Delegated Administrator אינו מבטל Permission Sets בחשבון ה-Management. ניהול הגישה לחשבון הזה נשאר באחריות חשבון ה-Management, ולא עובר למנהל המואצל.");
+  if (unit.service === "AWS IAM" && /Internal Access|Custom Policy Checks/.test(unit.topic + text)) notes.push("דיוק: Internal Access Analysis ו-Custom Policy Checks הם מנגנונים שונים. השאלה כאן עוסקת בבדיקת מדיניות לפני השימוש בה, כפי שמתואר בציטוט, ולא במיפוי הגישה הפנימית.");
+  if (unit.service === "AWS WAF" && /החוק האחרון יהיה allow all/.test(text)) notes.push("דיוק: פעולת ברירת המחדל של Web ACL יכולה להיות Allow או Block. אין חובה שהחוק האחרון יאשר את כל הבקשות.");
   if (unit.service === "S3" && /לא רלוונטי|לא ל-objects/.test(text)) notes.push("תיקון: Bucket Policy רלוונטית גם בתוך Organizations, ויכולה לתת או להגביל גישה גם לאובייקטים לפי Action ו-Resource.");
   if (unit.service === "S3" && /גרסאות קודמות של ה-bucket/.test(text)) notes.push("דיוק: Versioning שומר גרסאות אובייקטים, לא גרסאות של ה-Bucket עצמו.");
   if (unit.service === "S3" && /Signed URLs|Intelligent Tiering|9 עד 48/.test(text)) notes.push("בדיקת עדכניות: זמני אחזור ותכונות שכבות האחסון דורשים דיוק. Intelligent-Tiering מבוסס על ניטור דפוסי גישה; אין להסיק שעצם שינוי השכבה משנה את תוכן הנתון.");
@@ -572,7 +610,7 @@ function renderCoverage() {
   });
 }
 function exportProgress() {
-  const blob = new Blob([JSON.stringify({version:5,sourceHash:DATA.meta.hash,progress,session:storedSession},null,2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({version:5,sourceHash:DATA.meta.hash,progress,archivedProgress,session:storedSession},null,2)], {type:"application/json"});
   const url = URL.createObjectURL(blob);
   const link = node("a");
   link.href = url;
@@ -592,6 +630,7 @@ $("import").addEventListener("change", async event => {
     const result = readSave(saved);
     if (!confirm((result.notice ? result.notice + "\n\n" : "") + "יבוא הגיבוי יחליף את ההתקדמות והסבב השמור בדפדפן זה. להמשיך?")) return;
     progress = result.progress;
+    archivedProgress = result.archivedProgress;
     storedSession = result.session;
     session = null;
     $("setup").classList.remove("hidden");

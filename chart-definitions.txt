@@ -1,67 +1,67 @@
-130|EC2|EC2 allows you to rent and manage virtual servers in the cloud.
-130|Lambda|Lambda is a serverless compute service that lets you run code without managing servers.
-130|Fargate|Fargate is a serverless compute engine for containers.
-130|Lightsail|Lightsail allows you to quickly launch all the resources you need for small projects.
-130|Outposts|Outposts allows you to run cloud services in your internal data center.
-130|Batch|Batch allows you to process large workloads in smaller chunks (or batches).
-130|S3|S3 is an object storage service for the cloud that is highly available.
-130|EBS|EBS is a storage device (called a volume) that can be attached to (or removed from) your instance.
-130|EFS|EFS is a serverless network file system for sharing files.
-130|Storage Gateway|Storage Gateway is a hybrid storage service.
-130|Backup|Backup helps you manage data backups across multiple data services in the cloud.
-130|CloudFront|CloudFront is a CDN that delivers data and applications globally with low latency.
-130|Global Accelerator|Global Accelerator sends your users through the AWS global network when accessing your content, speeding up delivery.
-130|S3 Transfer Acceleration|S3 Transfer Acceleration improves content uploads and downloads to and from S3 buckets.
-131|Route 53|Route 53 is a DNS service that routes users to applications.
-131|VPC|VPC is a foundational service that allows you to create a secure private network in the AWS Cloud where you launch your resources.
-131|Direct Connect|Direct Connect is a dedicated physical network connection from your on-premises data center to AWS.
-131|Site-to-Site VPN|Site-to-Site VPN creates a secure connection between your internal networks and your AWS VPCs.
-131|API Gateway|API Gateway allows you to build and manage APIs.
-131|RDS|RDS is a service that makes it easy to launch and manage relational databases.
-131|Aurora|Aurora is a relational database compatible with MySQL and PostgreSQL that was created by AWS.
-131|DynamoDB|DynamoDB is a fully managed NoSQL key-value and document database.
-131|DocumentDB|DocumentDB is a fully managed document database that supports MongoDB.
-131|ElastiCache|ElastiCache is a fully managed in-memory datastore compatible with Redis or Memcached.
-131|Neptune|Neptune is a fully managed graph database that supports highly connected datasets.
-131|DMS|DMS helps you migrate databases to or within AWS.
-131|SMS|SMS allows you to migrate on-premises servers to AWS.
-131|Snow Family|The Snow Family allows you to transfer large amounts of on-premises data to AWS using a physical device.
-131|DataSync|DataSync allows for online data transfer from on-premises to AWS storage services like S3 or EFS.
-132|Redshift|Redshift is a scalable data warehouse solution.
-132|Athena|Athena is a query service for Amazon S3.
-132|Glue|Glue prepares your data for analytics.
-132|Kinesis|Kinesis allows you to analyze data and video streams in real time.
-132|EMR|EMR helps you process large amounts of data.
-132|Data Pipeline|Data Pipeline helps you move data between compute and storage services running either on AWS or on-premises.
-132|Rekognition|Rekognition allows you to automate your image and video analysis.
-132|Comprehend|Comprehend is a natural-language processing (NLP) service that finds relationships in text.
-132|Polly|Polly turns text into speech.
-132|SageMaker|SageMaker helps you build, train, and deploy machine learning models quickly.
-132|Translate|Translate provides language translation.
-132|Lex|Lex helps you build conversational interfaces like chatbots.
-132|Cloud9|Cloud9 allows you to write code within an integrated development environment (IDE) right from your web browser.
-132|CodeCommit|CodeCommit is a source control system for private Git repositories.
-132|CodeBuild|CodeBuild allows you to build and test your application source code.
-132|CodeDeploy|CodeDeploy manages the deployment of code to compute services in the cloud or on-premises.
-132|CodePipeline|CodePipeline automates the software release process.
-132|X-Ray|X-Ray helps you debug production applications.
-133|CloudFormation|CloudFormation allows you to provision AWS resources using Infrastructure as Code (IaC).
-133|Elastic Beanstalk|Elastic Beanstalk allows you to deploy your web applications and web services to AWS.
-133|OpsWorks|OpsWorks allows you to use Chef or Puppet to automate the configuration of your servers and deploy code.
-133|SQS|SQS is a message queuing service that allows you to build loosely coupled systems.
-133|SNS|SNS allows you to send emails and text messages from your applications.
-133|SES|SES is an email service that allows you to send richly formatted HTML emails from your applications.
-133|CloudWatch|CloudWatch is a collection of services that help you monitor and observe your cloud resources.
-133|CloudTrail|CloudTrail tracks user activity and API calls within your account.
-134|IAM|IAM allows you to control access to your AWS services and resources.
-134|WAF|WAF helps protect your web applications against common web attacks.
-134|Shield|Shield is a managed Distributed Denial of Service (DDoS) protection service.
-134|Macie|Macie helps you discover and protect sensitive data.
-134|Config|Config allows you to assess, audit, and evaluate the configurations of your resources.
-134|GuardDuty|GuardDuty is an intelligent threat detection system that uncovers unauthorized behavior.
-134|Inspector|Inspector works with EC2 instances to uncover and report vulnerabilities.
-134|Artifact|Artifact offers on-demand access to AWS security and compliance reports.
-134|Cognito|Cognito helps you control access to mobile and web applications.
-134|KMS|KMS allows you to generate and store encryption keys.
-134|CloudHSM|CloudHSM is a hardware security module (HSM) used to generate encryption keys.
-134|Secrets Manager|Secrets Manager allows you to manage and retrieve secrets (passwords or keys).
+132|EC2|EC2 allows you to rent and manage virtual servers in the cloud.
+132|Lambda|Lambda is a serverless compute service that lets you run code without managing servers.
+132|Fargate|Fargate is a serverless compute engine for containers.
+132|Lightsail|Lightsail allows you to quickly launch all the resources you need for small projects.
+132|Outposts|Outposts allows you to run cloud services in your internal data center.
+132|Batch|Batch allows you to process large workloads in smaller chunks (or batches).
+132|S3|S3 is an object storage service for the cloud that is highly available.
+132|EBS|EBS is a storage device (called a volume) that can be attached to (or removed from) your instance.
+132|EFS|EFS is a serverless network file system for sharing files.
+132|Storage Gateway|Storage Gateway is a hybrid storage service.
+132|Backup|Backup helps you manage data backups across multiple data services in the cloud.
+132|CloudFront|CloudFront is a CDN that delivers data and applications globally with low latency.
+132|Global Accelerator|Global Accelerator sends your users through the AWS global network when accessing your content, speeding up delivery.
+132|S3 Transfer Acceleration|S3 Transfer Acceleration improves content uploads and downloads to and from S3 buckets.
+133|Route 53|Route 53 is a DNS service that routes users to applications.
+133|VPC|VPC is a foundational service that allows you to create a secure private network in the AWS Cloud where you launch your resources.
+133|Direct Connect|Direct Connect is a dedicated physical network connection from your on-premises data center to AWS.
+133|Site-to-Site VPN|Site-to-Site VPN creates a secure connection between your internal networks and your AWS VPCs.
+133|API Gateway|API Gateway allows you to build and manage APIs.
+133|RDS|RDS is a service that makes it easy to launch and manage relational databases.
+133|Aurora|Aurora is a relational database compatible with MySQL and PostgreSQL that was created by AWS.
+133|DynamoDB|DynamoDB is a fully managed NoSQL key-value and document database.
+133|DocumentDB|DocumentDB is a fully managed document database that supports MongoDB.
+133|ElastiCache|ElastiCache is a fully managed in-memory datastore compatible with Redis or Memcached.
+133|Neptune|Neptune is a fully managed graph database that supports highly connected datasets.
+133|DMS|DMS helps you migrate databases to or within AWS.
+133|SMS|SMS allows you to migrate on-premises servers to AWS.
+133|Snow Family|The Snow Family allows you to transfer large amounts of on-premises data to AWS using a physical device.
+133|DataSync|DataSync allows for online data transfer from on-premises to AWS storage services like S3 or EFS.
+134|Redshift|Redshift is a scalable data warehouse solution.
+134|Athena|Athena is a query service for Amazon S3.
+134|Glue|Glue prepares your data for analytics.
+134|Kinesis|Kinesis allows you to analyze data and video streams in real time.
+134|EMR|EMR helps you process large amounts of data.
+134|Data Pipeline|Data Pipeline helps you move data between compute and storage services running either on AWS or on-premises.
+134|Rekognition|Rekognition allows you to automate your image and video analysis.
+134|Comprehend|Comprehend is a natural-language processing (NLP) service that finds relationships in text.
+134|Polly|Polly turns text into speech.
+134|SageMaker|SageMaker helps you build, train, and deploy machine learning models quickly.
+134|Translate|Translate provides language translation.
+134|Lex|Lex helps you build conversational interfaces like chatbots.
+134|Cloud9|Cloud9 allows you to write code within an integrated development environment (IDE) right from your web browser.
+134|CodeCommit|CodeCommit is a source control system for private Git repositories.
+134|CodeBuild|CodeBuild allows you to build and test your application source code.
+134|CodeDeploy|CodeDeploy manages the deployment of code to compute services in the cloud or on-premises.
+134|CodePipeline|CodePipeline automates the software release process.
+134|X-Ray|X-Ray helps you debug production applications.
+135|CloudFormation|CloudFormation allows you to provision AWS resources using Infrastructure as Code (IaC).
+135|Elastic Beanstalk|Elastic Beanstalk allows you to deploy your web applications and web services to AWS.
+135|OpsWorks|OpsWorks allows you to use Chef or Puppet to automate the configuration of your servers and deploy code.
+135|SQS|SQS is a message queuing service that allows you to build loosely coupled systems.
+135|SNS|SNS allows you to send emails and text messages from your applications.
+135|SES|SES is an email service that allows you to send richly formatted HTML emails from your applications.
+135|CloudWatch|CloudWatch is a collection of services that help you monitor and observe your cloud resources.
+135|CloudTrail|CloudTrail tracks user activity and API calls within your account.
+136|IAM|IAM allows you to control access to your AWS services and resources.
+136|WAF|WAF helps protect your web applications against common web attacks.
+136|Shield|Shield is a managed Distributed Denial of Service (DDoS) protection service.
+136|Macie|Macie helps you discover and protect sensitive data.
+136|Config|Config allows you to assess, audit, and evaluate the configurations of your resources.
+136|GuardDuty|GuardDuty is an intelligent threat detection system that uncovers unauthorized behavior.
+136|Inspector|Inspector works with EC2 instances to uncover and report vulnerabilities.
+136|Artifact|Artifact offers on-demand access to AWS security and compliance reports.
+136|Cognito|Cognito helps you control access to mobile and web applications.
+136|KMS|KMS allows you to generate and store encryption keys.
+136|CloudHSM|CloudHSM is a hardware security module (HSM) used to generate encryption keys.
+136|Secrets Manager|Secrets Manager allows you to manage and retrieve secrets (passwords or keys).

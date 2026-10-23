@@ -30,7 +30,7 @@ class GameTests(unittest.TestCase):
                 text = tag.get_text("", strip=False).strip()
                 if text:
                     original.append(("text", text))
-        self.assertEqual(len(original), 3342)
+        self.assertEqual(len(original), 3422)
         self.assertEqual(len(BLOCKS), len(original))
         for record, (kind, content) in zip(BLOCKS, original):
             self.assertEqual(record["kind"], kind)
@@ -43,7 +43,7 @@ class GameTests(unittest.TestCase):
 
     def test_exactly_once_archive_mapping(self):
         assigned = [i for unit in DATA["units"] for i in unit["blocks"]]
-        self.assertEqual(Counter(assigned), Counter(range(3342)))
+        self.assertEqual(Counter(assigned), Counter(range(3422)))
         self.assertEqual(len(UNITS), len(DATA["units"]))
         for unit in DATA["units"]:
             if unit["kind"] == "text":
@@ -55,7 +55,7 @@ class GameTests(unittest.TestCase):
         tags = [tag for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"])
                 if tag.name == "img" or (not tag.find_parent(["p", "li", "h1", "h2", "h3"])
                                          and tag.get_text("", strip=False).strip())]
-        self.assertEqual(len(formats), 3202)
+        self.assertEqual(len(formats), 3280)
         underline_count = 0
         numbered_starts = set()
         levels = set()
@@ -112,7 +112,7 @@ class GameTests(unittest.TestCase):
         self.assertEqual({q["service"] for q in DATA["questions"]}, set(DATA["meta"]["services"]))
 
     def test_concept_question_contract(self):
-        self.assertEqual(len(QUESTIONS), 460)
+        self.assertEqual(len(QUESTIONS), 467)
         self.assertEqual(len(QUESTIONS), len(DATA["questions"]))
         self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(QUESTIONS))
         conflicts = []
@@ -186,20 +186,19 @@ class GameTests(unittest.TestCase):
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(proof["nameQuote"]))
             else:
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(question["imageQuote"]))
-        self.assertEqual(len(report["reviewed"]), 452)
-        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 452)
-        self.assertEqual(len(report["removed"]), 0)
-        self.assertEqual(len(report["corrected"]), 450)
+        self.assertEqual(len(report["reviewed"]), 460)
+        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 460)
+        self.assertEqual(len(report["removed"]), 1)
+        self.assertEqual(len(report["corrected"]), 5)
         self.assertEqual(len(report["added"]), 8)
-        self.assertEqual(len(report["unchangedQuestionIds"]), 448)
+        self.assertEqual(len(report["unchangedQuestionIds"]), 459)
         previous = {r["term"]: r for r in report["reviewed"]}
-        self.assertEqual(set(previous) | set(report["added"]), set(QUESTIONS))
+        retained = {entry.get("newTerm", term) for term, entry in previous.items() if entry["action"] != "removed"}
+        self.assertEqual(retained | set(report["added"]), set(QUESTIONS))
         for term, old in previous.items():
-            if term in report["stableQuestionIds"]:
-                self.assertEqual(QUESTIONS[term]["id"], old["previousId"])
-            else:
-                self.assertIn(term, report["sourceUpdatedTerms"])
-                self.assertNotEqual(QUESTIONS[term]["id"], old["previousId"])
+            if old["action"] != "removed":
+                target = old.get("newTerm", term)
+                self.assertEqual(QUESTIONS[target]["id"], old["previousId"])
         for entry in report["removed"]:
             self.assertNotIn(entry["term"], QUESTIONS)
             self.assertTrue(entry["reason"])
@@ -207,15 +206,15 @@ class GameTests(unittest.TestCase):
             self.assertEqual(QUESTIONS[entry["newTerm"]]["answer"], entry["afterAnswer"])
         self.assertEqual(set(DATA["meta"]["unchangedQuestionIds"]), set(report["unchangedQuestionIds"]))
         self.assertEqual(set(DATA["meta"]["previousQuestionIds"]), set(report["reviewedPreviousIds"]))
-        self.assertEqual(len(QUESTIONS), 452 - len(report["removed"]) + len(report["added"]))
+        self.assertEqual(len(QUESTIONS), 460 - len(report["removed"]) + len(report["added"]))
         self.assertTrue(any(h["reviewedPreviousQuestions"] == 636 for h in report["history"]))
         self.assertTrue(any(h["reviewedPreviousQuestions"] == 611 for h in report["history"]))
         self.assertEqual(report["currentSourceHash"], DATA["meta"]["hash"])
 
     def test_plain_language_answers_and_added_mechanisms(self):
         review = DATA["meta"]["plainLanguageReview"]
-        self.assertEqual(review["reviewedPreviousAnswers"], 452)
-        self.assertEqual(review["rewrittenAnswers"], 450)
+        self.assertEqual(review["reviewedPreviousAnswers"], 460)
+        self.assertEqual(review["rewrittenAnswers"], 5)
         self.assertEqual(review["newAnswers"], 8)
         answers = {q["answer"] for q in QUESTIONS.values()}
         for question in QUESTIONS.values():
@@ -227,6 +226,12 @@ class GameTests(unittest.TestCase):
                      "Logically Air-Gapped Vault", "AWS Backup Vault Lock", "Volume Gateway",
                      "File Gateway", "AWS Elastic Disaster Recovery"]:
             self.assertIn(term, QUESTIONS)
+        for term in ["AWS Marketplace", "User Access Portal", "IAM Access Analyzer Custom Policy Checks",
+                     "IAM Access Analyzer Policy Generation", "Cross-account access", "WAF Rule Group",
+                     "WAF Rule", "חוקים מחנות AWS Marketplace", "GuardDuty Custom Entity Lists"]:
+            self.assertIn(term, QUESTIONS)
+        self.assertNotIn("Internal Access Analysis", QUESTIONS)
+        self.assertNotIn("GuardDuty Entity List", QUESTIONS)
         self.assertEqual(QUESTIONS["AWS Backup"]["service"], "AWS Backup")
         self.assertEqual(QUESTIONS["AWS Storage Gateway"]["service"], "Storage Gateway")
         self.assertIn("לקבוצה", QUESTIONS["Inline Policy"]["answer"])
@@ -287,54 +292,123 @@ const data = JSON.parse(fs.readFileSync("AWS-Security-Study-Game.html","utf8")
   .match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
 const runtime = fs.readFileSync("game.js","utf8");
 const functions = runtime.slice(runtime.indexOf("function validProgress("), runtime.indexOf("function load("));
-const read = new Function("DATA","playableIds", functions + "\nreturn readSave;")
+const read = new Function("DATA","playableIds", 'const UNKNOWN_ANSWER="__unknown__";\n' + functions + "\nreturn readSave;")
   (data, new Set([...data.cards,...data.questions].map(q=>q.id)));
 const unchanged = data.meta.unchangedQuestionIds[0];
-const changed = data.meta.previousQuestionIds.find(id=>!data.meta.unchangedQuestionIds.includes(id));
+const removed = data.meta.previousQuestionIds.find(id=>!data.meta.unchangedQuestionIds.includes(id));
 const value = {attempts:2,successes:1,streak:1,last:2,starred:true,updated:"2026-10-20"};
 const round = ids=>({ids,index:0,score:0,missed:[],answered:false,revealed:false,choice:"",note:""});
 const saved = {version:5,sourceHash:data.meta.previousSourceHash,
-  progress:{[unchanged]:value,["recall-"+unchanged]:value,[changed]:value},session:round([unchanged,changed])};
+  progress:{[unchanged]:value,["recall-"+unchanged]:value,[removed]:value},session:round([unchanged,removed])};
 const original = JSON.stringify(saved);
 const migrated = read(saved);
 assert.deepEqual(Object.keys(migrated.progress),[unchanged,"recall-"+unchanged]);
-assert.equal(migrated.session,null);
+assert.deepEqual(migrated.archivedProgress,{[removed]:value});
+assert.deepEqual(migrated.session,round([unchanged]));
 assert.equal(migrated.migrated,true);
 assert.ok(migrated.notice);
 assert.equal(JSON.stringify(saved),original);
-assert.equal(read({...saved,session:round([unchanged])}).session,null);
+assert.deepEqual(read({...saved,session:round([unchanged])}).session,round([unchanged]));
+assert.equal(read({...saved,session:round([removed])}).session,null);
+const answered = {...round([unchanged,removed]),answered:true,revealed:true,score:1,choice:"old answer"};
+const resumed = read({...saved,session:answered}).session;
+assert.equal(resumed.answered,true);
+assert.equal(resumed.score,1);
+assert.equal(resumed.choice,data.questions.find(q=>q.id===unchanged).answer);
+const skipDeleted = {...round([removed,unchanged]),answered:true,revealed:true,score:1};
+assert.deepEqual(read({...saved,session:skipDeleted}).session,round([unchanged]));
 assert.throws(()=>read({...saved,progress:{invalid:value}}));
 assert.throws(()=>read({...saved,sourceHash:"unknown"}));
 assert.throws(()=>read({...saved,version:4}));
 const current = {version:5,sourceHash:data.meta.hash,progress:{[unchanged]:value},session:null};
 assert.equal(read(current).migrated,false);
 assert.deepEqual(read(current).progress,current.progress);
-assert.throws(()=>read({...current,progress:{[changed]:value}}));
+assert.throws(()=>read({...current,progress:{[removed]:value}}));
+assert.deepEqual(read({...current,archivedProgress:{[removed]:value}}).archivedProgress,{[removed]:value});
+assert.throws(()=>read({...current,archivedProgress:{[removed]:{attempts:-1}}}));
 for (const revision of data.meta.compatibleRevisions) {
-  const stable = revision.unchangedQuestionIds[0];
-  const revised = revision.questionIds.find(id=>!revision.unchangedQuestionIds.includes(id));
-  assert.ok(stable && revised);
+  const stable = Object.keys(revision.questionIdMap)[0];
+  const retired = revision.questionIds.find(id=>!revision.questionIdMap[id]);
+  const changed = Object.keys(revision.questionIdMap).find(id=>revision.questionIdMap[id]!==id);
+  assert.ok(stable);
+  const oldIds = [stable,changed,retired].filter((id,index,ids)=>id && ids.indexOf(id)===index);
   const prior = {...saved,sourceHash:revision.sourceHash,
-    progress:{[stable]:value,["recall-"+stable]:value,[revised]:value,["recall-"+revised]:value},
-    session:round([stable,revised])};
+    progress:Object.fromEntries(oldIds.flatMap(id=>[[id,value],["recall-"+id,value]])),
+    session:round(oldIds)};
   const result = read(prior);
-  assert.deepEqual(Object.keys(result.progress),[stable,"recall-"+stable]);
-  assert.equal(result.session,null);
+  for (const id of oldIds) {
+    const mapped = revision.questionIdMap[id];
+    assert.deepEqual(mapped?result.progress[mapped]:result.archivedProgress[id],value);
+    assert.deepEqual(mapped?result.progress["recall-"+mapped]:result.archivedProgress["recall-"+id],value);
+  }
+  assert.deepEqual(result.session.ids,oldIds.map(id=>revision.questionIdMap[id]).filter(Boolean));
   assert.equal(result.migrated,true);
-  assert.equal(read({...prior,session:round(["recall-"+stable])}).session,null);
+  assert.deepEqual(read({...prior,session:round(["recall-"+stable])}).session.ids,["recall-"+revision.questionIdMap[stable]]);
   assert.throws(()=>read({...prior,progress:{foreign:value}}));
+  const full = {...prior,progress:Object.fromEntries(revision.questionIds.map(id=>[id,value])),
+    session:round(revision.questionIds)};
+  const all = read(full);
+  assert.equal(Object.keys(all.progress).length + Object.keys(all.archivedProgress).length,revision.questionIds.length);
+  assert.equal(all.session.ids.length,Object.keys(revision.questionIdMap).length);
 }
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, text=True, capture_output=True)
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_migration_backs_up_original_and_never_overwrites_on_storage_failure(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const data = JSON.parse(fs.readFileSync("AWS-Security-Study-Game.html","utf8")
+  .match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const runtime = fs.readFileSync("game.js","utf8");
+const source = runtime.slice(runtime.indexOf("function validProgress("),runtime.indexOf("function getProgress("));
+const revision = data.meta.compatibleRevisions[0];
+const id = Object.keys(revision.questionIdMap)[0];
+const value = {attempts:1,successes:1,streak:1,last:2,starred:false,updated:"2026-10-23"};
+const original = JSON.stringify({version:5,sourceHash:revision.sourceHash,progress:{[id]:value},session:null});
+const key = "aws-security-lab-v5-concepts";
+const backupKey = key + "-backup-" + revision.sourceHash;
+const run = new Function("DATA","localStorage",`
+const STORE="${key}",UNKNOWN_ANSWER="__unknown__";
+const playableIds=new Set([...DATA.questions,...DATA.cards].map(q=>q.id));
+let progress={},archivedProgress={},storedSession=null,storageFailed=false,message="";
+const $=()=>({textContent:"",classList:{remove(){}}});
+function reportStorage(text){storageFailed=true;message=text;}
+${source}
+load();
+return {progress,archivedProgress,storedSession,storageFailed,message};
+`);
+const normal = new Map([[key,original]]);
+const store = map => ({getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)});
+assert.equal(run(data,store(normal)).storageFailed,false);
+assert.equal(normal.get(backupKey),original);
+assert.equal(JSON.parse(normal.get(key)).sourceHash,data.meta.hash);
+assert.deepEqual(JSON.parse(normal.get(key)).progress,{[revision.questionIdMap[id]]:value});
+run(data,store(normal));
+assert.equal(normal.get(backupKey),original);
+const failed = new Map([[key,original]]);
+const result = run(data,{getItem:k=>failed.get(k)??null,setItem:()=>{throw new Error("storage full");}});
+assert.equal(result.storageFailed,true);
+assert.ok(result.message.includes("storage full"));
+assert.equal(failed.get(key),original);
+assert.equal(failed.has(backupKey),false);
+const existing = new Map([[key,original],[backupKey,"original backup"]]);
+run(data,store(existing));
+assert.equal(existing.get(backupKey),"original backup");
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_current_source_changes_are_visible(self):
         changes = json.loads((BASE / "source-changes.json").read_text(encoding="utf-8"))
         self.assertEqual(changes["currentHash"], DATA["meta"]["hash"])
-        self.assertTrue(changes["imagesUnchanged"])
-        self.assertEqual(len(changes["changes"]), 5)
-        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 28)
-        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 2, "insert": 2, "delete": 1})
+        self.assertFalse(changes["imagesUnchanged"])
+        self.assertTrue(changes["previousImagesRetained"])
+        self.assertEqual(changes["addedImages"], [8, 10])
+        self.assertEqual(len(changes["changes"]), 19)
+        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 78)
+        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 13, "insert": 4, "delete": 2})
         for term, text in [
             ("Instance Profile", "מתאם בין IAM role ל-instance"),
             ("Instance Profile", "מקבל Temporary Security Credentials מ-STS"),
@@ -377,6 +451,13 @@ for (const revision of data.meta.compatibleRevisions) {
             ("Volume Gateway", "כונן קשיח"),
             ("File Gateway", "תיקיית רשת"),
             ("AWS Elastic Disaster Recovery", "AWS DRS"),
+            ("AWS Marketplace", "חנות דיגיטלית"),
+            ("User Access Portal", "פורטל התחברות מרכזי"),
+            ("IAM Access Analyzer Custom Policy Checks", "בודק הרשאות"),
+            ("IAM Access Analyzer Policy Generation", "בהתבסס על מה שהוא עשה בעבר"),
+            ("Cross-account access", "בחשבון AWS אחר"),
+            ("WAF Rule Group", "קבוצה שמכילה"),
+            ("חוקים מחנות AWS Marketplace", "חברות אבטחה חיצוניות"),
         ]:
             self.assertIn(text, QUESTIONS[term]["quoteText"], term)
         self.assertNotIn("מרכז בתוכו את הלוגים", QUESTIONS["OpsItem"]["quoteText"])
@@ -391,17 +472,17 @@ for (const revision of data.meta.compatibleRevisions) {
         self.assertNotIn("ECS Agent ACS", QUESTIONS)
         self.assertNotIn("רכיב בסוכן", QUESTIONS["Agent Communication Service (ACS)"]["answer"])
         self.assertEqual(QUESTIONS["Inbound Rules"]["service"], "VPC")
-        self.assertEqual(QUESTIONS["CloudWatch Metric Filter"]["nameEvidence"]["nameBlock"], 1764)
+        self.assertEqual(QUESTIONS["CloudWatch Metric Filter"]["nameEvidence"]["nameBlock"], 1825)
 
     def test_source_metadata_and_self_contained_output(self):
         self.assertEqual(hashlib.sha256(RAW.encode()).hexdigest(), DATA["meta"]["hash"])
         self.assertEqual(DATA["meta"], AUDIT["meta"])
-        self.assertEqual(DATA["meta"]["textBlocks"], 3202)
-        self.assertEqual(DATA["meta"]["images"], 140)
+        self.assertEqual(DATA["meta"]["textBlocks"], 3280)
+        self.assertEqual(DATA["meta"]["images"], 142)
         self.assertEqual(len(DATA["meta"]["services"]), 51)
         self.assertEqual(DATA["meta"]["conceptQuestions"], len(QUESTIONS))
         self.assertEqual(DATA["meta"]["recallCards"], len(QUESTIONS))
-        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 513)
+        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 521)
         self.assertIsNone(GAME.find("script", src=True))
         self.assertIsNone(GAME.find("link", rel="stylesheet"))
         self.assertIsNone(GAME.find("img", src=re.compile(r"^https?://")))
@@ -452,6 +533,54 @@ assert.equal(session.choice, unknown);
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)
 
+    def test_each_answer_is_saved_automatically_with_archive_and_resume(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const runtime = fs.readFileSync("game.js","utf8");
+const data = JSON.parse(fs.readFileSync("AWS-Security-Study-Game.html","utf8")
+  .match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const source = runtime.slice(runtime.indexOf("function save()"),runtime.indexOf("function updateStats()"));
+const recordSource = runtime.slice(runtime.indexOf("function record("),runtime.indexOf("function answerQuiz("));
+const readSource = runtime.slice(runtime.indexOf("function validProgress("),runtime.indexOf("function load("));
+const storage = new Map();
+const localStorage = {setItem:(k,v)=>storage.set(k,v),getItem:k=>storage.get(k)??null};
+const $ = () => ({classList:{add(){},remove(){}},focus(){}});
+const question = data.questions[0];
+const archive = {"retired-question":{attempts:1,successes:1,streak:1,last:2,starred:false,updated:"2026-10-20"}};
+const run = new Function("DATA","localStorage","$","current","archive",`
+const STORE="aws-security-lab-v5-concepts";
+const UNKNOWN_ANSWER="__unknown__";
+const playableIds=new Set([...DATA.questions,...DATA.cards].map(q=>q.id));
+let progress={},archivedProgress=archive,storedSession=null,storageFailed=false;
+const session={ids:[current().id],index:0,score:0,missed:[],answered:false,revealed:true,choice:current().answer,note:""};
+function updateStats(){}
+function reportStorage(message){throw new Error(message);}
+${source}
+${recordSource}
+${readSource}
+record(2);
+const raw=localStorage.getItem(STORE);
+const restored=readSave(JSON.parse(raw));
+record(2);
+return {raw,restored,afterDuplicate:localStorage.getItem(STORE)};
+`);
+const result = run(data,localStorage,$,()=>question,archive);
+const saved = JSON.parse(result.raw);
+assert.equal(saved.progress[question.id].successes,1);
+assert.equal(saved.progress[question.id].attempts,1);
+assert.equal(saved.progress[question.id].last,2);
+assert.equal(saved.session.answered,true);
+assert.equal(saved.session.score,1);
+assert.deepEqual(saved.archivedProgress,archive);
+assert.deepEqual(result.restored.progress,saved.progress);
+assert.deepEqual(result.restored.session,saved.session);
+assert.deepEqual(result.restored.archivedProgress,archive);
+assert.equal(result.afterDuplicate,result.raw);
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_default_round_contains_every_available_question(self):
         script = r"""
 const assert = require("node:assert/strict");
@@ -482,7 +611,7 @@ return session;
 assert.equal(defaults.length, "all");
 const start = deck => run($, () => deck, deck => [...deck].reverse(), () => {}, () => ({}));
 saved = start(data.questions);
-assert.equal(saved.ids.length, 460);
+assert.equal(saved.ids.length, 467);
 assert.deepEqual(new Set(saved.ids), new Set(data.questions.map(question => question.id)));
 assert.deepEqual(saved.ids, data.questions.map(question => question.id).reverse());
 const filtered = data.questions.filter(question => question.service === "AWS Backup");
