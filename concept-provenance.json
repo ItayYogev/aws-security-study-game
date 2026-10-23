@@ -46,7 +46,7 @@
   },
   "AWS Step Functions": {
     "sourceTerm": "AWS Step Functions",
-    "nameBlock": 3252,
+    "nameBlock": 3270,
     "nameQuote": "AWS Step Functions"
   },
   "IoT Client ID": {
@@ -76,7 +76,7 @@
   },
   "Amazon Cloud Directory": {
     "sourceTerm": "Amazon Cloud Directory",
-    "nameBlock": 3291,
+    "nameBlock": 3309,
     "nameQuote": "Amazon Cloud Directory"
   },
   "GuardDutyExcluded": {
@@ -111,7 +111,7 @@
   },
   "AWS Cloud9": {
     "sourceTerm": "Cloud9",
-    "nameBlock": 3200,
+    "nameBlock": 3218,
     "nameQuote": "Cloud9"
   },
   "AMI": {
@@ -176,8 +176,8 @@
   },
   "AWS Storage Gateway": {
     "sourceTerm": "Storage Gateway",
-    "nameBlock": 3098,
-    "nameQuote": "Storage Gateway:"
+    "nameBlock": 3087,
+    "nameQuote": "Storage Gateway"
   },
   "AWS Billing and Cost Management": {
     "sourceTerm": "AWS Billing and Cost Management",
@@ -236,7 +236,7 @@
   },
   "AWS Backup": {
     "sourceTerm": "AWS Backup",
-    "nameBlock": 3100,
+    "nameBlock": 3073,
     "nameQuote": "AWS Backup"
   },
   "Detective Guardrail": {
@@ -256,7 +256,7 @@
   },
   "S3 Transfer Acceleration": {
     "sourceTerm": "S3 Transfer Acceleration",
-    "nameBlock": 3105,
+    "nameBlock": 3123,
     "nameQuote": "S3 Transfer Acceleration"
   },
   "VPN CloudHub": {
@@ -301,7 +301,7 @@
   },
   "AWS Network Firewall": {
     "sourceTerm": "AWS Network Firewall",
-    "nameBlock": 3108,
+    "nameBlock": 3126,
     "nameQuote": "AWS Network Firewall"
   },
   "ECR Repository": {
@@ -416,7 +416,7 @@
   },
   "AWS Trusted Advisor": {
     "sourceTerm": "AWS Trusted Advisor",
-    "nameBlock": 3286,
+    "nameBlock": 3304,
     "nameQuote": "AWS trusted advisor"
   },
   "Subnet": {
@@ -496,7 +496,7 @@
   },
   "Amazon WorkSpaces": {
     "sourceTerm": "WorkSpaces",
-    "nameBlock": 3281,
+    "nameBlock": 3299,
     "nameQuote": "WorkSpaces"
   },
   "S3 Bucket": {
@@ -581,7 +581,7 @@
   },
   "Amazon Neptune": {
     "sourceTerm": "Amazon Neptune",
-    "nameBlock": 3292,
+    "nameBlock": 3310,
     "nameQuote": "שירות זה הוא כבר end of life ואמזון ממליצים להשתמש במקום ב-Amazon DynamoDB או ב-Amazon Neptune."
   },
   "GuardDuty Trusted Entity List": {
@@ -646,7 +646,7 @@
   },
   "Amazon Translate": {
     "sourceTerm": "Translate",
-    "nameBlock": 3189,
+    "nameBlock": 3207,
     "nameQuote": "Translate"
   },
   "Dedicated Host": {
@@ -691,7 +691,7 @@
   },
   "AWS Elastic Beanstalk": {
     "sourceTerm": "Elastic Beanstalk",
-    "nameBlock": 3222,
+    "nameBlock": 3240,
     "nameQuote": "ElasticBeanstalk"
   },
   "Transit VPC": {
@@ -726,7 +726,7 @@
   },
   "Amazon ElastiCache": {
     "sourceTerm": "ElastiCache",
-    "nameBlock": 3128,
+    "nameBlock": 3146,
     "nameQuote": "ElastiCache"
   },
   "CloudWatch Metric": {
@@ -736,7 +736,7 @@
   },
   "AWS Amplify": {
     "sourceTerm": "AWS Amplify",
-    "nameBlock": 3312,
+    "nameBlock": 3330,
     "nameQuote": "AWS Amplify"
   },
   "Preventive Guardrail": {
@@ -751,7 +751,7 @@
   },
   "AWS Certificate Manager — ACM": {
     "sourceTerm": "AWS Certificate Manager",
-    "nameBlock": 3265,
+    "nameBlock": 3283,
     "nameQuote": "AWS Certificate manager"
   },
   "AD Connector": {
@@ -766,7 +766,7 @@
   },
   "Amazon Lex": {
     "sourceTerm": "Lex",
-    "nameBlock": 3192,
+    "nameBlock": 3210,
     "nameQuote": "מאפשר לבנות ממשקי שיחה כמו צ'טבוט באמצעות טקסט או קול (כמו siri, alexa ועוד)"
   },
   "Management Event": {
@@ -801,7 +801,7 @@
   },
   "AWS Batch": {
     "sourceTerm": "Batch",
-    "nameBlock": 3096,
+    "nameBlock": 3119,
     "nameQuote": "שירות שמאפשר להריץ ולנהל משאבים עבור מספר גדול של batch processes (תהליכים שרצים במקביל)."
   },
   "AWS PrivateLink": {
@@ -881,17 +881,17 @@
   },
   "Amazon Comprehend": {
     "sourceTerm": "Comprehend",
-    "nameBlock": 3183,
+    "nameBlock": 3201,
     "nameQuote": "Comprehend"
   },
   "AWS Service Catalog": {
     "sourceTerm": "AWS Service Catalog",
-    "nameBlock": 3294,
+    "nameBlock": 3312,
     "nameQuote": "AWS Service Catalog"
   },
   "Amazon Rekognition": {
     "sourceTerm": "Rekognition",
-    "nameBlock": 3178,
+    "nameBlock": 3196,
     "nameQuote": "Rekognition"
   },
   "CloudFormation Resource Type": {
@@ -901,7 +901,7 @@
   },
   "AWS Database Migration Service — DMS": {
     "sourceTerm": "DMS",
-    "nameBlock": 3134,
+    "nameBlock": 3152,
     "nameQuote": "DMS"
   },
   "Network Load Balancer — NLB": {
@@ -922,7 +922,7 @@
   "ECS Service": {
     "sourceTerm": "ECS Service",
     "nameBlock": 2776,
-    "nameQuote": "Deployment Spec - הגדרות של ה-Deployment, זה המקביל לרכיב ה-ECS Service"
+    "nameQuote": "ECS Service - הגדרות של ה-Deployment, זה המקביל לרכיב ה-Deployment Spec בעולם ה-appsec"
   },
   "KMS Pending Deletion": {
     "sourceTerm": "Pending Deletion",
@@ -946,7 +946,7 @@
   },
   "AWS CodePipeline": {
     "sourceTerm": "CodePipeline",
-    "nameBlock": 3212,
+    "nameBlock": 3230,
     "nameQuote": "CodePipeline"
   },
   "SSE-KMS": {
@@ -1021,8 +1021,8 @@
   },
   "ECS Task Definition": {
     "sourceTerm": "Task Definition",
-    "nameBlock": 2781,
-    "nameQuote": "Container Definition, שזה ההוראות המדויקות עבור קונטיינר ספציפי. בתוך Task Definition אחד יכולים להיות כמה קונטיינרים, ולכן יכולות להיות כמה הגדרות קונטיינר שונות. בתוך ה-Container Definition יש חלק שנקרא \"secrets\" שבו אפשר להכניס secrets ולקשר אותם ל-secrets שנמצאים ב-AWS Secrets Manager (לפי ה-ARN)."
+    "nameBlock": 2777,
+    "nameQuote": "Task Definition - תבנית ההגדרות רק של ה-Pod, זה המקביל ל-Pod Template בעולם ה-appsec."
   },
   "IAM Policy Simulator": {
     "sourceTerm": "IAM Policy Simulator",
@@ -1121,7 +1121,7 @@
   },
   "AWS OpsWorks": {
     "sourceTerm": "OpsWorks",
-    "nameBlock": 3224,
+    "nameBlock": 3242,
     "nameQuote": "OpsWorks"
   },
   "Multi-AZ Architecture": {
@@ -1146,7 +1146,7 @@
   },
   "Amazon CodeGuru": {
     "sourceTerm": "Amazon CodeGuru",
-    "nameBlock": 3307,
+    "nameBlock": 3325,
     "nameQuote": "Amazon CodeGuru Reviewer - בודק קוד אוטומטי"
   },
   "CloudFormation Guard": {
@@ -1196,7 +1196,7 @@
   },
   "AWS Outposts": {
     "sourceTerm": "Outposts",
-    "nameBlock": 3093,
+    "nameBlock": 3116,
     "nameQuote": "Outposts"
   },
   "AWS-Managed KMS Key": {
@@ -1231,7 +1231,7 @@
   },
   "Amazon Aurora": {
     "sourceTerm": "Aurora",
-    "nameBlock": 3118,
+    "nameBlock": 3136,
     "nameQuote": "Aurora"
   },
   "Elastic IP": {
@@ -1286,7 +1286,7 @@
   },
   "Amazon Bedrock": {
     "sourceTerm": "Bedrock",
-    "nameBlock": 3193,
+    "nameBlock": 3211,
     "nameQuote": "Bedrock"
   },
   "ARN": {
@@ -1341,12 +1341,12 @@
   },
   "AWS CodeDeploy": {
     "sourceTerm": "CodeDeploy",
-    "nameBlock": 3208,
+    "nameBlock": 3226,
     "nameQuote": "CodeDeploy"
   },
   "AWS Glue": {
     "sourceTerm": "Glue",
-    "nameBlock": 3167,
+    "nameBlock": 3185,
     "nameQuote": "Glue"
   },
   "PowerUserAccess": {
@@ -1426,7 +1426,7 @@
   },
   "AWS Snow Family": {
     "sourceTerm": "Snow Family",
-    "nameBlock": 3142,
+    "nameBlock": 3160,
     "nameQuote": "Snow family"
   },
   "Imported Key Material": {
@@ -1461,12 +1461,12 @@
   },
   "AWS DataSync": {
     "sourceTerm": "DataSync",
-    "nameBlock": 3158,
+    "nameBlock": 3176,
     "nameQuote": "DataSync"
   },
   "Amazon Managed Service for Apache Flink": {
     "sourceTerm": "Amazon Managed Service for Apache Flink",
-    "nameBlock": 3310,
+    "nameBlock": 3328,
     "nameQuote": "Amazon Managed Service for Apache Flink"
   },
   "ABAC": {
@@ -1476,7 +1476,7 @@
   },
   "Amazon Polly": {
     "sourceTerm": "Polly",
-    "nameBlock": 3187,
+    "nameBlock": 3205,
     "nameQuote": "Polly"
   },
   "Long-Term Access Keys": {
@@ -1511,7 +1511,7 @@
   },
   "AWS CodeCommit": {
     "sourceTerm": "CodeCommit",
-    "nameBlock": 3202,
+    "nameBlock": 3220,
     "nameQuote": "CodeCommit"
   },
   "Private Subnet": {
@@ -1531,7 +1531,7 @@
   },
   "Amazon DocumentDB": {
     "sourceTerm": "DocumentDB",
-    "nameBlock": 3124,
+    "nameBlock": 3142,
     "nameQuote": "DocumentDB"
   },
   "Application Load Balancer — ALB": {
@@ -1551,7 +1551,7 @@
   },
   "Amazon Lightsail": {
     "sourceTerm": "Lightsail",
-    "nameBlock": 3091,
+    "nameBlock": 3114,
     "nameQuote": "Lightsail"
   },
   "AssumeRole": {
@@ -1611,7 +1611,7 @@
   },
   "AWS Global Accelerator": {
     "sourceTerm": "Global Accelerator",
-    "nameBlock": 3103,
+    "nameBlock": 3121,
     "nameQuote": "Global Accelerator"
   },
   "S3 Inventory": {
@@ -1626,7 +1626,7 @@
   },
   "Amazon EMR": {
     "sourceTerm": "EMR",
-    "nameBlock": 3171,
+    "nameBlock": 3189,
     "nameQuote": "EMR"
   },
   "EBS Snapshot": {
@@ -1666,7 +1666,7 @@
   },
   "AWS Server Migration Service — SMS": {
     "sourceTerm": "SMS",
-    "nameBlock": 3139,
+    "nameBlock": 3157,
     "nameQuote": "SMS"
   },
   "AWS Well-Architected Framework": {
@@ -1691,7 +1691,7 @@
   },
   "AWS Firewall Manager": {
     "sourceTerm": "AWS Firewall Manager",
-    "nameBlock": 3111,
+    "nameBlock": 3129,
     "nameQuote": "AWS Firewall Manager"
   },
   "Classic Load Balancer — CLB": {
@@ -1706,7 +1706,7 @@
   },
   "Amazon SageMaker": {
     "sourceTerm": "Amazon SageMaker",
-    "nameBlock": 3195,
+    "nameBlock": 3213,
     "nameQuote": "Amazon SageMaker"
   },
   "ECS Secrets Injection": {
@@ -1771,12 +1771,12 @@
   },
   "AWS CodeStar": {
     "sourceTerm": "CodeStar",
-    "nameBlock": 3219,
+    "nameBlock": 3237,
     "nameQuote": "CodeStar"
   },
   "Amazon Kinesis": {
     "sourceTerm": "Kinesis",
-    "nameBlock": 3169,
+    "nameBlock": 3187,
     "nameQuote": "Kinesis"
   },
   "Resource-Based Policy": {
@@ -1796,7 +1796,7 @@
   },
   "AWS Data Pipeline": {
     "sourceTerm": "Data Pipeline",
-    "nameBlock": 3173,
+    "nameBlock": 3191,
     "nameQuote": "Data pipeline"
   },
   "Organization Trail": {
@@ -1866,7 +1866,7 @@
   },
   "AWS X-Ray": {
     "sourceTerm": "AWS X-Ray",
-    "nameBlock": 3217,
+    "nameBlock": 3235,
     "nameQuote": "AWS X-Ray"
   },
   "FullAWSAccess בתור SCP": {
@@ -2016,7 +2016,7 @@
   },
   "AWS CloudHSM": {
     "sourceTerm": "CloudHSM",
-    "nameBlock": 3256,
+    "nameBlock": 3274,
     "nameQuote": "CloudHSM"
   },
   "Systems Manager Session Manager": {
@@ -2031,7 +2031,7 @@
   },
   "Amazon Redshift": {
     "sourceTerm": "Redshift",
-    "nameBlock": 3165,
+    "nameBlock": 3183,
     "nameQuote": "Redshift"
   },
   "Gateway Load Balancer — GWLB": {
@@ -2066,7 +2066,7 @@
   },
   "Amazon Managed Grafana": {
     "sourceTerm": "Amazon Managed Grafana",
-    "nameBlock": 3226,
+    "nameBlock": 3244,
     "nameQuote": "Amazon Managed Grafana"
   },
   "S3 Event Notifications": {
@@ -2081,7 +2081,7 @@
   },
   "Amazon SES": {
     "sourceTerm": "SES",
-    "nameBlock": 3250,
+    "nameBlock": 3268,
     "nameQuote": "SES"
   },
   "WAF Managed Rule": {
@@ -2111,7 +2111,7 @@
   },
   "Amazon QuickSight": {
     "sourceTerm": "Amazon QuickSigh",
-    "nameBlock": 3175,
+    "nameBlock": 3193,
     "nameQuote": "Amazon QuickSigh"
   },
   "S3 Presigned URL": {
@@ -2258,5 +2258,45 @@
     "sourceTerm": "Elastic Load Balancing",
     "nameBlock": 2475,
     "nameQuote": "AWS Elastic Load Balancing"
+  },
+  "Cross-Region Backup Copying": {
+    "sourceTerm": "Cross-Region Backup Copying",
+    "nameBlock": 3079,
+    "nameQuote": "Cross-Region Backup Copying"
+  },
+  "AWS Backup Vault": {
+    "sourceTerm": "AWS Backup Vault",
+    "nameBlock": 3081,
+    "nameQuote": "AWS Backup Vault"
+  },
+  "Standard Vault": {
+    "sourceTerm": "Standard Vault",
+    "nameBlock": 3083,
+    "nameQuote": "Standard Vault - הגיבויים נשארים בתוך חשבון ה-AWS שלכם"
+  },
+  "Logically Air-Gapped Vault": {
+    "sourceTerm": "Logically Air-Gapped Vault",
+    "nameBlock": 3084,
+    "nameQuote": "Logically Air-Gapped Vault - הגיבויים מועתקים אוטומטית לחשבון AWS נפרד ומבודד שמנוהל על ידי שירות AWS Backup."
+  },
+  "AWS Backup Vault Lock": {
+    "sourceTerm": "AWS Backup Vault Lock",
+    "nameBlock": 3085,
+    "nameQuote": "AWS Backup Vault Lock"
+  },
+  "Volume Gateway": {
+    "sourceTerm": "Volume Gateway",
+    "nameBlock": 3092,
+    "nameQuote": "Volume Gateway"
+  },
+  "File Gateway": {
+    "sourceTerm": "File Gateway",
+    "nameBlock": 3094,
+    "nameQuote": "File Gateway"
+  },
+  "AWS Elastic Disaster Recovery": {
+    "sourceTerm": "AWS Elastic Disaster Recovery",
+    "nameBlock": 3332,
+    "nameQuote": "AWS Elastic Disaster Recovery"
   }
 }

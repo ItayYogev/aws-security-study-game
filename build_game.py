@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "2daa663401c00a4f9d31c7dd848c56b9d4fed83518989a89fd54e2e058eb3d39"
+REVIEWED_SOURCE_HASH = "84c572f64c3cd89207b957a7bb7ea9d2e5502699a3abeb6cb38d24e09b25fbf5"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 11, 38, 40, 41, 48, 49, 50, 51, 52, 75, 86, 92,
     94, 95, 96, 97, 98, 99, 100, 104, 108, 114, 115, 117, 118, 121,
@@ -220,7 +220,7 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3314, 140, 49):
+    if (len(records), image_number, len(services)) != (3342, 140, 51):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
 
     for index in (0, 692):
@@ -291,6 +291,9 @@ def build():
     assert review_report["currentSourceHash"] == REVIEWED_SOURCE_HASH, "Question review belongs to another snapshot"
     assert set(provenance) == {d["term"] for d in definitions}, "Every concept needs explicit source name evidence"
     assert not set(provenance).intersection(review_report["scopeExclusions"]), "Out-of-scope concept reintroduced"
+    stable_ids = review_report["stableQuestionIds"]
+    assert set(stable_ids) <= set(provenance), "Stable IDs must belong to current concepts"
+    assert set(stable_ids.values()) == set(review_report["unchangedQuestionIds"]), "Review every preserved concept ID"
     normalize = lambda text: re.sub(r"[^a-z0-9\u0590-\u05ff]", "", text.casefold())
     for definition in definitions:
         proof = provenance[definition["term"]]
@@ -353,7 +356,7 @@ def build():
         display_term = term + context
         question_text = f"מה עושה המושג הבא: {display_term}?"
         question = {
-            "id": "concept-" + digest(term + "|" + answer), "topic": term,
+            "id": stable_ids.get(term, "concept-" + digest(term + "|" + answer)), "topic": term,
             "section": "מה המושג ומה הוא עושה", "kind": "quiz",
             "question": question_text, "answer": answer,
             "options": [answer] + [d["answer"] for d in wrong],
@@ -426,6 +429,7 @@ def build():
         "sourceUnits": len(units), "knowledgeUnits": len(active), "depthQuestions": len(questions),
         "recallCards": len(cards), "reviewedTopicGroups": len(topic_keys),
         "quizPolicy": review_report["policy"],
+        "plainLanguageReview": review_report["plainLanguageReview"],
         "previousSourceHash": review_report["previousSourceHash"],
         "previousQuestionIds": review_report["reviewedPreviousIds"],
         "unchangedQuestionIds": review_report["unchangedQuestionIds"],

@@ -4320,6 +4320,7 @@
     "section": "Definitions",
     "topic": "Task Definition",
     "blocks": [
+      2777,
       2779,
       2780,
       2781,
@@ -4990,15 +4991,15 @@
     "section": "",
     "topic": "Other Services by categories",
     "blocks": [
-      3074,
-      3075,
-      3076,
-      3077,
-      3078,
-      3079,
-      3080,
-      3081,
-      3082
+      3097,
+      3098,
+      3099,
+      3100,
+      3101,
+      3102,
+      3103,
+      3104,
+      3105
     ]
   },
   "435": {
@@ -5006,7 +5007,7 @@
     "section": "Compute",
     "topic": "Fargate",
     "blocks": [
-      3090
+      3113
     ]
   },
   "436": {
@@ -5014,7 +5015,7 @@
     "section": "Compute",
     "topic": "Lightsail",
     "blocks": [
-      3092
+      3115
     ]
   },
   "437": {
@@ -5022,7 +5023,7 @@
     "section": "Compute",
     "topic": "Outposts",
     "blocks": [
-      3094
+      3117
     ]
   },
   "438": {
@@ -5030,23 +5031,28 @@
     "section": "Compute",
     "topic": "Batch",
     "blocks": [
-      3096
+      3119
     ]
   },
   "439": {
-    "service": "Other Services by categories",
-    "section": "Storage",
-    "topic": "Storage Gateway:",
+    "service": "Storage Gateway",
+    "section": "Definitions",
+    "topic": "Storage Gateway",
     "blocks": [
-      3099
+      3088,
+      3089,
+      3090
     ]
   },
   "440": {
-    "service": "Other Services by categories",
-    "section": "Storage",
+    "service": "AWS Backup",
+    "section": "Definitions",
     "topic": "AWS Backup",
     "blocks": [
-      3101
+      3074,
+      3075,
+      3076,
+      3077
     ]
   },
   "441": {
@@ -5054,7 +5060,7 @@
     "section": "Content Delivery",
     "topic": "Global Accelerator",
     "blocks": [
-      3104
+      3122
     ]
   },
   "442": {
@@ -5062,7 +5068,7 @@
     "section": "Content Delivery",
     "topic": "S3 Transfer Acceleration",
     "blocks": [
-      3106
+      3124
     ]
   },
   "443": {
@@ -5070,8 +5076,8 @@
     "section": "Networking",
     "topic": "AWS Network Firewall",
     "blocks": [
-      3109,
-      3110
+      3127,
+      3128
     ]
   },
   "444": {
@@ -5079,11 +5085,11 @@
     "section": "Networking",
     "topic": "AWS Firewall Manager",
     "blocks": [
-      3112,
-      3113,
-      3114,
-      3115,
-      3116
+      3130,
+      3131,
+      3132,
+      3133,
+      3134
     ]
   },
   "445": {
@@ -5091,11 +5097,11 @@
     "section": "Databases",
     "topic": "Aurora",
     "blocks": [
-      3119,
-      3120,
-      3121,
-      3122,
-      3123
+      3137,
+      3138,
+      3139,
+      3140,
+      3141
     ]
   },
   "446": {
@@ -5103,8 +5109,8 @@
     "section": "Databases",
     "topic": "DocumentDB",
     "blocks": [
-      3125,
-      3126
+      3143,
+      3144
     ]
   },
   "447": {
@@ -5112,8 +5118,8 @@
     "section": "Definitions",
     "topic": "ElastiCache",
     "blocks": [
-      3129,
-      3130
+      3147,
+      3148
     ]
   },
   "448": {
@@ -5121,7 +5127,7 @@
     "section": "Databases",
     "topic": "Neptune",
     "blocks": [
-      3132
+      3150
     ]
   },
   "449": {
@@ -5129,10 +5135,10 @@
     "section": "Migration and transfer",
     "topic": "DMS",
     "blocks": [
-      3135,
-      3136,
-      3137,
-      3138
+      3153,
+      3154,
+      3155,
+      3156
     ]
   },
   "450": {
@@ -5140,8 +5146,8 @@
     "section": "Migration and transfer",
     "topic": "SMS",
     "blocks": [
-      3140,
-      3141
+      3158,
+      3159
     ]
   },
   "451": {
@@ -5149,20 +5155,20 @@
     "section": "Migration and transfer",
     "topic": "Snow family",
     "blocks": [
-      3143,
-      3145,
-      3146,
-      3147,
-      3148,
-      3149,
-      3150,
-      3151,
-      3152,
-      3153,
-      3154,
-      3155,
-      3156,
-      3157
+      3161,
+      3163,
+      3164,
+      3165,
+      3166,
+      3167,
+      3168,
+      3169,
+      3170,
+      3171,
+      3172,
+      3173,
+      3174,
+      3175
     ]
   },
   "452": {
@@ -5170,11 +5176,11 @@
     "section": "Migration and transfer",
     "topic": "DataSync",
     "blocks": [
-      3159,
-      3160,
-      3161,
-      3162,
-      3163
+      3177,
+      3178,
+      3179,
+      3180,
+      3181
     ]
   },
   "453": {
@@ -5182,7 +5188,7 @@
     "section": "Analytics",
     "topic": "Redshift",
     "blocks": [
-      3166
+      3184
     ]
   },
   "454": {
@@ -5190,7 +5196,7 @@
     "section": "Analytics",
     "topic": "Glue",
     "blocks": [
-      3168
+      3186
     ]
   },
   "455": {
@@ -5198,7 +5204,7 @@
     "section": "Analytics",
     "topic": "Kinesis",
     "blocks": [
-      3170
+      3188
     ]
   },
   "456": {
@@ -5206,7 +5212,7 @@
     "section": "Analytics",
     "topic": "EMR",
     "blocks": [
-      3172
+      3190
     ]
   },
   "457": {
@@ -5214,7 +5220,7 @@
     "section": "Analytics",
     "topic": "Data pipeline",
     "blocks": [
-      3174
+      3192
     ]
   },
   "458": {
@@ -5222,7 +5228,7 @@
     "section": "Analytics",
     "topic": "Amazon QuickSigh",
     "blocks": [
-      3176
+      3194
     ]
   },
   "459": {
@@ -5230,10 +5236,10 @@
     "section": "Machine learning",
     "topic": "Rekognition",
     "blocks": [
-      3179,
-      3180,
-      3181,
-      3182
+      3197,
+      3198,
+      3199,
+      3200
     ]
   },
   "460": {
@@ -5241,9 +5247,9 @@
     "section": "Machine learning",
     "topic": "Comprehend",
     "blocks": [
-      3184,
-      3185,
-      3186
+      3202,
+      3203,
+      3204
     ]
   },
   "461": {
@@ -5251,7 +5257,7 @@
     "section": "Machine learning",
     "topic": "Polly",
     "blocks": [
-      3188
+      3206
     ]
   },
   "462": {
@@ -5259,7 +5265,7 @@
     "section": "Machine learning",
     "topic": "Translate",
     "blocks": [
-      3190
+      3208
     ]
   },
   "463": {
@@ -5267,7 +5273,7 @@
     "section": "Machine learning",
     "topic": "Lex",
     "blocks": [
-      3192
+      3210
     ]
   },
   "464": {
@@ -5275,7 +5281,7 @@
     "section": "Machine learning",
     "topic": "Bedrock",
     "blocks": [
-      3194
+      3212
     ]
   },
   "465": {
@@ -5283,9 +5289,9 @@
     "section": "Machine learning",
     "topic": "Amazon SageMaker",
     "blocks": [
-      3196,
-      3197,
-      3198
+      3214,
+      3215,
+      3216
     ]
   },
   "466": {
@@ -5293,8 +5299,8 @@
     "section": "Developer tools",
     "topic": "Developer tools",
     "blocks": [
-      3200,
-      3201
+      3218,
+      3219
     ]
   },
   "467": {
@@ -5302,9 +5308,9 @@
     "section": "Developer tools",
     "topic": "CodeCommit",
     "blocks": [
-      3203,
-      3204,
-      3205
+      3221,
+      3222,
+      3223
     ]
   },
   "468": {
@@ -5312,7 +5318,7 @@
     "section": "Developer tools",
     "topic": "CodeBuild",
     "blocks": [
-      3207
+      3225
     ]
   },
   "469": {
@@ -5320,9 +5326,9 @@
     "section": "Developer tools",
     "topic": "CodeDeploy",
     "blocks": [
-      3209,
-      3210,
-      3211
+      3227,
+      3228,
+      3229
     ]
   },
   "470": {
@@ -5330,9 +5336,9 @@
     "section": "Developer tools",
     "topic": "CodePipeline",
     "blocks": [
-      3213,
-      3215,
-      3216
+      3231,
+      3233,
+      3234
     ]
   },
   "471": {
@@ -5340,7 +5346,7 @@
     "section": "Developer tools",
     "topic": "AWS X-Ray",
     "blocks": [
-      3218
+      3236
     ]
   },
   "472": {
@@ -5348,7 +5354,7 @@
     "section": "Developer tools",
     "topic": "CodeStar",
     "blocks": [
-      3220
+      3238
     ]
   },
   "473": {
@@ -5356,7 +5362,7 @@
     "section": "Deployment and Infrastructure Management",
     "topic": "ElasticBeanstalk",
     "blocks": [
-      3223
+      3241
     ]
   },
   "474": {
@@ -5364,7 +5370,7 @@
     "section": "Deployment and Infrastructure Management",
     "topic": "OpsWorks",
     "blocks": [
-      3225
+      3243
     ]
   },
   "475": {
@@ -5372,7 +5378,7 @@
     "section": "Deployment and Infrastructure Management",
     "topic": "Amazon Managed Grafana",
     "blocks": [
-      3227
+      3245
     ]
   },
   "476": {
@@ -5380,7 +5386,7 @@
     "section": "Messaging and integration",
     "topic": "Messaging and integration",
     "blocks": [
-      3229
+      3247
     ]
   },
   "477": {
@@ -5388,7 +5394,7 @@
     "section": "Definitions",
     "topic": "Coupling",
     "blocks": [
-      3232
+      3250
     ]
   },
   "478": {
@@ -5396,10 +5402,10 @@
     "section": "Definitions",
     "topic": "Loose coupling",
     "blocks": [
-      3234,
-      3235,
-      3236,
-      3237
+      3252,
+      3253,
+      3254,
+      3255
     ]
   },
   "479": {
@@ -5407,15 +5413,15 @@
     "section": "Definitions",
     "topic": "Queue",
     "blocks": [
-      3240,
-      3241,
-      3242,
-      3243,
-      3244,
-      3245,
-      3246,
-      3247,
-      3248
+      3258,
+      3259,
+      3260,
+      3261,
+      3262,
+      3263,
+      3264,
+      3265,
+      3266
     ]
   },
   "480": {
@@ -5423,7 +5429,7 @@
     "section": "Services",
     "topic": "SES",
     "blocks": [
-      3251
+      3269
     ]
   },
   "481": {
@@ -5431,7 +5437,7 @@
     "section": "Services",
     "topic": "AWS Step Functions",
     "blocks": [
-      3253
+      3271
     ]
   },
   "482": {
@@ -5439,12 +5445,12 @@
     "section": "Encryption",
     "topic": "CloudHSM",
     "blocks": [
-      3257,
-      3258,
-      3259,
-      3260,
-      3261,
-      3262
+      3275,
+      3276,
+      3277,
+      3278,
+      3279,
+      3280
     ]
   },
   "483": {
@@ -5452,20 +5458,20 @@
     "section": "Security",
     "topic": "AWS Certificate manager",
     "blocks": [
-      3266,
-      3267,
-      3268,
-      3269,
-      3270,
-      3271,
-      3272,
-      3273,
-      3274,
-      3275,
-      3276,
-      3277,
-      3278,
-      3279
+      3284,
+      3285,
+      3286,
+      3287,
+      3288,
+      3289,
+      3290,
+      3291,
+      3292,
+      3293,
+      3294,
+      3295,
+      3296,
+      3297
     ]
   },
   "484": {
@@ -5473,8 +5479,8 @@
     "section": "Additional services",
     "topic": "WorkSpaces",
     "blocks": [
-      3282,
-      3283
+      3300,
+      3301
     ]
   },
   "485": {
@@ -5482,7 +5488,7 @@
     "section": "Additional services",
     "topic": "Connect",
     "blocks": [
-      3285
+      3303
     ]
   },
   "486": {
@@ -5490,10 +5496,10 @@
     "section": "Additional services",
     "topic": "AWS trusted advisor",
     "blocks": [
-      3287,
-      3288,
-      3289,
-      3290
+      3305,
+      3306,
+      3307,
+      3308
     ]
   },
   "487": {
@@ -5501,8 +5507,8 @@
     "section": "Additional services",
     "topic": "Amazon Cloud Directory",
     "blocks": [
-      3292,
-      3293
+      3310,
+      3311
     ]
   },
   "488": {
@@ -5510,13 +5516,13 @@
     "section": "Additional services",
     "topic": "AWS Service Catalog",
     "blocks": [
-      3295,
-      3296,
-      3297,
-      3298,
-      3299,
-      3300,
-      3301
+      3313,
+      3314,
+      3315,
+      3316,
+      3317,
+      3318,
+      3319
     ]
   },
   "489": {
@@ -5524,7 +5530,7 @@
     "section": "Additional services",
     "topic": "AWS Verified Access",
     "blocks": [
-      3303
+      3321
     ]
   },
   "490": {
@@ -5532,11 +5538,11 @@
     "section": "Additional services",
     "topic": "Amazon CodeGuru",
     "blocks": [
-      3305,
-      3306,
-      3307,
-      3308,
-      3309
+      3323,
+      3324,
+      3325,
+      3326,
+      3327
     ]
   },
   "491": {
@@ -5544,7 +5550,7 @@
     "section": "Additional services",
     "topic": "Amazon Managed Service for Apache Flink",
     "blocks": [
-      3311
+      3329
     ]
   },
   "492": {
@@ -5552,7 +5558,7 @@
     "section": "Additional services",
     "topic": "AWS Amplify",
     "blocks": [
-      3313
+      3331
     ]
   },
   "chart:EC2": {
@@ -5985,6 +5991,76 @@
       1734,
       1735,
       1736
+    ]
+  },
+  "505": {
+    "service": "AWS Backup",
+    "section": "Definitions",
+    "topic": "Cross-Region Backup Copying",
+    "blocks": [
+      3080
+    ]
+  },
+  "506": {
+    "service": "AWS Backup",
+    "section": "Definitions",
+    "topic": "AWS Backup Vault",
+    "blocks": [
+      3082
+    ]
+  },
+  "507": {
+    "service": "AWS Backup",
+    "section": "Definitions",
+    "topic": "Standard Vault",
+    "blocks": [
+      3083
+    ]
+  },
+  "508": {
+    "service": "AWS Backup",
+    "section": "Definitions",
+    "topic": "Logically Air-Gapped Vault",
+    "blocks": [
+      3084
+    ]
+  },
+  "509": {
+    "service": "AWS Backup",
+    "section": "Definitions",
+    "topic": "AWS Backup Vault Lock",
+    "blocks": [
+      3086
+    ]
+  },
+  "510": {
+    "service": "Storage Gateway",
+    "section": "Definitions",
+    "topic": "Volume Gateway",
+    "blocks": [
+      3093
+    ]
+  },
+  "511": {
+    "service": "Storage Gateway",
+    "section": "Definitions",
+    "topic": "File Gateway",
+    "blocks": [
+      3095
+    ]
+  },
+  "512": {
+    "service": "Other Services by categories",
+    "section": "Definitions",
+    "topic": "AWS Elastic Disaster Recovery",
+    "blocks": [
+      3333,
+      3335,
+      3337,
+      3338,
+      3339,
+      3340,
+      3341
     ]
   }
 }

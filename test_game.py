@@ -30,7 +30,7 @@ class GameTests(unittest.TestCase):
                 text = tag.get_text("", strip=False).strip()
                 if text:
                     original.append(("text", text))
-        self.assertEqual(len(original), 3314)
+        self.assertEqual(len(original), 3342)
         self.assertEqual(len(BLOCKS), len(original))
         for record, (kind, content) in zip(BLOCKS, original):
             self.assertEqual(record["kind"], kind)
@@ -43,7 +43,7 @@ class GameTests(unittest.TestCase):
 
     def test_exactly_once_archive_mapping(self):
         assigned = [i for unit in DATA["units"] for i in unit["blocks"]]
-        self.assertEqual(Counter(assigned), Counter(range(3314)))
+        self.assertEqual(Counter(assigned), Counter(range(3342)))
         self.assertEqual(len(UNITS), len(DATA["units"]))
         for unit in DATA["units"]:
             if unit["kind"] == "text":
@@ -55,7 +55,7 @@ class GameTests(unittest.TestCase):
         tags = [tag for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"])
                 if tag.name == "img" or (not tag.find_parent(["p", "li", "h1", "h2", "h3"])
                                          and tag.get_text("", strip=False).strip())]
-        self.assertEqual(len(formats), 3174)
+        self.assertEqual(len(formats), 3202)
         underline_count = 0
         numbered_starts = set()
         levels = set()
@@ -112,7 +112,7 @@ class GameTests(unittest.TestCase):
         self.assertEqual({q["service"] for q in DATA["questions"]}, set(DATA["meta"]["services"]))
 
     def test_concept_question_contract(self):
-        self.assertEqual(len(QUESTIONS), 452)
+        self.assertEqual(len(QUESTIONS), 460)
         self.assertEqual(len(QUESTIONS), len(DATA["questions"]))
         self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(QUESTIONS))
         conflicts = []
@@ -186,14 +186,20 @@ class GameTests(unittest.TestCase):
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(proof["nameQuote"]))
             else:
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(question["imageQuote"]))
-        self.assertEqual(len(report["reviewed"]), 611)
-        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 611)
-        self.assertEqual(len(report["removed"]), 160)
-        self.assertEqual(len(report["corrected"]), 8)
-        self.assertEqual(len(report["added"]), 1)
-        self.assertEqual(len(report["unchangedQuestionIds"]), 443)
-        self.assertEqual(len(report["removed"]) + len(report["corrected"]) +
-                         len(report["unchangedQuestionIds"]), 611)
+        self.assertEqual(len(report["reviewed"]), 452)
+        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 452)
+        self.assertEqual(len(report["removed"]), 0)
+        self.assertEqual(len(report["corrected"]), 450)
+        self.assertEqual(len(report["added"]), 8)
+        self.assertEqual(len(report["unchangedQuestionIds"]), 448)
+        previous = {r["term"]: r for r in report["reviewed"]}
+        self.assertEqual(set(previous) | set(report["added"]), set(QUESTIONS))
+        for term, old in previous.items():
+            if term in report["stableQuestionIds"]:
+                self.assertEqual(QUESTIONS[term]["id"], old["previousId"])
+            else:
+                self.assertIn(term, report["sourceUpdatedTerms"])
+                self.assertNotEqual(QUESTIONS[term]["id"], old["previousId"])
         for entry in report["removed"]:
             self.assertNotIn(entry["term"], QUESTIONS)
             self.assertTrue(entry["reason"])
@@ -201,9 +207,29 @@ class GameTests(unittest.TestCase):
             self.assertEqual(QUESTIONS[entry["newTerm"]]["answer"], entry["afterAnswer"])
         self.assertEqual(set(DATA["meta"]["unchangedQuestionIds"]), set(report["unchangedQuestionIds"]))
         self.assertEqual(set(DATA["meta"]["previousQuestionIds"]), set(report["reviewedPreviousIds"]))
-        self.assertEqual(len(QUESTIONS), 611 - len(report["removed"]) + len(report["added"]))
+        self.assertEqual(len(QUESTIONS), 452 - len(report["removed"]) + len(report["added"]))
         self.assertTrue(any(h["reviewedPreviousQuestions"] == 636 for h in report["history"]))
+        self.assertTrue(any(h["reviewedPreviousQuestions"] == 611 for h in report["history"]))
         self.assertEqual(report["currentSourceHash"], DATA["meta"]["hash"])
+
+    def test_plain_language_answers_and_added_mechanisms(self):
+        review = DATA["meta"]["plainLanguageReview"]
+        self.assertEqual(review["reviewedPreviousAnswers"], 452)
+        self.assertEqual(review["rewrittenAnswers"], 450)
+        self.assertEqual(review["newAnswers"], 8)
+        answers = {q["answer"] for q in QUESTIONS.values()}
+        for question in QUESTIONS.values():
+            self.assertLessEqual(len(question["answer"].split()), review["maximumWords"], question["topic"])
+            self.assertLessEqual(len(question["answer"]), review["maximumCharacters"], question["topic"])
+            self.assertFalse(re.search(r"\b(?:תזמור|אחזור|יישויות|ישות|תצורה)\b", question["answer"]), question["topic"])
+            self.assertTrue(set(question["options"]) <= answers)
+        for term in ["Cross-Region Backup Copying", "AWS Backup Vault", "Standard Vault",
+                     "Logically Air-Gapped Vault", "AWS Backup Vault Lock", "Volume Gateway",
+                     "File Gateway", "AWS Elastic Disaster Recovery"]:
+            self.assertIn(term, QUESTIONS)
+        self.assertEqual(QUESTIONS["AWS Backup"]["service"], "AWS Backup")
+        self.assertEqual(QUESTIONS["AWS Storage Gateway"]["service"], "Storage Gateway")
+        self.assertIn("לקבוצה", QUESTIONS["Inline Policy"]["answer"])
 
     def test_aws_only_scope_and_entire_interface_subtrees(self):
         interface_level = how_to_level = None
@@ -307,8 +333,8 @@ for (const revision of data.meta.compatibleRevisions) {
         self.assertEqual(changes["currentHash"], DATA["meta"]["hash"])
         self.assertTrue(changes["imagesUnchanged"])
         self.assertEqual(len(changes["changes"]), 5)
-        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 2)
-        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 4, "delete": 1})
+        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 28)
+        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 2, "insert": 2, "delete": 1})
         for term, text in [
             ("Instance Profile", "מתאם בין IAM role ל-instance"),
             ("Instance Profile", "מקבל Temporary Security Credentials מ-STS"),
@@ -340,6 +366,17 @@ for (const revision of data.meta.compatibleRevisions) {
             ("VPC Endpoint", "בלי לעבור באינטרנט הציבורי"),
             ("GuardDutyExcluded", "לא מונע מ-GuardDuty לזהות אירועים אחרים"),
             ("CloudWatchAgentServerPolicy", "CloudWatchAgentServerPolicy"),
+            ("ECS Service", "ECS Service"),
+            ("ECS Task Definition", "Task Definition"),
+            ("AWS Backup", "תוכנית גיבוי"),
+            ("AWS Storage Gateway", "תיקיית רשת מקומית"),
+            ("AWS Backup Vault", "מיכל האחסון הלוגי"),
+            ("Standard Vault", "בתוך חשבון"),
+            ("Logically Air-Gapped Vault", "נפרד ומבודד"),
+            ("AWS Backup Vault Lock", "בלתי ניתנים לשינוי או מחיקה"),
+            ("Volume Gateway", "כונן קשיח"),
+            ("File Gateway", "תיקיית רשת"),
+            ("AWS Elastic Disaster Recovery", "AWS DRS"),
         ]:
             self.assertIn(text, QUESTIONS[term]["quoteText"], term)
         self.assertNotIn("מרכז בתוכו את הלוגים", QUESTIONS["OpsItem"]["quoteText"])
@@ -347,8 +384,8 @@ for (const revision of data.meta.compatibleRevisions) {
         self.assertNotIn("כפתור סימון", QUESTIONS["RDS Multi-AZ"]["quoteText"])
         self.assertNotIn("מתרגם כתובות חד-כיווני", QUESTIONS["NAT Gateway"]["quoteText"])
         self.assertNotIn("Insights (CloudTrail)", QUESTIONS)
-        self.assertIn("התראות", QUESTIONS["AWS CloudTrail Insights"]["answer"])
-        self.assertIn("רשימת התוכנות", QUESTIONS["Systems Manager Inventory"]["answer"])
+        self.assertIn("התראה", QUESTIONS["AWS CloudTrail Insights"]["answer"])
+        self.assertIn("רשימה של התוכנות", QUESTIONS["Systems Manager Inventory"]["answer"])
         self.assertNotIn("זהות או לתעודה", QUESTIONS["AWS IoT Policy"]["answer"])
         self.assertIn("בצד AWS", QUESTIONS["Agent Communication Service (ACS)"]["answer"])
         self.assertNotIn("ECS Agent ACS", QUESTIONS)
@@ -359,12 +396,12 @@ for (const revision of data.meta.compatibleRevisions) {
     def test_source_metadata_and_self_contained_output(self):
         self.assertEqual(hashlib.sha256(RAW.encode()).hexdigest(), DATA["meta"]["hash"])
         self.assertEqual(DATA["meta"], AUDIT["meta"])
-        self.assertEqual(DATA["meta"]["textBlocks"], 3174)
+        self.assertEqual(DATA["meta"]["textBlocks"], 3202)
         self.assertEqual(DATA["meta"]["images"], 140)
-        self.assertEqual(len(DATA["meta"]["services"]), 49)
+        self.assertEqual(len(DATA["meta"]["services"]), 51)
         self.assertEqual(DATA["meta"]["conceptQuestions"], len(QUESTIONS))
         self.assertEqual(DATA["meta"]["recallCards"], len(QUESTIONS))
-        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 505)
+        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 513)
         self.assertIsNone(GAME.find("script", src=True))
         self.assertIsNone(GAME.find("link", rel="stylesheet"))
         self.assertIsNone(GAME.find("img", src=re.compile(r"^https?://")))
@@ -374,7 +411,8 @@ for (const revision of data.meta.compatibleRevisions) {
     def test_simple_ui_defaults_and_preserved_old_saves(self):
         self.assertEqual(GAME.select_one("#mode option")["value"], "depth")
         self.assertEqual([o["value"] for o in GAME.select("#mode option")], ["depth", "source"])
-        self.assertEqual(GAME.select_one("#length option")["value"], "10")
+        self.assertEqual(GAME.select_one("#length option")["value"], "all")
+        self.assertEqual(GAME.select_one("#length option[selected]")["value"], "all")
         self.assertEqual(len(GAME.select("nav button:not(.hidden)")), 3)
         self.assertEqual(GAME.select_one("#unknown-answer").get_text(), "לא יודע את התשובה")
         self.assertEqual(GAME.select_one("#unknown-answer")["type"], "button")
@@ -410,6 +448,67 @@ assert.equal(shown, 1);
 answerQuiz("correct");
 assert.deepEqual(grades, [0]);
 assert.equal(session.choice, unknown);
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_default_round_contains_every_available_question(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const html = fs.readFileSync("AWS-Security-Study-Game.html", "utf8");
+const data = JSON.parse(html.match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const runtime = fs.readFileSync("game.js", "utf8");
+const source = runtime.slice(runtime.indexOf("function begin("), runtime.indexOf("function current("));
+const defaults = Object.fromEntries(["length", "order"].map(id => {
+  const select = html.match(new RegExp('<select id="' + id + '">([\\s\\S]*?)</select>'))[1];
+  const options = [...select.matchAll(/<option value="([^"]+)"([^>]*)>/g)];
+  return [id, (options.find(option => /\bselected\b/.test(option[2])) || options[0])[1]];
+}));
+const elements = new Map();
+const $ = id => {
+  if (!elements.has(id)) elements.set(id, {value:defaults[id], classList:{add(){}, remove(){}}});
+  return elements.get(id);
+};
+let saved = null;
+const run = new Function("$", "filterDeck", "shuffle", "openTab", "getProgress", `
+let session;
+function saveSession() {}
+function render() {}
+${source}
+begin();
+return session;
+`);
+assert.equal(defaults.length, "all");
+const start = deck => run($, () => deck, deck => [...deck].reverse(), () => {}, () => ({}));
+saved = start(data.questions);
+assert.equal(saved.ids.length, 460);
+assert.deepEqual(new Set(saved.ids), new Set(data.questions.map(question => question.id)));
+const filtered = data.questions.filter(question => question.service === "AWS Backup");
+assert.equal(start(filtered).ids.length, filtered.length);
+$("length").value = "10";
+assert.equal(start(data.questions).ids.length, 10);
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_vault_lock_note_keeps_the_exact_quote_separate(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const html = fs.readFileSync("AWS-Security-Study-Game.html", "utf8");
+const data = JSON.parse(html.match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const runtime = fs.readFileSync("game.js", "utf8");
+const source = runtime.slice(runtime.indexOf("function corrections("), runtime.indexOf("function renderNotes("));
+const corrections = new Function(source + "\nreturn corrections;")();
+const question = data.questions.find(question => question.topic === "AWS Backup Vault Lock");
+const unit = data.units.find(unit => unit.id === question.source);
+const notes = corrections({...unit, text:question.quoteText});
+assert.equal(notes.length, 1);
+assert.ok(notes[0].includes("Governance"));
+assert.ok(notes[0].includes("Compliance"));
+assert.ok(question.quoteText.includes("כולל מנהל המערכת"));
+assert.ok(!question.answer.includes("אף אחד"));
 """
         result = subprocess.run(["node", "-e", script], cwd=BASE, capture_output=True, text=True, encoding="utf-8")
         self.assertEqual(result.returncode, 0, result.stderr)

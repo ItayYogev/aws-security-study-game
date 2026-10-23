@@ -74,3 +74,7 @@ CloudWatch Agent|CloudWatchAgentServerPolicy
 AWS KMS|KMS Encrypt|KMS Decrypt|KMS GenerateDataKey
 AWS Organizations|Management Account|Consolidated Billing
 Amazon CloudWatch|CloudWatch Alarms|CloudWatch Logs|CloudWatch Metric|CloudWatch Agent
+AWS Backup|AWS Backup Vault|Standard Vault|Logically Air-Gapped Vault|AWS Backup Vault Lock|Cross-Region Backup Copying
+AWS Storage Gateway|Volume Gateway|File Gateway
+AWS Elastic Disaster Recovery|AWS Backup|Cross-Region Backup Copying
+AWS Backup Vault Lock|S3 Object Lock|Object Lock Compliance Mode|Object Lock Governance Mode|Glacier Vault Lock

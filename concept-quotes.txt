@@ -72,4 +72,8 @@ Agent Communication Service (ACS)|2806
 GuardDutyExcluded|1963
 Inbound Rules|1241,1243,1244
 Outbound Rules|1242,1243,1244
-Amazon ElastiCache|3129,3130
+Amazon ElastiCache|3147,3148
+AWS Backup|3074,3075,3076,3077
+AWS Storage Gateway|3088,3089,3090
+ECS Service|2776
+ECS Task Definition|2777,2781,2782
