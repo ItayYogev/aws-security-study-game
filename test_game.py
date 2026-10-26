@@ -39,6 +39,59 @@ class GameTests(unittest.TestCase):
             self.assertNotEqual(first["service"], second["service"],
                                 f"Consecutive questions {first['number']} and {second['number']}")
 
+    def test_refresh_preserves_all_old_numbers_and_appends_new_concepts(self):
+        ledger = json.loads((BASE / "question-order.json").read_text(encoding="utf-8"))
+        report = json.loads((BASE / "question-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(ledger[:467], report["reviewedPreviousIds"])
+        self.assertEqual([q["number"] for q in DATA["questions"]], list(range(1, 473)))
+        self.assertEqual([q["number"] for q in DATA["cards"]], list(range(1, 473)))
+        self.assertEqual({q["topic"]: q["number"] for q in DATA["questions"][467:]}, {
+            "IAM Roles Anywhere": 468,
+            "IAM Roles Anywhere Credential helper tool": 469,
+            "ECR Vulnerability scanning": 470,
+            "ECR Scan on push": 471,
+            "ECR Manual scanning": 472,
+        })
+        self.assertEqual(QUESTIONS["IAM User Policy"]["number"], 25)
+        self.assertIn("תעודות", QUESTIONS["IAM Roles Anywhere"]["answer"])
+        self.assertIn("בעת העלאת", QUESTIONS["ECR Scan on push"]["answer"])
+        self.assertIn("ידני", QUESTIONS["ECR Manual scanning"]["answer"])
+        self.assertIn("Scan on push", QUESTIONS["ECR Basic Scanning"]["quoteText"])
+        self.assertIn("JSON", QUESTIONS["Amazon DocumentDB"]["answer"])
+        self.assertIn("Substitution Attack", QUESTIONS["KMS Encryption Context"]["quoteText"])
+        self.assertIn("CloudWatch Alarm", QUESTIONS["AWS Shield Advanced"]["quoteText"])
+
+    def test_latest_save_migration_preserves_every_number_and_stop_point(self):
+        script = r"""
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const data = JSON.parse(fs.readFileSync("AWS-Security-Study-Game.html","utf8")
+  .match(/<script id="study-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+const runtime = fs.readFileSync("game.js","utf8");
+const functions = runtime.slice(runtime.indexOf("function validProgress("), runtime.indexOf("function load("));
+const read = new Function("DATA","playableIds",'const UNKNOWN_ANSWER="__unknown__";\n'+functions+"\nreturn readSave;")
+  (data,new Set([...data.cards,...data.questions].map(q=>q.id)));
+const ids = data.meta.previousQuestionIds;
+assert.equal(ids.length,467);
+const value = {attempts:2,successes:1,streak:1,last:2,starred:true,updated:"2026-10-23"};
+for (const prefix of ["","recall-"]) {
+  const previousIds = ids.map(id=>prefix+id);
+  for (const index of [0,119,466]) {
+    const saved = {version:5,sourceHash:data.meta.previousSourceHash,
+      progress:Object.fromEntries(previousIds.map(id=>[id,value])),
+      session:{ids:previousIds,index,score:index,missed:[],answered:false,revealed:false,choice:"",note:""}};
+    const original = JSON.stringify(saved);
+    const result = read(saved);
+    assert.deepEqual(result.progress,saved.progress);
+    assert.deepEqual(result.session,saved.session);
+    assert.equal(data.questions.find(q=>prefix+q.id===result.session.ids[index]).number,index+1);
+    assert.equal(JSON.stringify(saved),original);
+  }
+}
+"""
+        result = subprocess.run(["node", "-e", script], cwd=BASE, text=True, capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
     def test_complete_verbatim_archive(self):
         original = []
         for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"]):
@@ -48,7 +101,7 @@ class GameTests(unittest.TestCase):
                 text = tag.get_text("", strip=False).strip()
                 if text:
                     original.append(("text", text))
-        self.assertEqual(len(original), 3422)
+        self.assertEqual(len(original), 3453)
         self.assertEqual(len(BLOCKS), len(original))
         for record, (kind, content) in zip(BLOCKS, original):
             self.assertEqual(record["kind"], kind)
@@ -61,7 +114,7 @@ class GameTests(unittest.TestCase):
 
     def test_exactly_once_archive_mapping(self):
         assigned = [i for unit in DATA["units"] for i in unit["blocks"]]
-        self.assertEqual(Counter(assigned), Counter(range(3422)))
+        self.assertEqual(Counter(assigned), Counter(range(3453)))
         self.assertEqual(len(UNITS), len(DATA["units"]))
         for unit in DATA["units"]:
             if unit["kind"] == "text":
@@ -73,7 +126,7 @@ class GameTests(unittest.TestCase):
         tags = [tag for tag in SOURCE.body.find_all(["p", "li", "h1", "h2", "h3", "img"])
                 if tag.name == "img" or (not tag.find_parent(["p", "li", "h1", "h2", "h3"])
                                          and tag.get_text("", strip=False).strip())]
-        self.assertEqual(len(formats), 3280)
+        self.assertEqual(len(formats), 3311)
         underline_count = 0
         numbered_starts = set()
         levels = set()
@@ -130,7 +183,7 @@ class GameTests(unittest.TestCase):
         self.assertEqual({q["service"] for q in DATA["questions"]}, set(DATA["meta"]["services"]))
 
     def test_concept_question_contract(self):
-        self.assertEqual(len(QUESTIONS), 467)
+        self.assertEqual(len(QUESTIONS), 472)
         self.assertEqual(len(QUESTIONS), len(DATA["questions"]))
         self.assertEqual(len({q["id"] for q in DATA["questions"]}), len(QUESTIONS))
         conflicts = []
@@ -204,12 +257,12 @@ class GameTests(unittest.TestCase):
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(proof["nameQuote"]))
             else:
                 self.assertIn(normalize(proof["sourceTerm"]), normalize(question["imageQuote"]))
-        self.assertEqual(len(report["reviewed"]), 460)
-        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 460)
-        self.assertEqual(len(report["removed"]), 1)
-        self.assertEqual(len(report["corrected"]), 5)
-        self.assertEqual(len(report["added"]), 8)
-        self.assertEqual(len(report["unchangedQuestionIds"]), 459)
+        self.assertEqual(len(report["reviewed"]), 467)
+        self.assertEqual(len({r["previousId"] for r in report["reviewed"]}), 467)
+        self.assertEqual(len(report["removed"]), 0)
+        self.assertEqual(len(report["corrected"]), 20)
+        self.assertEqual(len(report["added"]), 5)
+        self.assertEqual(len(report["unchangedQuestionIds"]), 467)
         previous = {r["term"]: r for r in report["reviewed"]}
         retained = {entry.get("newTerm", term) for term, entry in previous.items() if entry["action"] != "removed"}
         self.assertEqual(retained | set(report["added"]), set(QUESTIONS))
@@ -224,16 +277,16 @@ class GameTests(unittest.TestCase):
             self.assertEqual(QUESTIONS[entry["newTerm"]]["answer"], entry["afterAnswer"])
         self.assertEqual(set(DATA["meta"]["unchangedQuestionIds"]), set(report["unchangedQuestionIds"]))
         self.assertEqual(set(DATA["meta"]["previousQuestionIds"]), set(report["reviewedPreviousIds"]))
-        self.assertEqual(len(QUESTIONS), 460 - len(report["removed"]) + len(report["added"]))
+        self.assertEqual(len(QUESTIONS), 467 - len(report["removed"]) + len(report["added"]))
         self.assertTrue(any(h["reviewedPreviousQuestions"] == 636 for h in report["history"]))
         self.assertTrue(any(h["reviewedPreviousQuestions"] == 611 for h in report["history"]))
         self.assertEqual(report["currentSourceHash"], DATA["meta"]["hash"])
 
     def test_plain_language_answers_and_added_mechanisms(self):
         review = DATA["meta"]["plainLanguageReview"]
-        self.assertEqual(review["reviewedPreviousAnswers"], 460)
-        self.assertEqual(review["rewrittenAnswers"], 5)
-        self.assertEqual(review["newAnswers"], 8)
+        self.assertEqual(review["reviewedPreviousAnswers"], 467)
+        self.assertEqual(review["rewrittenAnswers"], 20)
+        self.assertEqual(review["newAnswers"], 5)
         answers = {q["answer"] for q in QUESTIONS.values()}
         for question in QUESTIONS.values():
             self.assertLessEqual(len(question["answer"].split()), review["maximumWords"], question["topic"])
@@ -312,11 +365,12 @@ const runtime = fs.readFileSync("game.js","utf8");
 const functions = runtime.slice(runtime.indexOf("function validProgress("), runtime.indexOf("function load("));
 const read = new Function("DATA","playableIds", 'const UNKNOWN_ANSWER="__unknown__";\n' + functions + "\nreturn readSave;")
   (data, new Set([...data.cards,...data.questions].map(q=>q.id)));
-const unchanged = data.meta.unchangedQuestionIds[0];
-const removed = data.meta.previousQuestionIds.find(id=>!data.meta.unchangedQuestionIds.includes(id));
+const fixture = data.meta.compatibleRevisions.find(r=>r.questionIds.some(id=>!r.questionIdMap[id]));
+const unchanged = fixture.unchangedQuestionIds[0];
+const removed = fixture.questionIds.find(id=>!fixture.questionIdMap[id]);
 const value = {attempts:2,successes:1,streak:1,last:2,starred:true,updated:"2026-10-20"};
 const round = ids=>({ids,index:0,score:0,missed:[],answered:false,revealed:false,choice:"",note:""});
-const saved = {version:5,sourceHash:data.meta.previousSourceHash,
+const saved = {version:5,sourceHash:fixture.sourceHash,
   progress:{[unchanged]:value,["recall-"+unchanged]:value,[removed]:value},session:round([unchanged,removed])};
 const original = JSON.stringify(saved);
 const migrated = read(saved);
@@ -428,12 +482,13 @@ assert.equal(existing.get(backupKey),"original backup");
     def test_current_source_changes_are_visible(self):
         changes = json.loads((BASE / "source-changes.json").read_text(encoding="utf-8"))
         self.assertEqual(changes["currentHash"], DATA["meta"]["hash"])
-        self.assertFalse(changes["imagesUnchanged"])
+        self.assertTrue(changes["imagesUnchanged"])
         self.assertTrue(changes["previousImagesRetained"])
-        self.assertEqual(changes["addedImages"], [8, 10])
-        self.assertEqual(len(changes["changes"]), 19)
-        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 78)
-        self.assertEqual(Counter(c["operation"] for c in changes["changes"]), {"replace": 13, "insert": 4, "delete": 2})
+        self.assertEqual(changes["addedImages"], [])
+        self.assertEqual(len(changes["changes"]), 42)
+        self.assertEqual(changes["textBlocksAfter"] - changes["textBlocksBefore"], 31)
+        self.assertEqual(len(changes["formattingChanges"]), 5)
+        self.assertEqual(changes["appendedQuestionNumbers"], [468, 469, 470, 471, 472])
         for term, text in [
             ("Instance Profile", "מתאם בין IAM role ל-instance"),
             ("Instance Profile", "מקבל Temporary Security Credentials מ-STS"),
@@ -458,7 +513,7 @@ assert.equal(existing.get(backupKey),"original backup");
             ("RDS Multi-AZ", "כל עותק מוקם ב-subnet אחר"),
             ("IoT Thing Name", "שם המכשיר."),
             ("AWS IoT Policy", "ל-Thing Name שלו."),
-            ("Amazon DocumentDB", "שירות לניהול"),
+            ("Amazon DocumentDB", "בסיס נתונים מסוג NoSQL"),
             ("ECS Agent", "סוכן שיושב בתוך ה-EC2"),
             ("Agent Communication Service (ACS)", "מנגנון שיושב בצד של AWS"),
             ("Amazon ElastiCache", "בזיכרון RAM"),
@@ -497,17 +552,17 @@ assert.equal(existing.get(backupKey),"original backup");
         self.assertNotIn("ECS Agent ACS", QUESTIONS)
         self.assertNotIn("רכיב בסוכן", QUESTIONS["Agent Communication Service (ACS)"]["answer"])
         self.assertEqual(QUESTIONS["Inbound Rules"]["service"], "VPC")
-        self.assertEqual(QUESTIONS["CloudWatch Metric Filter"]["nameEvidence"]["nameBlock"], 1825)
+        self.assertEqual(QUESTIONS["CloudWatch Metric Filter"]["nameEvidence"]["nameBlock"], 1842)
 
     def test_source_metadata_and_self_contained_output(self):
         self.assertEqual(hashlib.sha256(RAW.encode()).hexdigest(), DATA["meta"]["hash"])
         self.assertEqual(DATA["meta"], AUDIT["meta"])
-        self.assertEqual(DATA["meta"]["textBlocks"], 3280)
+        self.assertEqual(DATA["meta"]["textBlocks"], 3311)
         self.assertEqual(DATA["meta"]["images"], 142)
         self.assertEqual(len(DATA["meta"]["services"]), 51)
         self.assertEqual(DATA["meta"]["conceptQuestions"], len(QUESTIONS))
         self.assertEqual(DATA["meta"]["recallCards"], len(QUESTIONS))
-        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 521)
+        self.assertEqual(DATA["meta"]["directTopicGroups"] + DATA["meta"]["aliasedTopicGroups"] + DATA["meta"]["excludedTopicGroups"], 523)
         self.assertIsNone(GAME.find("script", src=True))
         self.assertIsNone(GAME.find("link", rel="stylesheet"))
         self.assertIsNone(GAME.find("img", src=re.compile(r"^https?://")))
@@ -681,7 +736,7 @@ return session;
 assert.equal(defaults.length, "all");
 const start = deck => run($, () => deck, deck => [...deck].reverse(), () => {}, () => ({}));
 saved = start(data.questions);
-assert.equal(saved.ids.length, 467);
+assert.equal(saved.ids.length, 472);
 assert.deepEqual(new Set(saved.ids), new Set(data.questions.map(question => question.id)));
 assert.deepEqual(saved.ids, data.questions.map(question => question.id));
 const filtered = data.questions.filter(question => question.service === "AWS Backup");

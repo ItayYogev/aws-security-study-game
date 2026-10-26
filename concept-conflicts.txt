@@ -1,6 +1,6 @@
 IAM|IAM Policy|IAM Role
 IAM Access Analyzer|External Access Analysis|Unused Access Analysis
-Managed Policy|AWS-Managed Policy|Customer-Managed Policy|IAM Policy
+IAM User Policy|AWS-Managed Policy|Customer-Managed Policy|IAM Policy
 IAM Policy|Resource-Based Policy|Trust Policy|Permissions Boundary|KMS Key Policy|Bucket Policy|SQS Queue Policy
 Temporary Security Credentials|Session Token|AssumeRole|AWS STS
 Instance Profile|IAM Role|Lambda Execution Role|ECS Task Execution Role
@@ -82,3 +82,5 @@ IAM Access Analyzer|IAM Access Analyzer Custom Policy Checks|IAM Access Analyzer
 AWS Marketplace|חוקים מחנות AWS Marketplace|WAF Managed Rule|WAF Custom Rule|WAF Rule|WAF Rule Group|WAF Web ACL|AWS WAF
 IAM Identity Center|User Access Portal|Cross-account access|Permission Set
 AssumeRole|Cross-account access|IAM Role
+IAM Roles Anywhere|IAM Roles Anywhere Credential helper tool|Federated user|AWS STS|AssumeRole
+ECR Vulnerability scanning|ECR Basic Scanning|ECR Enhanced Scanning|ECR Scan on push|ECR Manual scanning|Amazon Inspector

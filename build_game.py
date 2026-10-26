@@ -12,17 +12,17 @@ from bs4 import BeautifulSoup, NavigableString
 
 BASE = Path(__file__).resolve().parent
 SOURCE_URL = "https://docs.google.com/document/d/1gpBQuOEwNxSLfyhuaXucJzDRDh0ET5We_X9fxCaK1Ak/edit"
-REVIEWED_SOURCE_HASH = "f638b452b28e1038166b1edb5711491e7e42f5335a5961a021c6d8bbac50039f"
+REVIEWED_SOURCE_HASH = "da9d369ff4a907df592b1aaa96e5dff04cab541011ecf54674c1e7a983c46029"
 CONCEPT_IMAGES = {
     1, 2, 4, 5, 6, 7, 13, 40, 42, 43, 50, 51, 52, 53, 54, 77, 88, 94,
     96, 97, 98, 99, 100, 101, 102, 106, 110, 116, 117, 119, 120, 123,
     124, 125, 126, 127, 128, 129, 130, 132, 133, 134, 135, 136, 137,
     138, 139, 140, 141, 142,
 }
-IMPLEMENTATION_RANGES = ((623, 640), (1395, 1408), (2069, 2072), (2926, 2929), (406, 410), (517, 527))
+IMPLEMENTATION_RANGES = ((628, 645), (1411, 1424), (2086, 2089), (2943, 2946), (405, 409), (515, 525))
 IMPLEMENTATION_BLOCKS = {
-    491, 559, 1239, 1335, 1664, 1697, 1857, 1867, 2005, 2177,
-    2239, 2279, 2282, 2449, 2896,
+    489, 564, 1255, 1351, 1681, 1714, 1874, 1884, 2022, 2194,
+    2256, 2296, 2299, 2466, 2913,
 }
 PROCEDURAL = re.compile(
     r"^(?:\d+[.)]\s*)?(?:נכנס|ניכנס|לחיצה|נלחץ|לוחצים|לחצו|יש ללחוץ|"
@@ -220,10 +220,10 @@ def build():
             "structural": title or heading or label or bool(STRUCTURAL.match(text)),
         })
 
-    if (len(records), image_number, len(services)) != (3422, 142, 51):
+    if (len(records), image_number, len(services)) != (3453, 142, 51):
         raise ValueError("The source structure changed. Review classifications before rebuilding.")
 
-    for index in (0, 753):
+    for index in (0, 758):
         records[index].update(classification="context", reason="Document navigation link, not study content")
     position = 0
     while position < len(records):

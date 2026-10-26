@@ -2,89 +2,94 @@ AWS Region|110,111,116,117
 Availability Zone|120,121,123,124,125,126,127
 Member Account|277,278
 CloudFormation StackSets|292
-Managed Policy|659,660
-AWS-Managed Policy|661
-Customer-Managed Policy|662
-Principal|707,708,709,733,734,735
-Trust Policy|703,704
-Inline Policy|725,726
-Resource-Based Policy|727,728,729,730,731
-Instance Profile|884,885,886,887
-EC2 On-Demand|935,936
-EC2 Spot|937,938
-Reserved Instances|939,940
-Dedicated Host|941,942
-Savings Plans|943,944
-Object Lock Compliance Mode|1142
-Object Lock Governance Mode|1143
-SSE-S3|1145,1146,1147
-SSE-C|1148,1149
-SSE-KMS|1152,1153
-S3 Standard|1186,1187,1188,1189,1190
-S3 Intelligent-Tiering|1191,1192
-Standard-Infrequent Access (IA)|1193,1194,1195
-One Zone-Infrequent Access (IA)|1197,1198,1200
-S3 Glacier Instant Retrieval|1203
-S3 Glacier Flexible Retrieval|1204
-S3 Glacier Deep Archive|1205
-S3 on Outposts|1206,1207,1208
-Management Event|1625,1626,1627,1628,1629
-Data Event|1630,1631,1632,1633
-AWS CloudTrail Insights|1634,1635,1675,1676,1677
-Network activity events|1636,1637
-CloudWatch Alarms|1734,1735,1736,1737,1738,1739
-CloudWatch Logs|1740,1741
-CloudWatch Log Stream|1742
-CloudWatch Log Group|1743
-CloudWatch Synthetics|1747,1748
-CloudWatch Application Insights|1749,1750
-GuardDuty Trusted Entity List|2022
-GuardDuty Threat Entity List|2023
-KMS Encrypt|2394
-KMS Decrypt|2395
-KMS GenerateDataKey|2396
-Systems Manager OpsCenter|2662,2663,2664
-OpsItem|2662,2663,2664
-Amazon Application Recovery Controller — ARC|2731,2732,2733,2734
-בדיקות מוכנות (ARC)|2734
-ECS Task Execution Role|2861,2862,2863,2864,2866,2867,2868,2869
-ECR Basic Scanning|2932,2934,2941
-ECR Enhanced Scanning|2932,2933
-Amazon API Gateway|3124,3125,3126,3127,3128,3129
-הגבלת קצב (API Gateway)|3127
-S3 Presigned URL|1155
-ECR Lifecycle Policy|2943
+IAM User Policy|664,665
+AWS-Managed Policy|666
+Customer-Managed Policy|667
+Principal|712,713,714,738,739,740
+Trust Policy|708,709
+Inline Policy|730,731
+Resource-Based Policy|732,733,734,735,736
+Instance Profile|889,890,891,892
+EC2 On-Demand|940,941,942,943,944
+EC2 Spot|945,946,947,948,949
+Reserved Instances|950,951,952,953,954,955
+Dedicated Host|958,959,960
+Savings Plans|956,957
+Object Lock Compliance Mode|1159
+Object Lock Governance Mode|1160
+SSE-S3|1162,1163,1164
+SSE-C|1165,1166
+SSE-KMS|1169,1170
+S3 Standard|1202,1203,1204,1205,1206
+S3 Intelligent-Tiering|1207,1208
+Standard-Infrequent Access (S3 Standard-IA)|1209,1210,1211
+One Zone-Infrequent Access|1213,1214,1216
+S3 Glacier Instant Retrieval|1219
+S3 Glacier Flexible Retrieval|1220
+S3 Glacier Deep Archive|1221
+S3 on Outposts|1222,1223,1224
+Management Event|1642,1643,1644,1645,1646
+Data Event|1647,1648,1649,1650
+AWS CloudTrail Insights|1651,1652,1692,1693,1694
+Network activity events|1653,1654
+CloudWatch Alarms|1751,1752,1753,1754,1755,1756
+CloudWatch Logs|1757,1758
+CloudWatch Log Stream|1759
+CloudWatch Log Group|1760
+CloudWatch Synthetics|1764,1765
+CloudWatch Application Insights|1766,1767
+GuardDuty Trusted Entity List|2039
+GuardDuty Threat Entity List|2040
+KMS Encrypt|2411
+KMS Decrypt|2412
+KMS GenerateDataKey|2413
+Systems Manager OpsCenter|2681,2682,2683
+OpsItem|2681,2682,2683
+Amazon Application Recovery Controller — ARC|2750,2751,2752,2753
+בדיקות מוכנות (ARC)|2753
+ECS Task Execution Role|2881,2882,2884,2885,2886,2887
+ECR Basic Scanning|2953,2954,2955,2956,2957
+ECR Enhanced Scanning|2950,2951,2952
+Amazon API Gateway|3147,3148,3149,3150,3151,3152
+הגבלת קצב (API Gateway)|3150
+S3 Presigned URL|1172
+ECR Lifecycle Policy|2966
 Resource Tags|159,160,162
 ABAC|163
-Source/Destination Check|906,907,908,910,911,912,913
-Network ACL|1294,1295,1297,1298
-Default NACL|1297,1298
-NAT Gateway|1336,1337,1341,1342,1344,1348,1350
-Public NAT Gateway|1342,1344,1345,1346,1347
-Private NAT Gateway|1348,1350
-CloudWatch Logs Insights|1823,1824
-CloudWatch Metric Filter|1825,1826
-Multi-Region KMS Key|2430,2431,2432,2433,2434,2435,2436,2437,2438
-RDS Multi-AZ|3013,3014,3015,3016,3017
-ECS Agent|2878
-Agent Communication Service (ACS)|2883
-GuardDutyExcluded|2029
-Inbound Rules|1302,1304,1305
-Outbound Rules|1303,1304,1305
-Amazon ElastiCache|3227,3228
-AWS Backup|3151,3152,3153,3154
-AWS Storage Gateway|3165,3166,3167
-ECS Service|2853
-ECS Task Definition|2854,2858,2859
-GuardDuty Custom Entity Lists|2020,2021,2022,2023
+Source/Destination Check|911,912,913,915,916,917,918
+Network ACL|1310,1311,1313,1314
+Default NACL|1313,1314
+NAT Gateway|1352,1353,1357,1358,1360,1364,1366
+Public NAT Gateway|1358,1360,1361,1362,1363
+Private NAT Gateway|1364,1366
+CloudWatch Logs Insights|1840,1841
+CloudWatch Metric Filter|1842,1843
+Multi-Region KMS Key|2447,2448,2449,2450,2451,2452,2453,2454,2455
+RDS Multi-AZ|3036,3037,3038,3039,3040
+ECS Agent|2895
+Agent Communication Service (ACS)|2900
+GuardDutyExcluded|2046
+Inbound Rules|1318,1320,1321
+Outbound Rules|1319,1320,1321
+Amazon ElastiCache|3257,3258
+AWS Backup|3174,3175,3176,3177
+AWS Storage Gateway|3188,3189,3190
+ECS Service|2873
+ECS Task Definition|2874,2878,2879
+GuardDuty Custom Entity Lists|2037,2038,2039,2040
 IAM Identity Center|329,330,355
 Permission Set|343,347,348,353
-Long-Term Access Keys|401,411
-Credential Report|437,438,439,440,441,442,443,444,445
-IAM Access Analyzer|458,459,460,463,469,472
-External Access Analysis|461,462
-Unused Access Analysis|470,471
-WAF Web ACL|2771,2772,2773,2774
-WAF Managed Rule|2783
-WAF Custom Rule|2785
-AWS Firewall Manager|3207,3208,3209,3210,3211,3212,3213,3214
+Long-Term Access Keys|400,410
+Credential Report|436,437,438,439,440,441,442,443,444
+IAM Access Analyzer|457,458,461,467,470
+External Access Analysis|459,460
+Unused Access Analysis|468,469
+WAF Web ACL|2790,2791,2792,2793
+WAF Managed Rule|2802
+WAF Custom Rule|2804
+AWS Firewall Manager|3232,3233,3234,3235,3236,3237,3238,3239
+IAM Roles Anywhere|526,527,529
+IAM Roles Anywhere Credential helper tool|526,527,531,532
+ECR Vulnerability scanning|2948,2949
+ECR Scan on push|2948,2953,2954,2955,2956
+ECR Manual scanning|2948,2953,2954,2955,2957
