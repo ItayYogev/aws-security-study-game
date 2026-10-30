@@ -84,3 +84,8 @@ IAM Identity Center|User Access Portal|Cross-account access|Permission Set
 AssumeRole|Cross-account access|IAM Role
 IAM Roles Anywhere|IAM Roles Anywhere Credential helper tool|Federated user|AWS STS|AssumeRole
 ECR Vulnerability scanning|ECR Basic Scanning|ECR Enhanced Scanning|ECR Scan on push|ECR Manual scanning|Amazon Inspector
+AWS Support|Basic (AWS Support)|AWS Support — תוכניות בתשלום|TAM (AWS Support)
+AWS Config|Config Configuration Recorder|AWS Config aggregator|organization-wide resource data aggregation
+Transit Gateway|Transit Gateway Attachment|Transit Gateway Route Table|Route Table
+RDS Proxy|Amazon RDS|RDS Multi-AZ|RDS Read Replica|Amazon Aurora|Elastic Load Balancing
+Require_secure_transport (RDS / Aurora)|RDS Encryption

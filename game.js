@@ -175,7 +175,7 @@ function readSave(saved) {
       if (!validSession(resumed)) throw new Error("לא ניתן להתאים את נקודת העצירה למאגר המעודכן.");
     }
   }
-  const notice = `מאגר השאלות עודכן. ההתקדמות נשמרה ב-${Object.keys(kept).length} פריטי תרגול, גם בשאלות שנוסחו מחדש. ${Object.keys(archived).length} רשומות של שאלות שהוסרו נשמרות בארכיון ואינן נספרות במאגר הפעיל. ${resumed ? "נקודת העצירה נשמרה; שאלות חדשות יופיעו בסבב חדש." : "אפשר להתחיל סבב חדש בלי לאפס את ההתקדמות."}`;
+  const notice = `מאגר השאלות עודכן. ההתקדמות נשמרה ב-${Object.keys(kept).length} פריטי תרגול, גם בשאלות שנוסחו מחדש. ${Object.keys(archived).length} רשומות של שאלות שהוסרו נשמרות בארכיון ואינן נספרות במאגר הפעיל. ${resumed ? "נקודת העצירה נשמרה; שאלות חדשות נוספו לסוף המאגר." : "אפשר להתחיל סבב חדש בלי לאפס את ההתקדמות."}`;
   return {progress:kept, archivedProgress:archived,
     completedQuestionIds:completed.map(mapId).filter(Boolean), session:resumed, notice, migrated:true};
 }
@@ -325,6 +325,8 @@ function corrections(unit) {
   if (unit.service === "AWS IAM Identity Center" && /מאבדים את היכולת|איבדנו את היכולת/.test(text)) notes.push("דיוק: מינוי Delegated Administrator אינו מבטל Permission Sets בחשבון ה-Management. ניהול הגישה לחשבון הזה נשאר באחריות חשבון ה-Management, ולא עובר למנהל המואצל.");
   if (unit.service === "AWS IAM" && /Internal Access|Custom Policy Checks/.test(unit.topic + text)) notes.push("דיוק: Internal Access Analysis ו-Custom Policy Checks הם מנגנונים שונים. השאלה כאן עוסקת בבדיקת מדיניות לפני השימוש בה, כפי שמתואר בציטוט, ולא במיפוי הגישה הפנימית.");
   if (unit.service === "AWS WAF" && /החוק האחרון יהיה allow all/.test(text)) notes.push("דיוק: פעולת ברירת המחדל של Web ACL יכולה להיות Allow או Block. אין חובה שהחוק האחרון יאשר את כל הבקשות.");
+  if (unit.service === "AWS Transit Gateway" && /טבלת ניתוב מרכזית אחת גלובלית/.test(text)) notes.push("דיוק לציטוט: אפשר להגדיר כמה טבלאות ניתוב ב-Transit Gateway ולשייך אליהן חיבורים שונים. אין חובה שכל ה-VPCs ישתמשו בטבלה אחת, והטבלאות אינן גלובליות בין כל האזורים.");
+  if (unit.service === "AWS" && /תוכניות בתשלום|מהנדס ייעודי/.test(text)) notes.push("דיוק לציטוט: זמני התגובה וליווי TAM תלויים בתוכנית התמיכה ובחומרת הפנייה. אין להסיק שכל תוכנית בתשלום כוללת TAM או מענה בתוך דקות לכל פנייה.");
   if (unit.service === "S3" && /לא רלוונטי|לא ל-objects/.test(text)) notes.push("תיקון: Bucket Policy רלוונטית גם בתוך Organizations, ויכולה לתת או להגביל גישה גם לאובייקטים לפי Action ו-Resource.");
   if (unit.service === "S3" && /גרסאות קודמות של ה-bucket/.test(text)) notes.push("דיוק: Versioning שומר גרסאות אובייקטים, לא גרסאות של ה-Bucket עצמו.");
   if (unit.service === "S3" && /Signed URLs|Intelligent Tiering|9 עד 48/.test(text)) notes.push("בדיקת עדכניות: זמני אחזור ותכונות שכבות האחסון דורשים דיוק. Intelligent-Tiering מבוסס על ניטור דפוסי גישה; אין להסיק שעצם שינוי השכבה משנה את תוכן הנתון.");

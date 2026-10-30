@@ -1,767 +1,762 @@
 {
   "WAF Web ACL": {
     "sourceTerm": "Web ACL",
-    "nameBlock": 2789,
+    "nameBlock": 2850,
     "nameQuote": "Web ACL"
   },
   "Network Account": {
     "sourceTerm": "Network Account",
-    "nameBlock": 232,
+    "nameBlock": 248,
     "nameQuote": "Network Account"
   },
   "IAM Policy": {
     "sourceTerm": "IAM Policy",
-    "nameBlock": 479,
+    "nameBlock": 495,
     "nameQuote": "זה IAM Policy שמחילים על משתמש / קבוצה / role, שתוחם את ההרשאות של המשתמש, גם אם המשתמש קיבל ב-policy הרשאות רחבות."
   },
   "IAM Roles for Service Accounts — IRSA": {
     "sourceTerm": "IAM Roles for Service Accounts",
-    "nameBlock": 2920,
+    "nameBlock": 2981,
     "nameQuote": "ראשית תיבול של IAM roles for service accounts, זאת שיטה לתת לכל פוד service account ייעודי עם הרשאות מדויקות."
   },
   "Route 53 Public DNS Query Logging": {
     "sourceTerm": "DNS Query Logging",
-    "nameBlock": 2741,
+    "nameBlock": 2802,
     "nameQuote": "DNS Query Logging"
   },
   "VPC Traffic Mirroring": {
     "sourceTerm": "VPC Traffic Mirroring",
-    "nameBlock": 1433,
+    "nameBlock": 1476,
     "nameQuote": "VPC Traffic Mirroring"
   },
   "Savings Plans": {
     "sourceTerm": "Savings Plan",
-    "nameBlock": 956,
+    "nameBlock": 987,
     "nameQuote": "Savings Plan"
   },
   "S3 ACL": {
     "sourceTerm": "ACL",
-    "nameBlock": 1120,
+    "nameBlock": 1151,
     "nameQuote": "ה-best practice של אמזון זה להשתמש ב-bucket policies ולא ב-ACL."
   },
   "Kinesis Consumer": {
     "sourceTerm": "Consumer",
-    "nameBlock": 3116,
+    "nameBlock": 3182,
     "nameQuote": "Consumer - מי שמושך את המידע, זה השרת שמריץ עליו את ה-KCL. המידע הולך אליו."
   },
   "AWS Step Functions": {
     "sourceTerm": "AWS Step Functions",
-    "nameBlock": 3381,
+    "nameBlock": 3461,
     "nameQuote": "AWS Step Functions"
   },
   "IoT Client ID": {
     "sourceTerm": "Client ID",
-    "nameBlock": 3076,
+    "nameBlock": 3142,
     "nameQuote": "Client ID"
   },
   "Security Group": {
     "sourceTerm": "Security Group",
-    "nameBlock": 906,
+    "nameBlock": 927,
     "nameQuote": "סט חוקים שמאפשרים או חוסמים גישה לפורטים ופרוטוקולים ב-Instance. כל Instance חייב להיות מקושר ל-Security Group. ניתן להצמיד ל-instance יותר מ-security group אחד."
   },
   "Internal Load Balancer": {
     "sourceTerm": "Internal",
-    "nameBlock": 2583,
+    "nameBlock": 2643,
     "nameQuote": "אפשרות ב: Internal"
   },
   "KMS Encryption Context": {
     "sourceTerm": "Encryption Context",
-    "nameBlock": 2417,
+    "nameBlock": 2477,
     "nameQuote": "EncryptionContext"
   },
   "CloudWatch Agent": {
     "sourceTerm": "CloudWatch Agent",
-    "nameBlock": 1787,
+    "nameBlock": 1833,
     "nameQuote": "או בשמו המלא Amazon CloudWatch Agent, זאת תוכנה שמתקינים על שרתי EC2 כדי לאסוף נתונים פנימיים כמו:"
   },
   "Amazon Cloud Directory": {
     "sourceTerm": "Amazon Cloud Directory",
-    "nameBlock": 3420,
+    "nameBlock": 3500,
     "nameQuote": "Amazon Cloud Directory"
   },
   "GuardDutyExcluded": {
     "sourceTerm": "GuardDutyExcluded",
-    "nameBlock": 2048,
+    "nameBlock": 2094,
     "nameQuote": "Key: GuardDutyExcluded"
   },
   "Local Route": {
     "sourceTerm": "Local Route",
-    "nameBlock": 1425,
+    "nameBlock": 1468,
     "nameQuote": "Local Route"
   },
   "Config Configuration Recorder": {
     "sourceTerm": "Configuration Recorder",
-    "nameBlock": 2148,
+    "nameBlock": 2194,
     "nameQuote": "הקלטה ושמירה על לוגים של שינויים של משאבים (נקרא Configuration Recorder)"
   },
   "Write-only (CloudTrail)": {
     "sourceTerm": "Write-only",
-    "nameBlock": 1645,
+    "nameBlock": 1691,
     "nameQuote": "Write-only - פעולות אקטיביות של יצירה / שינוי"
   },
   "AWS CloudFormation": {
     "sourceTerm": "AWS CloudFormation",
-    "nameBlock": 1602,
+    "nameBlock": 1648,
     "nameQuote": "AWS CloudFormation Guard"
   },
   "KMS Decrypt": {
     "sourceTerm": "KMS Decrypt",
-    "nameBlock": 2436,
+    "nameBlock": 2496,
     "nameQuote": "\"kms:Decrypt\""
   },
   "AWS Cloud9": {
     "sourceTerm": "Cloud9",
-    "nameBlock": 3329,
+    "nameBlock": 3409,
     "nameQuote": "Cloud9"
   },
   "AMI": {
     "sourceTerm": "AMI",
-    "nameBlock": 860,
+    "nameBlock": 875,
     "nameQuote": "שמו המלא הוא Amazon Machine Images, והוא template עם הגדרות מוכנות מראש שניתן להשתמש בו בשביל ליצור instances. בקיצור, הם תבנית של מכונה. אצל אמזון יש מאות סוגי תבניות, לכל תבנית יש מאפיינים שונים כמו: מערכות הפעלה, תכונות, בסיסי נתונים ועוד. ניתן גם לייצר AMI בצורה עצמאית."
   },
   "AWS Security Reference Architecture": {
     "sourceTerm": "AWS Security Reference Architecture",
-    "nameBlock": 212,
+    "nameBlock": 228,
     "nameQuote": "AWS Security Reference Architecture (AWS SRA)"
   },
   "Amazon DynamoDB": {
     "sourceTerm": "Amazon DynamoDB",
-    "nameBlock": 3087,
+    "nameBlock": 3153,
     "nameQuote": "Amazon DynamoDB"
   },
   "SecurityAudit": {
     "sourceTerm": "SecurityAudit",
-    "nameBlock": 769,
+    "nameBlock": 785,
     "nameQuote": "SecurityAudit"
   },
   "IAM User": {
     "sourceTerm": "IAM User",
-    "nameBlock": 399,
+    "nameBlock": 416,
     "nameQuote": "1. IAM User Access keys / Long-Term Access Keys"
   },
   "SSM Agent": {
     "sourceTerm": "SSM Agent",
-    "nameBlock": 2654,
+    "nameBlock": 2714,
     "nameQuote": "SSM Agent"
   },
   "SNS Topic": {
     "sourceTerm": "Topic",
-    "nameBlock": 2319,
+    "nameBlock": 2379,
     "nameQuote": "זה המשאב של רשימת התפוצה. ה-topic יכול להיות מורכב משילוב של כמה אמצעי תקשורת:"
   },
   "ECS Cluster": {
     "sourceTerm": "ECS Cluster",
-    "nameBlock": 2858,
+    "nameBlock": 2919,
     "nameQuote": "ECS Cluster"
   },
   "Public NAT Gateway": {
     "sourceTerm": "Public NAT Gateway",
-    "nameBlock": 1358,
+    "nameBlock": 1395,
     "nameQuote": "Public NAT Gateway"
   },
   "IAM Password Policy": {
     "sourceTerm": "Password Policy",
-    "nameBlock": 424,
+    "nameBlock": 441,
     "nameQuote": "Password policy"
   },
   "Dynamic Reference": {
     "sourceTerm": "Dynamic Reference",
-    "nameBlock": 1610,
+    "nameBlock": 1656,
     "nameQuote": "Dynamic Reference"
   },
   "Systems Manager Inventory": {
     "sourceTerm": "Inventory",
-    "nameBlock": 2666,
+    "nameBlock": 2727,
     "nameQuote": "Software Inventory"
   },
   "AWS Storage Gateway": {
     "sourceTerm": "Storage Gateway",
-    "nameBlock": 3187,
+    "nameBlock": 3259,
     "nameQuote": "Storage Gateway"
   },
   "AWS Billing and Cost Management": {
     "sourceTerm": "AWS Billing and Cost Management",
-    "nameBlock": 3123,
+    "nameBlock": 3189,
     "nameQuote": "AWS Billing and Cost Management"
   },
   "S3 Glacier Deep Archive": {
     "sourceTerm": "S3 Glacier Deep Archive",
-    "nameBlock": 1221,
+    "nameBlock": 1258,
     "nameQuote": "S3 Glacier Deep Archive - מדובר ב-9 עד 48 שעות, האחסון הזול ביותר בענן. מיועד למידע ששומרים רק בשביל רגולציה או \"ליתר ביטחון\" פעם בשנה, ומוכנים להמתין יממה כדי לקבל אותו. הנתונים מאוחסנים סביב כמה availability zones."
   },
   "WAF Logs": {
     "sourceTerm": "Web ACL Logs",
-    "nameBlock": 2796,
+    "nameBlock": 2857,
     "nameQuote": "Web ACL Logs"
   },
   "RDS Multi-AZ": {
     "sourceTerm": "RDS Multi-AZ",
-    "nameBlock": 3036,
+    "nameBlock": 3097,
     "nameQuote": "Amazon RDS Multi-AZ"
   },
   "ECS Agent": {
     "sourceTerm": "ECS Agent",
-    "nameBlock": 2894,
+    "nameBlock": 2955,
     "nameQuote": "ECS Agent"
   },
   "AWS-Managed Policy": {
     "sourceTerm": "AWS-Managed Policy",
-    "nameBlock": 666,
+    "nameBlock": 682,
     "nameQuote": "AWS-managed policy – פוליסות שמגיעות מוכנות על ידי AWS"
   },
   "SNS Publisher": {
     "sourceTerm": "Publisher",
-    "nameBlock": 2325,
+    "nameBlock": 2385,
     "nameQuote": "מה שמחליט שצריך לשלוח את ההודעה. הרבה פעמים מחליטים ש-Amazon EventBridge הוא ה-Publisher על בסיס חוקים שמגדירים בו."
   },
   "Config Daily Recording": {
     "sourceTerm": "Daily",
-    "nameBlock": 2162,
+    "nameBlock": 2208,
     "nameQuote": "Daily - אחת ליום"
   },
   "Source/Destination Check": {
     "sourceTerm": "Source/Destination Check",
-    "nameBlock": 911,
+    "nameBlock": 932,
     "nameQuote": "Source/Destination Check"
   },
   "CloudTrail Trail": {
     "sourceTerm": "Trail",
-    "nameBlock": 1656,
+    "nameBlock": 1702,
     "nameQuote": "Trail זה תיעוד שמחובר באינטגרציה עם שירות נוסף, כמו:"
   },
   "VPC Peering": {
     "sourceTerm": "VPC Peering",
-    "nameBlock": 1369,
+    "nameBlock": 1406,
     "nameQuote": "VPC Peering"
   },
   "AWS Backup": {
     "sourceTerm": "AWS Backup",
-    "nameBlock": 3173,
+    "nameBlock": 3245,
     "nameQuote": "AWS Backup"
   },
   "Detective Guardrail": {
     "sourceTerm": "Detective",
-    "nameBlock": 183,
+    "nameBlock": 199,
     "nameQuote": "Detective: מבוססות על AWS Config ומתריעות בלבד (ללא חסימה) כדי לזהות misconfigurations לאחר שעשו אותם (למשל: זיהוי S3 Bucket ציבורי)."
   },
   "Regional Edge Cache": {
     "sourceTerm": "Regional Edge Cache",
-    "nameBlock": 2496,
+    "nameBlock": 2556,
     "nameQuote": "Regional Edge Cache"
   },
   "ELB Security Policy": {
     "sourceTerm": "Security Policies",
-    "nameBlock": 2637,
+    "nameBlock": 2697,
     "nameQuote": "Security Policies / SSL Policies"
   },
   "S3 Transfer Acceleration": {
     "sourceTerm": "S3 Transfer Acceleration",
-    "nameBlock": 3225,
+    "nameBlock": 3297,
     "nameQuote": "S3 Transfer Acceleration"
   },
   "VPN CloudHub": {
     "sourceTerm": "VPN CloudHub",
-    "nameBlock": 2770,
+    "nameBlock": 2831,
     "nameQuote": "Site-to-Site VPN CloudHub"
   },
   "Kinesis Shard": {
     "sourceTerm": "Shards",
-    "nameBlock": 3110,
+    "nameBlock": 3176,
     "nameQuote": "כדי להגדיל או להקטין את הקיבולת, פשוט מוסיפים או מסירים Shards בהתאם לנפח התנועה במערכת."
   },
   "AWS Cost Anomaly Detection": {
     "sourceTerm": "AWS Cost Anomaly Detection",
-    "nameBlock": 3125,
+    "nameBlock": 3191,
     "nameQuote": "AWS Cost Anomaly Detection"
   },
   "EventBridge Schedule": {
     "sourceTerm": "EventBridge Schedule",
-    "nameBlock": 1970,
+    "nameBlock": 2016,
     "nameQuote": "EventBridge Scheduler"
   },
   "Amazon Inspector": {
     "sourceTerm": "Amazon Inspector",
-    "nameBlock": 3127,
+    "nameBlock": 3193,
     "nameQuote": "Amazon Inspector"
   },
   "Custom Metrics": {
     "sourceTerm": "Custom Metrics",
-    "nameBlock": 1782,
+    "nameBlock": 1828,
     "nameQuote": "Custom Metrics"
   },
   "ECS Container Definition": {
     "sourceTerm": "Container Definition",
-    "nameBlock": 2878,
+    "nameBlock": 2939,
     "nameQuote": "Container Definition, שזה ההוראות המדויקות עבור קונטיינר ספציפי. בתוך Task Definition אחד יכולים להיות כמה קונטיינרים, ולכן יכולות להיות כמה הגדרות קונטיינר שונות. בתוך ה-Container Definition יש חלק שנקרא \"secrets\" שבו אפשר להכניס secrets ולקשר אותם ל-secrets שנמצאים ב-AWS Secrets Manager (לפי ה-ARN)."
   },
   "SQS Queue Policy": {
     "sourceTerm": "SQS Policy",
-    "nameBlock": 3018,
+    "nameBlock": 3079,
     "nameQuote": "SQS Policy / Access policy"
   },
   "AWS Network Firewall": {
     "sourceTerm": "AWS Network Firewall",
-    "nameBlock": 3228,
+    "nameBlock": 3300,
     "nameQuote": "AWS Network Firewall"
   },
   "ECR Repository": {
     "sourceTerm": "Repository",
-    "nameBlock": 2935,
+    "nameBlock": 2996,
     "nameQuote": "Repository"
   },
   "Amazon API Gateway": {
     "sourceTerm": "Amazon API Gateway",
-    "nameBlock": 3146,
+    "nameBlock": 3218,
     "nameQuote": "Amazon API Gateway"
   },
   "Amazon EventBridge": {
     "sourceTerm": "EventBridge",
-    "nameBlock": 1958,
+    "nameBlock": 2004,
     "nameQuote": "EventBridge"
   },
   "ECR Basic Scanning": {
     "sourceTerm": "Basic Scanning",
-    "nameBlock": 2953,
+    "nameBlock": 3014,
     "nameQuote": "Basic Scanning"
   },
   "S3 Static Website Hosting": {
     "sourceTerm": "Static Website Hosting",
-    "nameBlock": 1142,
+    "nameBlock": 1173,
     "nameQuote": "Static Website Hosting"
   },
   "EventBridge Event Bus": {
     "sourceTerm": "Event bus",
-    "nameBlock": 1968,
+    "nameBlock": 2014,
     "nameQuote": "Event bus"
   },
   "Access Advisor": {
     "sourceTerm": "Access Advisor",
-    "nameBlock": 508,
+    "nameBlock": 524,
     "nameQuote": "Access Advisor"
   },
   "Assessment Template": {
     "sourceTerm": "Assessment Template",
-    "nameBlock": 3133,
+    "nameBlock": 3201,
     "nameQuote": "Assessment Template"
   },
   "GuardDuty Suppression Rule": {
     "sourceTerm": "Suppression Rule",
-    "nameBlock": 2044,
+    "nameBlock": 2090,
     "nameQuote": "איך הוא עובד? החוק בנוי על בדיקת מאפיינים כמו סוג ההתראה, כתובת IP, מזהה חשבון או תיוג של משאב. אחרי שהגדרנו Suppression rules, ה-findings האלה לא ישלחו לשירותים כמו Amazon EventBridge, AWS Security Hub או פתרונות SIEM חיצוניים."
   },
   "S3 on Outposts": {
     "sourceTerm": "Outposts",
-    "nameBlock": 1222,
+    "nameBlock": 1259,
     "nameQuote": "Outposts"
   },
   "CloudFront VPC Origin": {
     "sourceTerm": "VPC Origins",
-    "nameBlock": 2538,
+    "nameBlock": 2598,
     "nameQuote": "VPC Origins"
   },
   "Config Automatic Remediation": {
     "sourceTerm": "תיקון שקורה באופן אוטומטי",
-    "nameBlock": 2179,
+    "nameBlock": 2225,
     "nameQuote": "תיקון שקורה באופן אוטומטי"
   },
   "Security Hub Security Standard": {
     "sourceTerm": "Security standards",
-    "nameBlock": 2240,
+    "nameBlock": 2300,
     "nameQuote": "Security standards"
   },
   "S3 Versioning": {
     "sourceTerm": "Versioning",
-    "nameBlock": 1153,
+    "nameBlock": 1184,
     "nameQuote": "S3 Bucket Versioning"
   },
   "Proactive Guardrail": {
     "sourceTerm": "Proactive",
-    "nameBlock": 184,
+    "nameBlock": 200,
     "nameQuote": "Proactive: בדיקת משאבים לפני פריסה ומבוסס על CloudFormation Hooks."
   },
   "S3 Standard": {
     "sourceTerm": "S3 Standard",
-    "nameBlock": 1202,
+    "nameBlock": 1233,
     "nameQuote": "S3 standard"
   },
   "AWS VPN": {
     "sourceTerm": "AWS VPN",
-    "nameBlock": 2754,
+    "nameBlock": 2815,
     "nameQuote": "AWS VPN"
   },
   "ECS Task Execution Role": {
     "sourceTerm": "Task Execution Role",
-    "nameBlock": 2882,
+    "nameBlock": 2943,
     "nameQuote": "חשוב להבין: את ה-role של Task Execution Role מעניקים ל-Task Definition, אבל מי שמבצע את פעולות ההקמה בפועל הוא ה-ECS Agent."
   },
   "AWS IoT Policy": {
     "sourceTerm": "Policy",
-    "nameBlock": 3080,
+    "nameBlock": 3146,
     "nameQuote": "Policy"
   },
   "ECS Container Instance": {
     "sourceTerm": "Container Instance",
-    "nameBlock": 2867,
+    "nameBlock": 2928,
     "nameQuote": "המונח הרשמי של שרת EC2 שמיועד לשימוש ב-ECS נקרא \"container instance\""
   },
   "S3 Glacier Flexible Retrieval": {
     "sourceTerm": "S3 Glacier Flexible Retrieval",
-    "nameBlock": 1220,
+    "nameBlock": 1257,
     "nameQuote": "S3 Glacier Flexible Retrieval - מדקות בודדות ועד 12 שעות, בד''כ גיבויים קלאסיים של הארגון שצריך פעם או פעמיים בשנה, ואין בעיה להמתין כמה שעות עד שהקובץ יהיה מוכן להורדה."
   },
   "AWS Trusted Advisor": {
     "sourceTerm": "AWS Trusted Advisor",
-    "nameBlock": 3415,
+    "nameBlock": 3495,
     "nameQuote": "AWS trusted advisor"
   },
   "Subnet": {
     "sourceTerm": "Subnet",
-    "nameBlock": 1305,
+    "nameBlock": 1342,
     "nameQuote": "ה-subnet יכול להיות ציבורי או פרטי. אם רוצים לעשות אותו ציבורי, חייב שיהיה לו:"
   },
   "Object Lock Governance Mode": {
     "sourceTerm": "Governance Mode",
-    "nameBlock": 1160,
+    "nameBlock": 1191,
     "nameQuote": "Governance Mode - משתמשים רגילים לא יכולים למחוק את הקובץ, אבל למשתמשים מיוחדים שיש להם הרשאה ספציפית מותר לעקוף את החסימה, לשנות את התוקף או למחוק את הקובץ."
   },
   "IAM User Policy": {
     "sourceTerm": "IAM User Policy",
-    "nameBlock": 664,
+    "nameBlock": 680,
     "nameQuote": "IAM User Policy"
   },
   "CloudFront Signed URL": {
     "sourceTerm": "CloudFront Signed URL",
-    "nameBlock": 2548,
+    "nameBlock": 2608,
     "nameQuote": "CloudFront Signed URLs"
   },
   "Kinesis Producer": {
     "sourceTerm": "Producers",
-    "nameBlock": 3104,
+    "nameBlock": 3170,
     "nameQuote": "Producers"
   },
   "NAT Gateway": {
     "sourceTerm": "NAT Gateway",
-    "nameBlock": 1352,
+    "nameBlock": 1389,
     "nameQuote": "NAT Gateway"
   },
   "CloudFront Origin": {
     "sourceTerm": "Origin",
-    "nameBlock": 2488,
+    "nameBlock": 2548,
     "nameQuote": "Origin"
   },
   "IoT Topic": {
     "sourceTerm": "Topic",
-    "nameBlock": 3065,
+    "nameBlock": 3131,
     "nameQuote": "Topic"
   },
   "DynamoDB Item": {
     "sourceTerm": "Entry",
-    "nameBlock": 3091,
+    "nameBlock": 3157,
     "nameQuote": "Entry"
   },
   "S3 Object Lock": {
     "sourceTerm": "S3 Object Lock",
-    "nameBlock": 1155,
+    "nameBlock": 1186,
     "nameQuote": "S3 Object Lock"
   },
   "Workload OUs": {
     "sourceTerm": "Workload OUs",
-    "nameBlock": 207,
+    "nameBlock": 223,
     "nameQuote": "Workload OUs"
   },
   "CloudWatch Namespace": {
     "sourceTerm": "Namespace",
-    "nameBlock": 1815,
+    "nameBlock": 1861,
     "nameQuote": "Namespace"
   },
   "CloudWatch Application Insights": {
     "sourceTerm": "CloudWatch Application Insights",
-    "nameBlock": 1766,
+    "nameBlock": 1812,
     "nameQuote": "6. CloudWatch Application Insights"
   },
   "CloudFront Signed Cookie": {
     "sourceTerm": "Signed Cookies",
-    "nameBlock": 2554,
+    "nameBlock": 2614,
     "nameQuote": "Signed Cookies"
   },
   "AWS-Owned Key": {
     "sourceTerm": "AWS-Owned Key",
-    "nameBlock": 2366,
+    "nameBlock": 2426,
     "nameQuote": "AWS Owned Keys"
   },
   "Amazon WorkSpaces": {
     "sourceTerm": "WorkSpaces",
-    "nameBlock": 3410,
+    "nameBlock": 3490,
     "nameQuote": "WorkSpaces"
   },
   "S3 Bucket": {
     "sourceTerm": "S3 Bucket",
-    "nameBlock": 1153,
+    "nameBlock": 1184,
     "nameQuote": "S3 Bucket Versioning"
   },
   "Instance Profile": {
     "sourceTerm": "Instance Profile",
-    "nameBlock": 889,
+    "nameBlock": 910,
     "nameQuote": "נוצר Instance profile"
   },
   "Security Tooling Account": {
     "sourceTerm": "Security Tooling Account",
-    "nameBlock": 205,
+    "nameBlock": 221,
     "nameQuote": "Security Tooling Account"
   },
   "Amazon VPC": {
     "sourceTerm": "VPC",
-    "nameBlock": 1296,
+    "nameBlock": 1333,
     "nameQuote": "VPC"
   },
   "Permission Set": {
     "sourceTerm": "Permission Set",
-    "nameBlock": 342,
+    "nameBlock": 358,
     "nameQuote": "Permission Set"
   },
   "ECS EC2 Launch Type": {
     "sourceTerm": "EC2 Launch Type",
-    "nameBlock": 2863,
+    "nameBlock": 2924,
     "nameQuote": "EC2 Launch Type - השיטה הישנה. בשיטה הזאת, אנחנו אחראים על התשתית, שזה אומר:"
   },
   "הגבלת קצב (API Gateway)": {
     "sourceTerm": "הגבלת קצב",
-    "nameBlock": 3150,
+    "nameBlock": 3222,
     "nameQuote": "הגנת עומסים והגבלת קצב"
   },
   "SNS Subscriber": {
     "sourceTerm": "Subscriber",
-    "nameBlock": 2322,
+    "nameBlock": 2382,
     "nameQuote": "Subscriber / subscribe"
   },
   "החלפת סיסמאות אוטומטית (Secrets Manager)": {
     "sourceTerm": "החלפת סיסמאות אוטומטית",
-    "nameBlock": 2474,
+    "nameBlock": 2534,
     "nameQuote": "יש לו יכולת של החלפת סיסמאות אוטומטית."
   },
   "GuardDuty Auto-Enable": {
     "sourceTerm": "Auto-Enable",
-    "nameBlock": 2020,
+    "nameBlock": 2066,
     "nameQuote": "Auto-Enable: הפעלה אוטומטית של GuardDuty"
   },
   "Target Group": {
     "sourceTerm": "Target Group",
-    "nameBlock": 2621,
+    "nameBlock": 2681,
     "nameQuote": "ניתן לחבר ל-target group את ה-Auto Scaling group, כדי שהוא יעדכן את הרשימה הזאת כל הזמן."
   },
   "Object Lock Compliance Mode": {
     "sourceTerm": "Compliance Mode",
-    "nameBlock": 1159,
+    "nameBlock": 1190,
     "nameQuote": "Compliance Mode - הנעילה הקשוחה ביותר. אף אחד, כולל המשתמש הראשי של החשבון (Root), לא יכול למחוק את הקובץ או לשנות את זמן הנעילה שלו עד שתקופת החסימה מסתיימת."
   },
   "Service Control Policy — SCP": {
     "sourceTerm": "Service Control Policy",
-    "nameBlock": 295,
+    "nameBlock": 311,
     "nameQuote": "או בשמו המלא service control policy, זה פיצ'ר שמאפשר ליצור גבולות גזרה שמגביל איזה פעולות אפשר לעשות בחשבון. ניתן להפעיל SCP:"
   },
   "Security OU": {
     "sourceTerm": "Security OU",
-    "nameBlock": 217,
+    "nameBlock": 233,
     "nameQuote": "Security OU"
   },
   "IoT Fleet": {
     "sourceTerm": "IoT Fleet",
-    "nameBlock": 3084,
+    "nameBlock": 3150,
     "nameQuote": "שירות שיודע לזהות ולהתריע על אנומליה חשודה של IoT Fleet."
   },
   "CloudWatch Metric Filter": {
     "sourceTerm": "metric filter",
-    "nameBlock": 1842,
+    "nameBlock": 1888,
     "nameQuote": "metric filter"
   },
   "Amazon Neptune": {
     "sourceTerm": "Amazon Neptune",
-    "nameBlock": 3421,
+    "nameBlock": 3501,
     "nameQuote": "שירות זה הוא כבר end of life ואמזון ממליצים להשתמש במקום ב-Amazon DynamoDB או ב-Amazon Neptune."
   },
   "GuardDuty Trusted Entity List": {
     "sourceTerm": "Trusted Entity List",
-    "nameBlock": 2039,
+    "nameBlock": 2085,
     "nameQuote": "Trusted Entity List - שזה ה-White List"
   },
   "Network activity events": {
     "sourceTerm": "Network activity events",
-    "nameBlock": 1653,
+    "nameBlock": 1699,
     "nameQuote": "4.Network activity events"
   },
   "CloudFormation Module": {
     "sourceTerm": "Modules",
-    "nameBlock": 1561,
+    "nameBlock": 1607,
     "nameQuote": "Modules - חבילות מוכנות שמגדירים מראש, ואז במקום לרשום אותם מחדש כל פעם, משתמשים בקיצור שלהם."
   },
   "Systems Manager Automation": {
     "sourceTerm": "Systems Manager Automation",
-    "nameBlock": 2692,
+    "nameBlock": 2753,
     "nameQuote": "שילוב מובנה עם AWS Systems Manager Automation"
   },
   "WAF Rate Limiting": {
     "sourceTerm": "Rate Limiting",
-    "nameBlock": 2809,
+    "nameBlock": 2870,
     "nameQuote": "הגבלת Rate Limiting לפי ערכים שמתאימים ביצועי השרת שלנו."
   },
   "ECR Replication": {
     "sourceTerm": "Replication",
-    "nameBlock": 2972,
+    "nameBlock": 3033,
     "nameQuote": "Replication"
   },
   "Kinesis Stream": {
     "sourceTerm": "Stream",
-    "nameBlock": 3111,
+    "nameBlock": 3177,
     "nameQuote": "Stream"
   },
   "Systems Manager Run Command": {
     "sourceTerm": "Run Command",
-    "nameBlock": 2677,
+    "nameBlock": 2738,
     "nameQuote": "Run Command"
   },
   "AWS Config Rule": {
     "sourceTerm": "AWS Config Rule",
-    "nameBlock": 2155,
+    "nameBlock": 2201,
     "nameQuote": "AWS Config Rule"
   },
   "Amazon Athena": {
     "sourceTerm": "Athena",
-    "nameBlock": 2290,
+    "nameBlock": 2350,
     "nameQuote": "Athena"
   },
   "Config Manual Remediation": {
     "sourceTerm": "תיקון ידני",
-    "nameBlock": 2178,
+    "nameBlock": 2224,
     "nameQuote": "תיקון ידני - המשתמש צריך ללחוץ על כפתור של Remediate ואז הפעולה מתבצעת."
   },
   "Amazon Translate": {
     "sourceTerm": "Translate",
-    "nameBlock": 3318,
+    "nameBlock": 3398,
     "nameQuote": "Translate"
   },
   "Dedicated Host": {
     "sourceTerm": "Dedicated Host",
-    "nameBlock": 958,
+    "nameBlock": 989,
     "nameQuote": "Dedicated Hosts"
   },
   "Agent Communication Service (ACS)": {
     "sourceTerm": "Agent Communication Service",
-    "nameBlock": 2899,
+    "nameBlock": 2960,
     "nameQuote": "Agent Communication Service - ACS"
   },
   "Amazon Macie": {
     "sourceTerm": "Macie",
-    "nameBlock": 2128,
+    "nameBlock": 2174,
     "nameQuote": "Macie משתמש בלמידת מכונה ותבניות, וניתן להגדיר ל-Macie חוקים באופן עצמאי."
   },
   "CloudFormation Registry": {
     "sourceTerm": "CloudFormation Registry",
-    "nameBlock": 1557,
+    "nameBlock": 1603,
     "nameQuote": "CloudFormation Registry"
   },
   "External ID": {
     "sourceTerm": "External ID",
-    "nameBlock": 505,
+    "nameBlock": 521,
     "nameQuote": "איך אפשר לפתור את זה? External ID, זאת סיסמת הביטחון שלנו."
   },
   "KMS External Key Store — XKS": {
     "sourceTerm": "XKS",
-    "nameBlock": 2390,
+    "nameBlock": 2448,
     "nameQuote": "שמירת המפתח בשירות HSM חיצוני - נקרא External Key Store, או בקיצור XKS."
   },
   "AWS Client VPN": {
     "sourceTerm": "Client VPN",
-    "nameBlock": 2757,
+    "nameBlock": 2818,
     "nameQuote": "Client VPN"
   },
   "Customer-Managed Policy": {
     "sourceTerm": "Customer-Managed Policy",
-    "nameBlock": 667,
+    "nameBlock": 683,
     "nameQuote": "Customer-managed policy – פוליסות שאתה יוצר בעצמך ב-AWS"
   },
   "AWS Elastic Beanstalk": {
     "sourceTerm": "Elastic Beanstalk",
-    "nameBlock": 3351,
+    "nameBlock": 3431,
     "nameQuote": "ElasticBeanstalk"
-  },
-  "Transit VPC": {
-    "sourceTerm": "Transit VPC",
-    "nameBlock": 379,
-    "nameQuote": "אז מה ההבדל בין Transit VPC לבין Transit Gateway?"
   },
   "Shield Response Team": {
     "sourceTerm": "Shield Response Team",
-    "nameBlock": 2852,
+    "nameBlock": 2913,
     "nameQuote": "גישה מלאה 24/7 למהנדסי ה-Shield Response Team של אמזון"
   },
   "IAMReadOnlyAccess": {
     "sourceTerm": "IAMReadOnlyAccess",
-    "nameBlock": 771,
+    "nameBlock": 787,
     "nameQuote": "IAMReadOnlyAccess"
   },
   "Delegated Administrator": {
     "sourceTerm": "Delegated Administrator",
-    "nameBlock": 280,
+    "nameBlock": 296,
     "nameQuote": "Delegated Administrator"
   },
   "AWS Shield": {
     "sourceTerm": "AWS Shield",
-    "nameBlock": 2835,
+    "nameBlock": 2895,
     "nameQuote": "AWS Shield"
   },
   "S3 Glacier Instant Retrieval": {
     "sourceTerm": "S3 Glacier Instant Retrieval",
-    "nameBlock": 1219,
+    "nameBlock": 1256,
     "nameQuote": "S3 Glacier Instant Retrieval - שליפת מידע מיידית, זה מידע שזקוקים לו בדחיפות כשכבר קוראים לו, אך ניגשים אליו רק פעם ברבעון (למשל: תמונות רפואיות של חולים)."
   },
   "Amazon ElastiCache": {
     "sourceTerm": "ElastiCache",
-    "nameBlock": 3256,
+    "nameBlock": 3329,
     "nameQuote": "ElastiCache"
   },
   "CloudWatch Metric": {
     "sourceTerm": "CloudWatch Metric",
-    "nameBlock": 1749,
+    "nameBlock": 1795,
     "nameQuote": "1. CloudWatch Metrics"
   },
   "AWS Amplify": {
     "sourceTerm": "AWS Amplify",
-    "nameBlock": 3441,
+    "nameBlock": 3521,
     "nameQuote": "AWS Amplify"
   },
   "Preventive Guardrail": {
     "sourceTerm": "Preventive",
-    "nameBlock": 182,
+    "nameBlock": 198,
     "nameQuote": "Preventive: מבוססות על SCP ומונעות פעולות מראש, למשל: חסימת האפשרות לבטל את ה-CloudTrail."
   },
   "EBS-Backed AMI": {
     "sourceTerm": "EBS-Backed AMI",
-    "nameBlock": 910,
+    "nameBlock": 931,
     "nameQuote": "EBS-backed AMI, שזה ה-snapshot + הקונפיגורציה של השרת"
   },
   "AWS Certificate Manager — ACM": {
     "sourceTerm": "AWS Certificate Manager",
-    "nameBlock": 3394,
+    "nameBlock": 3474,
     "nameQuote": "AWS Certificate manager"
   },
   "AD Connector": {
     "sourceTerm": "AD Connector",
-    "nameBlock": 3055,
+    "nameBlock": 3121,
     "nameQuote": "AD Connector"
   },
   "Organizations Root": {
     "sourceTerm": "Root",
-    "nameBlock": 262,
+    "nameBlock": 278,
     "nameQuote": "Root"
   },
   "Amazon Lex": {
     "sourceTerm": "Lex",
-    "nameBlock": 3321,
+    "nameBlock": 3401,
     "nameQuote": "מאפשר לבנות ממשקי שיחה כמו צ'טבוט באמצעות טקסט או קול (כמו siri, alexa ועוד)"
   },
   "Management Event": {
     "sourceTerm": "Management Event",
-    "nameBlock": 1642,
+    "nameBlock": 1688,
     "nameQuote": "1.Management Event"
   },
   "Automated Forensics Orchestrator": {
@@ -771,162 +766,162 @@
   },
   "IAM": {
     "sourceTerm": "IAM",
-    "nameBlock": 383,
+    "nameBlock": 400,
     "nameQuote": "AWS IAM"
   },
   "AWS Managed Microsoft AD": {
     "sourceTerm": "AWS Managed Microsoft AD",
-    "nameBlock": 3052,
+    "nameBlock": 3113,
     "nameQuote": "AWS Managed Microsoft AD"
   },
   "Multi-Region Trail": {
     "sourceTerm": "Multi-Region Trail",
-    "nameBlock": 1662,
+    "nameBlock": 1708,
     "nameQuote": "הוא מוגדר כברירת מחדל כ-Multi-region trail, שזה אומר שהוא אוסף לוגים מכל ה-Regions. זהו ה-Best Practice המומלץ של AWS כדי לוודא שאף פעילות לא מתרחשת \"מתחת לרדאר\" באזור שאתם לא משתמשים בו בדרך כלל."
   },
   "Data Event": {
     "sourceTerm": "Data Event",
-    "nameBlock": 1647,
+    "nameBlock": 1693,
     "nameQuote": "2.Data Event"
   },
   "AWS Batch": {
     "sourceTerm": "Batch",
-    "nameBlock": 3221,
+    "nameBlock": 3293,
     "nameQuote": "שירות שמאפשר להריץ ולנהל משאבים עבור מספר גדול של batch processes (תהליכים שרצים במקביל)."
   },
   "AWS PrivateLink": {
     "sourceTerm": "AWS PrivateLink",
-    "nameBlock": 1391,
+    "nameBlock": 1430,
     "nameQuote": "AWS PrivateLink"
   },
   "ECR Registry": {
     "sourceTerm": "Registry",
-    "nameBlock": 2937,
+    "nameBlock": 2998,
     "nameQuote": "Registry"
   },
   "S3 REST API Endpoint": {
     "sourceTerm": "REST API Endpoint",
-    "nameBlock": 1148,
+    "nameBlock": 1179,
     "nameQuote": "REST API Endpoint"
   },
   "Network ACL": {
     "sourceTerm": "Network ACL",
-    "nameBlock": 1325,
+    "nameBlock": 1362,
     "nameQuote": "Network ACL"
   },
   "AdministratorAccess": {
     "sourceTerm": "AdministratorAccess",
-    "nameBlock": 761,
+    "nameBlock": 777,
     "nameQuote": "AdministratorAccess"
   },
   "Systems Manager OpsCenter": {
     "sourceTerm": "OpsCenter",
-    "nameBlock": 2680,
+    "nameBlock": 2741,
     "nameQuote": "OpsCenter"
   },
   "Config Continuous Recording": {
     "sourceTerm": "Continuous",
-    "nameBlock": 2161,
+    "nameBlock": 2207,
     "nameQuote": "Continuous - באופן רציף"
   },
   "Read-only (CloudTrail)": {
     "sourceTerm": "Read-only",
-    "nameBlock": 1644,
+    "nameBlock": 1690,
     "nameQuote": "Read-only - פעולות הסתכלות"
   },
   "Policy Validation": {
     "sourceTerm": "Policy Validation",
-    "nameBlock": 749,
+    "nameBlock": 765,
     "nameQuote": "Access analyzer policy validation"
   },
   "KMS CloudHSM Key Store": {
     "sourceTerm": "CloudHSM Key Store",
-    "nameBlock": 2389,
+    "nameBlock": 2447,
     "nameQuote": "שימוש ב-CloudHSM - נקרא AWS CloudHSM Key Store."
   },
   "Amazon EC2": {
     "sourceTerm": "EC2",
-    "nameBlock": 843,
+    "nameBlock": 859,
     "nameQuote": "EC2"
   },
   "Organizational Unit": {
     "sourceTerm": "Organizational Unit",
-    "nameBlock": 264,
+    "nameBlock": 280,
     "nameQuote": "Organizational Unit"
   },
   "Change Set": {
     "sourceTerm": "Change Set",
-    "nameBlock": 1555,
+    "nameBlock": 1598,
     "nameQuote": "ChangeSet"
   },
   "AWS Lambda": {
     "sourceTerm": "Lambda",
-    "nameBlock": 1038,
+    "nameBlock": 1069,
     "nameQuote": "Lambda"
   },
   "SSE-S3": {
     "sourceTerm": "SSE-S3",
-    "nameBlock": 1162,
+    "nameBlock": 1193,
     "nameQuote": "SSE-S3"
   },
   "Amazon Comprehend": {
     "sourceTerm": "Comprehend",
-    "nameBlock": 3312,
+    "nameBlock": 3392,
     "nameQuote": "Comprehend"
   },
   "AWS Service Catalog": {
     "sourceTerm": "AWS Service Catalog",
-    "nameBlock": 3423,
+    "nameBlock": 3503,
     "nameQuote": "AWS Service Catalog"
   },
   "Amazon Rekognition": {
     "sourceTerm": "Rekognition",
-    "nameBlock": 3307,
+    "nameBlock": 3387,
     "nameQuote": "Rekognition"
   },
   "CloudFormation Resource Type": {
     "sourceTerm": "Resource Types",
-    "nameBlock": 1559,
+    "nameBlock": 1605,
     "nameQuote": "Resource Types - אם אנחנו רוצים לנהל משאב לא של AWS דרך קובץ ה-YAML של CloudFormation, אתה חייב קודם כל \"להכיר\" לשירות את המשאב הזה על ידי רישומו ב-Registry."
   },
   "AWS Database Migration Service — DMS": {
     "sourceTerm": "DMS",
-    "nameBlock": 3263,
+    "nameBlock": 3343,
     "nameQuote": "DMS"
   },
   "Network Load Balancer — NLB": {
     "sourceTerm": "Network Load Balancer",
-    "nameBlock": 2613,
+    "nameBlock": 2673,
     "nameQuote": "Network load balancer"
   },
   "RDS Read Replica": {
     "sourceTerm": "read replicas",
-    "nameBlock": 3034,
+    "nameBlock": 3095,
     "nameQuote": "read replicas"
   },
   "KMS Key Policy": {
     "sourceTerm": "Key Policy",
-    "nameBlock": 2428,
+    "nameBlock": 2488,
     "nameQuote": "דוגמה ל-Key Policy:"
   },
   "ECS Service": {
     "sourceTerm": "ECS Service",
-    "nameBlock": 2873,
+    "nameBlock": 2934,
     "nameQuote": "ECS Service - הגדרות של ה-Deployment, זה המקביל לרכיב שנקרא Deployment Spec בעולם ה-appsec"
   },
   "KMS Pending Deletion": {
     "sourceTerm": "Pending Deletion",
-    "nameBlock": 2407,
+    "nameBlock": 2467,
     "nameQuote": "Schedule Key Deletion / Pending Deletion"
   },
   "SSE-C": {
     "sourceTerm": "SSE-C",
-    "nameBlock": 1165,
+    "nameBlock": 1196,
     "nameQuote": "SSE-C"
   },
   "Unused Access Analysis": {
     "sourceTerm": "Unused access",
-    "nameBlock": 467,
+    "nameBlock": 484,
     "nameQuote": "Unused access"
   },
   "AWS Management Console": {
@@ -936,117 +931,117 @@
   },
   "AWS CodePipeline": {
     "sourceTerm": "CodePipeline",
-    "nameBlock": 3341,
+    "nameBlock": 3421,
     "nameQuote": "CodePipeline"
   },
   "SSE-KMS": {
     "sourceTerm": "SSE-KMS",
-    "nameBlock": 1169,
+    "nameBlock": 1200,
     "nameQuote": "SSE-KMS"
   },
   "CloudFormation StackSets": {
     "sourceTerm": "CloudFormation StackSets",
-    "nameBlock": 292,
+    "nameBlock": 308,
     "nameQuote": "AWS CloudFormation StackSets: היכולת להריץ Templates של CloudFormation בו זמנית על פני OUs שלמים או על כל הארגון"
   },
   "CloudFormation Hooks": {
     "sourceTerm": "CloudFormation Hooks",
-    "nameBlock": 1560,
+    "nameBlock": 1606,
     "nameQuote": "CloudFormation Hooks - יש פה הסבר על זה בהרחבה"
   },
   "Trusted Entities": {
     "sourceTerm": "Trusted Entities",
-    "nameBlock": 656,
+    "nameBlock": 672,
     "nameQuote": "Trusted entities: מי יכול להשתמש ב-role."
   },
   "Shared Services Account": {
     "sourceTerm": "Shared Services Account",
-    "nameBlock": 234,
+    "nameBlock": 250,
     "nameQuote": "Shared Services Account"
   },
   "S3 Website Endpoint": {
     "sourceTerm": "Website Endpoint",
-    "nameBlock": 1150,
+    "nameBlock": 1181,
     "nameQuote": "לא להתבלבל: לשים לב שזה לא אותה כתובת URL ציבורית כשעובדים עם Static Website Hosting, שם היא נקראת Website Endpoint."
   },
   "Parameter Store String": {
     "sourceTerm": "String",
-    "nameBlock": 2697,
+    "nameBlock": 2758,
     "nameQuote": "String"
   },
   "IMDS": {
     "sourceTerm": "IMDS",
-    "nameBlock": 894,
+    "nameBlock": 915,
     "nameQuote": "או בקיצור IMDS, זה המנגנון שמחזיק את כל ה-metadata של ה-instance כמו:"
   },
   "Amazon ECR": {
     "sourceTerm": "ECR",
-    "nameBlock": 2932,
+    "nameBlock": 2993,
     "nameQuote": "ECR"
   },
   "Config Managed Rule": {
     "sourceTerm": "Managed Rule",
-    "nameBlock": 2168,
+    "nameBlock": 2214,
     "nameQuote": "AWS Managed Rules - חוקים מוכנים מראש ש-AWS יצרה עבורכם (כמו: בדיקה שאין גישה ציבורית ל-S3, או בדיקה שלכל השרתים יש תגים). כל מה שצריך זה רק להפעיל אותם בקליק."
   },
   "Amazon SNS": {
     "sourceTerm": "SNS",
-    "nameBlock": 2313,
+    "nameBlock": 2373,
     "nameQuote": "SNS"
   },
   "Cognito User Pool": {
     "sourceTerm": "User Pool",
-    "nameBlock": 3001,
+    "nameBlock": 3062,
     "nameQuote": "ברגע שמשתמש הזין סיסמה נכונה, ה-User Pool מייצר ומחזיר לאפליקציה JWT כדי שלא נבקש כל פעם מהשתמש לבצע אימות."
   },
   "External Access Analysis": {
     "sourceTerm": "External access",
-    "nameBlock": 458,
+    "nameBlock": 475,
     "nameQuote": "External access"
   },
   "AWS Site-to-Site VPN": {
-    "sourceTerm": "AWS Site-to-Site VPN",
-    "nameBlock": 2771,
-    "nameQuote": "תוספת ל-AWS Site-to-Site VPN שמאפשרת לחבר כמה סניפי On prem ארגוניים ואז הם יכולים לתקשר ביניהם דרך החיבור Site-to-Site VPN. כמובן שהם עדיין מחוברים ל-VPC ב-AWS, זאת רק תוספת של יכולת."
+    "sourceTerm": "Site-to-Site VPN",
+    "nameBlock": 2820,
+    "nameQuote": "Site-to-Site VPN"
   },
   "ECS Task Definition": {
     "sourceTerm": "Task Definition",
-    "nameBlock": 2874,
+    "nameBlock": 2935,
     "nameQuote": "Task Definition - תבנית ההגדרות רק של ה-Pod, זה המקביל ל-Pod Template בעולם ה-appsec."
   },
   "IAM Policy Simulator": {
     "sourceTerm": "IAM Policy Simulator",
-    "nameBlock": 753,
+    "nameBlock": 769,
     "nameQuote": "IAM Policy Simulator"
   },
   "EC2 Spot": {
     "sourceTerm": "Spot",
-    "nameBlock": 945,
+    "nameBlock": 976,
     "nameQuote": "Spot"
   },
   "Job Function Policy": {
     "sourceTerm": "job function",
-    "nameBlock": 760,
+    "nameBlock": 776,
     "nameQuote": "יש סוגי policies שנמצאות בקטגוריה שנקראת job function. מדובר בפוליסות שמיועדות לתפקידים נפוצים בתעשייה, לדוגמה: איש IT, אחראי billing וכו."
   },
   "Customer Gateway": {
     "sourceTerm": "Customer Gateway",
-    "nameBlock": 2768,
+    "nameBlock": 2829,
     "nameQuote": "Customer Gateway"
   },
   "EC2 Instance": {
     "sourceTerm": "EC2 Instance",
-    "nameBlock": 854,
+    "nameBlock": 870,
     "nameQuote": "EC2 instance connect - חיבור דרך הדפדפן"
   },
   "KMS GenerateDataKey": {
     "sourceTerm": "GenerateDataKey",
-    "nameBlock": 2413,
+    "nameBlock": 2473,
     "nameQuote": "GenerateDataKey - יצירה של data key."
   },
   "DynamoDB Document": {
     "sourceTerm": "Document",
-    "nameBlock": 3093,
+    "nameBlock": 3159,
     "nameQuote": "Document"
   },
   "AWS CLI": {
@@ -1056,27 +1051,27 @@
   },
   "Credential Report": {
     "sourceTerm": "Credential Report",
-    "nameBlock": 435,
+    "nameBlock": 452,
     "nameQuote": "Credential report"
   },
   "Inbound Rules": {
     "sourceTerm": "Inbound rules",
-    "nameBlock": 1318,
+    "nameBlock": 1355,
     "nameQuote": "Inbound rules - חוקים נכנסים"
   },
   "Systems Manager Patch Manager": {
     "sourceTerm": "Patch Manager",
-    "nameBlock": 2652,
+    "nameBlock": 2712,
     "nameQuote": "Patch Manager"
   },
   "VPN over Direct Connect": {
     "sourceTerm": "AWS Site-to-Site VPN מעל Direct Connect",
-    "nameBlock": 2829,
+    "nameBlock": 2889,
     "nameQuote": "AWS Site-to-Site VPN מעל Direct Connect"
   },
   "AWS CloudTrail": {
     "sourceTerm": "CloudTrail",
-    "nameBlock": 1638,
+    "nameBlock": 1684,
     "nameQuote": "ברגע שפותחים חשבון ב-AWS, השירות של CloudTrail מופעל ברקע בצורה אוטומטית כל הזמן. לא צריך ללחוץ על שום כפתור הפעלה."
   },
   "AWS Trust & Safety": {
@@ -1086,167 +1081,167 @@
   },
   "Edge Location": {
     "sourceTerm": "Edge Location",
-    "nameBlock": 2494,
+    "nameBlock": 2554,
     "nameQuote": "Edge Location"
   },
   "Member Account": {
     "sourceTerm": "Member Account",
-    "nameBlock": 270,
+    "nameBlock": 286,
     "nameQuote": "כל חשבון אחר שתיצור אחרי זה, יקרא Member Account."
   },
   "API Gateway Access Logs": {
     "sourceTerm": "Access Logs",
-    "nameBlock": 3160,
+    "nameBlock": 3232,
     "nameQuote": "Access Logs - מתעדים מי ניגש ל-API. הם כוללים מידע כללי על התעבורה כגון כתובת ה-IP של הפונה, מזהה המשתמש, נתיב הבקשה (Path), קוד התגובה (למשל 200 או 404), וזמן התגובה. למה צריך את זה? מאפשר לעקוב אחרי ניסיונות גישה לא מורשים ולזהות מתקפות"
   },
   "Bucket Policy": {
     "sourceTerm": "Bucket Policy",
-    "nameBlock": 1114,
+    "nameBlock": 1145,
     "nameQuote": "גוללים למטה עד לקטגורית ה-bucket policy"
   },
   "EC2 Key Pair": {
     "sourceTerm": "EC2 Key Pair",
-    "nameBlock": 878,
-    "nameQuote": "SSH Key Pair / EC2 key pair"
+    "nameBlock": 893,
+    "nameQuote": "EC2 key pair"
   },
   "AWS OpsWorks": {
     "sourceTerm": "OpsWorks",
-    "nameBlock": 3353,
+    "nameBlock": 3433,
     "nameQuote": "OpsWorks"
   },
   "Multi-AZ Architecture": {
     "sourceTerm": "Multi-AZ Architecture",
-    "nameBlock": 253,
+    "nameBlock": 269,
     "nameQuote": "בדר''כ בארכיטקטורות מהסוג הזה, מומלץ להקים לפחות 2 משאבים מכל סוגי על גבי 2 Availability zones לפי Multi-AZ Architecture."
   },
   "AWS Security Finding Format — ASFF": {
     "sourceTerm": "AWS Security Finding Format",
-    "nameBlock": 2239,
+    "nameBlock": 2299,
     "nameQuote": "AWS ממיר אותו ל־AWS Security Finding Format."
   },
   "Custom Insights": {
     "sourceTerm": "Custom Insights",
-    "nameBlock": 2243,
+    "nameBlock": 2303,
     "nameQuote": "Custom Insights"
   },
   "Consolidated Billing": {
     "sourceTerm": "Consolidated Billing",
-    "nameBlock": 284,
+    "nameBlock": 300,
     "nameQuote": "Consolidated Billing Only - מחברת את כל החשבונות של החברה תחת חשבון ראשי אחד כדי לבצע תשלום מרכזי ולקבל חשבונית אחת. למה להשתמש בזה? כדי לשלב את נפח השימוש של כל החשבונות כדי לקבל הנחות של כמות שימוש מ-AWS."
   },
   "Amazon CodeGuru": {
     "sourceTerm": "Amazon CodeGuru",
-    "nameBlock": 3436,
+    "nameBlock": 3516,
     "nameQuote": "Amazon CodeGuru Reviewer - בודק קוד אוטומטי"
   },
   "CloudFormation Guard": {
     "sourceTerm": "CloudFormation Guard",
-    "nameBlock": 1602,
+    "nameBlock": 1648,
     "nameQuote": "AWS CloudFormation Guard"
   },
   "CloudFront Custom Origin Header": {
     "sourceTerm": "Custom Headers",
-    "nameBlock": 2556,
+    "nameBlock": 2616,
     "nameQuote": "Custom Headers"
   },
   "Cognito Federation": {
     "sourceTerm": "פדרציה",
-    "nameBlock": 2990,
+    "nameBlock": 3051,
     "nameQuote": "פדרציה דרך IDM חיצוני."
   },
   "Landing Zone": {
     "sourceTerm": "Landing Zone",
-    "nameBlock": 169,
+    "nameBlock": 185,
     "nameQuote": "ארכיטקטורת Landing zone מבוסס על framework שנקרא AWS Cloud Adoption Framework (או בקיצור CAF), שמסביר איך לארגן את סביבת הענן בצורה נכונה בארגון."
   },
   "AWS Directory Service": {
     "sourceTerm": "AWS Directory Service",
-    "nameBlock": 3049,
+    "nameBlock": 3110,
     "nameQuote": "AWS Directory Service"
   },
   "AWS Systems Manager": {
     "sourceTerm": "AWS Systems Manager",
-    "nameBlock": 2650,
+    "nameBlock": 2710,
     "nameQuote": "AWS Systems Manager"
   },
   "GuardDuty Threat Entity List": {
     "sourceTerm": "Threat Entity List",
-    "nameBlock": 2040,
+    "nameBlock": 2086,
     "nameQuote": "Threat Entity List - שזה ה-Black List"
   },
   "Amazon Application Recovery Controller — ARC": {
     "sourceTerm": "Amazon Application Recovery Controller",
-    "nameBlock": 2750,
+    "nameBlock": 2811,
     "nameQuote": "או בשמו המלא Amazon Application Recovery Controller, זה שירות DR."
   },
   "EC2 Detailed Monitoring": {
     "sourceTerm": "Detailed Monitoring",
-    "nameBlock": 1830,
+    "nameBlock": 1876,
     "nameQuote": "Detailed Monitoring"
   },
   "AWS Outposts": {
     "sourceTerm": "Outposts",
-    "nameBlock": 3218,
+    "nameBlock": 3290,
     "nameQuote": "Outposts"
   },
   "AWS-Managed KMS Key": {
     "sourceTerm": "AWS-managed key",
-    "nameBlock": 2373,
+    "nameBlock": 2433,
     "nameQuote": "AWS Managed Keys"
   },
   "AWS IoT Device Defender": {
     "sourceTerm": "AWS IoT Device Defender",
-    "nameBlock": 3083,
+    "nameBlock": 3149,
     "nameQuote": "AWS IoT Device Defender"
   },
   "AWS Shield Standard": {
     "sourceTerm": "AWS Shield Standard",
-    "nameBlock": 2838,
+    "nameBlock": 2898,
     "nameQuote": "AWS Shield Standard"
   },
   "ReadOnlyAccess": {
     "sourceTerm": "ReadOnlyAccess",
-    "nameBlock": 767,
+    "nameBlock": 783,
     "nameQuote": "ReadOnlyAccess"
   },
   "WAF Custom Rule": {
     "sourceTerm": "Custom Rules",
-    "nameBlock": 2804,
+    "nameBlock": 2865,
     "nameQuote": "חוקים מותאמים אישית (Custom Rules): חוקים שאתה מגדיר בעצמך."
   },
   "Conformance Pack": {
     "sourceTerm": "Conformance Pack",
-    "nameBlock": 2182,
+    "nameBlock": 2228,
     "nameQuote": "Conformance Pack"
   },
   "Amazon Aurora": {
     "sourceTerm": "Aurora",
-    "nameBlock": 3241,
+    "nameBlock": 3314,
     "nameQuote": "Aurora"
   },
   "Elastic IP": {
     "sourceTerm": "Elastic IP",
-    "nameBlock": 876,
+    "nameBlock": 891,
     "nameQuote": "Elastic IP נשארת משויכת לחשבון ה-AWS שלכם עד שתבחרו לשחרר אותה באופן יזום."
   },
   "CloudWatch Log Group": {
     "sourceTerm": "Log Group",
-    "nameBlock": 1760,
+    "nameBlock": 1806,
     "nameQuote": "Log Group - זאת התיקייה שמאחסנת את כל הקבצים (Streams). יכול להיות שמה קבצים מכמה שרתים שרוצים."
   },
   "Amazon EKS": {
     "sourceTerm": "Amazon EKS",
-    "nameBlock": 2901,
+    "nameBlock": 2962,
     "nameQuote": "Amazon EKS"
   },
   "Gateway Endpoint": {
     "sourceTerm": "Gateway Endpoint",
-    "nameBlock": 1409,
-    "nameQuote": "Gateway Endpoints"
+    "nameBlock": 1448,
+    "nameQuote": "Gateway Endpoints / Gateway VPC Endpoints"
   },
   "RDS for SQL Server": {
     "sourceTerm": "RDS for SQL Server",
-    "nameBlock": 3044,
+    "nameBlock": 3105,
     "nameQuote": "רישוי: SQL Server הוא מוצר מסחרי יקר של מיקרוסופט. כשאתה מקים RDS for SQL Server, מחיר הרישיון של מיקרוסופט כבר מגולם אוטומטית בתוך התשלום השעתי ל-AWS"
   },
   "AWS SDK for Go": {
@@ -1256,27 +1251,27 @@
   },
   "Launch Template": {
     "sourceTerm": "Launch Template",
-    "nameBlock": 871,
+    "nameBlock": 886,
     "nameQuote": "היכולת הזאת לבנות template נקראת Launch Template."
   },
   "Standard Metrics": {
     "sourceTerm": "Standard Metrics",
-    "nameBlock": 1772,
+    "nameBlock": 1818,
     "nameQuote": "Standard Metrics"
   },
   "S3 Replication": {
     "sourceTerm": "Replication",
-    "nameBlock": 1190,
+    "nameBlock": 1221,
     "nameQuote": "יש שני סוגים שונים של Replication"
   },
   "S3 Access Point": {
     "sourceTerm": "Access Point",
-    "nameBlock": 1124,
+    "nameBlock": 1155,
     "nameQuote": "Bucket policy משפיעה על כל מי שניגש ל-bucket. לעומת זאת, access point זאת שיטה לנהל גישה ל-bucket ע''י חלוקה של כל התנאים ליחידות עצמאיות (שהם ה-access points), ואז אפשר להכתיב לכל משתמש policy ייחודי עבורו, מאשר להשתמש ב-bucket policy שעקב שינוי יכול לגרום לדברים אחרים להשתמש."
   },
   "Amazon Bedrock": {
     "sourceTerm": "Bedrock",
-    "nameBlock": 3322,
+    "nameBlock": 3402,
     "nameQuote": "Bedrock"
   },
   "ARN": {
@@ -1286,92 +1281,92 @@
   },
   "EC2 Instance Connect": {
     "sourceTerm": "EC2 Instance Connect",
-    "nameBlock": 854,
+    "nameBlock": 870,
     "nameQuote": "EC2 instance connect - חיבור דרך הדפדפן"
   },
   "Instance Store": {
     "sourceTerm": "Instance Store",
-    "nameBlock": 923,
+    "nameBlock": 954,
     "nameQuote": "Instance store"
   },
   "Interface Endpoint": {
     "sourceTerm": "Interface Endpoint",
-    "nameBlock": 1407,
+    "nameBlock": 1446,
     "nameQuote": "Interface Endpoints"
   },
   "All Features": {
     "sourceTerm": "All Features",
-    "nameBlock": 285,
+    "nameBlock": 301,
     "nameQuote": "All Feature Sets - כוללת את כל מה שיש ברמה הראשונה, ובנוסף מעניק את היכולת להשתמש ביכולות כמו:"
   },
   "CloudFront Geo Restriction": {
     "sourceTerm": "Geo Restriction",
-    "nameBlock": 2534,
+    "nameBlock": 2594,
     "nameQuote": "Geo Restriction"
   },
   "Glacier Vault Lock": {
     "sourceTerm": "Glacier Vault Lock",
-    "nameBlock": 1225,
+    "nameBlock": 1262,
     "nameQuote": "Glacier Vault Lock"
   },
   "Amazon GuardDuty": {
     "sourceTerm": "GuardDuty",
-    "nameBlock": 1996,
+    "nameBlock": 2042,
     "nameQuote": "GuardDuty"
   },
   "KMS Encrypt": {
     "sourceTerm": "Encrypt",
-    "nameBlock": 2411,
+    "nameBlock": 2471,
     "nameQuote": "Encrypt - הצפנה של מידע"
   },
   "EventBridge Rule": {
     "sourceTerm": "Rule",
-    "nameBlock": 1966,
+    "nameBlock": 2012,
     "nameQuote": "Rule"
   },
   "AWS CodeDeploy": {
     "sourceTerm": "CodeDeploy",
-    "nameBlock": 3337,
+    "nameBlock": 3417,
     "nameQuote": "CodeDeploy"
   },
   "AWS Glue": {
     "sourceTerm": "Glue",
-    "nameBlock": 3296,
+    "nameBlock": 3376,
     "nameQuote": "Glue"
   },
   "PowerUserAccess": {
     "sourceTerm": "PowerUserAccess",
-    "nameBlock": 765,
+    "nameBlock": 781,
     "nameQuote": "PowerUserAccess"
   },
   "CloudWatch Alarms": {
     "sourceTerm": "CloudWatch Alarms",
-    "nameBlock": 1751,
+    "nameBlock": 1797,
     "nameQuote": "2. CloudWatch Alarms"
   },
   "S3 Intelligent-Tiering": {
     "sourceTerm": "S3 Intelligent-Tiering",
-    "nameBlock": 1207,
+    "nameBlock": 1238,
     "nameQuote": "S3 Intelligent Tiering"
   },
   "Amazon Kinesis Data Streams": {
     "sourceTerm": "Amazon Kinesis Data Streams",
-    "nameBlock": 3097,
+    "nameBlock": 3163,
     "nameQuote": "Amazon Kinesis Data Streams"
   },
   "Public Subnet": {
     "sourceTerm": "Public Subnet",
-    "nameBlock": 1360,
+    "nameBlock": 1397,
     "nameQuote": "מנגנון שמאפשר לשרתים לצאת לאינטרנט, אבל לא מאפשר לאינטרנט להתחבר אליהם. משתמשים בזה כשרוצים שהשרתים יוכלו להוריד עדכונים מהאינטרנט, אבל לא רוצים לפתוח אותם לאינטרנט. המשאב חייב להיות ב-public subnet, למה? כי הוא צריך גישה ישירה לאינטרנט כדי להעביר את התעבורה החוצה (דרך הניתוב ל-IGW)."
   },
   "Origin Access Identity — OAI": {
     "sourceTerm": "Origin Access Identity",
-    "nameBlock": 2558,
+    "nameBlock": 2618,
     "nameQuote": "Origin Access Identity"
   },
   "Route 53 Weighted Routing": {
     "sourceTerm": "Weighted Routing",
-    "nameBlock": 2747,
+    "nameBlock": 2808,
     "nameQuote": "Weighted Routing Policy / Weighted Load Balancing"
   },
   "AWS Artifact": {
@@ -1381,82 +1376,82 @@
   },
   "Multi-Region KMS Key": {
     "sourceTerm": "Multi-Region KMS Key",
-    "nameBlock": 2447,
+    "nameBlock": 2507,
     "nameQuote": "Multi-Region KMS Key"
   },
   "Amazon EFS": {
     "sourceTerm": "EFS",
-    "nameBlock": 929,
+    "nameBlock": 960,
     "nameQuote": "בקיצור EFS, זה כמו share drive ענני (כמו dropbox, google drive ועוד) שניתן לשתף אותו."
   },
   "Explicit Deny": {
     "sourceTerm": "Explicit Deny",
-    "nameBlock": 755,
+    "nameBlock": 771,
     "nameQuote": "Explicit Deny – חסימה מפורשת בכל מקום שהוא.Organizations SCPs – הגבלות ברמת הארגון."
   },
   "IAM Access Analyzer": {
     "sourceTerm": "Access Analyzer",
-    "nameBlock": 456,
+    "nameBlock": 473,
     "nameQuote": "Access Analyzer"
   },
   "CloudFront Distribution": {
     "sourceTerm": "Distribution",
-    "nameBlock": 2501,
+    "nameBlock": 2561,
     "nameQuote": "Distribution"
   },
   "Patch Baseline": {
     "sourceTerm": "Patch Baseline",
-    "nameBlock": 2720,
+    "nameBlock": 2781,
     "nameQuote": "כאשר חברות כמו מיקרוסופט (Windows) או אמזון (Linux) משחררות מאות עדכוני אבטחה ותיקוני באגים, אתה לא רוצה להתקין את כולם בעיניים עצומות, ומצד שני – אתה לא יכול לבדוק ולבחור אותם אחד-אחד באופן ידני. ה-Patch Baseline פותר את זה באמצעות מערכת חוקים מוגדרת מראש."
   },
   "Amazon EBS": {
     "sourceTerm": "EBS",
-    "nameBlock": 921,
+    "nameBlock": 952,
     "nameQuote": "EBS"
   },
   "AWS Snow Family": {
     "sourceTerm": "Snow Family",
-    "nameBlock": 3271,
+    "nameBlock": 3351,
     "nameQuote": "Snow family"
   },
   "Imported Key Material": {
     "sourceTerm": "Imported Key Material",
-    "nameBlock": 2400,
+    "nameBlock": 2460,
     "nameQuote": "ייבוא מפתח חיצוני (Imported Key Material)"
   },
   "Principal": {
     "sourceTerm": "Principal",
-    "nameBlock": 712,
+    "nameBlock": 728,
     "nameQuote": "Principal: המושג הרשמי של זה נקרא trust relationship, וזה אומר מי מורשה לעשות assume role, זה יכול להיות:"
   },
   "CloudWatch Logs": {
     "sourceTerm": "CloudWatch Logs",
-    "nameBlock": 1757,
+    "nameBlock": 1803,
     "nameQuote": "3. CloudWatch Logs"
   },
   "Inline Policy": {
     "sourceTerm": "Inline Policy",
-    "nameBlock": 730,
+    "nameBlock": 746,
     "nameQuote": "Inline Policy"
   },
   "Systems Manager State Manager": {
     "sourceTerm": "State Manager",
-    "nameBlock": 2711,
+    "nameBlock": 2772,
     "nameQuote": "State Manager"
   },
   "Lambda Function": {
     "sourceTerm": "Function",
-    "nameBlock": 1044,
+    "nameBlock": 1075,
     "nameQuote": "Function"
   },
   "AWS DataSync": {
     "sourceTerm": "DataSync",
-    "nameBlock": 3287,
+    "nameBlock": 3367,
     "nameQuote": "DataSync"
   },
   "Amazon Managed Service for Apache Flink": {
     "sourceTerm": "Amazon Managed Service for Apache Flink",
-    "nameBlock": 3439,
+    "nameBlock": 3519,
     "nameQuote": "Amazon Managed Service for Apache Flink"
   },
   "ABAC": {
@@ -1466,187 +1461,187 @@
   },
   "Amazon Polly": {
     "sourceTerm": "Polly",
-    "nameBlock": 3316,
+    "nameBlock": 3396,
     "nameQuote": "Polly"
   },
   "Long-Term Access Keys": {
     "sourceTerm": "Long-Term Access Keys",
-    "nameBlock": 399,
+    "nameBlock": 416,
     "nameQuote": "1. IAM User Access keys / Long-Term Access Keys"
   },
   "Config Proactive Evaluation": {
     "sourceTerm": "Proactive Evaluation",
-    "nameBlock": 2166,
+    "nameBlock": 2212,
     "nameQuote": "Proactive Evaluation - בדיקה לפני שהמשאב נוצר. כאשר משתמשים בכלי אוטומציה כדי להקים תשתית כמו CloudFormation או Terraform, הכלים האלו שולחים את תוכנית הבנייה ל-AWS Config עוד לפני הבנייה בפועל כדי לבדוק את המשאבים מול החוקים שמוגדרים."
   },
   "Amazon ECS": {
     "sourceTerm": "Amazon ECS",
-    "nameBlock": 2855,
+    "nameBlock": 2916,
     "nameQuote": "Amazon ECS"
   },
   "Origin Access Control — OAC": {
     "sourceTerm": "Origin Access Control",
-    "nameBlock": 2521,
+    "nameBlock": 2581,
     "nameQuote": "ברגע שמפעילים את ה-Origin Access Control, זה אומר ל-cloudfront מאחורי הקלעים:"
   },
   "API Gateway Execution Logs": {
     "sourceTerm": "Execution Logs",
-    "nameBlock": 3161,
+    "nameBlock": 3233,
     "nameQuote": "Execution Logs - פעולות פנימיות כמו:"
   },
   "Private NAT Gateway": {
     "sourceTerm": "Private NAT Gateway",
-    "nameBlock": 1364,
+    "nameBlock": 1401,
     "nameQuote": "Private NAT Gateway"
   },
   "AWS CodeCommit": {
     "sourceTerm": "CodeCommit",
-    "nameBlock": 3331,
+    "nameBlock": 3411,
     "nameQuote": "CodeCommit"
   },
   "Private Subnet": {
     "sourceTerm": "Private Subnet",
-    "nameBlock": 1361,
+    "nameBlock": 1398,
     "nameQuote": "השרת (EC2) מוקם ב-Private Subnet: כדי לשמור עליו מוגן ומאובטח, בלי שאף אחד מהאינטרנט יוכל לגשת אליו ישירות."
   },
   "One Zone-Infrequent Access": {
     "sourceTerm": "One Zone-Infrequent Access",
-    "nameBlock": 1213,
+    "nameBlock": 1250,
     "nameQuote": "One Zone-Infrequent Access"
   },
   "VPC Endpoint": {
     "sourceTerm": "VPC Endpoint",
-    "nameBlock": 1408,
+    "nameBlock": 1447,
     "nameQuote": "נקודת היציאה החוצה שמבוסס על טכנולוגיית AWS PrivateLink. זאת דרך מימוש אחת של VPC Endpoint."
   },
   "Amazon DocumentDB": {
     "sourceTerm": "DocumentDB",
-    "nameBlock": 3247,
+    "nameBlock": 3320,
     "nameQuote": "DocumentDB"
   },
   "Application Load Balancer — ALB": {
     "sourceTerm": "Application Load Balancer",
-    "nameBlock": 2587,
+    "nameBlock": 2647,
     "nameQuote": "Application load balancer"
   },
   "AWS WAF": {
     "sourceTerm": "AWS WAF",
-    "nameBlock": 2774,
+    "nameBlock": 2835,
     "nameQuote": "איך AWS WAF עובד?"
   },
   "InstanceCredentialExfiltration": {
     "sourceTerm": "InstanceCredentialExfiltration",
-    "nameBlock": 904,
+    "nameBlock": 925,
     "nameQuote": "ל-GuardDuty יש יכולת לזהות את הגניבה של ה-Temporary Security Credentials. כאשר זה קורה הוא מתריע על פעולה שנקראת InstanceCredentialExfiltration."
   },
   "Amazon Lightsail": {
     "sourceTerm": "Lightsail",
-    "nameBlock": 3214,
+    "nameBlock": 3286,
     "nameQuote": "Lightsail"
   },
   "AssumeRole": {
     "sourceTerm": "AssumeRole",
-    "nameBlock": 646,
+    "nameBlock": 662,
     "nameQuote": "פעולת הענקת ה-role נקראת \"Assume Role\" והיא מצבעת ע''י שירות פנימי שנקרא STS:"
   },
   "GuardDuty Trusted IP List": {
     "sourceTerm": "Trusted IP List",
-    "nameBlock": 2034,
+    "nameBlock": 2080,
     "nameQuote": "בניגוד ל-Suppression Rule (שמייצר התראה ומארכב אותה), Trusted IP list חוסם את יצירת ההתראה לחלוטין."
   },
   "KMS Custom Key Store": {
     "sourceTerm": "Custom Key Store",
-    "nameBlock": 2384,
+    "nameBlock": 2444,
     "nameQuote": "Custom Key Store"
   },
   "ECS Task": {
     "sourceTerm": "Task",
-    "nameBlock": 2868,
+    "nameBlock": 2929,
     "nameQuote": "Task"
   },
   "Standard-Infrequent Access (S3 Standard-IA)": {
     "sourceTerm": "Standard-Infrequent Access (S3 Standard-IA)",
-    "nameBlock": 1209,
+    "nameBlock": 1245,
     "nameQuote": "Standard-Infrequent Access (S3 Standard-IA)"
   },
   "CloudWatchAgentServerPolicy": {
     "sourceTerm": "CloudWatchAgentServerPolicy",
-    "nameBlock": 1808,
+    "nameBlock": 1854,
     "nameQuote": "AWS יצרו עבורנו פוליסי (Policy) מוכן מראש עם כל ההרשאות הרלוונטיות לסוכן, שנקרא CloudWatchAgentServerPolicy. הוא מכיל את ההרשאות הבאות:"
   },
   "OpsItem": {
     "sourceTerm": "OpsItem",
-    "nameBlock": 2682,
+    "nameBlock": 2743,
     "nameQuote": "OpsItem"
   },
   "Account Factory Customization": {
     "sourceTerm": "Account Factory Customization",
-    "nameBlock": 326,
+    "nameBlock": 342,
     "nameQuote": "Account Factory Customization"
   },
   "Route 53 Resolver Query Logging": {
     "sourceTerm": "Resolver Query Logging",
-    "nameBlock": 2738,
+    "nameBlock": 2799,
     "nameQuote": "Resolver Query Logging"
   },
   "Infrastructure OU": {
     "sourceTerm": "Infrastructure OU",
-    "nameBlock": 230,
+    "nameBlock": 246,
     "nameQuote": "Infrastructure OU"
   },
   "Default NACL": {
     "sourceTerm": "Default NACL",
-    "nameBlock": 1314,
+    "nameBlock": 1351,
     "nameQuote": "ברגע שמחקת Custom NACL, או ברגע שניתקת סאבנט מ-NACL כלשהו, התשתית של AWS תשייך אוטומטית ובאופן מיידי את הסאבנט בחזרה ל-Default NACL."
   },
   "AWS Global Accelerator": {
     "sourceTerm": "Global Accelerator",
-    "nameBlock": 3223,
+    "nameBlock": 3295,
     "nameQuote": "Global Accelerator"
   },
   "S3 Inventory": {
     "sourceTerm": "S3 Inventory",
-    "nameBlock": 1135,
+    "nameBlock": 1166,
     "nameQuote": "Amazon S3 Inventory"
   },
   "Managed Insights": {
     "sourceTerm": "Managed Insights",
-    "nameBlock": 2245,
+    "nameBlock": 2305,
     "nameQuote": "Managed Insights"
   },
   "Amazon EMR": {
     "sourceTerm": "EMR",
-    "nameBlock": 3300,
+    "nameBlock": 3380,
     "nameQuote": "EMR"
   },
   "EBS Snapshot": {
     "sourceTerm": "EBS Snapshot",
-    "nameBlock": 909,
+    "nameBlock": 930,
     "nameQuote": "גיבוי של כל הדיסק, מה שנקרא EBS Snapshot"
   },
   "Amazon CloudFront": {
     "sourceTerm": "CloudFront",
-    "nameBlock": 2478,
+    "nameBlock": 2538,
     "nameQuote": "CloudFront הוא global service שמנוהל ע''י AWS, הוא לא משויך לאף VPC."
   },
   "AWS Organizations": {
     "sourceTerm": "AWS Organizations",
-    "nameBlock": 258,
+    "nameBlock": 274,
     "nameQuote": "AWS Organizations"
   },
   "S3 Server Access Logging": {
     "sourceTerm": "Server Access Logging",
-    "nameBlock": 1151,
+    "nameBlock": 1182,
     "nameQuote": "Server access logging"
   },
   "KMS Automatic Key Rotation": {
     "sourceTerm": "Automatic Key Rotation",
-    "nameBlock": 2391,
+    "nameBlock": 2451,
     "nameQuote": "automatic key rotation"
   },
   "CloudWatch Synthetics": {
     "sourceTerm": "CloudWatch Synthetics",
-    "nameBlock": 1764,
+    "nameBlock": 1810,
     "nameQuote": "5. CloudWatch Synthetics"
   },
   "Availability Zone": {
@@ -1656,7 +1651,7 @@
   },
   "AWS Server Migration Service — SMS": {
     "sourceTerm": "SMS",
-    "nameBlock": 3268,
+    "nameBlock": 3348,
     "nameQuote": "SMS"
   },
   "AWS Well-Architected Framework": {
@@ -1666,52 +1661,52 @@
   },
   "Management Account": {
     "sourceTerm": "Management Account",
-    "nameBlock": 171,
+    "nameBlock": 187,
     "nameQuote": "Management Account"
   },
   "Cognito Identity Pool": {
     "sourceTerm": "Identity Pool",
-    "nameBlock": 3005,
+    "nameBlock": 3066,
     "nameQuote": "כשאתה מגדיר Identity Pool, בדרך כלל מגדירים שני תפקידים:"
   },
   "AWS Fargate": {
     "sourceTerm": "AWS Fargate",
-    "nameBlock": 2904,
+    "nameBlock": 2965,
     "nameQuote": "AWS Fargate"
   },
   "AWS Firewall Manager": {
     "sourceTerm": "AWS Firewall Manager",
-    "nameBlock": 3231,
+    "nameBlock": 3304,
     "nameQuote": "AWS Firewall Manager"
   },
   "Classic Load Balancer — CLB": {
     "sourceTerm": "Classic Load Balancer",
-    "nameBlock": 2616,
+    "nameBlock": 2676,
     "nameQuote": "Classic load balancer"
   },
   "Amazon CloudWatch": {
     "sourceTerm": "Amazon CloudWatch",
-    "nameBlock": 1787,
+    "nameBlock": 1833,
     "nameQuote": "או בשמו המלא Amazon CloudWatch Agent, זאת תוכנה שמתקינים על שרתי EC2 כדי לאסוף נתונים פנימיים כמו:"
   },
   "Amazon SageMaker": {
     "sourceTerm": "Amazon SageMaker",
-    "nameBlock": 3324,
+    "nameBlock": 3404,
     "nameQuote": "Amazon SageMaker"
   },
   "ECS Secrets Injection": {
     "sourceTerm": "Secrets Injection",
-    "nameBlock": 2893,
+    "nameBlock": 2954,
     "nameQuote": "Secrets Injection מזריק את הסיסמה רק פעם אחת וזה בשנייה שהקונטיינר עולה"
   },
   "AWS Secrets Manager": {
     "sourceTerm": "AWS Secrets Manager",
-    "nameBlock": 2473,
+    "nameBlock": 2533,
     "nameQuote": "הברירת מחדל זה שכל שימוש ב-AWS Secrets Manager מתבצע עם הצפנה בתנועה של HTTPS ואי אפשר לבטל את זה."
   },
   "ENI": {
     "sourceTerm": "ENI",
-    "nameBlock": 1388,
+    "nameBlock": 1427,
     "nameQuote": "בשמו המלא Elastic Network Interface, הוא כרטיס רשת וירטואלי שמצרפים ל-instance בשביל שיהיה ל-instances כתובות כמו: כתובות IP (פנימיות וחיצוניות), כתובות MAC ועוד.יש מצבים שיהיה ל-instance יותר מ-ENI אחד, עושים את זה בשביל להבטיח availability, להפריד סוגים שונים של תעבורה ולהחיל עליה חוקים שונים."
   },
   "Resource Tags": {
@@ -1721,197 +1716,197 @@
   },
   "Config Custom Rule": {
     "sourceTerm": "Custom Rule",
-    "nameBlock": 2169,
+    "nameBlock": 2215,
     "nameQuote": "Custom Rules - חוקים מותאמים אישית שאתם כותבים בעצמכם"
   },
   "Automation Runbook": {
     "sourceTerm": "Automation Runbook",
-    "nameBlock": 2693,
+    "nameBlock": 2754,
     "nameQuote": "אפשר להריץ באופן אוטומטי או בלחיצת כפתור תהליכים דרך Automation Runbooks בשביל לסדר את התקלה."
   },
   "Database Encryption SDK for DynamoDB": {
     "sourceTerm": "Database Encryption SDK for DynamoDB",
-    "nameBlock": 3095,
+    "nameBlock": 3161,
     "nameQuote": "DynamoDB Encryption client / AWS Database Encryption SDK for DynamoDB"
   },
   "IAM Role": {
     "sourceTerm": "IAM Role",
-    "nameBlock": 501,
+    "nameBlock": 517,
     "nameQuote": "מקימים ל-Wizz בחשבון שלכם IAM Role שמאפשר להם לקרוא נתונים."
   },
   "Log Retention Policy": {
     "sourceTerm": "retention policy",
-    "nameBlock": 1834,
+    "nameBlock": 1880,
     "nameQuote": "retention policy"
   },
   "Alarm Evaluation Period": {
     "sourceTerm": "Evaluation Period",
-    "nameBlock": 1821,
+    "nameBlock": 1867,
     "nameQuote": "אם הגדרתי evaluation period במשך 3 דקות על CPU > 80%, אם המעבד שלי עשה peak ל-85% ואחרי 5 שניות חזר למצב של 70% - לא תהיה לי התראה."
   },
   "ECR Lifecycle Policy": {
     "sourceTerm": "Lifecycle policies",
-    "nameBlock": 2966,
+    "nameBlock": 3027,
     "nameQuote": "ניתן להגדיר Lifecycle policies שיעשו מחיקה ל-container images שלא השתמשו בהם אחרי X ימים. כדי לעשות את זה יש להיכנס ל:"
   },
   "Secret Access Key": {
     "sourceTerm": "Secret Access Key",
-    "nameBlock": 394,
+    "nameBlock": 411,
     "nameQuote": "Secret access key: זה כביכול הסיסמה"
   },
   "AWS CodeStar": {
     "sourceTerm": "CodeStar",
-    "nameBlock": 3348,
+    "nameBlock": 3428,
     "nameQuote": "CodeStar"
   },
   "Amazon Kinesis": {
     "sourceTerm": "Kinesis",
-    "nameBlock": 3298,
+    "nameBlock": 3378,
     "nameQuote": "Kinesis"
   },
   "Resource-Based Policy": {
     "sourceTerm": "Resource-Based Policy",
-    "nameBlock": 732,
+    "nameBlock": 748,
     "nameQuote": "Resource-based Policy"
   },
   "Parameter Store SecureString": {
     "sourceTerm": "SecureString",
-    "nameBlock": 2703,
+    "nameBlock": 2764,
     "nameQuote": "SecureString"
   },
   "ELB Access Log": {
     "sourceTerm": "ELB Access Log",
-    "nameBlock": 2647,
+    "nameBlock": 2707,
     "nameQuote": "ELB Access Logs"
   },
   "AWS Data Pipeline": {
     "sourceTerm": "Data Pipeline",
-    "nameBlock": 3302,
+    "nameBlock": 3382,
     "nameQuote": "Data pipeline"
   },
   "Organization Trail": {
     "sourceTerm": "Organization Trail",
-    "nameBlock": 1676,
+    "nameBlock": 1722,
     "nameQuote": "איך נראה המימוש של Organization Trail? (השלבים)"
   },
   "Virtual Private Gateway": {
     "sourceTerm": "Virtual Private Gateway",
-    "nameBlock": 2766,
+    "nameBlock": 2827,
     "nameQuote": "Virtual Private Gateway - או בקיצור VGW,  הוא משויך ל-VPC אחד ספציפי. משתמשים בו כשיש לארגון סביבה פשוטה בענן וצריך שהעובדים או השרתים במשרד הפיזי ידברו אך ורק עם הרשת האחת הזו."
   },
   "IoT Thing Name": {
     "sourceTerm": "Thing Name",
-    "nameBlock": 3078,
+    "nameBlock": 3144,
     "nameQuote": "Thing Name"
   },
   "AWS IoT Core": {
     "sourceTerm": "AWS IoT Core",
-    "nameBlock": 3063,
+    "nameBlock": 3129,
     "nameQuote": "שירות שהתפקיד שלו הוא לחבר בין מלא רכיבי IoT, כלומר, השירות AWS IoT Core מתנהג כמו Message Broker (מעביר הודעות)."
   },
   "Systems Manager Parameter Store": {
     "sourceTerm": "Parameter Store",
-    "nameBlock": 2699,
+    "nameBlock": 2760,
     "nameQuote": "Parameter Store הוא בחינם, בניגוד ל-AWS Secrets Manager"
   },
   "Amazon RDS": {
     "sourceTerm": "Amazon RDS",
-    "nameBlock": 3036,
+    "nameBlock": 3097,
     "nameQuote": "Amazon RDS Multi-AZ"
   },
   "VPN Target Gateway": {
     "sourceTerm": "Target Gateway",
-    "nameBlock": 2765,
+    "nameBlock": 2826,
     "nameQuote": "נקודת הקצה של ה-VPN בצד של אמזון. יש כמה target gateways שונים שניתן להשתמש בהם:"
   },
   "Amazon OpenSearch Service": {
     "sourceTerm": "Amazon OpenSearch Service",
-    "nameBlock": 3165,
+    "nameBlock": 3237,
     "nameQuote": "Amazon OpenSearch Service"
   },
   "KMS Grant": {
     "sourceTerm": "KMS Grant",
-    "nameBlock": 2446,
+    "nameBlock": 2506,
     "nameQuote": "נוסיף תנאי שמוודא שה-Grant מיועד רק עבור משאבי AWS (כמו EC2/EBS) ולא עבור גורם חיצוני: \"kms:GrantIsForAWSResource\": true"
   },
   "EC2 On-Demand": {
     "sourceTerm": "On-Demand",
-    "nameBlock": 940,
+    "nameBlock": 971,
     "nameQuote": "On-demand"
   },
   "Amazon Data Firehose": {
     "sourceTerm": "Amazon Data Firehose",
-    "nameBlock": 3117,
+    "nameBlock": 3183,
     "nameQuote": "למה שנשתמש בשיטה הזאת ולא בשירות של Amazon Data Firehose?"
   },
   "AWS Shield Advanced": {
     "sourceTerm": "AWS Shield Advanced",
-    "nameBlock": 2843,
+    "nameBlock": 2904,
     "nameQuote": "AWS Shield Advanced"
   },
   "CloudWatch Logs Insights": {
     "sourceTerm": "CloudWatch Logs Insights",
-    "nameBlock": 1840,
+    "nameBlock": 1886,
     "nameQuote": "CloudWatch Logs Insights"
   },
   "AWS X-Ray": {
     "sourceTerm": "AWS X-Ray",
-    "nameBlock": 3346,
+    "nameBlock": 3426,
     "nameQuote": "AWS X-Ray"
   },
   "FullAWSAccess בתור SCP": {
     "sourceTerm": "FullAWSAccess",
-    "nameBlock": 321,
+    "nameBlock": 337,
     "nameQuote": "FullAWSAccess"
   },
   "Route Table": {
     "sourceTerm": "Route Table",
-    "nameBlock": 1308,
+    "nameBlock": 1345,
     "nameQuote": "Route table"
   },
   "הזמנות קיבולת לפי דרישה": {
     "sourceTerm": "הזמנות קיבולת לפי דרישה",
-    "nameBlock": 943,
+    "nameBlock": 974,
     "nameQuote": "משתמשים יכולים לשריין קיבולת באמצעות הזמנות קיבולת לפי דרישה."
   },
   "DDoS Cost Protection": {
     "sourceTerm": "DDoS Cost Protection",
-    "nameBlock": 2853,
+    "nameBlock": 2914,
     "nameQuote": "DDoS Cost Protection - אם המשאבים המוגנים שלך הוקצו והתרחבו בגלל מתקפת DDoS מוכחת, אתה מגיש בקשה ל-AWS והם מזכים אותך (נותנים קרדיט) על כל העלויות העודפות שנגרמו מהמתקפה."
   },
   "CloudTrail Log File Integrity Validation": {
     "sourceTerm": "CloudTrail Log File Integrity Validation",
-    "nameBlock": 1683,
+    "nameBlock": 1729,
     "nameQuote": "Log File Validation / CloudTrail Log File Integrity Validation"
   },
   "Federated user": {
     "sourceTerm": "Federated user",
-    "nameBlock": 510,
+    "nameBlock": 526,
     "nameQuote": "Federated user"
   },
   "Egress-Only Internet Gateway": {
     "sourceTerm": "Egress-Only Internet Gateway",
-    "nameBlock": 1427,
+    "nameBlock": 1470,
     "nameQuote": "Egress-Only Internet Gateway"
   },
   "Root User": {
     "sourceTerm": "Root User",
-    "nameBlock": 587,
+    "nameBlock": 603,
     "nameQuote": "Root user / root account"
   },
   "Outbound Rules": {
     "sourceTerm": "Outbound rules",
-    "nameBlock": 1319,
+    "nameBlock": 1356,
     "nameQuote": "Outbound rules - חוקים יוצאים."
   },
   "CloudWatch Log Stream": {
     "sourceTerm": "Log Stream",
-    "nameBlock": 1759,
+    "nameBlock": 1805,
     "nameQuote": "Log Stream - זה קובץ בודד שמכיל בתוכו מלא לוגים שהגיעו משרת אחד."
   },
   "AWS Direct Connect": {
     "sourceTerm": "AWS Direct Connect",
-    "nameBlock": 2819,
+    "nameBlock": 2879,
     "nameQuote": "חיבור בין שני סניפים של הארגון שלך (נקרא AWS Direct Connect SiteLink) - נניח שיש לחברה שלך חדר שרתים אחד בתל אביב וחדר שרתים שני בלונדון, ושניהם מחוברים ל-AWS Direct Connect. אתה יכול להעביר מידע ישירות מתל אביב ללונדון על גבי קווי התקשורת של AWS."
   },
   "AWS Region": {
@@ -1926,32 +1921,32 @@
   },
   "Amazon Cognito": {
     "sourceTerm": "Amazon Cognito",
-    "nameBlock": 2976,
+    "nameBlock": 3037,
     "nameQuote": "Amazon Cognito"
   },
   "Amazon SQS": {
     "sourceTerm": "SQS",
-    "nameBlock": 3016,
+    "nameBlock": 3077,
     "nameQuote": "במקום שרכיב אחד יפנה ישירות לרכיב אחר וימתין לתשובה, הוא פשוט זורק את המידע לתוך התור של SQS, ורכיב אחר מושך את ההודעה בקצב שלו."
   },
   "Config Detective Evaluation": {
     "sourceTerm": "Detective Evaluation",
-    "nameBlock": 2165,
+    "nameBlock": 2211,
     "nameQuote": "Detective Evaluation - בדיקה בדיעבד, ההפרה של החוק כבר קרתה."
   },
   "EC2 Serial Console": {
     "sourceTerm": "EC2 Serial Console",
-    "nameBlock": 858,
+    "nameBlock": 873,
     "nameQuote": "EC2 Serial Console - דרך להתחבר בחירום ל-EC2 Instance גם כשאין לו אינטרנט דרך ה-hypervisor של AWS שמריץ את השרת הזה. השיטה הזאת עוקפת את כל החסימות של הרשת, גם אם הגדרנו security group שחוסם הכל."
   },
   "Permissions Boundary": {
     "sourceTerm": "Permissions Boundaries",
-    "nameBlock": 483,
+    "nameBlock": 499,
     "nameQuote": "אם יצרתי policy למשתמש ונתתי לו הרשאה ליצור roles, במידה ולא משתמשים ב-Permissions Boundaries, אותו משתמש יכול לעשות privilege escalation ע''י כך שהוא יוצר לעצמו role של אדמין ולשייך אותו לעצמו."
   },
   "IAM Group": {
     "sourceTerm": "Group",
-    "nameBlock": 561,
+    "nameBlock": 577,
     "nameQuote": "User groups"
   },
   "AWS CodeBuild": {
@@ -1961,17 +1956,17 @@
   },
   "Reserved Instances": {
     "sourceTerm": "Reserved Instances",
-    "nameBlock": 950,
+    "nameBlock": 981,
     "nameQuote": "Reserved Instances (Rls)"
   },
   "ECR Enhanced Scanning": {
     "sourceTerm": "Enhanced Scanning",
-    "nameBlock": 2950,
+    "nameBlock": 3011,
     "nameQuote": "Enhanced Scanning"
   },
   "AWS Config": {
     "sourceTerm": "AWS Config",
-    "nameBlock": 2146,
+    "nameBlock": 2192,
     "nameQuote": "AWS Config"
   },
   "AWS Well-Architected Tool": {
@@ -1981,12 +1976,12 @@
   },
   "VPC Flow Logs": {
     "sourceTerm": "VPC Flow Logs",
-    "nameBlock": 1375,
+    "nameBlock": 1414,
     "nameQuote": "VPC Flow logs"
   },
   "Internet-Facing Load Balancer": {
     "sourceTerm": "Internet-facing",
-    "nameBlock": 2576,
+    "nameBlock": 2636,
     "nameQuote": "אפשרות א: Internet-facing"
   },
   "AWS SDK": {
@@ -1996,302 +1991,302 @@
   },
   "Trust Policy": {
     "sourceTerm": "Trust Policy",
-    "nameBlock": 708,
+    "nameBlock": 724,
     "nameQuote": "Trust Policy"
   },
   "CloudFormation Linter": {
     "sourceTerm": "CloudFormation Linter",
-    "nameBlock": 1605,
+    "nameBlock": 1651,
     "nameQuote": "CloudFormation Linter"
   },
   "AWS CloudHSM": {
     "sourceTerm": "CloudHSM",
-    "nameBlock": 3385,
+    "nameBlock": 3465,
     "nameQuote": "CloudHSM"
   },
   "Systems Manager Session Manager": {
     "sourceTerm": "Session Manager",
-    "nameBlock": 2661,
-    "nameQuote": "במקום להשתמש בשיטה הישנה של התחברות עם SSH Key Pair, אם תוקף היה משיג את המפתחות האלה, הוא היה יכול להתחבר ל-EC2 Instance. החיבור ב-session manager מבוסס כולו על הזיהוי הדיגיטלי של המשתמש מול אמזון."
+    "nameBlock": 2722,
+    "nameQuote": "החיבור ב-session manager מבוסס כולו על הזיהוי הדיגיטלי של המשתמש מול אמזון. במקום להשתמש בשיטה הישנה של התחברות עם Key Pair, אם תוקף היה משיג את המפתחות האלה, הוא היה יכול להתחבר ל-EC2 Instance."
   },
   "AWS Control Tower": {
     "sourceTerm": "AWS Control Tower",
-    "nameBlock": 323,
+    "nameBlock": 339,
     "nameQuote": "AWS Control Tower"
   },
   "Amazon Redshift": {
     "sourceTerm": "Redshift",
-    "nameBlock": 3294,
+    "nameBlock": 3374,
     "nameQuote": "Redshift"
   },
   "Gateway Load Balancer — GWLB": {
     "sourceTerm": "Gateway Load Balancer",
-    "nameBlock": 2594,
+    "nameBlock": 2654,
     "nameQuote": "Gateway load balancer"
   },
   "Lambda Execution Role": {
     "sourceTerm": "Execution Role",
-    "nameBlock": 1054,
+    "nameBlock": 1085,
     "nameQuote": "Trust Policy - מי יכול לשייך את ה-role. החלק הזה קורה באופן אוטומטי מאחורי הקלעים כי כשיוצרים Execution Role, צריך לומר ל-AWS לאיזה שירות ה-role הזה מיועד."
   },
   "CloudWatch Subscription Filter": {
     "sourceTerm": "Subscription Filter",
-    "nameBlock": 1838,
+    "nameBlock": 1884,
     "nameQuote": "Subscription Filters"
   },
   "S3 Object": {
     "sourceTerm": "S3 Object",
-    "nameBlock": 1155,
+    "nameBlock": 1186,
     "nameQuote": "S3 Object Lock"
   },
   "DB Instance": {
     "sourceTerm": "DB Instance",
-    "nameBlock": 3032,
+    "nameBlock": 3093,
     "nameQuote": "DB Instance"
   },
   "WAF Count Mode": {
     "sourceTerm": "Count Mode",
-    "nameBlock": 2811,
+    "nameBlock": 2872,
     "nameQuote": "Count Mode"
   },
   "Amazon Managed Grafana": {
     "sourceTerm": "Amazon Managed Grafana",
-    "nameBlock": 3355,
+    "nameBlock": 3435,
     "nameQuote": "Amazon Managed Grafana"
   },
   "S3 Event Notifications": {
     "sourceTerm": "S3 Event Notifications",
-    "nameBlock": 1125,
+    "nameBlock": 1156,
     "nameQuote": "S3 Event Notifications"
   },
   "IAM Identity Center": {
     "sourceTerm": "IAM Identity Center",
-    "nameBlock": 328,
+    "nameBlock": 344,
     "nameQuote": "AWS IAM Identity Center"
   },
   "Amazon SES": {
     "sourceTerm": "SES",
-    "nameBlock": 3379,
+    "nameBlock": 3459,
     "nameQuote": "Simple Email Service - SES"
   },
   "WAF Managed Rule": {
     "sourceTerm": "Managed Rules",
-    "nameBlock": 2802,
+    "nameBlock": 2863,
     "nameQuote": "חוקים מובנים ומנוהלים (Managed Rules): חבילות חוקים מוכנות של AWS."
   },
   "AWS Resource Access Manager — RAM": {
     "sourceTerm": "AWS Resource Access Manager",
-    "nameBlock": 3135,
+    "nameBlock": 3207,
     "nameQuote": "AWS Resource Access Manager"
   },
   "Amazon Route 53": {
     "sourceTerm": "Amazon Route 53",
-    "nameBlock": 2736,
+    "nameBlock": 2797,
     "nameQuote": "Amazon Route 53"
   },
   "בדיקות מוכנות (ARC)": {
     "sourceTerm": "בדיקות מוכנות",
-    "nameBlock": 2753,
+    "nameBlock": 2814,
     "nameQuote": "הוא סורק באופן קבוע את כל התשתית שלך בשני האזורים כדי לוודא שאזור הגיבוי מסוגל לעמוד בעומס אם האזור הראשי יקרוס, מה שנקרא \"בדיקות מוכנות\""
   },
   "CloudFormation Stack": {
     "sourceTerm": "CloudFormation Stack",
-    "nameBlock": 1553,
+    "nameBlock": 1596,
     "nameQuote": "CloudFormation Stack"
   },
   "Amazon QuickSight": {
     "sourceTerm": "Amazon QuickSigh",
-    "nameBlock": 3304,
+    "nameBlock": 3384,
     "nameQuote": "Amazon QuickSigh"
   },
   "S3 Presigned URL": {
     "sourceTerm": "S3 Presigned URL",
-    "nameBlock": 1171,
+    "nameBlock": 1202,
     "nameQuote": "S3 Presigned URL"
   },
   "AWS Security Hub": {
     "sourceTerm": "AWS Security Hub",
-    "nameBlock": 2233,
+    "nameBlock": 2293,
     "nameQuote": "או בקיצור ASFF, הוא פורמט נתונים סטנדרטי שבו AWS משתמשת כדי לייצג ולהעביר ממצאי אבטחה (security findings) בצורה אחידה בין שירותי אבטחה שונים לבין AWS Security Hub."
   },
   "RDS Encryption": {
     "sourceTerm": "RDS Encryption",
-    "nameBlock": 3046,
+    "nameBlock": 3107,
     "nameQuote": "RDS Encryption"
   },
   "Transit Gateway": {
     "sourceTerm": "Transit Gateway",
-    "nameBlock": 369,
+    "nameBlock": 386,
     "nameQuote": "ה-Hub: פותחים hub account, בתוכו מגדירים את ה-AWS Transit Gateway"
   },
   "Log Archive Account": {
     "sourceTerm": "Log Archive Account",
-    "nameBlock": 198,
+    "nameBlock": 214,
     "nameQuote": "Log Archive Account, זה חשבון שישמש עבור שמירת הלוגים מכל החשבונות. שימוש בעיקרון של חשבון שמרכז את כל הלוגים מכל החשבונות האחרים נקרא Centralized Logging."
   },
   "Amazon S3": {
     "sourceTerm": "Amazon S3",
-    "nameBlock": 1126,
+    "nameBlock": 1157,
     "nameQuote": "זה מנגנון שמאפשר ל־Amazon S3 לזהות פעולות כמו:"
   },
   "Session Token": {
     "sourceTerm": "Session Token",
-    "nameBlock": 395,
+    "nameBlock": 412,
     "nameQuote": "Session token: טוקן של זמן הסשן, קיים רק עבור מפתחות זמניים."
   },
   "EventBridge Scheduler": {
     "sourceTerm": "EventBridge Scheduler",
-    "nameBlock": 1970,
+    "nameBlock": 2016,
     "nameQuote": "EventBridge Scheduler"
   },
   "Auto Scaling Group": {
     "sourceTerm": "Auto Scaling Group",
-    "nameBlock": 864,
+    "nameBlock": 879,
     "nameQuote": "Auto Scaling group"
   },
   "Single-Region Trail": {
     "sourceTerm": "Single-Region Trail",
-    "nameBlock": 1665,
+    "nameBlock": 1711,
     "nameQuote": "דרך ה-CLI הוא יהיה Single Region Trail, כלומר יבצע תיעוד רק ב-region אחד שבו אנחנו נמצאים."
   },
   "S3 Batch Operations": {
     "sourceTerm": "Batch Operations",
-    "nameBlock": 1257,
+    "nameBlock": 1294,
     "nameQuote": "Batch Operations"
   },
   "Amazon Detective": {
     "sourceTerm": "Amazon Detective",
-    "nameBlock": 2734,
+    "nameBlock": 2795,
     "nameQuote": "WS Security Hub Findings (אופציונלי) - Amazon Detective יודע למשוך ממצאי אבטחה מרוכזים מכל הכלים שמחוברים ל-Security Hub."
   },
   "Config Remediation": {
     "sourceTerm": "Remediation",
-    "nameBlock": 2170,
+    "nameBlock": 2216,
     "nameQuote": "Remediation ב-AWS Config"
   },
   "OpenSearch Security Analytics": {
     "sourceTerm": "Security Analytics",
-    "nameBlock": 3171,
+    "nameBlock": 3243,
     "nameQuote": "Security Analytics"
   },
   "Access Key ID": {
     "sourceTerm": "Access Key ID",
-    "nameBlock": 393,
+    "nameBlock": 410,
     "nameQuote": "Access key ID: זה כביכול שם המשתמש. תמיד מתחיל ב-AKIA עבור מפתחות קבועים, או ב-ASIA עבור מפתחות זמניים."
   },
   "AWS STS": {
     "sourceTerm": "STS",
-    "nameBlock": 646,
+    "nameBlock": 662,
     "nameQuote": "פעולת הענקת ה-role נקראת \"Assume Role\" והיא מצבעת ע''י שירות פנימי שנקרא STS:"
   },
   "Internet Gateway": {
     "sourceTerm": "Internet Gateway",
-    "nameBlock": 1344,
+    "nameBlock": 1381,
     "nameQuote": "Internet Gateway"
   },
   "Data Lifecycle Manager": {
     "sourceTerm": "Data Lifecycle Manager",
-    "nameBlock": 907,
+    "nameBlock": 928,
     "nameQuote": "Amazon Data Lifecycle Manager"
   },
   "Kinesis Client Library — KCL": {
     "sourceTerm": "Kinesis Client Library",
-    "nameBlock": 3115,
+    "nameBlock": 3181,
     "nameQuote": "KCL - או בשמו המלא Kinesis Client Library, זאת ספריית קוד מוכנה שנועדה למשוך את הנתונים."
   },
   "CloudWatch Contributor Insights": {
     "sourceTerm": "CloudWatch Contributor Insights",
-    "nameBlock": 1824,
+    "nameBlock": 1870,
     "nameQuote": "CloudWatch Contributor Insights"
   },
   "Cross-Region Replication": {
     "sourceTerm": "Cross-Region Replication",
-    "nameBlock": 1191,
+    "nameBlock": 1222,
     "nameQuote": "CRR - Cross-Region Replication, העתקה של הקבצים לבאקט ב-Region אחר. מיועד בעיקר עבור Disaster Recovery ועמידה בחוקי רגולציה קשוחים."
   },
   "AWS CloudTrail Insights": {
     "sourceTerm": "AWS CloudTrail Insights",
-    "nameBlock": 1692,
+    "nameBlock": 1738,
     "nameQuote": "AWS CloudTrail Insights"
   },
   "Config Custom Policy Rule": {
     "sourceTerm": "Config Custom Policy Rule",
-    "nameBlock": 2184,
+    "nameBlock": 2230,
     "nameQuote": "AWS Config custom policy rules"
   },
   "AWS KMS": {
     "sourceTerm": "AWS KMS",
-    "nameBlock": 2338,
+    "nameBlock": 2398,
     "nameQuote": "AWS KMS"
   },
   "Same-Region Replication": {
     "sourceTerm": "Same-Region Replication",
-    "nameBlock": 1192,
+    "nameBlock": 1223,
     "nameQuote": "SRR - Same-Region Replication - העתקה של הקבצים לבאקט שנמצא באותו ה-Region. משתמשים בזה עבור העתקת קבצים מסביבת הייצור לסביבת בדיקות."
   },
   "Customer-Managed KMS Key": {
     "sourceTerm": "Customer-managed key",
-    "nameBlock": 2379,
+    "nameBlock": 2439,
     "nameQuote": "Customer Managed Keys - CMK"
   },
   "IMDSv2": {
     "sourceTerm": "IMDS גרסה 2",
-    "nameBlock": 558,
+    "nameBlock": 574,
     "nameQuote": "אמצעי הגנה: IMDS גרסה 2"
   },
   "Temporary Security Credentials": {
     "sourceTerm": "Temporary Security Credentials",
-    "nameBlock": 414,
+    "nameBlock": 431,
     "nameQuote": "2.Temporary Security Credentials"
   },
   "Elastic Load Balancing": {
     "sourceTerm": "Elastic Load Balancing",
-    "nameBlock": 2561,
+    "nameBlock": 2621,
     "nameQuote": "AWS Elastic Load Balancing"
   },
   "Cross-Region Backup Copying": {
     "sourceTerm": "Cross-Region Backup Copying",
-    "nameBlock": 3179,
+    "nameBlock": 3251,
     "nameQuote": "Cross-Region Backup Copying"
   },
   "AWS Backup Vault": {
     "sourceTerm": "AWS Backup Vault",
-    "nameBlock": 3181,
+    "nameBlock": 3253,
     "nameQuote": "AWS Backup Vault"
   },
   "Standard Vault": {
     "sourceTerm": "Standard Vault",
-    "nameBlock": 3183,
-    "nameQuote": "Standard Vault - הגיבויים נשארים בתוך חשבון ה-AWS שלכם"
+    "nameBlock": 3255,
+    "nameQuote": "Standard Vault - הגיבויים נשארים בתוך חשבון ה-AWS שלכם."
   },
   "Logically Air-Gapped Vault": {
     "sourceTerm": "Logically Air-Gapped Vault",
-    "nameBlock": 3184,
-    "nameQuote": "Logically Air-Gapped Vault - הגיבויים מועתקים אוטומטית לחשבון AWS נפרד ומבודד שמנוהל על ידי שירות AWS Backup."
+    "nameBlock": 3256,
+    "nameQuote": "Logically Air-Gapped Vault - הגיבויים מועתקים אוטומטית לחשבון AWS לא שלנו, ושמנוהל על ידי השירות של AWS Backup."
   },
   "AWS Backup Vault Lock": {
     "sourceTerm": "AWS Backup Vault Lock",
-    "nameBlock": 3185,
+    "nameBlock": 3257,
     "nameQuote": "AWS Backup Vault Lock"
   },
   "Volume Gateway": {
     "sourceTerm": "Volume Gateway",
-    "nameBlock": 3192,
+    "nameBlock": 3264,
     "nameQuote": "Volume Gateway"
   },
   "File Gateway": {
     "sourceTerm": "File Gateway",
-    "nameBlock": 3194,
+    "nameBlock": 3266,
     "nameQuote": "File Gateway"
   },
   "AWS Elastic Disaster Recovery": {
     "sourceTerm": "AWS Elastic Disaster Recovery",
-    "nameBlock": 3443,
+    "nameBlock": 3523,
     "nameQuote": "AWS Elastic Disaster Recovery"
   },
   "GuardDuty Custom Entity Lists": {
     "sourceTerm": "Custom Entity Lists",
-    "nameBlock": 2036,
+    "nameBlock": 2082,
     "nameQuote": "Custom Entity Lists"
   },
   "AWS Marketplace": {
@@ -2301,62 +2296,117 @@
   },
   "User Access Portal": {
     "sourceTerm": "User Access Portal",
-    "nameBlock": 338,
+    "nameBlock": 354,
     "nameQuote": "User Access Portal"
   },
   "IAM Access Analyzer Custom Policy Checks": {
     "sourceTerm": "Custom Policy Checks",
-    "nameBlock": 461,
+    "nameBlock": 478,
     "nameQuote": "Internal Access (כחלק מ-Custom Policy Checks)"
   },
   "IAM Access Analyzer Policy Generation": {
     "sourceTerm": "IAM Access Analyzer Policy Generation",
-    "nameBlock": 470,
+    "nameBlock": 487,
     "nameQuote": "IAM Access Analyzer Policy Generation"
   },
   "Cross-account access": {
     "sourceTerm": "Cross-account access",
-    "nameBlock": 512,
+    "nameBlock": 528,
     "nameQuote": "Cross-account access"
   },
   "WAF Rule Group": {
     "sourceTerm": "Rule group",
-    "nameBlock": 2798,
+    "nameBlock": 2859,
     "nameQuote": "Rule group"
   },
   "WAF Rule": {
     "sourceTerm": "Rule",
-    "nameBlock": 2800,
+    "nameBlock": 2861,
     "nameQuote": "Rule"
   },
   "חוקים מחנות AWS Marketplace": {
     "sourceTerm": "חוקים מחנות AWS Marketplace",
-    "nameBlock": 2803,
+    "nameBlock": 2864,
     "nameQuote": "חוקים מחנות AWS Marketplace: חבילות חוקים מנוהלות של חברות אבטחה חיצוניות (צד שלישי)."
   },
   "IAM Roles Anywhere": {
     "sourceTerm": "IAM Roles Anywhere",
-    "nameBlock": 526,
+    "nameBlock": 542,
     "nameQuote": "IAM Roles Anywhere"
   },
   "IAM Roles Anywhere Credential helper tool": {
     "sourceTerm": "Credential helper tool",
-    "nameBlock": 532,
+    "nameBlock": 548,
     "nameQuote": "דרך תוכנה שמתקינים שנקראת Credential helper tool"
   },
   "ECR Vulnerability scanning": {
     "sourceTerm": "Vulnerability scanning",
-    "nameBlock": 2948,
+    "nameBlock": 3009,
     "nameQuote": "Vulnerability scanning"
   },
   "ECR Scan on push": {
     "sourceTerm": "Scan on push",
-    "nameBlock": 2956,
+    "nameBlock": 3017,
     "nameQuote": "Scan on push - סריקה בעת העלאת קובץ ל-repo"
   },
   "ECR Manual scanning": {
     "sourceTerm": "Manual",
-    "nameBlock": 2957,
+    "nameBlock": 3018,
     "nameQuote": "Manual - סריקה באופן ידני לפי פקודה."
+  },
+  "Require_secure_transport (RDS / Aurora)": {
+    "sourceTerm": "Require_secure_transport",
+    "nameBlock": 166,
+    "nameQuote": "Require_secure_transport"
+  },
+  "Transit Gateway Attachment": {
+    "sourceTerm": "Attachment",
+    "nameBlock": 394,
+    "nameQuote": "Attachment"
+  },
+  "AWS Support": {
+    "sourceTerm": "AWS Support",
+    "nameBlock": 168,
+    "nameQuote": "AWS Support"
+  },
+  "AWS Config aggregator": {
+    "sourceTerm": "AWS Config aggregator",
+    "nameBlock": 2234,
+    "nameQuote": "AWS Config aggregator"
+  },
+  "Basic (AWS Support)": {
+    "sourceTerm": "Basic",
+    "nameBlock": 175,
+    "nameQuote": "1. תוכנית Basic (חינמית): כל מי שפותח חשבון AWS מקבל אותה אוטומטית ללא עלות. היא כוללת גישה לתיעוד, פורומים, ותמיכה בנושאי חיוב ומוגבלת מאוד בתמיכה טכנית אנושית. עם זאת, התרעות אבטחה קריטיות (כמו מפתח שנחשף) נשלחות לכל הלקוחות, גם בתוכנית החינמית."
+  },
+  "Transit Gateway Route Table": {
+    "sourceTerm": "Transit Gateway Route Table",
+    "nameBlock": 396,
+    "nameQuote": "Transit Gateway Route Table"
+  },
+  "AWS Support — תוכניות בתשלום": {
+    "sourceTerm": "תוכניות בתשלום",
+    "nameBlock": 176,
+    "nameQuote": "2. תוכניות בתשלום (Business Support+ ,Enterprise Support, Unified Operations): תוכניות המיועדות לחברות וארגונים. הן עולות תשלום חודשי קבוע או אחוז מסוים מעלות השימוש החודשית בענן (הגבוה מביניהם). בתמורה, החברות מקבלות מענה אנושי ממהנדסי תמיכה תוך דקות ספורות, 24/7, וליווי צמוד של מהנדס ייעודי (TAM)."
+  },
+  "organization-wide resource data aggregation": {
+    "sourceTerm": "organization-wide resource data aggregation",
+    "nameBlock": 2241,
+    "nameQuote": "organization-wide resource data aggregation"
+  },
+  "TAM (AWS Support)": {
+    "sourceTerm": "TAM",
+    "nameBlock": 176,
+    "nameQuote": "2. תוכניות בתשלום (Business Support+ ,Enterprise Support, Unified Operations): תוכניות המיועדות לחברות וארגונים. הן עולות תשלום חודשי קבוע או אחוז מסוים מעלות השימוש החודשית בענן (הגבוה מביניהם). בתמורה, החברות מקבלות מענה אנושי ממהנדסי תמיכה תוך דקות ספורות, 24/7, וליווי צמוד של מהנדס ייעודי (TAM)."
+  },
+  "RDS Proxy": {
+    "sourceTerm": "RDS Proxy",
+    "nameBlock": 3335,
+    "nameQuote": "RDS Proxy"
+  },
+  "AWSCompromisedKeyQuarantineV3": {
+    "sourceTerm": "AWSCompromisedKeyQuarantineV3",
+    "nameBlock": 177,
+    "nameQuote": "AWSCompromisedKeyQuarantineV3"
   }
 }
